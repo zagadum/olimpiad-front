@@ -23,4 +23,4 @@ jobs:
             cd /var/www/olympiad.firm.kiev.ua
             git pull origin main
             yarn install
-            npm run build
+            yarn run build
