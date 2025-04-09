@@ -14,7 +14,7 @@ jobs:
         run: |
           echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
           echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
-         echo "Private Key length: ${{ secrets.SSH_PRIVATE_KEY }}"
+          echo "SSH_PRIVATE_KEY is set: ${{ secrets.SSH_PRIVATE_KEY != '' }}"
 
           
       - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.14.0' # Версия должна быть либо '20', либо '18'
+          node-version: '20' # Версия должна быть либо '20', либо '18'
 
       - name: Install dependencies
         run: yarn install
