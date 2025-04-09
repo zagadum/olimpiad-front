@@ -12,10 +12,7 @@ jobs:
     steps:
       - name: Echo secrets (debug)
         run: |
-          echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
-          echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
-          echo "SSH_PRIVATE_KEY is set: ${{ secrets.SSH_PRIVATE_KEY != '' }}"
-
+        
           
       - name: Checkout code
         uses: actions/checkout@v3
