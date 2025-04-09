@@ -1,5 +1,11 @@
 name: Deploy to Server
-
+run: |
+    echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
+    echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
+    echo "Key length: ${#{{ secrets.SSH_PRIVATE_KEY }}}"
+  shell: bash
+  env:
+    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 on:
   push:
     branches:
