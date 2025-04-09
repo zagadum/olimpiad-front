@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-white: #fff;
+  --color-1: #26F9FF;
+  --color-2: #F98901;
+  --color-3: #F2F2F2;
+  --color-4: #04151D;
+  --color-5: #071E2C;
+  --gradient-1: linear-gradient(180deg, #26F9FF 0%, #179599 100%);
+
+  --sidebar-expanded: 364px;
+  --sidebar-collapsed: 168px;
+}
+
+body {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: Roboto, sans-serif;
+}
+

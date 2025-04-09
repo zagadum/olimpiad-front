@@ -1,0 +1,35 @@
+{
+  "home": {
+    "welcome": "Witamy w SpaceM!",
+    "description": "Witamy w aplikacji do udziału w olimpiadach. Zarejestruj się i odkryj nowe możliwości.",
+    "goToOlympiads": "Przejdź do olimpiad"
+  },
+  "sidebar": {
+    "home": "Strona główna",
+    "homework": "Praca domowa",
+    "training": "Trenuj siebie",
+    "olympiads": "Olimpiady",
+    "mySpace": "My Space",
+    "logout": "Wyloguj się"
+  },
+  "userInfo": {
+    "role": "Trener Space",
+    "phone": "Mariya Menska +44394909799"
+  },
+  "stats": {
+    "avgTime": "Średni czas rozwiązania",
+    "minutes": "minut",
+    "statistics": "Statystyki",
+    "homework": "Praca domowa",
+    "joinIdea": "Dołącz do idei"
+  },
+  "rating": {
+    "title": "Ranking"
+  },
+  "news": {
+    "title": "Aktualności",
+    "item1": "Dziś wystartował nowy maraton matematyczny dla uczestników SpaceM!",
+    "item2": "Zaktualizowano zasady korzystania z portalu — zapoznaj się!",
+    "item3": "Nowe treningi dostępne w sekcji 'Trenuj siebie'."
+  }
+}
