@@ -21,7 +21,7 @@ nvm install 22.14.0
 nvm use 22
 nvm alias default 22
 
-
+...
  
 Скрипт	Назначение
 yarn install	Установка зависимостей

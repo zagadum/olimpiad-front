@@ -1,11 +1,5 @@
 name: Deploy to Server
-run: |
-    echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
-    echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
-    echo "Key length: ${#{{ secrets.SSH_PRIVATE_KEY }}}"
-  
-  env:
-    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
 on:
   push:
     branches:
@@ -16,8 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Echo secrets (debug)
+        run: |
+          echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
+          echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
+          echo "SSH_PRIVATE_KEY is set: ${{ secrets.SSH_PRIVATE_KEY != '' }}"
+
+          
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Версия должна быть либо '20', либо '18'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn build
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.7
@@ -29,4 +41,4 @@ jobs:
             cd /var/www/olympiad.firm.kiev.ua
             git pull origin main
             yarn install
-            yarn run build
+            yarn build
