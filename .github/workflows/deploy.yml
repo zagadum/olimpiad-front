@@ -4,8 +4,7 @@ run: |
     echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
     echo "Key length: ${#{{ secrets.SSH_PRIVATE_KEY }}}"
   
-  env:
-    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+   
 on:
   push:
     branches:
@@ -18,7 +17,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+        
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
