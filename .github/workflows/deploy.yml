@@ -12,10 +12,7 @@ jobs:
     steps:
       - name: Echo secrets (debug)
         run: |
-          echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
-          echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
-          echo "SSH_PRIVATE_KEY is set: ${{ secrets.SSH_PRIVATE_KEY != '' }}"
-
+        
           
       - name: Checkout code
         uses: actions/checkout@v3
@@ -34,8 +31,8 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: 135.181.29.211
-          username: zagadum
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/olympiad.firm.kiev.ua
