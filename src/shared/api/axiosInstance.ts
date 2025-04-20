@@ -1,8 +1,8 @@
 import axios from 'axios';
-// import { API_URL } from "@/shared/config";
+import { API_URL } from "@/shared/config";
 
 export const axiosInstance = axios.create({
-  // baseURL: API_URL,
+  baseURL: API_URL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
