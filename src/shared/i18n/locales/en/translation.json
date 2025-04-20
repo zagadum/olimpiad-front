@@ -31,5 +31,26 @@
     "item1": "A new math marathon has started for SpaceM participants!",
     "item2": "Portal usage rules have been updated — please review!",
     "item3": "New trainings are available in the 'Train Yourself' section."
+  },
+  "olympiadsNavbar": {
+    "item1": "All olympiads",
+    "item2": "My olympiads",
+    "item3": "Rating"
+  },
+  "olympiadCard": {
+    "international": "International",
+    "country": {
+      "pl": "Polska",
+      "uk": "Українська"
+    },
+    "promotion": {
+      "olympiad": "",
+      "ads": ""
+    },
+    "startIn": "Start in ",
+    "endIn": "End in ",
+    "startTraining": "Training",
+    "start": "Start",
+    "participate": "Participate"
   }
 }

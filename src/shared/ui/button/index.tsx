@@ -1,23 +1,23 @@
-import { FC, ButtonHTMLAttributes } from 'react';
-import { cn } from '@/shared/lib/cn';
+import { FC, ButtonHTMLAttributes } from "react";
+import { cn } from "@/shared/lib/cn";
 
-export type ButtonVariant = 'primary' | 'secondary'
+export type ButtonVariant = "primary" | "secondary";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   disabled?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
 }
 
 const baseClasses = `
     px-6
     py-2
     rounded-full
-    text-base
-    leading-4
+    text-xs
+    leading-3
     font-semibold
     text-white
-    border-4
+    border-2
     transition-all
     duration-300
     ease-in-out
@@ -26,10 +26,15 @@ const baseClasses = `
     disabled:cursor-not-allowed
     disabled:text-[#FFFFFF85]
     text-nowrap
-    lg:text-xl
-    lg:leading-5
-    lg:px-11
+    lg:text-base
+    lg:leading-4
+    lg:px-6
     lg:py-4
+    2xl:border-4
+    2xl:text-xl
+    2xl:leading-5
+    2xl:px-11
+    2xl:py-4
   `;
 
 const primaryVariant = `
@@ -60,17 +65,16 @@ const secondaryVariant = `
 
 export const Button: FC<ButtonProps> = ({
   children,
-  variant = 'primary',
+  variant = "primary",
   disabled = false,
   className,
   ...rest
-
 }) => {
   const variantClasses = (() => {
     switch (variant) {
-      case 'primary':
+      case "primary":
         return primaryVariant;
-      case 'secondary':
+      case "secondary":
         return secondaryVariant;
       default:
         return primaryVariant;

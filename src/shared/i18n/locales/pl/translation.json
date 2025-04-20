@@ -31,5 +31,22 @@
     "item1": "Dziś wystartował nowy maraton matematyczny dla uczestników SpaceM!",
     "item2": "Zaktualizowano zasady korzystania z portalu — zapoznaj się!",
     "item3": "Nowe treningi dostępne w sekcji 'Trenuj siebie'."
+  },
+  "olympiadsNavbar": {
+    "item1": "Wszystkie olimpiady",
+    "item2": "Moje olimpiady",
+    "item3": "Ofuknięcie"
+  },
+  "olympiadCard": {
+    "international": "Międzynarodowy",
+    "country": {
+      "pl": "Polska",
+      "uk": "Українська"
+    },
+    "startIn": "Початок через ",
+    "endIn": "Кінець через ",
+    "startTraining": "Тренуватися",
+    "start": "Почати",
+    "participate": "Взяти участь"
   }
 }

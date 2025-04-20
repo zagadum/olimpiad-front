@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/shared/lib/cn.ts";
+import i18n from "@/shared/i18n";
 
 interface Props {
   changeTitle?: (title: string) => void;
@@ -8,15 +9,15 @@ interface Props {
 
 const navItems = [
   {
-    label: "Все олимпиады",
+    label: i18n.t("olympiadsNavbar.item1"),
     path: "/olympiads/all",
   },
   {
-    label: "Мои олимпиады",
+    label: i18n.t("olympiadsNavbar.item2"),
     path: "/olympiads/my",
   },
   {
-    label: "Рейтинг",
+    label: i18n.t("olympiadsNavbar.item3"),
     path: "/olympiads/ranking",
   },
 ];
