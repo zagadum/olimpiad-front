@@ -4,7 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 // Імпортуємо файли перекладів
 import enTranslation from './locales/en/translation.json';
-import uaTranslation from './locales/ua/translation.json';
+import ukTranslation from '@/shared/i18n/locales/uk/translation.json';
 import plTranslation from './locales/pl/translation.json';
 
 i18n
@@ -13,10 +13,10 @@ i18n
   .init({
     resources: {
       en: { translation: enTranslation },
-      ua: { translation: uaTranslation },
+      uk: { translation: ukTranslation },
       pl: { translation: plTranslation },
     },
-    fallbackLng: 'ua', // Мова за замовчуванням
+    fallbackLng: 'uk', // Мова за замовчуванням
     debug: process.env.NODE_ENV === 'development',
     interpolation: {
       escapeValue: false, // Не екрануємо, бо React безпечний

@@ -1,25 +1,30 @@
 import { axiosInstance } from "@/shared/api/axiosInstance";
-import { Olympiad } from "./types";
-import { getOlympiadsResponse } from "./mockData";
+import {
+  // Olympiad,
+  OlympiadsResponse
+} from "./types";
+// import { getOlympiadsResponse } from "./mockData";
 
 // Отримання всіх олімпіад
-export const getOlympiads = async (): Promise<Olympiad[]> => {
-  // const response = await axiosInstance.get('/olympiads');
+export const getOlympiads = async (params?: OlympiadsResponse["params"]): Promise<OlympiadsResponse> => {
+  const response = await axiosInstance.get('/api/olympiads', {
+    params
+  });
 
   // Мокові дані
-  const response = await getOlympiadsResponse();
+  // const response = await getOlympiadsResponse(params);
   return response.data;
 };
 
 // Отримання олімпіад, в яких бере участь користувач
-export const getMyOlympiads = async (): Promise<Olympiad[]> => {
-  const response = await axiosInstance.get("/olympiads/my");
+export const getMyOlympiads = async (): Promise<OlympiadsResponse> => {
+  const response = await axiosInstance.get("/api/olympiads/my");
   return response.data;
 };
 
 // Отримання деталей окремої олімпіади за ID
-export const getOlympiadDetail = async (id: string): Promise<Olympiad> => {
-  const response = await axiosInstance.get(`/olympiads/${id}`);
+export const getOlympiadDetail = async (id: string): Promise<OlympiadsResponse> => {
+  const response = await axiosInstance.get(`/api/olympiads/${id}`);
   return response.data;
 };
 
@@ -27,7 +32,7 @@ export const getOlympiadDetail = async (id: string): Promise<Olympiad> => {
 export const registerForOlympiad = async (
   formData: unknown,
 ): Promise<unknown> => {
-  // const response = await axiosInstance.post("/olympiads/register", formData);
+  // const response = await axiosInstance.post("/api/olympiads/register", formData);
   const response = {status: 200, data: formData}
   return response.data;
 };
@@ -36,6 +41,6 @@ export const registerForOlympiad = async (
 export const initiatePayment = async (
   paymentData: unknown,
 ): Promise<unknown> => {
-  const response = await axiosInstance.post("/olympiads/payment", paymentData);
+  const response = await axiosInstance.post("/api/olympiads/payment", paymentData);
   return response.data;
 };

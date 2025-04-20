@@ -1,17 +1,19 @@
 import { useState, useRef, FC, useEffect } from "react";
 import { cn } from "@/shared/lib/cn.ts";
 
+type Value = string | number;
+
 export interface SelectOption {
   id: string;
   label: string;
-  value?: string;
+  value?: Value;
   icon?: string;
 }
 
 interface SelectProps {
   options: SelectOption[];
-  value?: string;
-  onChange?: (value?: string) => void;
+  value?: Value;
+  onChange?: (value?: Value) => void;
   placeholder?: string;
 }
 
@@ -47,7 +49,7 @@ export const Select: FC<SelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   // Знаходимо опцію, яка відповідає поточному value
-  const selectedOption = options.find((opt) => value && opt.value === value);
+  const selectedOption = options.find((opt) => opt.value === value);
 
   // Для закриття меню при кліку поза компонентом
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +74,7 @@ export const Select: FC<SelectProps> = ({
     setIsOpen((prev) => !prev);
   };
 
-  const handleSelect = (value?: string) => () => {
+  const handleSelect = (value?: Value) => () => {
     onChange?.(value);
     setIsOpen(false);
   };
@@ -84,7 +86,7 @@ export const Select: FC<SelectProps> = ({
         type="button"
         onClick={toggleOpen}
         className={cn(
-          "flex items-center rounded-full border px-4 py-3 outline-none w-max",
+          "flex w-max items-center rounded-full border px-4 py-3 outline-none",
           "text-[20px] leading-[16px] text-white",
           "border-[#0C464F] transition-colors hover:border-[#26F9FF]",
         )}
@@ -128,7 +130,11 @@ export const Select: FC<SelectProps> = ({
         <div className="absolute z-10 w-max rounded-3xl bg-[#0A2432] shadow-lg">
           <ul>
             {options.map((option) => (
-              <Option {...option} onClick={handleSelect(option.value)} />
+              <Option
+                key={option.id}
+                {...option}
+                onClick={handleSelect(option.value)}
+              />
             ))}
           </ul>
         </div>
