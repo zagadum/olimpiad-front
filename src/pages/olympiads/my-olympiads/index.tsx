@@ -14,8 +14,8 @@ export const MyOlympiadsPage: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-      {data?.length ? (
-        data.map((olympiad) => (
+      {data?.data_list.length ? (
+        data.data_list.map((olympiad) => (
           <OlympiadsCard key={olympiad.id} olympiad={olympiad} />
         ))
       ) : (

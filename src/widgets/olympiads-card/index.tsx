@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 type OlympiadsCardProps = {
   olympiad: Olympiad;
-  onCardClick: (id: number) => void;
+  onCardClick?: (id: number) => void;
 };
 
 const calcDays = (date: string) => {
@@ -59,7 +59,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
 
   const onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
-    onCardClick(olympiad.id);
+    onCardClick?.(olympiad.id);
   };
 
   const startDateDistance = calcDays(olympiad.start_date ?? "");

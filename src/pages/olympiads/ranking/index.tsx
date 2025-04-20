@@ -55,8 +55,8 @@ export const RankingPage: React.FC = () => {
   });
 
   // Стан для фільтрів
-  const [selectedLevel, setSelectedLevel] = useState<string>();
-  const [selectedAge, setSelectedAge] = useState<string>();
+  const [selectedLevel, setSelectedLevel] = useState<string | number>();
+  const [selectedAge, setSelectedAge] = useState<string | number>();
 
   if (isLoading) return <div>Завантаження...</div>;
   if (error) return <div>Помилка завантаження даних</div>;
