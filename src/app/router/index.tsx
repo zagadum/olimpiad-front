@@ -22,6 +22,7 @@ export function AppRouter() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/homework" element={<HomeWorkPage />} />
         <Route path="/training" element={<TrainingPage />} />
+        <Route path="/my-space" element={<TrainingPage />} />
         <Route path="/olympiads" element={<OlympiadsLayout />}>
           <Route index element={<Navigate to="all" />} />
           <Route path="all" element={<AllOlympiadsPage />} />
