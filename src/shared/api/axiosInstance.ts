@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { API_URL } from "@/shared/config";
 
+const exceptions = ['/api/olympiads', '/api/olympiads/1']
+
 export const axiosInstance = axios.create({
   baseURL: API_URL,
   timeout: 10000,
@@ -11,10 +13,10 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    // const token = getTokenFromStore();
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
+    const token = localStorage.getItem('token');
+    if (token && !exceptions.includes(config.url!)) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => Promise.reject(error)

@@ -52,5 +52,23 @@
     "startTraining": "Тренуватися",
     "start": "Почати",
     "participate": "Взяти участь"
+  },
+  "registerForm": {
+    "title": "Заповніть форму",
+    "lastname": "Ім'я",
+    "surname": "Прізвище",
+    "country": "Країна",
+    "city": "Місто",
+    "schoolName": "Назва школи",
+    "email": "Email",
+    "phone": "Номер телефону",
+    "age": "Вік",
+    "olympiadLanguage": "Мова олімпіади",
+    "region": "Область",
+    "difficultyLevel": "Рівень складності",
+    "warning": "Проверьте заявку перед отправкой – данные будут использованы для оформления диплома",
+    "errors": {
+      "fieldRequired": "*Це поле обов'язкове"
+    }
   }
 }

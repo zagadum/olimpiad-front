@@ -168,14 +168,14 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             >
               {startDateDistance && (
                 <>
-                  <span>Початок через </span>
+                  <span>{t("olympiadCard.startIn")}</span>
                   <span className="text-[#E79600]">{startDateDistance}</span>
                 </>
               )}
               {startDateDistance && endDateDistance && " | "}
               {endDateDistance && (
                 <>
-                  <span>Кінець через </span>
+                  <span>{t("olympiadCard.endIn")}</span>
                   <span className="text-[#E79600]">{endDateDistance}</span>
                 </>
               )}
@@ -198,7 +198,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
               <Button onClick={goToRegister}>{t("olympiadCard.start")}</Button>
             </>
           )}
-          {olympiad.payment_status === "none" && (
+          {(!olympiad.payment_status || olympiad.payment_status === "none") && (
             <>
               {/* Ціна, якщо вона є */}
               <span
