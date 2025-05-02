@@ -13,7 +13,7 @@ jobs:
       - name: Echo secrets (debug)
         run: |
         
-          
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -37,5 +37,9 @@ jobs:
           script: |
             cd /var/www/olympiad.firm.kiev.ua
             git pull origin main
+            export NVM_DIR=~/.nvm
+            source $NVM_DIR/nvm.sh
+            nvm install 20
+            nvm use 20
             yarn install
             yarn build

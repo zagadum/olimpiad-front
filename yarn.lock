@@ -605,6 +605,13 @@
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.6.tgz"
   integrity sha512-nf22//wEbKXusP6E9pfOCDwFdHAX4u172eaJI4YkDRQEZiorm6KfYnSC2SWLDMVWUOWPERmJnN0ujeAfTBLvrw==
 
+"@types/react-phone-number-input@^3.1.37":
+  version "3.1.37"
+  resolved "https://registry.yarnpkg.com/@types/react-phone-number-input/-/react-phone-number-input-3.1.37.tgz#7781cbb31d693da99eff4dbfad5635021477cb77"
+  integrity sha512-N5/4VjptmOJWs4g5keMxjAuc8yQFr0fM+OSYfT8h0IQVm5kUiLAGNg+TGHy21Xzb1DB/PhDkiWnKcIREgr5VWA==
+  dependencies:
+    react-phone-number-input "*"
+
 "@types/react@^18.3.18":
   version "18.3.20"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.3.20.tgz"
@@ -1994,7 +2001,7 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-phone-number-input@^3.4.12:
+react-phone-number-input@*, react-phone-number-input@^3.4.12:
   version "3.4.12"
   resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.4.12.tgz#0e8cfdf3cba36239290640bc25163c49addca753"
   integrity sha512-Raob77KdtLGm49iC6nuOX9qy6Mg16idkgC7Y1mHmvG2WBYoauHpzxYNlfmFskQKeiztrJIwPhPzBhjFwjenNCA==
