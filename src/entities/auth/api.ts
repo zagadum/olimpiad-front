@@ -1,5 +1,6 @@
 import { axiosInstance } from "@/shared/api/axiosInstance";
-import { User } from "@/entities/auth/types";
+import { User, UserResponse } from "@/entities/auth/types";
+import { getOlympiadsResponse } from "@/entities/auth/mockData.ts";
 
 // Логін користувача
 export const loginUser = async (credentials: {
@@ -17,8 +18,9 @@ export const registerUser = async (data: unknown): Promise<User> => {
 };
 
 // Отримання поточного користувача
-export const getCurrentUser = async (): Promise<User> => {
-  const response = await axiosInstance.get("/api/auth/me");
+export const getCurrentUser = async (): Promise<UserResponse> => {
+  // const response = await axiosInstance.get("/api/init");
+  const response = await getOlympiadsResponse()
   return response.data;
 };
 

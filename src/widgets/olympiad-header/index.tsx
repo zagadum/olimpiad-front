@@ -85,7 +85,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       <div className="flex flex-col items-end justify-between space-y-2">
         {/* Дата (або період проведення) */}
         <div className="text-right">
-          {olympiad?.payment_status == "none" && (
+          {(!olympiad?.payment_status || olympiad?.payment_status === "none") && (
             <span className="mr-8 text-nowrap rounded-full border border-[--color-2] px-7 py-4 text-xl leading-4 text-[--color-3]">
               {olympiad?.local_price} {olympiad?.local_currency}
             </span>

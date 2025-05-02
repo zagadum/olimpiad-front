@@ -2,10 +2,14 @@ import React from "react";
 import { Sidebar } from "@/widgets/sidebar";
 import { useLocation, Outlet } from "react-router-dom";
 import { cn } from "@/shared/lib/cn.ts";
+import { useCurrentUserQuery } from "@/entities/auth";
 
 export const MainLayout: React.FC = () => {
   const { pathname } = useLocation();
   const isSmallSidebar = pathname !== "/";
+
+  useCurrentUserQuery();
+
   return (
     <div
       className={cn(

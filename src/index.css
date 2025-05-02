@@ -4,12 +4,16 @@
 
 :root {
   --color-white: #fff;
-  --color-1: #26F9FF;
-  --color-2: #F98901;
-  --color-3: #F2F2F2;
-  --color-4: #04151D;
-  --color-5: #071E2C;
-  --gradient-1: linear-gradient(180deg, #26F9FF 0%, #179599 100%);
+  --color-1: #26f9ff;
+  --color-2: #f98901;
+  --color-3: #f2f2f2;
+  --color-4: #04151d;
+  --color-5: #071e2c;
+  --color-placeholder: #A5A5A5;
+
+  --color-error: #FF4343;
+
+  --gradient-1: linear-gradient(180deg, #26f9ff 0%, #179599 100%);
 
   --sidebar-expanded: 364px;
   --sidebar-collapsed: 168px;
@@ -24,3 +28,20 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+input {
+  outline: none;
+}
+
+select {
+  appearance: none;
+  outline: none;
+}
+
+.radial-gradient-bg {
+  background: radial-gradient(
+    65.27% 52.13% at 50% 50%,
+    rgba(38, 249, 255, 0.05) 0%,
+    rgba(30, 126, 139, 0.3425) 0%,
+    rgba(25, 60, 77, 0.5) 100%
+  );
+}
