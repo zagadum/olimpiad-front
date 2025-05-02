@@ -7,14 +7,15 @@ import { registerForOlympiad } from "@/entities/olympiads";
 import { Button } from "@/shared/ui/button";
 import warningIcon from "@/shared/assets/icons/error-rounded.svg";
 import { cn } from "@/shared/lib/cn";
-import "react-phone-number-input/style.css";
 import { CustomSelect } from "@/shared/ui/CustomSelect";
 import { useCurrentUserQuery } from "@/entities/auth";
 import { getLang } from "@/shared/lib/getLang.ts";
 import { getCityList, getCountryList, getRegionList } from "@/entities/guide";
 import { differenceInYears, isValid } from "date-fns";
-import PhoneInputWithCountry, { Country } from "react-phone-number-input/react-hook-form";
-import flags from 'react-phone-number-input/flags'
+import PhoneInputWithCountry, {
+  Country,
+} from "react-phone-number-input/react-hook-form";
+import "./styles.css";
 
 type FormInputs = {
   surname: string;
@@ -111,11 +112,6 @@ export const RegisterFormPage: React.FC = () => {
   const olympiadOptionField = watch("olympiadOption");
   const countryField = watch("country");
   const regionField = watch("region");
-
-  console.log(
-    "calcYears",
-    getAgeIntervalIndex(calcAge(user?.dob ?? "")) || user?.age_id,
-  );
 
   const { data: countryList = [] } = useQuery({
     queryKey: ["guide/get-country-list", { language: lang }],
@@ -280,27 +276,25 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-10">
             <PhoneInputWithCountry
               defaultCountry={(user?.phone_country as Country) || "UA"}
-              flags={flags}
               international
-              withCountryCallingCode
               name="phone"
               placeholder={t("registerForm.phone")}
               countryCallingCodeEditable={false}
               control={control}
               rules={{ required: t("registerForm.errors.fieldRequired") }}
-              className={cn("flex gap-3", errors.phone && "border-red-500")}
+              className={cn(
+                "PhoneInputRoot flex gap-3",
+                errors.phone && "border-red-500",
+              )}
               countrySelectProps={{
-                className: "rounded-full border border-transparent outline-none bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2] focus:border-[--color-1]",
+                className:
+                  "rounded-full border border-transparent outline-none bg-[--color-5] text-xl leading-6 text-[#F2F2F2] focus:border-[--color-1]",
               }}
               numberInputProps={{
-                className: "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]"
+                className:
+                  "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
               }}
             />
-            {/*<input*/}
-            {/*  {...register("phone", { required: true })}*/}
-            {/*  placeholder={t("registerForm.phone")}*/}
-            {/*  className="w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]"*/}
-            {/*/>*/}
             {errors.phone && (
               <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
                 {t("registerForm.errors.fieldRequired")}

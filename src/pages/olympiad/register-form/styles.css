@@ -1,0 +1,29 @@
+.PhoneInputRoot {
+  .PhoneInputCountry {
+    background: var(--color-5);
+    margin-right: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 42px;
+  }
+  .PhoneInputCountryIcon {
+    border-radius: 42px;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    .PhoneInputCountryIconImg {
+      object-fit: cover;
+    }
+  }
+  .PhoneInputCountrySelectArrow {
+    width: 24px;
+    height: 24px;
+    content: url("../../../shared/assets/icons/chevron-down-outline.svg");
+    border-color: #A5A5A5;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    transform: none;
+    opacity: 1;
+    margin-left: 12px;
+  }
+}
