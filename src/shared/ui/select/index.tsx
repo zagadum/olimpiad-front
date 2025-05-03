@@ -15,6 +15,7 @@ interface SelectProps {
   value?: Value;
   onChange?: (value?: Value) => void;
   placeholder?: string;
+  variant?: "primary" | "secondary";
 }
 
 type OptionProps = Pick<SelectOption, "label" | "icon" | "value"> & {
@@ -45,6 +46,7 @@ export const Select: FC<SelectProps> = ({
   value,
   onChange,
   placeholder = "Select an option",
+  variant = "primary"
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -87,8 +89,9 @@ export const Select: FC<SelectProps> = ({
         onClick={toggleOpen}
         className={cn(
           "flex w-max items-center rounded-full border px-4 py-3 outline-none",
-          "text-[20px] leading-[16px] text-white",
-          "border-[#0C464F] transition-colors hover:border-[#26F9FF]",
+          "text-[20px] leading-[16px] text-white transition-colors",
+          variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
+          variant === "secondary" && "border-[#C2721D] hover:border-[--color-2]",
         )}
       >
         {/* Іконка, якщо вибрано значення */}
@@ -127,7 +130,7 @@ export const Select: FC<SelectProps> = ({
 
       {/* Поповер зі списком опцій */}
       {isOpen && (
-        <div className="absolute z-10 w-max rounded-3xl bg-[#0A2432] shadow-lg">
+        <div className="absolute z-10 w-full rounded-3xl bg-[#0A2432] shadow-lg">
           <ul>
             {options.map((option) => (
               <Option

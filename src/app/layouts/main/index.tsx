@@ -8,7 +8,9 @@ export const MainLayout: React.FC = () => {
   const { pathname } = useLocation();
   const isSmallSidebar = pathname !== "/";
 
-  useCurrentUserQuery();
+  const { isLoading, error } = useCurrentUserQuery();
+
+  if (error) return <div>Помилка завантаження даних</div>;
 
   return (
     <div
@@ -18,7 +20,7 @@ export const MainLayout: React.FC = () => {
       )}
     >
       <Sidebar small={isSmallSidebar} />
-      <Outlet />
+      {isLoading ? <div>Завантаження...</div> : <Outlet />}
     </div>
   );
 };
