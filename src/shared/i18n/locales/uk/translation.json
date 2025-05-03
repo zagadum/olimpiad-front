@@ -53,6 +53,10 @@
     "start": "Почати",
     "participate": "Взяти участь"
   },
+  "olympiadHeader": {
+    "startIn": "Початок через ",
+    "endIn": "Кінець через "
+  },
   "olympiadOverview": {
     "title": "Опис олімпіади",
     "startIn": "Початок через ",
@@ -78,7 +82,7 @@
     "age": "Вік",
     "olympiadLanguage": "Мова олімпіади",
     "region": "Область",
-    "difficultyLevel": "Рівень складності",
+    "stagesLevel": "Рівень складності",
     "warning": "Проверьте заявку перед отправкой – данные будут использованы для оформления диплома",
     "errors": {
       "fieldRequired": "*Це поле обов'язкове"

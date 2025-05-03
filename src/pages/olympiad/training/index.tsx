@@ -10,10 +10,9 @@ const data = [
     rows: 10,
     time: 5,
     capacity: [
+      {value: 'без поділу' },
       { value: 2 },
-      { value: 3 },
       { value: 4 },
-      { value: 5 },
     ] as SelectOption[],
   },
   {
@@ -45,7 +44,7 @@ export const TrainingPage: React.FC = () => {
           <span className="text-[#FF9A26]">Basic</span>
         </p>
       </div>
-      <div className="flex flex-col gap-6 p-4">
+      <div className="flex flex-col gap-6">
         {/*{data.map((item) => {*/}
         {/*  return (*/}
         {/*    <div className="bg-[--color-5] rounded-3xl p-6 flex items-center justify-between gap-5">*/}
@@ -88,7 +87,7 @@ export const TrainingPage: React.FC = () => {
         {/*    </div>*/}
         {/*  );*/}
         {/*})}*/}
-        <table className="table-auto border-separate border-spacing-y-4">
+        <table className="table-auto border-separate border-spacing-y-6">
           <tbody>
             {data.map((item) => {
               return (
@@ -129,6 +128,8 @@ export const TrainingPage: React.FC = () => {
                         onChange={(value) => setSelectedCapacity(value)}
                         options={item?.capacity}
                         placeholder="без поділу"
+                        targetClassName="min-w-[165px]"
+                        dropdownClassName="w-full"
                       />
                     )}
                   </td>

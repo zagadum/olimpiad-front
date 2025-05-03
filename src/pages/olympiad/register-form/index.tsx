@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { registerForOlympiad } from "@/entities/olympiads";
 import { Button } from "@/shared/ui/button";
@@ -20,16 +20,16 @@ import "./style.css";
 type FormInputs = {
   surname: string;
   lastname: string;
-  country: number;
-  region: number;
-  city: number;
-  schoolName: string;
+  country_id: number;
+  region_id: number;
+  city_id: number;
+  school: string;
   email: string;
   phone: string;
-  age: number;
-  olympiadLanguage: string;
-  difficultyLevel: string;
-  olympiadOption?: number;
+  age_id: number;
+  language: string;
+  stages_level: string;
+  stages_num?: number;
 };
 
 const languages = [
@@ -69,9 +69,9 @@ function getAgeIntervalIndex(age: number): number {
   );
 }
 
-const difficultyLevelOptions = [
+const stagesLevelOptions = [
   { label: "Basic", value: "basic" },
-  { label: "Intermediate", value: "intermediate" },
+  { label: "Intermediate", value: "intremedia" },
   { label: "Pro", value: "pro" },
 ];
 
@@ -84,6 +84,7 @@ const stageItems = [
 export const RegisterFormPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { olympiadId } = useParams<{ olympiadId: string }>();
   const lang = getLang();
 
   const { data: user } = useCurrentUserQuery();
@@ -99,29 +100,29 @@ export const RegisterFormPage: React.FC = () => {
     defaultValues: {
       lastname: user?.lastname,
       surname: user?.surname,
-      schoolName: user?.school,
+      school: user?.school,
       email: user?.email,
       phone: user?.phone,
-      age: getAgeIntervalIndex(calcAge(user?.dob ?? "")) || user?.age_id,
-      olympiadLanguage: lang === "pl" ? "pl" : "uk",
+      age_id: getAgeIntervalIndex(calcAge(user?.dob ?? "")) ?? user?.age_id,
+      language: lang === "pl" ? "pl" : "uk",
     },
   });
 
-  const ageField = watch("age");
-  const difficultyField = watch("difficultyLevel");
-  const olympiadOptionField = watch("olympiadOption");
-  const countryField = watch("country");
-  const regionField = watch("region");
+  const ageField = watch("age_id");
+  const difficultyField = watch("stages_level");
+  const stagesNumField = watch("stages_num");
+  const countryField = watch("country_id");
+  const regionField = watch("region_id");
 
   const { data: countryList = [] } = useQuery({
-    queryKey: ["guide/get-country-list", { language: lang }],
+    queryKey: ["guide", "get-country-list", { language: lang }],
     queryFn: () => getCountryList({ language: lang }),
     select: (response) =>
       response.data_list.map((item) => ({ value: item.id, label: item.name })),
   });
 
   const { data: regionList = [] } = useQuery({
-    queryKey: ["guide/get-country-list", countryField, { language: lang }],
+    queryKey: ["guide", "get-region-list", countryField, { language: lang }],
     queryFn: () => getRegionList(countryField, { language: lang }),
     enabled: !!countryField,
     select: (response) =>
@@ -129,7 +130,7 @@ export const RegisterFormPage: React.FC = () => {
   });
 
   const { data: cityList = [] } = useQuery({
-    queryKey: ["guide/get-country-list", regionField, { language: lang }],
+    queryKey: ["guide", "get-city-list", regionField, { language: lang }],
     queryFn: () => getCityList(regionField, { language: lang }),
     enabled: !!regionField,
     select: (response) =>
@@ -137,18 +138,26 @@ export const RegisterFormPage: React.FC = () => {
   });
 
   useEffect(() => {
+    setValue("region_id", 0)
+    setValue("city_id", 0)
+  }, [countryField]);
+
+  useEffect(() => {
     if (user) {
       setValue("lastname", user.lastname);
       setValue("surname", user.surname);
-      setValue("schoolName", user.school);
+      setValue("school", user.school);
       setValue("email", user.email);
       setValue("phone", user.phone);
-      setValue("age", user.age_id);
+      setValue("country_id", user.country_id);
+      setValue("region_id", user.region_id);
+      setValue("city_id", user.city_id);
+      setValue("age_id", getAgeIntervalIndex(calcAge(user?.dob ?? "")) ?? user?.age_id);
     }
   }, [user]);
 
-  const onChangeOlympiadOption = (option: number) => () => {
-    setValue("olympiadOption", option);
+  const onChangeStagesNum = (id: number) => () => {
+    setValue("stages_num", id);
   };
 
   const mutation = useMutation({
@@ -163,7 +172,17 @@ export const RegisterFormPage: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    mutation.mutate(data);
+    const { age_id, ...formData } = data;
+    const ageTab = yearIntervals[age_id]
+    mutation.mutate({
+      ...formData,
+      olympiad_id: olympiadId,
+      practicant_id: user?.id,
+      student_id: user?.student_id,
+      patronymic: user?.patronymic,
+      phone_country: user?.phone_country,
+      age_tab: `${ageTab.min}-${ageTab.max}`,
+    });
   };
 
   return (
@@ -174,6 +193,7 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-1">
             <input
               {...register("lastname", { required: true })}
+              autoComplete="off"
               placeholder={t("registerForm.lastname")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
@@ -191,6 +211,7 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-3">
             <input
               {...register("surname", { required: true })}
+              autoComplete="off"
               placeholder={t("registerForm.surname")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
@@ -208,10 +229,10 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-2">
             <Controller
               control={control}
-              name="country"
+              name="country_id"
               rules={{ required: t("registerForm.errors.fieldRequired") }}
               render={({ field, fieldState }) => (
-                <CustomSelect<FormInputs, "country", number>
+                <CustomSelect<FormInputs, "country_id", number>
                   field={field}
                   error={fieldState.error}
                   options={countryList}
@@ -224,10 +245,10 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-6">
             <Controller
               control={control}
-              name="city"
+              name="city_id"
               rules={{ required: t("registerForm.errors.fieldRequired") }}
               render={({ field, fieldState }) => (
-                <CustomSelect<FormInputs, "city", number>
+                <CustomSelect<FormInputs, "city_id", number>
                   field={field}
                   error={fieldState.error}
                   options={cityList}
@@ -240,16 +261,17 @@ export const RegisterFormPage: React.FC = () => {
           </div>
           <div className="order-7">
             <input
-              {...register("schoolName", { required: true })}
+              {...register("school", { required: true })}
+              autoComplete="off"
               placeholder={t("registerForm.schoolName")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
-                errors.schoolName &&
+                errors.school &&
                   "border-[--color-error] focus-within:border-[--color-error]",
               )}
             />
-            {errors.schoolName && (
+            {errors.school && (
               <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
                 {t("registerForm.errors.fieldRequired")}
               </span>
@@ -259,6 +281,7 @@ export const RegisterFormPage: React.FC = () => {
             <input
               type="email"
               {...register("email", { required: true })}
+              autoComplete="off"
               placeholder={t("registerForm.email")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
@@ -305,10 +328,10 @@ export const RegisterFormPage: React.FC = () => {
             <div className="min-w-36">
               <Controller
                 control={control}
-                name="age"
+                name="age_id"
                 rules={{ required: t("registerForm.errors.fieldRequired") }}
                 render={({ field, fieldState }) => (
-                  <CustomSelect<FormInputs, "age", number>
+                  <CustomSelect<FormInputs, "age_id", number>
                     field={field}
                     error={fieldState.error}
                     options={ageOptions}
@@ -321,10 +344,10 @@ export const RegisterFormPage: React.FC = () => {
             <div className="flex-1">
               <Controller
                 control={control}
-                name="olympiadLanguage"
+                name="language"
                 rules={{ required: t("registerForm.errors.fieldRequired") }}
                 render={({ field, fieldState }) => (
-                  <CustomSelect<FormInputs, "olympiadLanguage">
+                  <CustomSelect<FormInputs, "language">
                     field={field}
                     error={fieldState.error}
                     options={languages}
@@ -338,10 +361,10 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-4">
             <Controller
               control={control}
-              name="region"
+              name="region_id"
               rules={{ required: t("registerForm.errors.fieldRequired") }}
               render={({ field, fieldState }) => (
-                <CustomSelect<FormInputs, "region", number>
+                <CustomSelect<FormInputs, "region_id", number>
                   field={field}
                   error={fieldState.error}
                   options={regionList}
@@ -355,14 +378,14 @@ export const RegisterFormPage: React.FC = () => {
           <div className="order-9">
             <Controller
               control={control}
-              name="difficultyLevel"
+              name="stages_level"
               rules={{ required: t("registerForm.errors.fieldRequired") }}
               render={({ field, fieldState }) => (
-                <CustomSelect<FormInputs, "difficultyLevel">
+                <CustomSelect<FormInputs, "stages_level">
                   field={field}
                   error={fieldState.error}
-                  options={difficultyLevelOptions}
-                  placeholder={t("registerForm.difficultyLevel")}
+                  options={stagesLevelOptions}
+                  placeholder={t("registerForm.stagesLevel")}
                   disabled={ageField < 0}
                   fullWidth
                 />
@@ -378,10 +401,10 @@ export const RegisterFormPage: React.FC = () => {
                 className={cn(
                   "flex-1 cursor-pointer rounded-3xl border border-transparent bg-[--color-5] p-6 transition duration-300",
                   "hover:border-[--color-1]",
-                  olympiadOptionField === id &&
+                  stagesNumField === id &&
                     "bg-gradient-to-t from-[#00C0CA00] to-[#193C4D] border-[--color-1]",
                 )}
-                onClick={onChangeOlympiadOption(id)}
+                onClick={onChangeStagesNum(id)}
               >
                 <div className="mb-6 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258]">
                   <span className="text-2xl font-bold leading-6">{i + 1}</span>

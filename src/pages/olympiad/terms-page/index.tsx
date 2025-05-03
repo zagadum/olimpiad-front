@@ -21,7 +21,7 @@ export const CustomCheckbox: React.FC<Props> = ({
         "flex h-8 w-8 cursor-pointer items-center justify-center",
         "rounded-xl border border-[--color-1] bg-[--color-5] transition-colors",
         disabled && "cursor-not-allowed opacity-70",
-        checked && "bg-[--color-1]",
+        checked && "bg-gradient-to-b from-[#26F9FF] to-[#179599]",
       )}
       onClick={() => onChange?.(!checked)}
     >

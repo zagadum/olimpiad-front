@@ -54,6 +54,13 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
     navigate(`/olympiads/${olympiad.id}/register`);
   };
 
+  const goToTraining = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    navigate(`/olympiads/${olympiad.id}/training`);
+  };
+
   const formattedStartDate = formatDate(olympiad.start_date ?? "");
   const formattedEndDate = formatDate(olympiad.end_date ?? "");
 
@@ -68,8 +75,8 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
   return (
     <div
       className={cn(
-        "flex cursor-pointer items-center justify-between gap-6 rounded-3xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-5 shadow-[-1px_-1px_1px_-0px_#657E8A]",
-        "2xl:gap-8 2xl:p-6",
+        "flex cursor-pointer items-center justify-between gap-4 rounded-3xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-5 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+        "2xl:gap-6 2xl:p-6",
       )}
       onClick={onClick}
     >
@@ -191,14 +198,14 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
           {/* Відображення кнопок дій в залежності від статусу оплати */}
           {olympiad.payment_status === "ok" && (
             <>
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={goToTraining}>
                 {t("olympiadCard.startTraining")} (
                 {olympiad.training_count || 0})
               </Button>
-              <Button onClick={goToRegister}>{t("olympiadCard.start")}</Button>
+              <Button onClick={goToTraining}>{t("olympiadCard.start")}</Button>
             </>
           )}
-          {(!olympiad.payment_status || olympiad.payment_status === "none") && (
+          {(!olympiad.payment_status || olympiad.payment_status === "none" || olympiad.payment_status === "no") && (
             <>
               {/* Ціна, якщо вона є */}
               <span

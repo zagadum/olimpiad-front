@@ -7,6 +7,7 @@ import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import arrowBackIcon from "@/shared/assets/icons/ion_arrow-back.svg";
 import i18n from "@/shared/i18n";
+import { useTranslation } from "react-i18next";
 
 type OlympiadsCardProps = {
   olympiad?: Olympiad;
@@ -19,7 +20,7 @@ const calcDays = (date: string) => {
   if (isDateValid && isAfter(parsedDate, dateNow)) {
     return formatDistanceToNowStrict(parsedDate, { locale: uk });
   }
-  return "";
+  return 0;
 };
 
 const formatDate = (date: string) => {
@@ -42,6 +43,7 @@ const getLang = (): Lang => {
 };
 
 export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
+  const { t } = useTranslation();
   const lang = getLang();
 
   const formattedStartDate = formatDate(olympiad?.start_date ?? "");
@@ -83,7 +85,8 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       <div className="flex flex-col items-end justify-between space-y-2">
         {/* Дата (або період проведення) */}
         <div className="text-right">
-          {(!olympiad?.payment_status || olympiad?.payment_status === "none") && (
+          {(!olympiad?.payment_status ||
+            olympiad?.payment_status === "none") && (
             <span className="mr-8 text-nowrap rounded-full border border-[--color-2] px-7 py-4 text-xl leading-4 text-[--color-3]">
               {olympiad?.local_price} {olympiad?.local_currency}
             </span>
@@ -95,22 +98,34 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
           </span>
           {olympiad?.payment_status === "ok" && (
             <div className="mt-3 text-nowrap text-xl leading-6 text-[--color-3]">
-              {startDateDistance && (
+              {!!startDateDistance && (
                 <div>
-                  <span>Начало через </span>
+                  <span>{t("olympiadHeader.startIn")}</span>
                   <span className="text-xl leading-6 text-[#E79600]">
                     {startDateDistance}
                   </span>
                 </div>
               )}
-              {endDateDistance && (
+              {!!endDateDistance && (
                 <div>
-                  <span>Конец через </span>
+                  <span>{t("olympiadHeader.endIn")}</span>
                   <span className="text-xl leading-6 text-[#E79600]">
                     {endDateDistance}
                   </span>
                 </div>
               )}
+              {/*<div>*/}
+              {/*  <span>{t("olympiadHeader.startIn")}</span>*/}
+              {/*  <span className="text-xl leading-6 text-[#E79600]">*/}
+              {/*      {startDateDistance}*/}
+              {/*    </span>*/}
+              {/*</div>*/}
+              {/*<div>*/}
+              {/*  <span>{t("olympiadHeader.endIn")}</span>*/}
+              {/*  <span className="text-xl leading-6 text-[#E79600]">*/}
+              {/*      {endDateDistance}*/}
+              {/*    </span>*/}
+              {/*</div>*/}
             </div>
           )}
         </div>

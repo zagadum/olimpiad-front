@@ -32,8 +32,10 @@ export const getOlympiadDetail = async (id: string): Promise<OlympiadsResponse> 
 export const registerForOlympiad = async (
   formData: unknown,
 ): Promise<unknown> => {
-  // const response = await axiosInstance.post("/api/olympiads/register", formData);
+  console.log('formData', formData);
+  // const response = await axiosInstance.post("/api/register", formData);
   const response = {status: 200, data: formData}
+  console.log('registerForOlympiad response', response);
   return response.data;
 };
 
