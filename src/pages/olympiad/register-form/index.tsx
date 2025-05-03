@@ -15,7 +15,7 @@ import { differenceInYears, isValid } from "date-fns";
 import PhoneInputWithCountry, {
   Country,
 } from "react-phone-number-input/react-hook-form";
-import "./styles.css";
+import "./style.css";
 
 type FormInputs = {
   surname: string;
@@ -379,7 +379,7 @@ export const RegisterFormPage: React.FC = () => {
                   "flex-1 cursor-pointer rounded-3xl border border-transparent bg-[--color-5] p-6 transition duration-300",
                   "hover:border-[--color-1]",
                   olympiadOptionField === id &&
-                    "bg-gradient-to-t from-[#00C0CA00] to-[#193C4D]",
+                    "bg-gradient-to-t from-[#00C0CA00] to-[#193C4D] border-[--color-1]",
                 )}
                 onClick={onChangeOlympiadOption(id)}
               >

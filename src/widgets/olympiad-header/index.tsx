@@ -43,8 +43,6 @@ const getLang = (): Lang => {
 
 export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
   const lang = getLang();
-  // const navigate = useNavigate();
-  // const goToRegister = () => navigate(`/olympiads/${olympiad.id}/register`);
 
   const formattedStartDate = formatDate(olympiad?.start_date ?? "");
   const formattedEndDate = formatDate(olympiad?.end_date ?? "");
