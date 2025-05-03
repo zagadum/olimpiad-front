@@ -16,6 +16,8 @@ interface SelectProps {
   onChange?: (value?: Value) => void;
   placeholder?: string;
   variant?: "primary" | "secondary";
+  targetClassName?: string;
+  dropdownClassName?: string;
 }
 
 type OptionProps = Pick<SelectOption, "label" | "icon" | "value"> & {
@@ -46,7 +48,9 @@ export const Select: FC<SelectProps> = ({
   value,
   onChange,
   placeholder = "Select an option",
-  variant = "primary"
+  variant = "primary",
+  targetClassName,
+  dropdownClassName,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -88,25 +92,24 @@ export const Select: FC<SelectProps> = ({
         type="button"
         onClick={toggleOpen}
         className={cn(
-          "flex w-max items-center rounded-full border px-4 py-3 outline-none",
+          "flex w-max items-center justify-between rounded-full border px-4 py-3 outline-none",
           "text-[20px] leading-[16px] text-white transition-colors",
           variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
-          variant === "secondary" && "border-[#C2721D] hover:border-[--color-2]",
+          variant === "secondary" &&
+            "border-[#C2721D] hover:border-[--color-2]",
+          targetClassName,
         )}
       >
-        {/* Іконка, якщо вибрано значення */}
-        {selectedOption?.icon && (
-          <img
-            src={selectedOption?.icon}
-            alt=""
-            className="mr-2 h-5 w-5"
-          />
-        )}
-        {/* Текст вибраної опції або placeholder */}
-        <span className="mr-2">
-          {selectedOption ? selectedOption.label ?? selectedOption.value : placeholder}
-        </span>
-        {/* Стрілка */}
+        <div className="flex items-center">
+          {selectedOption?.icon && (
+            <img src={selectedOption?.icon} alt="" className="mr-2 h-5 w-5" />
+          )}
+          <span className="mr-2">
+            {selectedOption
+              ? (selectedOption.label ?? selectedOption.value)
+              : placeholder}
+          </span>
+        </div>
         <svg
           className={cn(
             "transform transition-transform",
@@ -130,7 +133,12 @@ export const Select: FC<SelectProps> = ({
 
       {/* Поповер зі списком опцій */}
       {isOpen && (
-        <div className="absolute z-10 w-full rounded-3xl bg-[#0A2432] shadow-lg">
+        <div
+          className={cn(
+            "absolute z-10 w-max rounded-3xl bg-[#0A2432] shadow-lg",
+            dropdownClassName,
+          )}
+        >
           <ul>
             {options.map((option) => (
               <Option

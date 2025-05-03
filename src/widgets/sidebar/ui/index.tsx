@@ -21,7 +21,7 @@ const navItems = [
   {
     icon: homeIcon,
     label: i18n.t("sidebar.home"),
-    link: "/",
+    link: "https://memory.firm.kiev.ua/student",
   },
   {
     icon: homeworkIcon,

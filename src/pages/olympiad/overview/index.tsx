@@ -32,17 +32,17 @@ export const OverviewPage: React.FC = () => {
 
   return (
     <div className="olympiad-overview mt-8 rounded-3xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-9 shadow-[-1px_-1px_1px_-0px_#657E8A]">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 mb-6">
         <h2 className="mb-4 text-3xl font-bold">
           {t("olympiadOverview.title")}
         </h2>
         <div className="mb-4 flex space-x-8">
-          {(!data?.payment_status || data?.payment_status === "none") && (
+          {(!data?.payment_status || data?.payment_status === "none" || data?.payment_status === "no") && (
             <Button onClick={goToRegister}>
               {t("olympiadOverview.participate")}
             </Button>
           )}
-          {data?.payment_status !== "ok" && (
+          {data?.payment_status === "ok" && (
             <>
               <Button variant="secondary" onClick={goToTraining}>
                 {t("olympiadOverview.startTraining")}
@@ -55,35 +55,35 @@ export const OverviewPage: React.FC = () => {
       <div
         className="full-description rounded-3xl bg-[--color-5] p-4 text-xl font-light text-[#A5A5A5]"
         dangerouslySetInnerHTML={{
-          // __html: data?.full_description[lang] ?? "",
-          __html: getMockText(lang) ?? "",
+          __html: data?.full_description[lang] ?? "",
+          // __html: getMockText(lang) ?? "",
         }}
       ></div>
     </div>
   );
 };
 
-const getMockText = (lang: string) =>
-  lang
-    ? `
-<h3>Тренировка</h3>
-<p>После регистриции на платформе Олимпиады, вы можете тренироваться 7 раз в день.</p>
-<p>Доступ открыт с 25.04.2025 - 05.05.2025г.</p>
-<br/>
-<h3>Прохождение олимпиады</h3>
-<p>Пройти Олимпиаду вы можете только один раз, нажав кнопку «Начать Олимпиаду».</p>
-<p>Доступ открыт с 01.05.2025 - 05.05.2025г.</p>
-<br/>
-<h3>Олимпиаду можно пройти используя:</h3>
-<ul>
-<li>Компьютер</li>
-<li>Ноутбук</li>
-<li>Планшет</li>
-</ul>
-<br/>
-<h5>Запрещено проходить олимпиаду на телефоне!</h5>
-<br/>
-<h3>Во время прохождения онлайн олимпиады обязательно делать видеозапись!</h3> 
-<p>На видео должен быть четко виден ребенок, экран, и четко зафиксирован результат прохождения олимпиады. Видео должно быть со звуком и без монтажа, сниматься непрерывно от начала и до конца олимпиады. Участник должен быть без наушников!</p>  
-`
-    : "";
+// const getMockText = (lang: string) =>
+//   lang
+//     ? `
+// <h3>Тренировка</h3>
+// <p>После регистриции на платформе Олимпиады, вы можете тренироваться 7 раз в день.</p>
+// <p>Доступ открыт с 25.04.2025 - 05.05.2025г.</p>
+// <br/>
+// <h3>Прохождение олимпиады</h3>
+// <p>Пройти Олимпиаду вы можете только один раз, нажав кнопку «Начать Олимпиаду».</p>
+// <p>Доступ открыт с 01.05.2025 - 05.05.2025г.</p>
+// <br/>
+// <h3>Олимпиаду можно пройти используя:</h3>
+// <ul>
+// <li>Компьютер</li>
+// <li>Ноутбук</li>
+// <li>Планшет</li>
+// </ul>
+// <br/>
+// <h5>Запрещено проходить олимпиаду на телефоне!</h5>
+// <br/>
+// <h3>Во время прохождения онлайн олимпиады обязательно делать видеозапись!</h3>
+// <p>На видео должен быть четко виден ребенок, экран, и четко зафиксирован результат прохождения олимпиады. Видео должно быть со звуком и без монтажа, сниматься непрерывно от начала и до конца олимпиады. Участник должен быть без наушников!</p>
+// `
+//     : "";
