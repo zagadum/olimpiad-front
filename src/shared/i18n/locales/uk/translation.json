@@ -53,6 +53,19 @@
     "start": "Почати",
     "participate": "Взяти участь"
   },
+  "olympiadOverview": {
+    "title": "Опис олімпіади",
+    "startIn": "Початок через ",
+    "endIn": "Кінець через ",
+    "startTraining": "Тренуватися",
+    "start": "Почати",
+    "participate": "Взяти участь"
+  },
+  "olympiadTraining": {
+    "title": "Тренування ({{count}})",
+    "category": "Категорія:",
+    "startTraining": "Тренуватися"
+  },
   "registerForm": {
     "title": "Заповніть форму",
     "lastname": "Ім'я",

@@ -5,7 +5,7 @@ type Value = string | number;
 
 export interface SelectOption {
   id: string;
-  label: string;
+  label?: string;
   value?: Value;
   icon?: string;
 }
@@ -17,11 +17,11 @@ interface SelectProps {
   placeholder?: string;
 }
 
-type OptionProps = Pick<SelectOption, "label" | "icon"> & {
+type OptionProps = Pick<SelectOption, "label" | "icon" | "value"> & {
   onClick: () => void;
 };
 
-const Option: FC<OptionProps> = ({ label, icon, onClick }) => {
+const Option: FC<OptionProps> = ({ label, value, icon, onClick }) => {
   return (
     <li>
       <button
@@ -33,8 +33,8 @@ const Option: FC<OptionProps> = ({ label, icon, onClick }) => {
           "focus:outline-none",
         )}
       >
-        {icon && <img src={icon} alt={label} className="mr-2 h-5 w-5" />}
-        <span>{label}</span>
+        {icon && <img src={icon} alt="" className="mr-2 h-5 w-5" />}
+        <span>{label ?? value}</span>
       </button>
     </li>
   );
@@ -95,13 +95,13 @@ export const Select: FC<SelectProps> = ({
         {selectedOption?.icon && (
           <img
             src={selectedOption?.icon}
-            alt={selectedOption?.label || placeholder}
+            alt=""
             className="mr-2 h-5 w-5"
           />
         )}
         {/* Текст вибраної опції або placeholder */}
         <span className="mr-2">
-          {selectedOption ? selectedOption.label : placeholder}
+          {selectedOption ? selectedOption.label ?? selectedOption.value : placeholder}
         </span>
         {/* Стрілка */}
         <svg

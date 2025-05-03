@@ -12,6 +12,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const baseClasses = `
     px-6
     py-2
+    cursor-pointer
     rounded-full
     text-xs
     leading-3
@@ -57,8 +58,8 @@ const secondaryVariant = `
     border-[#C2721D]
     hover:from-[#996517]
     hover:to-[#FF9A26]
-    active:from-[#19A0A3]
-    active:to-[#19A0A3]
+    active:from-[#996517]
+    active:to-[#996517]
     disabled:from-[#19A0A3]
     disabled:to-[#19A0A3]
   `;
