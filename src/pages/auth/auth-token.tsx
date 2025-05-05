@@ -9,11 +9,9 @@ const AuthPage = () => {
     const token = params.get('token');
 
     if (token) {
-      localStorage.setItem('token', token); // Сохраняем токен
-      navigate('/olympiads/all'); // Перенаправляем на нужную страницу
-    } else {
-      navigate('/login'); // Если токена нет — на страницу логина
+      localStorage.setItem('token', token);
     }
+    navigate('/olympiads/all');
   }, [navigate]);
 
   return <div>Проверка авторизации...</div>;
