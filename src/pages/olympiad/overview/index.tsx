@@ -6,6 +6,7 @@ import { Button } from "@/shared/ui/button";
 import { getLang } from "@/shared/lib/getLang.ts";
 import { useTranslation } from "react-i18next";
 import "./style.css";
+import { cn } from "@/shared/lib/cn";
 
 export const OverviewPage: React.FC = () => {
   const lang = getLang();
@@ -27,17 +28,33 @@ export const OverviewPage: React.FC = () => {
     navigate(`/olympiads/${olympiadId}/training`);
   };
 
+  const goToStart = () => {
+    navigate(`/olympiads/${olympiadId}/start`);
+  };
+
   if (isLoading) return <div>Завантаження...</div>;
   if (error) return <div>Помилка завантаження даних</div>;
 
   return (
-    <div className="olympiad-overview mt-8 rounded-3xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-9 shadow-[-1px_-1px_1px_-0px_#657E8A]">
-      <div className="flex items-center justify-between gap-4 mb-6">
-        <h2 className="mb-4 text-3xl font-bold">
+    <div
+      className={cn(
+        "olympiad-overview mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-4 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+        "md:rounded-3xl md:p-9",
+      )}
+    >
+      <div className="mb-4 md:mb-6 flex items-center justify-between gap-4">
+        <h2
+          className={cn(
+            "mb-3 text-xl font-bold",
+            "md:mb-4 md:text-3xl"
+          )}
+        >
           {t("olympiadOverview.title")}
         </h2>
-        <div className="mb-4 flex space-x-8">
-          {(!data?.payment_status || data?.payment_status === "none" || data?.payment_status === "no") && (
+        <div className="mb-2 md:mb-4 flex gap-3 md:gap-8">
+          {(!data?.payment_status ||
+            data?.payment_status === "none" ||
+            data?.payment_status === "no") && (
             <Button onClick={goToRegister}>
               {t("olympiadOverview.participate")}
             </Button>
@@ -47,13 +64,13 @@ export const OverviewPage: React.FC = () => {
               <Button variant="secondary" onClick={goToTraining}>
                 {t("olympiadOverview.startTraining")}
               </Button>
-              <Button>{t("olympiadOverview.start")}</Button>
+              <Button onClick={goToStart}>{t("olympiadOverview.start")}</Button>
             </>
           )}
         </div>
       </div>
       <div
-        className="full-description rounded-3xl bg-[--color-5] p-4 text-xl font-light text-[#A5A5A5]"
+        className="full-description rounded-3xl bg-[--color-5] p-4 text-sm md:text-xl font-light text-[#A5A5A5]"
         dangerouslySetInnerHTML={{
           __html: data?.full_description[lang] ?? "",
           // __html: getMockText(lang) ?? "",

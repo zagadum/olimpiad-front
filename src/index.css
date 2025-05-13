@@ -17,6 +17,9 @@
 
   --sidebar-expanded: 364px;
   --sidebar-collapsed: 168px;
+
+  --sidebar-expanded-xs: 324px;
+  --sidebar-collapsed-xs: 128px;
 }
 
 body {

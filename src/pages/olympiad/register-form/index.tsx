@@ -138,8 +138,8 @@ export const RegisterFormPage: React.FC = () => {
   });
 
   useEffect(() => {
-    setValue("region_id", 0)
-    setValue("city_id", 0)
+    setValue("region_id", 0);
+    setValue("city_id", 0);
   }, [countryField]);
 
   useEffect(() => {
@@ -152,7 +152,10 @@ export const RegisterFormPage: React.FC = () => {
       setValue("country_id", user.country_id);
       setValue("region_id", user.region_id);
       setValue("city_id", user.city_id);
-      setValue("age_id", getAgeIntervalIndex(calcAge(user?.dob ?? "")) ?? user?.age_id);
+      setValue(
+        "age_id",
+        getAgeIntervalIndex(calcAge(user?.dob ?? "")) ?? user?.age_id,
+      );
     }
   }, [user]);
 
@@ -173,7 +176,7 @@ export const RegisterFormPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     const { age_id, ...formData } = data;
-    const ageTab = yearIntervals[age_id]
+    const ageTab = yearIntervals[age_id];
     mutation.mutate({
       ...formData,
       olympiad_id: olympiadId,
@@ -186,35 +189,49 @@ export const RegisterFormPage: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 px-4 py-20">
-      <div className="radial-gradient-bg rounded-3xl px-20 py-16 shadow-[-1px_-1px_1px_-0px_#657E8A]">
-        <h2 className="mb-16 text-3xl">{t("registerForm.title")}</h2>
-        <div className="grid grid-cols-2 gap-x-16 gap-y-8">
-          <div className="order-1">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-10 py-10 md:px-4 md:py-20"
+    >
+      <div
+        className={cn(
+          "radial-gradient-bg rounded-xl px-4 py-10 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+          "md:rounded-3xl md:px-8 md:py-16",
+          "lg:px-8 lg:py-12",
+          "xl:px-20 xl:py-16"
+        )}
+      >
+        <h2 className="mb-10 text-2xl md:mb-16 md:text-3xl">
+          {t("registerForm.title")}
+        </h2>
+        <div className="grid gap-y-6 md:gap-y-8 md:grid-cols-2 md:gap-x-6 lg:gap-x-8 xl:gap-x-16">
+          <div className="order-1 md:order-1">
             <input
               {...register("lastname", { required: true })}
               autoComplete="off"
               placeholder={t("registerForm.lastname")}
               className={cn(
-                "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
+                "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
+                "md:px-6 md:py-5 md:text-xl md:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.lastname &&
                   "border-[--color-error] focus-within:border-[--color-error]",
               )}
             />
             {errors.lastname && (
-              <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
+              <span className="pl-4 text-[10px] font-light leading-3 text-[--color-error] md:text-base md:leading-6">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
           </div>
-          <div className="order-3">
+          <div className="order-2 md:order-3">
             <input
               {...register("surname", { required: true })}
               autoComplete="off"
               placeholder={t("registerForm.surname")}
               className={cn(
-                "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
+                "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
+                "md:px-6 md:py-5 md:text-xl md:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.surname &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -226,7 +243,7 @@ export const RegisterFormPage: React.FC = () => {
               </span>
             )}
           </div>
-          <div className="order-2">
+          <div className="order-5 md:order-2">
             <Controller
               control={control}
               name="country_id"
@@ -242,7 +259,7 @@ export const RegisterFormPage: React.FC = () => {
               )}
             />
           </div>
-          <div className="order-6">
+          <div className="order-7 md:order-6">
             <Controller
               control={control}
               name="city_id"
@@ -259,13 +276,14 @@ export const RegisterFormPage: React.FC = () => {
               )}
             />
           </div>
-          <div className="order-7">
+          <div className="order-4 md:order-7">
             <input
               {...register("school", { required: true })}
               autoComplete="off"
               placeholder={t("registerForm.schoolName")}
               className={cn(
-                "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
+                "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
+                "md:px-6 md:py-5 md:text-xl md:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.school &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -277,14 +295,15 @@ export const RegisterFormPage: React.FC = () => {
               </span>
             )}
           </div>
-          <div className="order-8">
+          <div className="order-8 md:order-8">
             <input
               type="email"
               {...register("email", { required: true })}
               autoComplete="off"
               placeholder={t("registerForm.email")}
               className={cn(
-                "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2]",
+                "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
+                "md:px-6 md:py-5 md:text-xl md:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.email &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -296,7 +315,7 @@ export const RegisterFormPage: React.FC = () => {
               </span>
             )}
           </div>
-          <div className="order-10">
+          <div className="order-9 md:order-10">
             <PhoneInputWithCountry
               defaultCountry={(user?.phone_country as Country) || "UA"}
               international
@@ -311,20 +330,20 @@ export const RegisterFormPage: React.FC = () => {
               )}
               countrySelectProps={{
                 className:
-                  "rounded-full border border-transparent outline-none bg-[--color-5] text-xl leading-6 text-[#F2F2F2] focus:border-[--color-1]",
+                  "rounded-full border border-transparent outline-none bg-[--color-5] text-base md:text-xl leading-4 md:leading-6 text-[#F2F2F2] focus:border-[--color-1]",
               }}
               numberInputProps={{
                 className:
-                  "w-full rounded-full border border-transparent bg-[--color-5] px-6 py-5 text-xl leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
+                  "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 md:px-6 md:py-5 md:text-xl md:leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
               }}
             />
             {errors.phone && (
-              <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
+              <span className="pl-4 text-[10px] md:text-base font-light leading-4 md:leading-6 text-[--color-error]">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
           </div>
-          <div className="order-5 flex gap-3">
+          <div className="order-3 md:order-5 flex gap-3">
             <div className="min-w-36">
               <Controller
                 control={control}
@@ -358,7 +377,7 @@ export const RegisterFormPage: React.FC = () => {
               />
             </div>
           </div>
-          <div className="order-4">
+          <div className="order-6 md:order-4">
             <Controller
               control={control}
               name="region_id"
@@ -394,23 +413,23 @@ export const RegisterFormPage: React.FC = () => {
           </div>
         </div>
         {difficultyField && (
-          <div className="mt-8 flex justify-between gap-4">
+          <div className="mt-6 md:mt-8 flex justify-between gap-3 md:gap-4">
             {stageItems.map(({ id, name, tags }, i) => (
               <div
                 key={id}
                 className={cn(
-                  "flex-1 cursor-pointer rounded-3xl border border-transparent bg-[--color-5] p-6 transition duration-300",
+                  "flex-1 cursor-pointer rounded-xl md:rounded-3xl border border-transparent bg-[--color-5] px-2 py-4 md:px-6 md:py-6 transition duration-300",
                   "hover:border-[--color-1]",
                   stagesNumField === id &&
-                    "bg-gradient-to-t from-[#00C0CA00] to-[#193C4D] border-[--color-1]",
+                    "border-[--color-1] bg-gradient-to-t from-[#00C0CA00] to-[#193C4D]",
                 )}
                 onClick={onChangeStagesNum(id)}
               >
-                <div className="mb-6 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258]">
-                  <span className="text-2xl font-bold leading-6">{i + 1}</span>
+                <div className="mb-6 flex h-5 w-5 md:h-9 md:w-9 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258]">
+                  <span className="text-xs md:text-2xl font-bold leading-3 md:leading-6">{i + 1}</span>
                 </div>
-                <p className="mb-4 text-2xl font-bold leading-6">{name}</p>
-                <div className="flex flex-col">
+                <p className="mb-4 text-base md:text-2xl font-bold leading-4 md:leading-6">{name}</p>
+                <div className="flex flex-col text-xs leading-3 md:text-xl md:leading-6">
                   {tags.map((tag) => (
                     <span key={tag}>{tag}</span>
                   ))}
@@ -420,14 +439,14 @@ export const RegisterFormPage: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="px-20">
-        <div className="mb-4 flex gap-3">
+      <div className="md:px-20">
+        <div className="mb-6 md:mb-4 flex gap-3">
           <img src={warningIcon} alt="" />
-          <p className="text-base font-light leading-6">
+          <p className="text-xs leading-4 md:text-base md:leading-6 font-light">
             {t("registerForm.warning")}
           </p>
         </div>
-        <Button type="submit">Підтвердити</Button>
+        <Button className="text-base leading-4 w-full md:w-auto" type="submit">Підтвердити</Button>
       </div>
     </form>
   );

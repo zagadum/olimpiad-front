@@ -66,9 +66,14 @@
     "participate": "Взяти участь"
   },
   "olympiadTraining": {
-    "title": "Тренування ({{count}})",
+    "title": "Тренування",
     "category": "Категорія:",
-    "startTraining": "Тренуватися"
+    "startTraining": "Тренуватися ({{count}})"
+  },
+  "olympiadStart": {
+    "title": "Олімпіада",
+    "category": "Категорія:",
+    "start": "Почати"
   },
   "registerForm": {
     "title": "Заповніть форму",

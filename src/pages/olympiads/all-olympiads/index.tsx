@@ -100,7 +100,7 @@ export const AllOlympiadsPage: React.FC = () => {
       </div>
 
       {/* Список карток олімпіад */}
-      <div className="space-y-8">
+      <div className="space-y-6 md:space-y-8">
         {data?.length ? (
           data
             .map((o) => (
