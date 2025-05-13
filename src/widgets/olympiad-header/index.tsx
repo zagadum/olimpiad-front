@@ -1,8 +1,6 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
 import { formatDistanceToNowStrict, isAfter, isValid, format } from "date-fns";
 import { uk } from "date-fns/locale/uk";
-// import { ru } from "date-fns/locale/ru";
 import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import arrowBackIcon from "@/shared/assets/icons/ion_arrow-back.svg";
