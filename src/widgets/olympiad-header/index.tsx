@@ -1,13 +1,12 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
 import { formatDistanceToNowStrict, isAfter, isValid, format } from "date-fns";
 import { uk } from "date-fns/locale/uk";
-// import { ru } from "date-fns/locale/ru";
 import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import arrowBackIcon from "@/shared/assets/icons/ion_arrow-back.svg";
 import i18n from "@/shared/i18n";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/shared/lib/cn";
 
 type OlympiadsCardProps = {
   olympiad?: Olympiad;
@@ -57,47 +56,83 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
   };
 
   return (
-    <div className="flex items-center justify-between gap-8 rounded-3xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-6 py-3 shadow-[-1px_-1px_1px_-0px_#657E8A]">
-      {/* Зображення */}
+    <div
+      className={cn(
+        "flex items-center justify-between gap-2 rounded-xl px-2 py-1.5",
+        "bg-gradient-to-t from-[#082536] to-[#193C4D] shadow-[-1px_-1px_1px_-0px_#657E8A]",
+        "md:gap-8 md:rounded-3xl md:px-6 md:py-3",
+      )}
+    >
       <img
-        className="cursor-pointer rounded-full border border-transparent transition hover:border-[--color-1]"
+        className="w-[40px] cursor-pointer rounded-full border border-transparent transition hover:border-[--color-1] md:w-[64px]"
         src={arrowBackIcon}
         alt=""
         onClick={onGoBack}
       />
-      <div className="hidden h-28 w-48 overflow-hidden rounded-2xl xl:block">
+      {/* Зображення */}
+      <div
+        className={cn(
+          "h-[77px] w-[52px] min-w-[52px] overflow-hidden rounded-md",
+          "md:h-28 md:w-48 md:rounded-2xl",
+        )}
+      >
         <img
-          className="h-28 w-48 object-cover"
+          className={cn("h-[77px] w-[52px] object-cover", "md:h-28 md:w-48")}
           src={olympiad?.image_url || placeholderImg}
           alt=""
         />
       </div>
       {/* Основна інформація */}
-      <div className="flex-1">
+      <div className="hidden flex-1 md:block">
         <div className="mb-2 flex h-full flex-col justify-between">
-          <h3 className="line-clamp-2 text-2xl font-bold leading-5 text-[--color-3]">
+          <h3
+            className={cn(
+              "line-clamp-2 text-sm font-bold leading-4 text-[--color-3]",
+              "md:text-2xl md:leading-5",
+            )}
+          >
             {olympiad?.title[lang]}
           </h3>
           {/* Короткий опис */}
         </div>
       </div>
       {/* Правий блок: дата, ціна, кнопки дій */}
-      <div className="flex flex-col items-end justify-between space-y-2">
+      <div className="flex w-full flex-col justify-between gap-2 md:w-auto md:items-end">
+        <div className="md:hidden">
+          <h3
+            className={cn(
+              "line-clamp-2 text-sm font-bold leading-4 text-[--color-3]",
+            )}
+          >
+            {olympiad?.title[lang]}
+          </h3>
+        </div>
         {/* Дата (або період проведення) */}
         <div className="text-right">
           {(!olympiad?.payment_status ||
-            olympiad?.payment_status === "none") && (
-            <span className="mr-8 text-nowrap rounded-full border border-[--color-2] px-7 py-4 text-xl leading-4 text-[--color-3]">
+            olympiad?.payment_status === "none" ||
+            olympiad?.payment_status === "no") && (
+            <span
+              className={cn(
+                "mr-6 text-nowrap rounded-full border border-[--color-2] px-3 py-2 text-[10px] leading-3 text-[--color-3]",
+                "md:mr-8 md:px-7 md:py-4 md:text-xl md:leading-4",
+              )}
+            >
               {olympiad?.local_price} {olympiad?.local_currency}
             </span>
           )}
-          <span className="text-xl leading-4 text-[--color-3]">
+          <span
+            className={cn(
+              "text-[10px] leading-3 text-[--color-3]",
+              "md:text-xl md:leading-4",
+            )}
+          >
             {olympiad?.end_date
               ? `${formattedStartDate} - ${formattedEndDate}`
               : formattedStartDate}
           </span>
           {olympiad?.payment_status === "ok" && (
-            <div className="mt-3 text-nowrap text-xl leading-6 text-[--color-3]">
+            <div className="mt-3 hidden text-nowrap text-xl leading-6 text-[--color-3] md:block">
               {!!startDateDistance && (
                 <div>
                   <span>{t("olympiadHeader.startIn")}</span>

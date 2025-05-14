@@ -10,13 +10,20 @@ export const OlympiadsLayout: React.FC = () => {
   };
   return (
     <main
-      className={cn("flex-1 overflow-auto px-20 py-12", "2xl:px-24 2xl:py-14")}
+      className={cn(
+        "flex-1 overflow-auto px-4 py-6",
+        "md:px-10 md:py-8",
+        "lg:px-11 lg:py-10",
+        "xl:px-14 xl:py-10",
+        "2xl:px-20 2xl:py-14"
+      )}
     >
-      <div className="mb-12">
+      <div className="mb-6 md:mb-12">
         <h2
           className={cn(
-            "text-[36px] font-bold leading-5",
-            "2xl:text-[42px] 2xl:leading-5",
+            "text-[24px] font-bold leading-6",
+            "md:text-[36px]",
+            "2xl:text-[42px]",
           )}
         >
           {title}

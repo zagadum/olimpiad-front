@@ -10,12 +10,12 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClasses = `
-    px-6
-    py-2
+    px-4
+    py-3
     cursor-pointer
     rounded-full
-    text-xs
-    leading-3
+    text-sm
+    leading-4
     font-semibold
     text-white
     border-2
@@ -27,15 +27,19 @@ const baseClasses = `
     disabled:cursor-not-allowed
     disabled:text-[#FFFFFF85]
     text-nowrap
-    lg:text-base
+    lg:text-sm
     lg:leading-4
-    lg:px-6
-    lg:py-4
+    lg:px-4
+    lg:py-2.5
+    xl:text-base
+    xl:leading-4
+    xl:px-6
+    xl:py-3
     2xl:border-4
     2xl:text-xl
     2xl:leading-5
-    2xl:px-11
-    2xl:py-4
+    2xl:px-8
+    2xl:py-3
   `;
 
 const primaryVariant = `

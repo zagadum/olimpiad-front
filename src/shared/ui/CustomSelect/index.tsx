@@ -66,8 +66,9 @@ export function CustomSelect<
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={cn(
-          "flex w-max items-center justify-between rounded-full border border-transparent bg-[--color-5] px-6 py-5 outline-none",
-          "text-xl leading-6 text-[#F2F2F2]",
+          "flex w-max items-center justify-between rounded-full border border-transparent bg-[--color-5] outline-none",
+          "px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
+          "md:px-6 md:py-5 md:text-xl md:leading-6",
           "transition-colors hover:border-[#26F9FF]",
           !selectedOption && "font-light text-[#A5A5A5]",
           fullWidth && "w-full",
@@ -89,7 +90,8 @@ export function CustomSelect<
         <img
           // className="pointer-events-none absolute right-4 top-5"
           className={cn(
-            "pointer-events-none transform transition-transform",
+            "w-[20px] h-[20px] pointer-events-none transform transition-transform",
+            "md:w-[24px] md:h-[24px]",
             isOpen ? "rotate-180" : "rotate-0",
           )}
           src={chevronDown}
@@ -100,7 +102,7 @@ export function CustomSelect<
       {isOpen && !disabled && (
         <div
           className={cn(
-            "absolute z-10 w-max overflow-hidden rounded-3xl bg-[#0A2432] shadow-lg",
+            "absolute z-10 w-max overflow-hidden rounded-xl md:rounded-3xl bg-[#0A2432] shadow-lg",
             fullWidth && "w-full",
           )}
         >
@@ -116,7 +118,8 @@ export function CustomSelect<
                       setIsOpen(false);
                     }}
                     className={cn(
-                      "flex w-full items-center rounded-3xl px-4 py-4 text-[20px] leading-[16px] text-white transition duration-300",
+                      "flex w-full items-center rounded-xl px-4 py-3 text-xl leading-4 text-white transition duration-300",
+                      "md:rounded-3xl md:px-4 md:py-4 md:text-xl md:leading-4",
                       "hover:bg-[#071E2C] active:bg-[#071E2C]",
                       "focus:outline-none",
                     )}

@@ -24,7 +24,7 @@ const navItems = [
 
 export const OlympiadsNavbar: React.FC<Props> = ({ changeTitle }) => {
   return (
-    <div className="mb-8 flex gap-6">
+    <div className="mb-8 flex gap-4 md:gap-6">
       {navItems.map(({ label, path }) => (
         <NavLink
           end
@@ -32,7 +32,8 @@ export const OlympiadsNavbar: React.FC<Props> = ({ changeTitle }) => {
           to={path}
           className={({ isActive }) =>
             cn(
-              "text-xl font-medium leading-5 text-[--color-3] hover:text-[--color-1] transition",
+              "text-base font-medium leading-5 text-[--color-3] hover:text-[--color-1] transition",
+              "md:text-xl",
               isActive && "text-[--color-1] underline",
             )
           }

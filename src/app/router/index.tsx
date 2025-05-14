@@ -13,6 +13,7 @@ import { TrainingPage } from "@/pages/olympiad/training";
 import { OlympiadsLayout } from "@/app/layouts/olympiads";
 import { MainLayout } from "@/app/layouts/main";
 import { OlympiadLayout } from "@/app/layouts/olympiad";
+import { StartPage } from "@/pages/olympiad/start";
 
 export function AppRouter() {
   return (
@@ -35,6 +36,7 @@ export function AppRouter() {
           <Route path="terms" element={<TermsPage />} />
           <Route path="payment-status" element={<PaymentStatusPage />} />
           <Route path="training" element={<TrainingPage />} />
+          <Route path="start" element={<StartPage />} />
         </Route>
       </Route>
     </Routes>

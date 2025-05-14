@@ -56,26 +56,39 @@ export const TermsPage: React.FC = () => {
 
   return (
     <>
-      <div className="mt-8 rounded-3xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-9 shadow-[-1px_-1px_1px_-0px_#657E8A]">
+      <div
+        className={cn(
+          "mt-6 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 py-8 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+          "md:mt-8 md:rounded-3xl md:px-9 md:py-9",
+        )}
+      >
         <div className="mb-10">
-          <h2 className="text-3xl font-bold">Умови олімпіади перед оплатою</h2>
+          <h2 className={cn("text-xl font-bold", "md:text-3xl")}>
+            Умови олімпіади перед оплатою
+          </h2>
         </div>
         <div
-          className="rounded-3xl bg-[--color-white] p-4 text-[--color-5]"
+          className="rounded-xl bg-[--color-white] p-4 text-sm text-[--color-5] md:rounded-3xl md:text-base"
           dangerouslySetInnerHTML={{
             __html: text,
           }}
         ></div>
       </div>
-      <div className="mt-10 px-4">
-        <p className="mb-6 flex items-center gap-4 text-xl font-light text-[--color-3]">
+      <div className="mt-10 md:px-4">
+        <p className="mb-6 flex items-center gap-4 text-sm font-light text-[--color-3] md:text-xl">
           <CustomCheckbox checked={agree} onChange={setAgree} />
-          <span>Я прочитав і приймаю умови олімпіади</span>
-          <span className="text-[--color-error]">
-            *Принятие условий Олимпиады обязательно
-          </span>
+          <div className="flex flex-col md:flex-row md:gap-4">
+            <span>Я прочитав і приймаю умови олімпіади</span>
+            <span className="text-[--color-error]">
+              *Прийняття умов Олімпіади обов'язкове
+            </span>
+          </div>
         </p>
-        <Button onClick={handleAccept} disabled={!agree}>
+        <Button
+          className="w-full text-base lg:text-base lg:px-8 lg:py-3 md:w-auto"
+          onClick={handleAccept}
+          disabled={!agree}
+        >
           Прийняти
         </Button>
       </div>

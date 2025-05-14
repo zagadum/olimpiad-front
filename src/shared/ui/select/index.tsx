@@ -1,5 +1,6 @@
 import { useState, useRef, FC, useEffect } from "react";
-import { cn } from "@/shared/lib/cn.ts";
+import { cn } from "@/shared/lib/cn";
+import chevronDown from "../../assets/icons/chevron-down.svg";
 
 type Value = string | number;
 
@@ -31,7 +32,8 @@ const Option: FC<OptionProps> = ({ label, value, icon, onClick }) => {
         type="button"
         onClick={onClick}
         className={cn(
-          "flex w-full items-center rounded-3xl px-4 py-4 text-[20px] leading-[16px] text-white transition duration-300",
+          "flex w-full items-center rounded-3xl px-3 py-2 text-sm leading-4 text-white transition duration-300",
+          "md:px-4 md:py-4 md:text-xl",
           "hover:bg-[#071E2C] active:bg-[#071E2C]",
           "focus:outline-none",
         )}
@@ -92,8 +94,9 @@ export const Select: FC<SelectProps> = ({
         type="button"
         onClick={toggleOpen}
         className={cn(
-          "flex w-max items-center justify-between rounded-full border px-4 py-3 outline-none",
-          "text-[20px] leading-[16px] text-white transition-colors",
+          "flex w-max items-center justify-between rounded-full border px-2 py-1 outline-none",
+          "text-sm leading-4 text-white transition-colors",
+          "md:px-4 md:py-3 md:text-base",
           variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
           variant === "secondary" &&
             "border-[#C2721D] hover:border-[--color-2]",
@@ -110,32 +113,21 @@ export const Select: FC<SelectProps> = ({
               : placeholder}
           </span>
         </div>
-        <svg
+        <img
+          src={chevronDown}
+          alt=""
           className={cn(
-            "transform transition-transform",
+            "w-5 h-5 md:w-6 md:h-6 transform transition-transform",
             isOpen ? "rotate-180" : "rotate-0",
           )}
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M5.25 8.62497L12 15.375L18.75 8.62497"
-            stroke="#F2F2F2"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        />
       </button>
 
       {/* Поповер зі списком опцій */}
       {isOpen && (
         <div
           className={cn(
-            "absolute z-10 w-max rounded-3xl bg-[#0A2432] shadow-lg",
+            "absolute z-10 w-max py-1 rounded-3xl bg-[#0A2432] shadow-lg",
             dropdownClassName,
           )}
         >
