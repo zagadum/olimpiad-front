@@ -38,19 +38,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       )}
     >
       {/* Логотип та назва */}
-      <div className="h-[138px]">
+      <div className="h-[110px]">
         <img
           src={logoImage}
           alt="SpaceM Logo"
           className={cn(
-            "mx-auto h-[138px] transition-all duration-300",
+            "mx-auto h-[110px] transition-all duration-300",
             small && !isHovered && "h-[64px]",
           )}
         />
       </div>
 
       {/* Меню */}
-      <nav className="flex flex-col gap-4 text-sm">
+      <nav
+        className={cn(
+          "flex flex-col gap-4 text-sm",
+          small && !isHovered && "items-center",
+        )}
+      >
         {navItems.map(({ link, label, icon }) => (
           <NavItem
             key={link}
@@ -77,8 +82,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           </Button>
         </NavLink>
       </nav>
-      <div className="mt-6">
+      <div className="mt-6 flex items-center">
         <img className="p-4" src={logoutIcon} alt="Logout" />
+        {(!small || isHovered) && <span>{t("sidebar.logout")}</span>}
       </div>
     </aside>
   );

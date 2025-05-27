@@ -1,28 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/cn";
+import { useTranslation } from "react-i18next";
+import { getLang } from "@/shared/lib/getLang.ts";
+import i18n from "@/shared/i18n";
 
-const successDescription = `
-<p>Спасибо! Ваш платеж успешно обработан.</p>
+const ukSuccessDescription = `
+<p>Ваш платіж успішно оброблено.</p>
 <br />
-<p>📩 Что дальше?</p>
+<p>📩 Що далі?</p>
 <ul>
   <li>
-    Мы отправили ваш уникальный код участника олимпиады на вашу
-    электронную почту.
+    Ми відправили ваш унікальний код учасника олімпіади на вашу
+    электронну пошту.
   </li>
   <li>
-    Если у вас возникли вопросы, свяжитесь с нами:
+    Якщо у вас виникли запитання, зв'яжіться з нами:
     [office@space-memory.com]
   </li>
 </ul>
 <br />
-<p>🎯 Готовы к соревнованию?</p>
-<p>Перейдите на страницу олимпиады, чтобы начать тренироваться</p>
+<p>🎯 Готові к змагання?</p>
+<p>Перейдіть на сторінку олімпіади, щоб почати тренуватися</p>
 `;
 
-const errorDescription = `
+const ukErrorDescription = `
 <p>На жаль, вашу оплату не вдалося обробити. Будь ласка, спробуйте ще раз.
 Якщо проблема повторюється, зв’яжіться з нашою службою підтримки:</p>
 <br />
@@ -32,7 +35,7 @@ const errorDescription = `
 <p>Дякуємо за ваше терпіння!</p>
 `;
 
-const pendingDescription = `
+const ukPendingDescription = `
 <p>Будь ласка, зачекайте. Операція виконується, це може зайняти кілька секунд.
 Не закривайте сторінку й не оновлюйте її, поки транзакція не завершиться.</p>
 <br />
@@ -42,26 +45,90 @@ const pendingDescription = `
 <p>📧 office@space-memory.com</p>
 `;
 
+const plSuccessDescription = `
+<p>Twoja płatność została pomyślnie przetworzona.</p>
+<br />
+<p>📩 Co dalej?</p>
+<ul>
+  <li>
+    Wysłaliśmy Twój unikalny kod uczestnika olimpiady na podany adres e-mail.
+  </li>
+  <li>
+    Masz pytania? Skontaktuj się z nami: [office@space-memory.com].
+  </li>
+</ul>
+<br />
+<p>🎯 Gotowy do rywalizacji?</p>
+<p>Przejdź na stronę olimpiady, aby rozpocząć przygotowania.</p>
+`;
+
+const plErrorDescription = `
+<p>Niestety, Twoja płatność nie została przetworzona. Prosimy, spróbuj ponownie.
+Jeśli problem się powtórzy, skontaktuj się z naszym zespołem wsparcia:</p>
+<br />
+<p>📞 (+48) 733 805 610</p>
+<p>📧 office@space-memory.com</p>
+<br />
+<p>Dziękujemy za cierpliwość!</p>
+`;
+
+const plPendingDescription = `
+<p>Prosimy o chwilę cierpliwości. Operacja jest w toku i może potrwać kilka sekund.
+Nie zamykaj ani nie odświeżaj strony, dopóki transakcja się nie zakończy.</p>
+<br />
+<p>Dziękujemy za cierpliwość! 💙</p>
+<br />
+<p>❓ Masz pytania dotyczące płatności? Skontaktuj się z nami:</p>
+<p>📧 office@space-memory.com</p>
+`;
+
 const statusData = {
   success: {
-    title: "✅ Оплата пройшла успішно!",
-    description: successDescription,
+    title: i18n.t("paymentStatus.success.title"),
+    description: {
+      uk: ukSuccessDescription,
+      pl: plSuccessDescription
+    },
   },
-  error: { title: "❌ Платіж не пройшов", description: errorDescription },
-  pending: { title: "⏳ Обробка платежу…", description: pendingDescription },
+  error: {
+    title: i18n.t("paymentStatus.error.title"),
+    description: {
+      uk: ukErrorDescription,
+      pl: plErrorDescription
+    },
+  },
+  pending: {
+    title: i18n.t("paymentStatus.pending.title"),
+    description: {
+      uk: ukPendingDescription,
+      pl: plPendingDescription
+    },
+  },
 };
+
+type PaymentStatus = "success" | "error" | "pending";
 
 export const PaymentStatusPage: React.FC = () => {
   const navigate = useNavigate();
+  const lang = getLang();
+  const { t } = useTranslation();
 
-  const statusType = "error";
+  const [statusType, setStatusType] = useState<PaymentStatus>("pending")
 
   const content = statusData[statusType];
+  const description = content.description[lang];
 
   const handleAccept = () => {
     // Переходимо до сторінки олімпіади
     navigate("..", { replace: true });
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setStatusType("success")
+    }, 3000);
+    return () => clearTimeout(timeoutId);
+  }, []);
   return (
     <div className="flex w-full flex-col items-center gap-10">
       <div
@@ -78,7 +145,7 @@ export const PaymentStatusPage: React.FC = () => {
         <div
           className="rounded-xl bg-[--color-5] p-4 text-sm text-[--color-placeholder] md:rounded-3xl md:text-base"
           dangerouslySetInnerHTML={{
-            __html: content.description ?? "",
+            __html: description ?? "",
           }}
         ></div>
       </div>
@@ -87,7 +154,7 @@ export const PaymentStatusPage: React.FC = () => {
           className="w-full text-base md:w-auto lg:px-8 lg:py-3 lg:text-base"
           onClick={handleAccept}
         >
-          Перейти до олімпіади
+          {t("paymentStatus.goToOlympiad")}
         </Button>
       </div>
     </div>

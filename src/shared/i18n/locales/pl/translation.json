@@ -48,5 +48,57 @@
     "startTraining": "Тренуватися",
     "start": "Почати",
     "participate": "Взяти участь"
+  },
+  "olympiadHeader": {
+    "startIn": "Початок через ",
+    "endIn": "Кінець через "
+  },
+  "olympiadOverview": {
+    "title": "Опис олімпіади",
+    "startIn": "Початок через ",
+    "endIn": "Кінець через ",
+    "startTraining": "Тренуватися",
+    "start": "Почати",
+    "participate": "Взяти участь"
+  },
+  "olympiadTraining": {
+    "title": "Тренування",
+    "category": "Категорія:",
+    "startTraining": "Тренуватися ({{count}})"
+  },
+  "olympiadStart": {
+    "title": "Олімпіада",
+    "category": "Категорія:",
+    "start": "Почати"
+  },
+  "registerForm": {
+    "title": "Заповніть форму",
+    "lastname": "Ім'я",
+    "surname": "Прізвище",
+    "country": "Країна",
+    "city": "Місто",
+    "schoolName": "Назва школи",
+    "email": "Email",
+    "phone": "Номер телефону",
+    "age": "Вік",
+    "olympiadLanguage": "Мова олімпіади",
+    "region": "Область",
+    "stagesLevel": "Рівень складності",
+    "warning": "Проверьте заявку перед отправкой – данные будут использованы для оформления диплома",
+    "errors": {
+      "fieldRequired": "*Це поле обов'язкове"
+    }
+  },
+  "paymentStatus": {
+    "success": {
+      "title": "✅ Płatność zakończona sukcesem! Dziękujemy!"
+    },
+    "error": {
+      "title": "❌ Opłata nie powiodła się"
+    },
+    "pending": {
+      "title": "⏳ Przetwarzanie płatności…"
+    },
+    "goToOlympiad": "Przejdź do olimpiady"
   }
 }

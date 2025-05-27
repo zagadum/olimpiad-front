@@ -92,5 +92,17 @@
     "errors": {
       "fieldRequired": "*Це поле обов'язкове"
     }
+  },
+  "paymentStatus": {
+    "success": {
+      "title": "✅ Оплата пройшла успішно!"
+    },
+    "error": {
+      "title": "❌ Платіж не пройшов"
+    },
+    "pending": {
+      "title": "⏳ Обробка платежу…"
+    },
+    "goToOlympiad": "Перейти до олімпіади"
   }
 }

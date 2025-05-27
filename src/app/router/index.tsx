@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import AuthPage from "@/pages/auth/auth-token";
 import { HomePage } from "@/pages/home";
 import { HomeWorkPage } from "@/pages/homework";
@@ -22,8 +22,8 @@ export function AppRouter() {
         <Route index element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/homework" element={<HomeWorkPage />} />
-        <Route path="/training" element={<TrainingPage />} />
-        <Route path="/my-space" element={<TrainingPage />} />
+        <Route path="/training" element={<Outlet />} />
+        <Route path="/my-space" element={<Outlet />} />
         <Route path="/olympiads" element={<OlympiadsLayout />}>
           <Route index element={<Navigate to="all" />} />
           <Route path="all" element={<AllOlympiadsPage />} />
