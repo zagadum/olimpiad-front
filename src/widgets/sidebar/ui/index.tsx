@@ -65,7 +65,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
             hideLabel={!!small && !isHovered}
           />
         ))}
-        <NavLink to="/my-space" className="mt-16 w-full">
+        <NavLink to="/my-space" className="mt-16 w-full flex justify-center">
           <Button
             className={cn(
               "h-[64px] w-full",
