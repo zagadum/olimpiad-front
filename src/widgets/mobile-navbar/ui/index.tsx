@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logoImage from "@/shared/assets/images/sidebar-logo.svg";
+// import logoImage from "@/shared/assets/images/sidebar-logo.svg";
+import logoImage from "@/shared/assets/images/spacem-logo.svg";
 import { MenuToggle } from "./menu-toggle";
 import { cn } from "@/shared/lib/cn.ts";
 import { NavItem } from "@/widgets/sidebar/ui/nav-item.tsx";

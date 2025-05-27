@@ -1,5 +1,5 @@
 import { SelectOption } from "@/shared/ui/select";
-import international from "@/shared/assets/icons/international.svg";
+import international from "@/shared/assets/icons/international-mini.png";
 import ukrainian from "@/shared/assets/icons/ukrainian.svg";
 import polish from "@/shared/assets/icons/polish.svg";
 import announce from "@/shared/assets/icons/announce.svg";

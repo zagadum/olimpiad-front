@@ -5,6 +5,7 @@ export const useCurrentUserQuery = () => {
   return useQuery({
     queryKey: ['current-user'],
     queryFn: getCurrentUser,
-    select: data => data.data_list.practicant
+    select: data => data.data_list.practicant,
+    retry: false
   })
 }

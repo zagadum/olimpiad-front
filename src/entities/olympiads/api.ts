@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/shared/api/axiosInstance";
 import {
   // Olympiad,
-  OlympiadsResponse
+  OlympiadsResponse, OlympiadsTaskResponse
 } from "./types";
 // import { getOlympiadsResponse } from "./mockData";
 
@@ -32,9 +32,9 @@ export const getOlympiadDetail = async (id: string): Promise<OlympiadsResponse> 
 export const registerForOlympiad = async (
   formData: unknown,
 ): Promise<unknown> => {
-  console.log('formData', formData);
-  // const response = await axiosInstance.post("/api/register", formData);
-  const response = {status: 200, data: formData}
+  console.log('registerForOlympiad formData', formData);
+  const response = await axiosInstance.post("/api/auth/register", formData);
+  // const response = {status: 200, data: formData}
   console.log('registerForOlympiad response', response);
   return response.data;
 };
@@ -44,5 +44,14 @@ export const initiatePayment = async (
   paymentData: unknown,
 ): Promise<unknown> => {
   const response = await axiosInstance.post("/api/olympiads/payment", paymentData);
+  return response.data;
+};
+
+export const getOlympiadsTask = async (
+  data: unknown,
+): Promise<OlympiadsTaskResponse> => {
+  console.log('getOlympiadsTask data', data);
+  const response = await axiosInstance.post("/api/olympiads/get-task", data);
+  console.log('registerForOlympiad response', response);
   return response.data;
 };

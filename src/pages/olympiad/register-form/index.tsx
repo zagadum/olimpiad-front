@@ -3,7 +3,10 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { registerForOlympiad } from "@/entities/olympiads";
+import {
+  // getOlympiadsTask,
+  registerForOlympiad,
+} from "@/entities/olympiads";
 import { Button } from "@/shared/ui/button";
 import warningIcon from "@/shared/assets/icons/error-rounded.svg";
 import { cn } from "@/shared/lib/cn";
@@ -69,6 +72,8 @@ function getAgeIntervalIndex(age: number): number {
   );
 }
 
+const getAgeTab = (min: number, max: number) => `${min}-${max}`;
+
 const stagesLevelOptions = [
   { label: "Basic", value: "basic" },
   { label: "Intermediate", value: "intremedia" },
@@ -109,7 +114,7 @@ export const RegisterFormPage: React.FC = () => {
   });
 
   const ageField = watch("age_id");
-  const difficultyField = watch("stages_level");
+  const stagesLevelField = watch("stages_level");
   const stagesNumField = watch("stages_num");
   const countryField = watch("country_id");
   const regionField = watch("region_id");
@@ -136,6 +141,37 @@ export const RegisterFormPage: React.FC = () => {
     select: (response) =>
       response.data_list.map((item) => ({ value: item.id, label: item.name })),
   });
+
+  // const { data: taskList = [] } = useQuery({
+  //   queryKey: [
+  //     "olympiads",
+  //     "get-task",
+  //     {
+  //       language: lang,
+  //       olympiad_id: olympiadId,
+  //       stages_level: stagesLevelField,
+  //       age_tab: getAgeTab(
+  //         yearIntervals[ageField].min,
+  //         yearIntervals[ageField].max,
+  //       ),
+  //     },
+  //   ],
+  //   queryFn: () =>
+  //     getOlympiadsTask({
+  //       language: lang,
+  //       olympiad_id: olympiadId,
+  //       stages_level: stagesLevelField,
+  //       age_tab: getAgeTab(
+  //         yearIntervals[ageField].min,
+  //         yearIntervals[ageField].max,
+  //       ),
+  //     }),
+  //   enabled: !!(olympiadId && stagesLevelField),
+  //   select: (response) =>
+  //     response.data_list,
+  // });
+  //
+  // console.log('taskList', taskList);
 
   useEffect(() => {
     setValue("region_id", 0);
@@ -184,7 +220,7 @@ export const RegisterFormPage: React.FC = () => {
       student_id: user?.student_id,
       patronymic: user?.patronymic,
       phone_country: user?.phone_country,
-      age_tab: `${ageTab.min}-${ageTab.max}`,
+      age_tab: getAgeTab(ageTab.min, ageTab.max),
     });
   };
 
@@ -198,13 +234,13 @@ export const RegisterFormPage: React.FC = () => {
           "radial-gradient-bg rounded-xl px-4 py-10 shadow-[-1px_-1px_1px_-0px_#657E8A]",
           "md:rounded-3xl md:px-8 md:py-16",
           "lg:px-8 lg:py-12",
-          "xl:px-20 xl:py-16"
+          "xl:px-20 xl:py-16",
         )}
       >
         <h2 className="mb-10 text-2xl md:mb-16 md:text-3xl">
           {t("registerForm.title")}
         </h2>
-        <div className="grid gap-y-6 md:gap-y-8 md:grid-cols-2 md:gap-x-6 lg:gap-x-8 xl:gap-x-16">
+        <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 lg:gap-x-8 xl:gap-x-16">
           <div className="order-1 md:order-1">
             <input
               {...register("lastname", { required: true })}
@@ -338,12 +374,12 @@ export const RegisterFormPage: React.FC = () => {
               }}
             />
             {errors.phone && (
-              <span className="pl-4 text-[10px] md:text-base font-light leading-4 md:leading-6 text-[--color-error]">
+              <span className="pl-4 text-[10px] font-light leading-4 text-[--color-error] md:text-base md:leading-6">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
           </div>
-          <div className="order-3 md:order-5 flex gap-3">
+          <div className="order-3 flex gap-3 md:order-5">
             <div className="min-w-36">
               <Controller
                 control={control}
@@ -412,23 +448,27 @@ export const RegisterFormPage: React.FC = () => {
             />
           </div>
         </div>
-        {difficultyField && (
-          <div className="mt-6 md:mt-8 flex justify-between gap-3 md:gap-4">
+        {stagesLevelField && (
+          <div className="mt-6 flex justify-between gap-3 md:mt-8 md:gap-4">
             {stageItems.map(({ id, name, tags }, i) => (
               <div
                 key={id}
                 className={cn(
-                  "flex-1 cursor-pointer rounded-xl md:rounded-3xl border border-transparent bg-[--color-5] px-2 py-4 md:px-6 md:py-6 transition duration-300",
+                  "flex-1 cursor-pointer rounded-xl border border-transparent bg-[--color-5] px-2 py-4 transition duration-300 md:rounded-3xl md:px-6 md:py-6",
                   "hover:border-[--color-1]",
                   stagesNumField === id &&
                     "border-[--color-1] bg-gradient-to-t from-[#00C0CA00] to-[#193C4D]",
                 )}
                 onClick={onChangeStagesNum(id)}
               >
-                <div className="mb-6 flex h-5 w-5 md:h-9 md:w-9 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258]">
-                  <span className="text-xs md:text-2xl font-bold leading-3 md:leading-6">{i + 1}</span>
+                <div className="mb-6 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258] md:h-9 md:w-9">
+                  <span className="text-xs font-bold leading-3 md:text-2xl md:leading-6">
+                    {i + 1}
+                  </span>
                 </div>
-                <p className="mb-4 text-base md:text-2xl font-bold leading-4 md:leading-6">{name}</p>
+                <p className="mb-4 text-base font-bold leading-4 md:text-2xl md:leading-6">
+                  {name}
+                </p>
                 <div className="flex flex-col text-xs leading-3 md:text-xl md:leading-6">
                   {tags.map((tag) => (
                     <span key={tag}>{tag}</span>
@@ -440,13 +480,15 @@ export const RegisterFormPage: React.FC = () => {
         )}
       </div>
       <div className="md:px-20">
-        <div className="mb-6 md:mb-4 flex gap-3">
+        <div className="mb-6 flex gap-3 md:mb-4">
           <img src={warningIcon} alt="" />
-          <p className="text-xs leading-4 md:text-base md:leading-6 font-light">
+          <p className="text-xs font-light leading-4 md:text-base md:leading-6">
             {t("registerForm.warning")}
           </p>
         </div>
-        <Button className="text-base leading-4 w-full md:w-auto" type="submit">Підтвердити</Button>
+        <Button className="w-full text-base leading-4 md:w-auto" type="submit">
+          Підтвердити
+        </Button>
       </div>
     </form>
   );

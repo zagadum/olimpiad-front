@@ -40,11 +40,32 @@ export interface Olympiad {
     uk: string;
     pl: string;
   };
-  image_url?: string
-  training_count?: number
+  image_url?: string;
+  training_count?: number;
 }
 
 export interface OlympiadsResponse {
   data_list: Olympiad[];
+  params: [] | { [key: string]: string | number | undefined };
+}
+
+export interface Task {
+  id: number;
+  olympiad_id: number;
+  stages_level: string;
+  age_tab: string;
+  stages_num: number;
+  is_basic: number;
+  is_intermediate: number;
+  is_pro: number;
+  training_type_id: number;
+  params_json: string | null;
+  created_at: string | null;
+  updated_at: string | null;
+  name: string;
+}
+
+export interface OlympiadsTaskResponse {
+  data_list: Task[];
   params: [] | { [key: string]: string | number | undefined };
 }

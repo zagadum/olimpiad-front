@@ -11,7 +11,7 @@ export const MainLayout: React.FC = () => {
   const { isMobile, isTablet } = useDimensions()
   const isSmallSidebar = pathname !== "/";
 
-  const { isLoading } = useCurrentUserQuery();
+  useCurrentUserQuery();
 
   return (
     <div
@@ -22,7 +22,7 @@ export const MainLayout: React.FC = () => {
       )}
     >
       {!isMobile && !isTablet ? <Sidebar small={isSmallSidebar} /> : <MobileNavbar />}
-      {isLoading ? <div>Завантаження...</div> : <Outlet />}
+      <Outlet />
     </div>
   );
 };
