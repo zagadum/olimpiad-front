@@ -8,7 +8,7 @@ export const useUserOS = (): string => {
       const userAgent = navigator.userAgent
 
       if (/Windows/.test(userAgent)) return 'windows'
-      if (/Mac/.test(userAgent)) return 'macos'
+      if (/Mac|Macintosh/.test(userAgent)) return 'macos'
       if (/Android/.test(userAgent)) return 'android'
       if (/iPhone|iPad|iPod/.test(userAgent)) return 'ios'
       if (/Linux/.test(userAgent)) return 'linux'

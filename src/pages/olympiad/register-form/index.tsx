@@ -227,7 +227,7 @@ export const RegisterFormPage: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-10 py-10 md:px-4 md:py-20"
+      className="space-y-10 pb-20 lg:pb-10 lg:py-10 md:px-4 md:py-20"
     >
       <div
         className={cn(

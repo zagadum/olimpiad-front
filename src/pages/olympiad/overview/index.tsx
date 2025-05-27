@@ -38,8 +38,8 @@ export const OverviewPage: React.FC = () => {
   return (
     <div
       className={cn(
-        "olympiad-overview mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] p-4 shadow-[-1px_-1px_1px_-0px_#657E8A]",
-        "md:rounded-3xl md:p-9",
+        "olympiad-overview mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 pt-4 pb-20 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+        "md:rounded-3xl md:px-9 md:pt-9 md:pb-9",
       )}
     >
       <div className="mb-4 md:mb-6 flex items-center justify-between gap-4">

@@ -25,14 +25,14 @@ export const MobileNavbar: React.FC = () => {
       <div
         className={
           cn(
-            "box-border fixed left-0 right-0 top-[84px] z-40 h-0 w-full overflow-hidden",
+            "box-border fixed left-0 right-0 top-[84px] z-40 h-0 w-full overflow-x-hidden overflow-y-auto",
             "flex justify-center items-center",
             "bg-gradient-to-b from-[#071E2C] to-[#03141B] transition-all duration-500",
             isOpen && "h-[calc(100%-84px)] bg-gradient-to-b from-[#071E2C] to-[#03141B] transition-all duration-500"
           )
         }
       >
-        <div className="w-[212px] py-20 h-full flex flex-col justify-between">
+        <div className="w-[212px] py-20 md:py-10 h-full flex flex-col justify-between">
           <nav className="flex flex-col gap-4 text-sm">
             {navItems.map(({ link, label, icon }) => (
               <NavItem

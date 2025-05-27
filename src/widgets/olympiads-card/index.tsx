@@ -11,7 +11,7 @@ import international from "@/shared/assets/icons/international-mini.png";
 import ukrainian from "@/shared/assets/icons/ukrainian.svg";
 import polish from "@/shared/assets/icons/polish.svg";
 import spacem from "@/shared/assets/icons/space-m.png";
-import announce from "@/shared/assets/icons/announce.svg";
+import announce from "@/shared/assets/icons/announce.png";
 import { getLang } from "@/shared/lib/getLang";
 import { cn } from "@/shared/lib/cn.ts";
 import { useTranslation } from "react-i18next";

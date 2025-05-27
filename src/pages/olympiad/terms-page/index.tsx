@@ -74,7 +74,7 @@ export const TermsPage: React.FC = () => {
           }}
         ></div>
       </div>
-      <div className="mt-10 md:px-4">
+      <div className="mt-10 md:px-4 pb-20 md:pb-5">
         <p className="mb-6 flex items-center gap-4 text-sm font-light text-[--color-3] md:text-xl">
           <CustomCheckbox checked={agree} onChange={setAgree} />
           <div className="flex flex-col md:flex-row md:gap-4">
@@ -85,7 +85,7 @@ export const TermsPage: React.FC = () => {
           </div>
         </p>
         <Button
-          className="w-full text-base lg:text-base lg:px-8 lg:py-3 md:w-auto"
+          className="w-full text-base md:w-auto lg:px-8 lg:py-3 lg:text-base"
           onClick={handleAccept}
           disabled={!agree}
         >

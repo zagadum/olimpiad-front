@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useUserOS } from "./useUserOS";
+import { isMobile, isTablet } from 'react-device-detect';
 
 export const useDimensions = () => {
   const [dimensions, setDimensions] = useState({
@@ -23,8 +24,8 @@ export const useDimensions = () => {
         width: windowWidth,
         height: windowHeight,
         viewportHeight: viewportHeight,
-        isMobile: windowWidth < 768,
-        isTablet: (os === 'ios' || os === 'android') || (windowWidth >= 768 && windowWidth <= 1024),
+        isMobile: isMobile || windowWidth < 768,
+        isTablet: isTablet || (os === 'ios' || os === 'android') || (windowWidth >= 768 && windowWidth <= 1024),
         keyboardHeight: heightDiff > 0 ? heightDiff : 0
       })
     }

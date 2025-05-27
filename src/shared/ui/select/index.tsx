@@ -38,7 +38,7 @@ const Option: FC<OptionProps> = ({ label, value, icon, onClick }) => {
           "focus:outline-none",
         )}
       >
-        {icon && <img src={icon} alt="" className="mr-2 h-5 w-5" />}
+        {icon && <img src={icon} alt="" className="mr-2 h-5 w-5 rounded-full object-cover" />}
         <span>{label ?? value}</span>
       </button>
     </li>
@@ -105,7 +105,11 @@ export const Select: FC<SelectProps> = ({
       >
         <div className="flex items-center">
           {selectedOption?.icon && (
-            <img src={selectedOption?.icon} alt="" className="mr-2 h-5 w-5" />
+            <img
+              src={selectedOption?.icon}
+              alt=""
+              className="mr-2 h-5 w-5 rounded-full object-cover"
+            />
           )}
           <span className="mr-2">
             {selectedOption
@@ -117,7 +121,7 @@ export const Select: FC<SelectProps> = ({
           src={chevronDown}
           alt=""
           className={cn(
-            "w-5 h-5 md:w-6 md:h-6 transform transition-transform",
+            "h-5 w-5 transform transition-transform md:h-6 md:w-6",
             isOpen ? "rotate-180" : "rotate-0",
           )}
         />
@@ -127,7 +131,7 @@ export const Select: FC<SelectProps> = ({
       {isOpen && (
         <div
           className={cn(
-            "absolute z-10 w-max py-1 rounded-3xl bg-[#0A2432] shadow-lg",
+            "absolute z-10 w-max rounded-3xl bg-[#0A2432] py-1 shadow-lg",
             dropdownClassName,
           )}
         >
