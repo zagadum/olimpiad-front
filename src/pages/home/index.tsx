@@ -1,8 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useCurrentUserQuery } from "@/entities/auth";
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
+
+  const { data: user } = useCurrentUserQuery();
 
   return (
     <>
@@ -10,7 +13,7 @@ export const HomePage: React.FC = () => {
         {/* Верхній блок з даними користувача */}
         <div className="flex items-center mb-8">
           <div className="flex flex-col">
-            <h2 className="text-2xl font-bold mb-1">Agnieszka Shiklina</h2>
+            <h2 className="text-2xl font-bold mb-1">{user?.lastname ?? ''} {user?.surname ?? ''}</h2>
             <span className="text-sm text-gray-300 mb-1">{t('userInfo.role')}</span>
             <span className="text-sm text-gray-300">{t('userInfo.phone')}</span>
           </div>

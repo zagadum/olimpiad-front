@@ -1,10 +1,10 @@
-// import { axiosInstance } from "@/shared/api/axiosInstance";
+import { axiosInstance } from "@/shared/api/axiosInstance";
 import { Ranking } from "./types";
-import { getRankingResponse } from "@/entities/ranking/mockData.ts";
+// import { getRankingResponse } from "@/entities/ranking/mockData.ts";
 
 // Отримання списку рейтингу
 export const getRanking = async (): Promise<Ranking[]> => {
-  // const response = await axiosInstance.get("/api/ranking");
-  const response = await getRankingResponse();
+  const response = await axiosInstance.get("/api/ranking");
+  // const response = await getRankingResponse();
   return response.data;
 };

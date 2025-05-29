@@ -5,14 +5,9 @@
 // }
 
 export interface Ranking {
-  id: string;
-  username: string;
-  country: string;
-  city: string;
-  level: string;
-  time: string;
+  place: number;
+  name: string;
+  level: string
+  age: string;
   points: number;
-  isHighlighted?: boolean;
-  rank?: number;
-  avatar?: string;
 }

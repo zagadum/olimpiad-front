@@ -3,6 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getRanking } from "@/entities/ranking";
 import { Select, SelectOption } from "@/shared/ui/select";
 import { Button } from "@/shared/ui/button";
+import { cn } from "@/shared/lib/cn.ts";
+import firstIcon from "@/shared/assets/images/first-place.png";
+import secondIcon from "@/shared/assets/images/second-place.png";
+import thirdIcon from "@/shared/assets/images/third-place.png";
+import "./style.css";
 
 const levels: SelectOption[] = [
   {
@@ -49,7 +54,7 @@ const ages: SelectOption[] = [
 ];
 
 export const RankingPage: React.FC = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["ranking"],
     queryFn: getRanking,
   });
@@ -58,7 +63,6 @@ export const RankingPage: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<string | number>();
   const [selectedAge, setSelectedAge] = useState<string | number>();
 
-  if (isLoading) return <div>Завантаження...</div>;
   if (error) return <div>Помилка завантаження даних</div>;
 
   return (
@@ -86,36 +90,98 @@ export const RankingPage: React.FC = () => {
       </div>
 
       {/* Таблиця рейтингу */}
-      <div className="overflow-x-auto rounded bg-[#1A1F25] p-4">
-        <table className="w-full table-auto">
-          <thead className="border-b border-gray-700 text-sm text-gray-400">
-            <tr>
-              <th className="py-2 text-left font-normal">Место</th>
-              <th className="py-2 text-left font-normal">Имя</th>
-              <th className="py-2 text-left font-normal">Страна</th>
-              <th className="py-2 text-left font-normal">Категория</th>
-              <th className="py-2 text-left font-normal">Возраст</th>
-              <th className="py-2 text-right font-normal">Бали</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((row) => (
-              <tr
-                key={row.id}
-                className={`border-b border-gray-700 text-sm transition-colors hover:bg-[#26303A] ${
-                  row.isHighlighted ? "bg-[#113c44]" : ""
-                }`}
-              >
-                <td className="w-12 px-2 py-3 text-center">{row.rank}</td>
-                <td className="px-2 py-3">{row.username}</td>
-                <td className="px-2 py-3">{row.country}</td>
-                <td className="px-2 py-3">{row.level}</td>
-                <td className="px-2 py-3">{row.time}</td>
-                <td className="px-2 py-3 text-right">{row.points}</td>
+      <div className="overflow-x-auto">
+        <div className="relative">
+          <table className="ranking-table w-full table-auto border-separate border-spacing-y-3 md:border-spacing-y-6">
+            <thead className="border-b border-gray-700 text-sm text-gray-400">
+              <tr>
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                  Місце
+                </th>
+                <th className="px-2.5 py-2.5 text-left text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                  Ім'я
+                </th>
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                  Категорія
+                </th>
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                  Вік
+                </th>
+                <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                  Бали
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data?.map((row, index) => (
+                <tr key={index} className="cursor-pointer">
+                  <td
+                    className={cn(
+                      "w-5 px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:w-12 md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "rounded-s-xl border-l border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-s-3xl",
+                    )}
+                  >
+                    {row.place === 1 ? (
+                      <img
+                        className="h-5 w-5 object-cover md:h-11 md:w-11"
+                        src={firstIcon}
+                        alt=""
+                      />
+                    ) : row.place === 2 ? (
+                      <img
+                        className="h-5 w-5 object-cover md:h-11 md:w-11"
+                        src={secondIcon}
+                        alt=""
+                      />
+                    ) : row.place === 3 ? (
+                      <img
+                        className="h-5 w-5 object-cover md:h-11 md:w-11"
+                        src={thirdIcon}
+                        alt=""
+                      />
+                    ) : (
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[--color-1] md:h-11 md:w-11">
+                        {row.place}
+                      </div>
+                    )}
+                  </td>
+                  <td
+                    className={cn(
+                      "text-nowrap px-2.5 py-2.5 text-xs font-semibold leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
+                    )}
+                  >
+                    {row.name}
+                  </td>
+                  <td
+                    className={cn(
+                      "px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
+                    )}
+                  >
+                    {row.level}
+                  </td>
+                  <td
+                    className={cn(
+                      "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
+                    )}
+                  >
+                    {row.age}
+                  </td>
+                  <td
+                    className={cn(
+                      "px-2.5 py-2.5 text-right text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "rounded-e-xl border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-e-3xl",
+                    )}
+                  >
+                    {row.points}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
