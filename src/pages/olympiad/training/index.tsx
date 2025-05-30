@@ -42,8 +42,8 @@ export const TrainingPage: React.FC = () => {
     onSuccess: (data) => {
       // Після успішної реєстрації переходимо до сторінки з умовами
       console.log('runOlympiad onSuccess', data);
-      // window.open(data.data_list.ret_url, '_self')
-      window.open(data.data_list.ret_url)
+      window.open(data.data_list.ret_url, '_self')
+      // window.open(data.data_list.ret_url)
     },
     onError: (error) => {
       console.error("Помилка реєстрації:", error);
