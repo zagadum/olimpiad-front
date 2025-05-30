@@ -150,12 +150,14 @@ export const PaymentStatusPage: React.FC = () => {
         ></div>
       </div>
       <div className="w-full max-w-[1286px] md:p-4">
-        <Button
-          className="w-full text-base md:w-auto lg:px-8 lg:py-3 lg:text-base"
-          onClick={handleAccept}
-        >
-          {t("paymentStatus.goToOlympiad")}
-        </Button>
+        {statusType === "success" && (
+          <Button
+            className="w-full text-base md:w-auto lg:px-8 lg:py-3 lg:text-base"
+            onClick={handleAccept}
+          >
+            {t("paymentStatus.goToOlympiad")}
+          </Button>
+        )}
       </div>
     </div>
   );

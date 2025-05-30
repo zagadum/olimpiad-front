@@ -3,10 +3,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  // getOlympiadsTask,
-  registerForOlympiad,
-} from "@/entities/olympiads";
+import { getOlympiadsTask, registerForOlympiad } from "@/entities/olympiads";
 import { Button } from "@/shared/ui/button";
 import warningIcon from "@/shared/assets/icons/error-rounded.svg";
 import { cn } from "@/shared/lib/cn";
@@ -80,11 +77,11 @@ const stagesLevelOptions = [
   { label: "Pro", value: "pro" },
 ];
 
-const stageItems = [
-  { id: 1, name: "ЧЛК 00-30", tags: ["Картинки", "Слова"] },
-  { id: 2, name: "ЧЛК 00-50", tags: ["Картинки", "Слова"] },
-  { id: 3, name: "ЧЛК 00-70", tags: ["Картинки", "Слова"] },
-];
+// const stageItems = [
+//   { id: 1, name: "ЧЛК 00-30", tags: ["Картинки", "Слова"] },
+//   { id: 2, name: "ЧЛК 00-50", tags: ["Картинки", "Слова"] },
+//   { id: 3, name: "ЧЛК 00-70", tags: ["Картинки", "Слова"] },
+// ];
 
 export const RegisterFormPage: React.FC = () => {
   const { t } = useTranslation();
@@ -142,36 +139,35 @@ export const RegisterFormPage: React.FC = () => {
       response.data_list.map((item) => ({ value: item.id, label: item.name })),
   });
 
-  // const { data: taskList = [] } = useQuery({
-  //   queryKey: [
-  //     "olympiads",
-  //     "get-task",
-  //     {
-  //       language: lang,
-  //       olympiad_id: olympiadId,
-  //       stages_level: stagesLevelField,
-  //       age_tab: getAgeTab(
-  //         yearIntervals[ageField].min,
-  //         yearIntervals[ageField].max,
-  //       ),
-  //     },
-  //   ],
-  //   queryFn: () =>
-  //     getOlympiadsTask({
-  //       language: lang,
-  //       olympiad_id: olympiadId,
-  //       stages_level: stagesLevelField,
-  //       age_tab: getAgeTab(
-  //         yearIntervals[ageField].min,
-  //         yearIntervals[ageField].max,
-  //       ),
-  //     }),
-  //   enabled: !!(olympiadId && stagesLevelField),
-  //   select: (response) =>
-  //     response.data_list,
-  // });
-  //
-  // console.log('taskList', taskList);
+  const { data: taskList = [] } = useQuery({
+    queryKey: [
+      "olympiads",
+      "get-task",
+      {
+        language: lang,
+        olympiad_id: olympiadId,
+        stages_level: stagesLevelField,
+        age_tab: getAgeTab(
+          yearIntervals[ageField].min,
+          yearIntervals[ageField].max,
+        ),
+      },
+    ],
+    queryFn: () =>
+      getOlympiadsTask({
+        language: lang,
+        olympiad_id: olympiadId,
+        stages_level: stagesLevelField,
+        age_tab: getAgeTab(
+          yearIntervals[ageField].min,
+          yearIntervals[ageField].max,
+        ),
+      }),
+    enabled: !!(olympiadId && stagesLevelField),
+    select: (response) => response.data_list,
+  });
+
+  console.log("taskList", taskList);
 
   useEffect(() => {
     setValue("region_id", 0);
@@ -227,7 +223,7 @@ export const RegisterFormPage: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-10 pb-20 lg:pb-10 lg:py-10 md:px-4 md:py-20"
+      className="space-y-10 pb-20 md:px-4 md:py-20 lg:py-10 lg:pb-10"
     >
       <div
         className={cn(
@@ -449,33 +445,41 @@ export const RegisterFormPage: React.FC = () => {
           </div>
         </div>
         {stagesLevelField && (
-          <div className="mt-6 flex justify-between gap-3 md:mt-8 md:gap-4">
-            {stageItems.map(({ id, name, tags }, i) => (
-              <div
-                key={id}
-                className={cn(
-                  "flex-1 cursor-pointer rounded-xl border border-transparent bg-[--color-5] px-2 py-4 transition duration-300 md:rounded-3xl md:px-6 md:py-6",
-                  "hover:border-[--color-1]",
-                  stagesNumField === id &&
-                    "border-[--color-1] bg-gradient-to-t from-[#00C0CA00] to-[#193C4D]",
-                )}
-                onClick={onChangeStagesNum(id)}
-              >
-                <div className="mb-6 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258] md:h-9 md:w-9">
-                  <span className="text-xs font-bold leading-3 md:text-2xl md:leading-6">
-                    {i + 1}
-                  </span>
+          <div className="mt-6 flex justify-center flex-wrap gap-3 md:mt-8 md:gap-4">
+            {Object.values(taskList).map((item, i) => {
+              const id = i + 1;
+              return (
+                <div
+                  key={id}
+                  className={cn(
+                    "w-[32%] cursor-pointer rounded-xl border border-transparent bg-[--color-5] px-2 py-4 transition duration-300 md:rounded-3xl md:px-6 md:py-6",
+                    "hover:border-[--color-1]",
+                    stagesNumField === id &&
+                      "border-[--color-1] bg-gradient-to-t from-[#00C0CA00] to-[#193C4D]",
+                  )}
+                  onClick={onChangeStagesNum(id)}
+                >
+                  <div className="mb-6 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-t from-[#24566F] to-[#1F4258] md:h-9 md:w-9">
+                    <span className="text-xs font-bold leading-3 md:text-2xl md:leading-6">
+                      {i + 1}
+                    </span>
+                  </div>
+                  <div className="flex flex-col text-xs leading-3 md:text-xl md:leading-6">
+                    {item.map(({ name, id }, i) => (
+                      <span
+                        key={id}
+                        className={cn(
+                          i === 0 &&
+                            "mb-4 text-base font-bold leading-4 md:text-2xl md:leading-6",
+                        )}
+                      >
+                        {name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <p className="mb-4 text-base font-bold leading-4 md:text-2xl md:leading-6">
-                  {name}
-                </p>
-                <div className="flex flex-col text-xs leading-3 md:text-xl md:leading-6">
-                  {tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

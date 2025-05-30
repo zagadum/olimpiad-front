@@ -49,23 +49,24 @@ export interface OlympiadsResponse {
   params: [] | { [key: string]: string | number | undefined };
 }
 
-export interface Task {
+interface TaskItem {
   id: number;
-  olympiad_id: number;
-  stages_level: string;
-  age_tab: string;
-  stages_num: number;
-  is_basic: number;
-  is_intermediate: number;
-  is_pro: number;
-  training_type_id: number;
-  params_json: string | null;
-  created_at: string | null;
-  updated_at: string | null;
   name: string;
 }
 
+export type Task = Record<string, TaskItem[]>;
+
 export interface OlympiadsTaskResponse {
-  data_list: Task[];
+  data_list: Task;
   params: [] | { [key: string]: string | number | undefined };
+}
+
+export interface RunOlympiadResponse {
+  data_list: {
+    success: boolean;
+    ret_url: string;
+  };
+  message: string;
+  warning: string;
+  error: number;
 }
