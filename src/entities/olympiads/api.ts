@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/shared/api/axiosInstance";
 import {
   // Olympiad,
-  OlympiadsResponse, OlympiadsTaskResponse, RunOlympiadResponse
+  OlympiadsResponse, OlympiadsTaskListResponse, OlympiadsTaskResponse, RunOlympiadResponse
 } from "./types";
 // import { getOlympiadsResponse } from "./mockData";
 
@@ -58,7 +58,7 @@ export const getOlympiadsTask = async (
 
 export const getOlympiadsTaskList = async (
   data: unknown,
-): Promise<OlympiadsTaskResponse> => {
+): Promise<OlympiadsTaskListResponse> => {
   console.log('getOlympiadsTaskList data', data);
   const response = await axiosInstance.post("/api/olympiads/get-task-list", data);
   console.log('getOlympiadsTaskList response', response);

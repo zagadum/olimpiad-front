@@ -2,7 +2,7 @@ import { useState, useRef, FC, useEffect } from "react";
 import { cn } from "@/shared/lib/cn";
 import chevronDown from "../../assets/icons/chevron-down.svg";
 
-type Value = string | number;
+export type Value = string | number;
 
 export interface SelectOption {
   id: string;
@@ -96,7 +96,8 @@ export const Select: FC<SelectProps> = ({
         className={cn(
           "flex w-max items-center justify-between rounded-full border px-2 py-1 outline-none",
           "text-sm leading-4 text-white transition-colors",
-          "md:px-4 md:py-3 md:text-base",
+          "md:px-3 md:py-2 md:text-sm",
+          "lg:px-4 lg:py-3 lg:text-base",
           variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
           variant === "secondary" &&
             "border-[#C2721D] hover:border-[--color-2]",
@@ -121,7 +122,7 @@ export const Select: FC<SelectProps> = ({
           src={chevronDown}
           alt=""
           className={cn(
-            "h-5 w-5 transform transition-transform md:h-6 md:w-6",
+            "h-5 w-5 transform transition-transform lg:h-6 lg:w-6",
             isOpen ? "rotate-180" : "rotate-0",
           )}
         />
@@ -136,9 +137,9 @@ export const Select: FC<SelectProps> = ({
           )}
         >
           <ul>
-            {options.map((option) => (
+            {options.map((option, index) => (
               <Option
-                key={option.id}
+                key={`${option.id}-${index}`}
                 {...option}
                 onClick={handleSelect(option.value)}
               />

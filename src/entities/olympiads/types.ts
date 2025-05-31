@@ -56,8 +56,109 @@ interface TaskItem {
 
 export type Task = Record<string, TaskItem[]>;
 
+export interface TaskList {
+  id: number;
+  name: string;
+  cnt_repeat: number;
+  descr: string;
+  params_json: {
+    level: string;
+    training_type_id: {
+      id: number;
+      name: string;
+      short_name: string;
+      table_link: string;
+      comment: null;
+      game_level: number;
+      olympiad: number;
+      enabled: number;
+      created_at: string;
+      updated_at: string;
+      resource_url: string;
+    };
+    range_type: null;
+    cnt_operation_list: {
+      key: number;
+      value: number;
+      label: string;
+    };
+    category_maths_list: {
+      key: number;
+      value: string;
+      label: string;
+    };
+    capacity_list: {
+      key: number;
+      value: number;
+      label: string;
+    };
+    interval_olimpiad_list: {
+      key: number;
+      label: string;
+      value: number;
+    };
+    capacity_maths_list2: {
+      key: number;
+      value: number;
+      label: string;
+    };
+    procent_level_list: {
+      key: number;
+      value: string;
+      label: string;
+    };
+    div_comma: number;
+    evaluation: string;
+    digit_number_list: string;
+    interval_list: {
+      key: number;
+      label: string;
+      value: number;
+    };
+    interval_memory_list: {
+      key: number;
+      label: string;
+      value: number;
+    };
+    repeat_number_list: {
+      key: number;
+      value: number;
+    };
+    suits_s: number;
+    suits_h: number;
+    suits_d: number;
+    suits_c: number;
+    div_suits: number;
+    group_cards: number;
+    pack_cards: number;
+    pack_cards_list: {
+      key: number;
+      value: number;
+      label: number;
+    };
+    range_increment_olist: {
+      key: number;
+      value: string;
+    };
+    interval: number;
+    repeat_number: number;
+    interval_memory: number;
+    digit_number: string;
+    capacity: number;
+    range_value: null;
+    show_groups: string;
+    categoryBinaryFlag: string;
+  };
+  table_name: string;
+}
+
 export interface OlympiadsTaskResponse {
   data_list: Task;
+  params: [] | { [key: string]: string | number | undefined };
+}
+
+export interface OlympiadsTaskListResponse {
+  data_list: TaskList[];
   params: [] | { [key: string]: string | number | undefined };
 }
 

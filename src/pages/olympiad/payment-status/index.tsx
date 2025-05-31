@@ -5,6 +5,7 @@ import { cn } from "@/shared/lib/cn";
 import { useTranslation } from "react-i18next";
 import { getLang } from "@/shared/lib/getLang.ts";
 import i18n from "@/shared/i18n";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ukSuccessDescription = `
 <p>Ваш платіж успішно оброблено.</p>
@@ -113,6 +114,8 @@ export const PaymentStatusPage: React.FC = () => {
   const lang = getLang();
   const { t } = useTranslation();
 
+  const queryClient = useQueryClient();
+
   const [statusType, setStatusType] = useState<PaymentStatus>("pending")
 
   const content = statusData[statusType];
@@ -120,6 +123,7 @@ export const PaymentStatusPage: React.FC = () => {
 
   const handleAccept = () => {
     // Переходимо до сторінки олімпіади
+    queryClient.invalidateQueries({queryKey: ['olympiad']})
     navigate("..", { replace: true });
   };
 

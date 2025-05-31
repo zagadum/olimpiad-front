@@ -167,8 +167,6 @@ export const RegisterFormPage: React.FC = () => {
     select: (response) => response.data_list,
   });
 
-  console.log("taskList", taskList);
-
   useEffect(() => {
     setValue("region_id", 0);
     setValue("city_id", 0);
