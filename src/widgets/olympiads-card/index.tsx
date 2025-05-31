@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNowStrict, isAfter, isValid, format } from "date-fns";
 import { uk } from "date-fns/locale/uk";
 // import { ru } from "date-fns/locale/ru";
 import { Button } from "@/shared/ui/button";
-import { getOlympiadsTaskList, Olympiad } from "@/entities/olympiads";
+import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import { OlympiadTag } from "@/widgets/olympiads-card/OlympiadTag.tsx";
 import international from "@/shared/assets/icons/international-mini.png";
@@ -15,7 +15,6 @@ import announce from "@/shared/assets/icons/announce.png";
 import { getLang } from "@/shared/lib/getLang";
 import { cn } from "@/shared/lib/cn.ts";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
 
 type OlympiadsCardProps = {
   olympiad: Olympiad;
@@ -48,30 +47,6 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
   const lang = getLang();
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  const { data: taskList = [] } = useQuery({
-    queryKey: [
-      "olympiads",
-      "get-task-list",
-      {
-        language: lang,
-        olympiad_id: olympiad.id,
-      },
-    ],
-    queryFn: () =>
-      getOlympiadsTaskList({
-        language: lang,
-        olympiad_id: olympiad.id,
-      }),
-    enabled: !!olympiad.id && olympiad.payment_status === "ok",
-    select: (response) => response.data_list,
-  });
-
-  const count = useMemo(() => {
-    return taskList.reduce((acc, task) => {
-      return acc + task.cnt_repeat;
-    }, 0);
-  }, [taskList]);
 
   const goToRegister = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -233,8 +208,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             {olympiad.payment_status === "ok" && (
               <>
                 <Button variant="secondary" onClick={goToTraining}>
-                  {t("olympiadCard.startTraining")} (
-                  {count})
+                  {t("olympiadCard.startTraining")}
                 </Button>
                 <Button onClick={goToStart}>
                   {t("olympiadCard.start")}
@@ -372,8 +346,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             <>
               <Button onClick={goToStart}>{t("olympiadCard.start")}</Button>
               <Button variant="secondary" onClick={goToTraining}>
-                {t("olympiadCard.startTraining")} (
-                {count})
+                {t("olympiadCard.startTraining")}
               </Button>
             </>
           )}
