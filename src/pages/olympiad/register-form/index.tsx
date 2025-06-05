@@ -73,7 +73,7 @@ const getAgeTab = (min: number, max: number) => `${min}-${max}`;
 
 const stagesLevelOptions = [
   { label: "Basic", value: "basic" },
-  { label: "Intermediate", value: "intremedia" },
+  { label: "Intermediate", value: "intermediate" },
   { label: "Pro", value: "pro" },
 ];
 
