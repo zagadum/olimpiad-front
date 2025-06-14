@@ -174,8 +174,8 @@ export const RankingPage: React.FC = () => {
                   </td>
                   <td
                       className={cn(
-                          "px-2.5 py-2.5 text-right text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
-                          "rounded-e-xl border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-e-3xl",
+                          "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                          "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                       )}
                   >
                     {row.good_answear}
