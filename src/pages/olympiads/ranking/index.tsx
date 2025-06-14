@@ -108,6 +108,9 @@ export const RankingPage: React.FC = () => {
                   Вік
                 </th>
                 <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                  Правильні відповіді
+                </th>
+                <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
                   Бали
                 </th>
               </tr>
@@ -151,7 +154,7 @@ export const RankingPage: React.FC = () => {
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
-                    {row.name}
+                    {row.surname} {row.lastname	}
                   </td>
                   <td
                     className={cn(
@@ -159,7 +162,7 @@ export const RankingPage: React.FC = () => {
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
-                    {row.level}
+                    {row.stages_level}
                   </td>
                   <td
                     className={cn(
@@ -167,7 +170,15 @@ export const RankingPage: React.FC = () => {
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
-                    {row.age}
+                    {row.age_tab}
+                  </td>
+                  <td
+                      className={cn(
+                          "px-2.5 py-2.5 text-right text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                          "rounded-e-xl border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-e-3xl",
+                      )}
+                  >
+                    {row.good_answear}
                   </td>
                   <td
                     className={cn(
