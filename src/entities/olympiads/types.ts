@@ -42,6 +42,19 @@ export interface Olympiad {
   };
   image_url?: string;
   training_count?: number;
+  subscribe: {
+    id?: number;
+    practicant_id?: number;
+    olympiad_id?: number;
+    subscribe_date?: string;
+    age_tab?: string;
+    stages_level?: string;
+    stages_num?: number;
+    language?: string;
+    is_pay?: number;
+    created_at?: string;
+    updated_at?: string;
+  };
 }
 
 export interface OlympiadsResponse {
@@ -59,6 +72,7 @@ export type Task = Record<string, TaskItem[]>;
 export interface TaskList {
   id: number;
   name: string;
+  btn_allow: number;
   cnt_repeat: number;
   descr: string;
   params_json: {

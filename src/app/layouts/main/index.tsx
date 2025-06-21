@@ -16,7 +16,7 @@ export const MainLayout: React.FC = () => {
   return (
     <div
       className={cn(
-        "flex h-screen bg-gradient-to-b from-[#071E2C] to-[#03141B] text-white",
+        "flex h-screen text-white",
         !isMobile && !isTablet && isSmallSidebar && "pl-[--sidebar-collapsed-xs] xl:pl-[--sidebar-collapsed]",
         (isMobile || isTablet) && "flex-col"
       )}

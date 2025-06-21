@@ -116,7 +116,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
           <div className={cn("mb-2 flex h-full flex-col justify-between")}>
             <h3
               className={cn(
-                "line-clamp-2 text-xl font-bold leading-5 text-[--color-3]",
+                "line-clamp-1 text-xl font-bold leading-5 text-[--color-3]",
                 "2xl:text-2xl 2xl:leading-6",
               )}
             >
@@ -125,8 +125,8 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             {/* Короткий опис */}
             <p
               className={cn(
-                "mb-2 line-clamp-3 text-base leading-5 text-[--color-3]",
-                "2xl:text-xl",
+                "mb-2 line-clamp-3 text-sm leading-4 text-[--color-3]",
+                "2xl:text-xl 2xl:leading-5",
               )}
             >
               {olympiad.short_description[lang]}

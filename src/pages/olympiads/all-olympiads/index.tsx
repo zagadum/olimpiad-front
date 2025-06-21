@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { Select, SelectOption } from "@/shared/ui/select";
 import { getOlympiads } from "@/entities/olympiads";
 import { OlympiadsCard } from "@/widgets/olympiads-card";
@@ -8,12 +9,15 @@ import ukrainian from "@/shared/assets/icons/ukrainian.svg";
 import polish from "@/shared/assets/icons/polish.svg";
 import announce from "@/shared/assets/icons/announce.png";
 import spacem from "@/shared/assets/icons/space-m.png";
-import { useNavigate } from "react-router-dom";
 import { getLang } from "@/shared/lib/getLang";
+import cupsBg from "@/shared/assets/images/cups-bg.png";
+import { useDimensions } from "@/shared/hooks";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
   const lang = getLang();
+
+  const { isMobile, isTablet } = useDimensions();
 
   // Стан для фільтра
   const [selectedFilter, setSelectedFilter] = useState<string | number>();
@@ -95,6 +99,13 @@ export const AllOlympiadsPage: React.FC = () => {
 
   return (
     <>
+      {!isMobile && !isTablet && (
+        <img
+          src={cupsBg}
+          alt=""
+          className="pointer-events-none fixed -top-10 right-16 z-[-1] w-[388px] rotate-[-15deg] opacity-30"
+        />
+      )}
       {/* Верхній блок з вкладками та фільтром */}
       <div className="mb-8 flex items-center justify-between space-y-0">
         {/* Селект для фільтрації (Международные, Украинские, Польские) */}
@@ -107,7 +118,7 @@ export const AllOlympiadsPage: React.FC = () => {
       </div>
 
       {/* Список карток олімпіад */}
-      <div className="space-y-6 md:space-y-8 pb-20 lg:pb-10">
+      <div className="space-y-6 pb-20 md:space-y-8 lg:pb-10">
         {data?.length ? (
           data.map((o) => (
             <OlympiadsCard

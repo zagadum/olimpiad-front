@@ -64,8 +64,8 @@ const secondaryVariant = `
     hover:to-[#FF9A26]
     active:from-[#996517]
     active:to-[#996517]
-    disabled:from-[#19A0A3]
-    disabled:to-[#19A0A3]
+    disabled:from-[#996917]
+    disabled:to-[#996917]
   `;
 
 export const Button: FC<ButtonProps> = ({

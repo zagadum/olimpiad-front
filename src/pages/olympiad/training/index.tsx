@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@/shared/ui/button";
-import { useTranslation } from "react-i18next";
-import { Select, SelectOption, Value } from "@/shared/ui/select";
-import { cn } from "@/shared/lib/cn.ts";
-import { getOlympiadsTaskList, runOlympiad } from "@/entities/olympiads";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getLang } from "@/shared/lib/getLang.ts";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/shared/ui/button";
+import { Select, SelectOption, Value } from "@/shared/ui/select";
+import { cn } from "@/shared/lib/cn";
+import {
+  getOlympiadDetail,
+  getOlympiadsTaskList,
+  runOlympiad,
+} from "@/entities/olympiads";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getLang } from "@/shared/lib/getLang";
 
 const capacity = [
   { value: "без поділу" },
@@ -44,6 +48,13 @@ export const TrainingPage: React.FC = () => {
 
   const { olympiadId } = useParams<{ olympiadId: string }>();
   const lang = getLang();
+
+  const { data: olympiad } = useQuery({
+    queryKey: ["olympiad", olympiadId],
+    queryFn: () => getOlympiadDetail(olympiadId!),
+    select: (value) => value.data_list[0],
+    enabled: !!olympiadId,
+  });
 
   const { data: taskList = [] } = useQuery({
     queryKey: [
@@ -103,13 +114,20 @@ export const TrainingPage: React.FC = () => {
         </h2>
         <p className="text-base font-light md:text-xl">
           {t("olympiadTraining.category")}{" "}
-          <span className="text-[#FF9A26]">Basic</span>
+          <span className="text-[#FF9A26] capitalize">
+            {olympiad?.subscribe?.stages_level} {olympiad?.subscribe?.stages_num}
+          </span>{" "}
+          |{" "}
+          <span className="text-[#FF9A26]">{olympiad?.subscribe?.age_tab}</span>{" "}
+          |{" "}
+          <span className="text-[#FF9A26]">
+            {olympiad?.subscribe?.practicant_id}
+          </span>
         </p>
       </div>
-      {/*<div className="overflow-x-auto">*/}
-      <div className="">
+      <div className="overflow-x-auto">
         <div className="relative min-w-fit">
-          <table className="table-auto border-separate border-spacing-y-6">
+          <table className="table-auto border-separate border-spacing-y-6 md:min-w-full">
             <tbody>
               {taskList.map((item) => {
                 return (
@@ -201,9 +219,10 @@ export const TrainingPage: React.FC = () => {
                         />
                       )}
                     </td>
-                    <td className="rounded-r-xl bg-[--color-5] py-4 pl-2.5 pr-4 lg:py-6 lg:pr-6">
+                    <td className="rounded-r-xl bg-[--color-5] py-4 pl-2.5 pr-4 text-right lg:py-6 lg:pr-6">
                       <Button
                         variant="secondary"
+                        disabled={item.btn_allow !== 1}
                         onClick={onSubmit({
                           olympiad_id: olympiadId,
                           params_id: item.id,
@@ -217,7 +236,9 @@ export const TrainingPage: React.FC = () => {
                           language: lang,
                         })}
                       >
-                        {t("olympiadTraining.startTraining", { count: item?.cnt_repeat })}
+                        {t("olympiadTraining.startTraining", {
+                          count: item?.cnt_repeat,
+                        })}
                       </Button>
                     </td>
                   </tr>

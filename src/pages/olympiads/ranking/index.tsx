@@ -120,7 +120,7 @@ export const RankingPage: React.FC = () => {
                 <tr key={index} className="cursor-pointer">
                   <td
                     className={cn(
-                      "w-5 px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:w-12 md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "w-5 px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:w-12 md:px-6 md:py-6 md:text-lg md:leading-5",
                       "rounded-s-xl border-l border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-s-3xl",
                     )}
                   >
