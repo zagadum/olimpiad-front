@@ -4,6 +4,7 @@ import { getRanking } from "@/entities/ranking";
 import { Select, SelectOption } from "@/shared/ui/select";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/cn.ts";
+import superIcon from "@/shared/assets/images/super-place.png";
 import firstIcon from "@/shared/assets/images/first-place.png";
 import secondIcon from "@/shared/assets/images/second-place.png";
 import thirdIcon from "@/shared/assets/images/third-place.png";
@@ -127,16 +128,22 @@ export const RankingPage: React.FC = () => {
                     {row.place === 1 ? (
                       <img
                         className="h-5 w-5 object-cover md:h-11 md:w-11"
-                        src={firstIcon}
+                        src={superIcon}
                         alt=""
                       />
                     ) : row.place === 2 ? (
                       <img
                         className="h-5 w-5 object-cover md:h-11 md:w-11"
-                        src={secondIcon}
+                        src={firstIcon}
                         alt=""
                       />
                     ) : row.place === 3 ? (
+                      <img
+                        className="h-5 w-5 object-cover md:h-11 md:w-11"
+                        src={secondIcon}
+                        alt=""
+                      />
+                    ) : row.place === 4 ? (
                       <img
                         className="h-5 w-5 object-cover md:h-11 md:w-11"
                         src={thirdIcon}
