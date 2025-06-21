@@ -15,7 +15,9 @@ import { differenceInYears, isValid } from "date-fns";
 import PhoneInputWithCountry, {
   Country,
 } from "react-phone-number-input/react-hook-form";
+import { toast, Bounce } from "react-toastify";
 import "./style.css";
+import { AxiosError } from "axios";
 
 type FormInputs = {
   surname: string;
@@ -38,10 +40,10 @@ const languages = [
 ];
 
 const yearIntervals = [
-  { min: 9, max: 12 }, // індекс 0
-  { min: 13, max: 15 }, // індекс 1
-  { min: 16, max: 17 }, // індекс 2
-  { min: 18, max: 100 }, // індекс 3
+  { min: 9, max: 12 },
+  { min: 13, max: 15 },
+  { min: 16, max: 17 },
+  { min: 18, max: 100 },
 ];
 
 const ageOptions = yearIntervals.map(({ min, max }, index) => ({
@@ -76,12 +78,6 @@ const stagesLevelOptions = [
   { label: "Intermediate", value: "intermediate" },
   { label: "Pro", value: "pro" },
 ];
-
-// const stageItems = [
-//   { id: 1, name: "ЧЛК 00-30", tags: ["Картинки", "Слова"] },
-//   { id: 2, name: "ЧЛК 00-50", tags: ["Картинки", "Слова"] },
-//   { id: 3, name: "ЧЛК 00-70", tags: ["Картинки", "Слова"] },
-// ];
 
 export const RegisterFormPage: React.FC = () => {
   const { t } = useTranslation();
@@ -201,6 +197,21 @@ export const RegisterFormPage: React.FC = () => {
     },
     onError: (error) => {
       console.error("Помилка реєстрації:", error);
+      const errorText =
+        error instanceof AxiosError
+          ? error?.response?.data?.message
+          : error.message;
+      toast.error(errorText, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     },
   });
 
@@ -443,7 +454,7 @@ export const RegisterFormPage: React.FC = () => {
           </div>
         </div>
         {stagesLevelField && (
-          <div className="mt-6 flex justify-center flex-wrap gap-3 md:mt-8 md:gap-4">
+          <div className="mt-6 flex flex-wrap justify-center gap-3 md:mt-8 md:gap-4">
             {Object.values(taskList).map((item, i) => {
               const id = i + 1;
               return (
