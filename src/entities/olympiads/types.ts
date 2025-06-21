@@ -55,6 +55,7 @@ export interface Olympiad {
     created_at?: string;
     updated_at?: string;
   };
+  is_pay?: number;
 }
 
 export interface OlympiadsResponse {
