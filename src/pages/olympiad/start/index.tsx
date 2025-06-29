@@ -4,15 +4,24 @@ import { useTranslation } from "react-i18next";
 import { Select, SelectOption, Value } from "@/shared/ui/select";
 import { cn } from "@/shared/lib/cn.ts";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getOlympiadDetail, getOlympiadsTaskList, runOlympiad } from "@/entities/olympiads";
+import {
+  getOlympiadDetail,
+  getOlympiadsTaskList,
+  runOlympiad,
+} from "@/entities/olympiads";
 import { useParams } from "react-router-dom";
 import { getLang } from "@/shared/lib/getLang.ts";
 
+type StateOption = {
+  id: number;
+  value?: Value;
+};
+
 const capacity = [
-  { value: "без поділу" },
-  { value: 2 },
-  { value: 4 },
-  { value: 6 },
+  { value: 1, label: "без поділу" },
+  { value: 2, label: "2" },
+  { value: 4, label: "4" },
+  { value: 6, label: "6" },
 ] as SelectOption[];
 
 const groupCards = [
@@ -29,18 +38,23 @@ const showGroups = [
   { value: "4" },
 ] as SelectOption[];
 
-const categoryBinaryFlag = [
+const categoryBinary = [
   { value: "1", label: "Рядок" },
   { value: "2", label: "Стовпчик" },
 ] as SelectOption[];
 
 export const StartPage: React.FC = () => {
   const { t } = useTranslation();
-  const [selectedCapacity, setSelectedCapacity] = useState<Value>();
-  const [selectedGroupCards, setSelectedGroupCards] = useState<Value>();
-  const [selectedShowGroups, setSelectedShowGroups] = useState<Value>();
-  const [selectedCategoryBinnaryFlag, setSelectedCategoryBinnaryFlag] =
-    useState<Value>();
+  const [selectedCapacity, setSelectedCapacity] = useState<StateOption[]>([]);
+  const [selectedGroupCards, setSelectedGroupCards] = useState<StateOption[]>(
+    [],
+  );
+  const [selectedShowGroups, setSelectedShowGroups] = useState<StateOption[]>(
+    [],
+  );
+  const [selectedCategoryBinary, setSelectedCategoryBinary] = useState<
+    StateOption[]
+  >([]);
 
   const { olympiadId } = useParams<{ olympiadId: string }>();
   const lang = getLang();
@@ -90,10 +104,22 @@ export const StartPage: React.FC = () => {
 
   useEffect(() => {
     taskList.forEach((item) => {
-      setSelectedCapacity(item?.params_json.capacity);
-      setSelectedGroupCards(item?.params_json.group_cards);
-      setSelectedShowGroups(item?.params_json.show_groups);
-      setSelectedCategoryBinnaryFlag(item?.params_json.categoryBinaryFlag);
+      setSelectedCapacity((prev) => [
+        ...prev,
+        { id: item.id, value: item?.params_json.capacity },
+      ]);
+      setSelectedGroupCards((prev) => [
+        ...prev,
+        { id: item.id, value: item?.params_json.group_cards },
+      ]);
+      setSelectedShowGroups((prev) => [
+        ...prev,
+        { id: item.id, value: item?.params_json.show_groups },
+      ]);
+      setSelectedCategoryBinary((prev) => [
+        ...prev,
+        { id: item.id, value: item?.params_json.categoryBinaryFlag },
+      ]);
     });
   }, [taskList]);
 
@@ -110,8 +136,9 @@ export const StartPage: React.FC = () => {
         </h2>
         <p className="text-base font-light md:text-xl">
           {t("olympiadStart.category")}{" "}
-          <span className="text-[#FF9A26] capitalize">
-            {olympiad?.subscribe?.stages_level} {olympiad?.subscribe?.stages_num}
+          <span className="capitalize text-[#FF9A26]">
+            {olympiad?.subscribe?.stages_level}{" "}
+            {olympiad?.subscribe?.stages_num}
           </span>{" "}
           |{" "}
           <span className="text-[#FF9A26]">{olympiad?.subscribe?.age_tab}</span>{" "}
@@ -138,12 +165,7 @@ export const StartPage: React.FC = () => {
                     </td>
                     <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
                       <p className="text-sm lg:text-xl">
-                        Кількість: {/*{item?.rows && (*/}
-                        {/*  <span className="text-[#E79600]">{item.rows}</span>*/}
-                        {/*)}*/}
-                        {/*{item?.amount && (*/}
-                        {/*  <span className="text-[#E79600]">{item.amount}</span>*/}
-                        {/*)}*/}
+                        Кількість:{" "}
                         <span className="text-[#E79600]">
                           {item.params_json.digit_number}
                         </span>
@@ -163,40 +185,69 @@ export const StartPage: React.FC = () => {
                         </span>
                       </p>
                     </td>
-                    <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
-                      {item?.table_name === "olympiad_memory" && (
+                    <td className="max-w-full space-x-5 whitespace-nowrap bg-[--color-5] px-2.5 py-4 text-right lg:py-6">
+                      {(item?.table_name === "olympiad_memory" ||
+                        item?.table_name === "olympiad_number_letter") && (
                         <Select
                           variant="secondary"
-                          value={selectedCapacity}
-                          onChange={(value) => setSelectedCapacity(value)}
+                          value={
+                            selectedCapacity.find(({ id }) => id === item.id)
+                              ?.value
+                          }
+                          onChange={(value) =>
+                            setSelectedCapacity((prev) =>
+                              prev.map((elem) =>
+                                elem.id === item.id
+                                  ? { ...elem, value: value }
+                                  : elem,
+                              ),
+                            )
+                          }
                           options={capacity}
                           placeholder="Розрядність"
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
                       )}
-                    </td>
-                    <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
                       {item?.table_name === "olympiad_binnary" && (
                         <Select
                           variant="secondary"
-                          value={selectedCategoryBinnaryFlag}
-                          onChange={(value) =>
-                            setSelectedCategoryBinnaryFlag(value)
+                          value={
+                            selectedCategoryBinary.find(
+                              ({ id }) => id === item.id,
+                            )?.value
                           }
-                          options={categoryBinaryFlag}
+                          onChange={(value) =>
+                            setSelectedCategoryBinary((prev) =>
+                              prev.map((elem) =>
+                                elem.id === item.id
+                                  ? { ...elem, value: value }
+                                  : elem,
+                              ),
+                            )
+                          }
+                          options={categoryBinary}
                           placeholder="Відображення"
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
                       )}
-                    </td>
-                    <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
                       {item?.table_name === "olympiad_binnary" && (
                         <Select
                           variant="secondary"
-                          value={selectedShowGroups}
-                          onChange={(value) => setSelectedShowGroups(value)}
+                          value={
+                            selectedShowGroups.find(({ id }) => id === item.id)
+                              ?.value
+                          }
+                          onChange={(value) =>
+                            setSelectedShowGroups((prev) =>
+                              prev.map((elem) =>
+                                elem.id === item.id
+                                  ? { ...elem, value: value }
+                                  : elem,
+                              ),
+                            )
+                          }
                           options={showGroups}
                           placeholder="Групування"
                           targetClassName="min-w-[165px]"
@@ -206,8 +257,19 @@ export const StartPage: React.FC = () => {
                       {item?.table_name === "olympiad_cards" && (
                         <Select
                           variant="secondary"
-                          value={selectedGroupCards}
-                          onChange={(value) => setSelectedGroupCards(value)}
+                          value={
+                            selectedGroupCards.find(({ id }) => id === item.id)
+                              ?.value
+                          }
+                          onChange={(value) =>
+                            setSelectedGroupCards((prev) =>
+                              prev.map((elem) =>
+                                elem.id === item.id
+                                  ? { ...elem, value: value }
+                                  : elem,
+                              ),
+                            )
+                          }
                           options={groupCards}
                           placeholder="Групування"
                           targetClassName="min-w-[165px]"
@@ -223,10 +285,18 @@ export const StartPage: React.FC = () => {
                           params_id: item.id,
                           is_self: 0,
                           add_params: JSON.stringify({
-                            capacity: selectedCapacity,
-                            show_groups: selectedShowGroups,
-                            categoryBinaryFlag: selectedCategoryBinnaryFlag,
-                            group_cards: selectedGroupCards,
+                            capacity: selectedCapacity.find(
+                              ({ id }) => id === item.id,
+                            )?.value,
+                            show_groups: selectedShowGroups.find(
+                              ({ id }) => id === item.id,
+                            )?.value,
+                            group_cards: selectedGroupCards.find(
+                              ({ id }) => id === item.id,
+                            )?.value,
+                            category_binary: selectedCategoryBinary.find(
+                              ({ id }) => id === item.id,
+                            )?.value,
                           }),
                           language: lang,
                         })}

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { formatDistanceToNowStrict, isAfter, isValid, format } from "date-fns";
-import { uk } from "date-fns/locale/uk";
+import { isValid, format } from "date-fns";
 // import { ru } from "date-fns/locale/ru";
 import { Button } from "@/shared/ui/button";
 import { Olympiad } from "@/entities/olympiads";
@@ -15,20 +14,12 @@ import announce from "@/shared/assets/icons/announce.png";
 import { getLang } from "@/shared/lib/getLang";
 import { cn } from "@/shared/lib/cn.ts";
 import { useTranslation } from "react-i18next";
+import { calcDays } from "@/shared/lib/calcDays";
+import { isDateBefore } from "@/shared/lib/dateRange.ts";
 
 type OlympiadsCardProps = {
   olympiad: Olympiad;
   onCardClick?: (id: number) => void;
-};
-
-const calcDays = (date: string) => {
-  const dateNow = Date.now();
-  const parsedDate = Date.parse(date);
-  const isDateValid = isValid(parsedDate);
-  if (isDateValid && isAfter(parsedDate, dateNow)) {
-    return formatDistanceToNowStrict(parsedDate, { locale: uk });
-  }
-  return "";
 };
 
 const formatDate = (date: string) => {
@@ -68,6 +59,9 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
     event.stopPropagation();
     navigate(`/olympiads/${olympiad.id}/start`);
   };
+
+  const olympiadIsPaid =
+    olympiad.payment_status === "ok" || olympiad.is_pay === 1;
 
   const formattedStartDate = formatDate(olympiad.start_date ?? "");
   const formattedEndDate = formatDate(olympiad.end_date ?? "");
@@ -175,7 +169,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
                 ? `${formattedStartDate} - ${formattedEndDate}`
                 : formattedStartDate}
             </span>
-            {olympiad.payment_status === "ok" && (
+            {olympiadIsPaid && (
               <div
                 className={cn(
                   "mt-2 text-nowrap text-sm leading-4 text-[--color-3]",
@@ -205,19 +199,32 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             )}
           >
             {/* Відображення кнопок дій в залежності від статусу оплати */}
-            {olympiad.payment_status === "ok" && (
+            {olympiadIsPaid && (
               <>
-                <Button variant="secondary" onClick={goToTraining}>
-                  {t("olympiadCard.startTraining")}
-                </Button>
-                <Button onClick={goToStart}>
-                  {t("olympiadCard.start")}
-                </Button>
+                {olympiad.is_done === 1 ? (
+                  <span className="text-[--color-error]">
+                    {t("olympiadCard.finished")}
+                  </span>
+                ) : olympiad.is_done === -1 ? (
+                  <span className="text-[--color-error]">
+                    {t("olympiadCard.finished")}
+                  </span>
+                ) : (
+                  <>
+                    <Button variant="secondary" onClick={goToTraining}>
+                      {t("olympiadCard.startTraining")}
+                    </Button>
+                    <Button onClick={goToStart} disabled={isDateBefore(formattedStartDate)}>
+                      {t("olympiadCard.start")}
+                    </Button>
+                  </>
+                )}
               </>
             )}
             {(!olympiad.payment_status ||
               olympiad.payment_status === "none" ||
-              olympiad.payment_status === "no") && (
+              olympiad.payment_status === "no" ||
+              olympiad.is_pay === 0) && (
               <>
                 {/* Ціна, якщо вона є */}
                 <span
@@ -268,7 +275,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
                   ? `${formattedStartDate} - ${formattedEndDate}`
                   : formattedStartDate}
               </span>
-              {olympiad.payment_status === "ok" && (
+              {olympiadIsPaid && (
                 <div
                   className={cn(
                     "mt-1 text-nowrap text-[10px] leading-3 text-[--color-3]",
@@ -342,17 +349,30 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
         {/* Правий блок: дата, ціна, кнопки дій */}
         <div className={cn("flex items-center gap-3")}>
           {/* Відображення кнопок дій в залежності від статусу оплати */}
-          {olympiad.payment_status === "ok" && (
+          {olympiadIsPaid && (
             <>
-              <Button onClick={goToStart}>{t("olympiadCard.start")}</Button>
-              <Button variant="secondary" onClick={goToTraining}>
-                {t("olympiadCard.startTraining")}
-              </Button>
+              {olympiad.is_done === 1 ? (
+                <span className="text-[--color-error]">
+                    {t("olympiadCard.finished")}
+                  </span>
+              ) : olympiad.is_done === -1 ? (
+                <span className="text-[--color-error]">
+                    {t("olympiadCard.finished")}
+                  </span>
+              ) : (
+                <>
+                  <Button onClick={goToStart}>{t("olympiadCard.start")}</Button>
+                  <Button variant="secondary" onClick={goToTraining}>
+                    {t("olympiadCard.startTraining")}
+                  </Button>
+                </>
+              )}
             </>
           )}
           {(!olympiad.payment_status ||
             olympiad.payment_status === "none" ||
-            olympiad.payment_status === "no") && (
+            olympiad.payment_status === "no" ||
+            olympiad.is_pay === 0) && (
             <>
               <Button onClick={goToRegister}>
                 {t("olympiadCard.participate")}

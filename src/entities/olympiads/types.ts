@@ -55,7 +55,8 @@ export interface Olympiad {
     created_at?: string;
     updated_at?: string;
   };
-  is_pay?: number;
+  is_pay: number;
+  is_done: number;
 }
 
 export interface OlympiadsResponse {
@@ -163,6 +164,7 @@ export interface TaskList {
     range_value: null;
     show_groups: string;
     categoryBinaryFlag: string;
+    category_binary: number;
   };
   table_name: string;
 }

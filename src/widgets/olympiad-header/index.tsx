@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDistanceToNowStrict, isAfter, isValid, format } from "date-fns";
+import { formatDistanceToNowStrict, isAfter, isValid } from "date-fns";
 import { uk } from "date-fns/locale/uk";
 import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
@@ -7,6 +7,7 @@ import arrowBackIcon from "@/shared/assets/icons/ion_arrow-back.svg";
 import i18n from "@/shared/i18n";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/shared/lib/cn";
+import { formatDate } from "@/shared/lib/formatDate.ts";
 
 type OlympiadsCardProps = {
   olympiad?: Olympiad;
@@ -22,15 +23,6 @@ const calcDays = (date: string) => {
   return 0;
 };
 
-const formatDate = (date: string) => {
-  const parsedDate = Date.parse(date);
-  const isDateValid = isValid(parsedDate);
-  if (isDateValid) {
-    return format(parsedDate, "dd.MM.yyyy");
-  }
-  return date;
-};
-
 type Lang = "uk" | "pl";
 const languages: Lang[] = ["uk", "pl"];
 
@@ -44,6 +36,8 @@ const getLang = (): Lang => {
 export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
   const { t } = useTranslation();
   const lang = getLang();
+
+  const olympiadIsPaid = olympiad?.payment_status === "ok" || olympiad?.is_pay === 1
 
   const formattedStartDate = formatDate(olympiad?.start_date ?? "");
   const formattedEndDate = formatDate(olympiad?.end_date ?? "");
@@ -88,7 +82,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
           <h3
             className={cn(
               "line-clamp-2 text-sm font-bold leading-4 text-[--color-3]",
-              "md:text-2xl md:leading-5",
+              "md:text-2xl md:leading-6",
             )}
           >
             {olympiad?.title[lang]}
@@ -111,7 +105,8 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
         <div className="text-right">
           {(!olympiad?.payment_status ||
             olympiad?.payment_status === "none" ||
-            olympiad?.payment_status === "no") && (
+            olympiad?.payment_status === "no" ||
+            olympiad?.is_pay === 0) && (
             <span
               className={cn(
                 "mr-6 text-nowrap rounded-full border border-[--color-2] px-3 py-2 text-[10px] leading-3 text-[--color-3]",
@@ -131,7 +126,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
               ? `${formattedStartDate} - ${formattedEndDate}`
               : formattedStartDate}
           </span>
-          {olympiad?.payment_status === "ok" && (
+          {olympiadIsPaid && (
             <div className="mt-3 hidden text-nowrap text-xl leading-6 text-[--color-3] md:block">
               {!!startDateDistance && (
                 <div>

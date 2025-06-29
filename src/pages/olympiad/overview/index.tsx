@@ -7,6 +7,8 @@ import { getLang } from "@/shared/lib/getLang.ts";
 import { useTranslation } from "react-i18next";
 import "./style.css";
 import { cn } from "@/shared/lib/cn";
+import { isDateBefore } from "@/shared/lib/dateRange";
+import { formatDate } from "@/shared/lib/formatDate";
 
 export const OverviewPage: React.FC = () => {
   const lang = getLang();
@@ -19,6 +21,10 @@ export const OverviewPage: React.FC = () => {
     select: (value) => value.data_list[0],
     enabled: !!olympiadId,
   });
+
+  const formattedStartDate = formatDate(data?.start_date ?? "");
+
+  const olympiadIsPaid = data?.payment_status === "ok" || data?.is_pay === 1;
 
   const goToRegister = () => {
     navigate(`/olympiads/${olympiadId}/register`);
@@ -38,69 +44,37 @@ export const OverviewPage: React.FC = () => {
   return (
     <div
       className={cn(
-        "olympiad-overview mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 pt-4 pb-20 shadow-[-1px_-1px_1px_-0px_#657E8A]",
-        "md:rounded-3xl md:px-9 md:pt-9 md:pb-9",
+        "olympiad-overview mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 pb-20 pt-4 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+        "md:rounded-3xl md:px-9 md:pb-9 md:pt-9",
       )}
     >
-      <div className="mb-4 md:mb-6 flex items-center justify-between gap-4">
-        <h2
-          className={cn(
-            "mb-3 text-xl font-bold",
-            "md:mb-4 md:text-3xl"
-          )}
-        >
+      <div className="mb-4 flex items-center justify-between gap-4 md:mb-6">
+        <h2 className={cn("mb-3 text-xl font-bold", "md:mb-4 md:text-3xl")}>
           {t("olympiadOverview.title")}
         </h2>
-        <div className="mb-2 md:mb-4 flex gap-3 md:gap-8">
+        <div className="mb-2 flex gap-3 md:mb-4 md:gap-8">
           {(!data?.payment_status ||
             data?.payment_status === "none" ||
-            data?.payment_status === "no") && (
+            data?.payment_status === "no" ||
+            data?.is_pay === 0) && (
             <Button onClick={goToRegister}>
               {t("olympiadOverview.participate")}
             </Button>
           )}
-          {data?.payment_status === "ok" && (
+          {olympiadIsPaid && (
             <>
               <Button variant="secondary" onClick={goToTraining}>
                 {t("olympiadOverview.startTraining")}
               </Button>
-              <Button onClick={goToStart}>{t("olympiadOverview.start")}</Button>
+              <Button onClick={goToStart} disabled={isDateBefore(formattedStartDate)}>{t("olympiadOverview.start")}</Button>
             </>
           )}
         </div>
       </div>
       <div
-        className="full-description rounded-3xl bg-[--color-5] p-4 text-sm md:text-xl font-light text-[#A5A5A5]"
-        dangerouslySetInnerHTML={{
-          __html: data?.full_description[lang] ?? "",
-          // __html: getMockText(lang) ?? "",
-        }}
+        className="full-description rounded-3xl bg-[--color-5] p-4 text-sm font-light text-[#A5A5A5] md:text-xl"
+        dangerouslySetInnerHTML={{ __html: data?.full_description[lang] ?? "" }}
       ></div>
     </div>
   );
 };
-
-// const getMockText = (lang: string) =>
-//   lang
-//     ? `
-// <h3>Тренировка</h3>
-// <p>После регистриции на платформе Олимпиады, вы можете тренироваться 7 раз в день.</p>
-// <p>Доступ открыт с 25.04.2025 - 05.05.2025г.</p>
-// <br/>
-// <h3>Прохождение олимпиады</h3>
-// <p>Пройти Олимпиаду вы можете только один раз, нажав кнопку «Начать Олимпиаду».</p>
-// <p>Доступ открыт с 01.05.2025 - 05.05.2025г.</p>
-// <br/>
-// <h3>Олимпиаду можно пройти используя:</h3>
-// <ul>
-// <li>Компьютер</li>
-// <li>Ноутбук</li>
-// <li>Планшет</li>
-// </ul>
-// <br/>
-// <h5>Запрещено проходить олимпиаду на телефоне!</h5>
-// <br/>
-// <h3>Во время прохождения онлайн олимпиады обязательно делать видеозапись!</h3>
-// <p>На видео должен быть четко виден ребенок, экран, и четко зафиксирован результат прохождения олимпиады. Видео должно быть со звуком и без монтажа, сниматься непрерывно от начала и до конца олимпиады. Участник должен быть без наушников!</p>
-// `
-//     : "";

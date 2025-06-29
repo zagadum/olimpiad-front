@@ -47,7 +47,9 @@
     "endIn": "Кінець через ",
     "startTraining": "Тренуватися",
     "start": "Почати",
-    "participate": "Взяти участь"
+    "participate": "Взяти участь",
+    "finished": "Олімпіада завершена",
+    "inactive": "Олімпіада неактивна"
   },
   "olympiadHeader": {
     "startIn": "Початок через ",

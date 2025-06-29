@@ -1,5 +1,5 @@
 .ranking-table {
-  tr:hover {
+  tr:hover, tr.active {
     td {
       background: linear-gradient(180deg, #26F9FF -29.69%, #193C4D 126.31%);
       transition: all .5s;

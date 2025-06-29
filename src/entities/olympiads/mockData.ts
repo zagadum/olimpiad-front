@@ -62,6 +62,7 @@ export const getOlympiadsResponse = (params?: OlympiadsResponse["params"]) =>
               },
               payment_status: "none",
               is_pay: 1,
+              is_done: 0,
             },
             {
               id: 3,
@@ -134,6 +135,7 @@ export const getOlympiadsResponse = (params?: OlympiadsResponse["params"]) =>
               },
               payment_status: "ok",
               is_pay: 1,
+              is_done: 0,
             },
           ],
           params: params || [],

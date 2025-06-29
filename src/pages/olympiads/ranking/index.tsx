@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getRanking } from "@/entities/ranking";
 import { Select, SelectOption } from "@/shared/ui/select";
@@ -9,6 +9,10 @@ import firstIcon from "@/shared/assets/images/first-place.png";
 import secondIcon from "@/shared/assets/images/second-place.png";
 import thirdIcon from "@/shared/assets/images/third-place.png";
 import "./style.css";
+import { useTranslation } from "react-i18next";
+import { useCurrentUserQuery } from "@/entities/auth";
+import rankingBg from "@/shared/assets/images/ranking-bg.png";
+import { useDimensions } from "@/shared/hooks";
 
 const levels: SelectOption[] = [
   {
@@ -39,8 +43,8 @@ const ages: SelectOption[] = [
   },
   {
     id: "1",
-    label: "11-13",
-    value: "11-13",
+    label: "9-12",
+    value: "9-12",
   },
   {
     id: "2",
@@ -49,29 +53,69 @@ const ages: SelectOption[] = [
   },
   {
     id: "3",
-    label: "15-17",
-    value: "15-17",
+    label: "16-17",
+    value: "16-17",
+  },
+  {
+    id: "4",
+    label: "18+",
+    value: "18-100",
   },
 ];
 
 export const RankingPage: React.FC = () => {
-  const { data, error } = useQuery({
-    queryKey: ["ranking"],
-    queryFn: getRanking,
-  });
+  const { t } = useTranslation();
+  const { isMobile, isTablet } = useDimensions();
+
+  const { data: user } = useCurrentUserQuery();
 
   // Стан для фільтрів
   const [selectedLevel, setSelectedLevel] = useState<string | number>();
   const [selectedAge, setSelectedAge] = useState<string | number>();
+  const [myselfId, setMyselfId] = useState<number>();
+
+  const { data, error } = useQuery({
+    queryKey: [
+      "ranking",
+      { stages_level: selectedLevel, age_tab: selectedAge },
+    ],
+    queryFn: () =>
+      getRanking({ stages_level: selectedLevel, age_tab: selectedAge }),
+  });
+
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const scrollToItem = (id?: number) => {
+    if (!id) return;
+    const node = itemRefs.current[id];
+    if (node) {
+      node.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
+  const findMyself = () => {
+    setMyselfId(user?.id);
+    scrollToItem(user?.id);
+  };
 
   if (error) return <div>Помилка завантаження даних</div>;
 
   return (
     <>
+      {!isMobile && !isTablet && (
+        <img
+          src={rankingBg}
+          alt=""
+          className="pointer-events-none fixed -top-10 right-12 z-[-1] w-[388px] opacity-30"
+        />
+      )}
       {/* Блок фільтрів */}
       <div className="mb-6 flex flex-wrap items-center gap-4">
         {/* Найти себя */}
-        <Button>Найти себя</Button>
+        <Button onClick={findMyself}>{t("ranking.findMyself")}</Button>
 
         {/* Вибір рівня */}
         <Select
@@ -117,8 +161,15 @@ export const RankingPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((row, index) => (
-                <tr key={index} className="cursor-pointer">
+              {data?.map((row) => (
+                <tr
+                  key={row.practicant_id}
+                  className={cn(
+                    "cursor-pointer",
+                    row.practicant_id === myselfId && "active",
+                  )}
+                  ref={(el) => (itemRefs.current[row.practicant_id] = el)}
+                >
                   <td
                     className={cn(
                       "w-5 px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:w-12 md:px-6 md:py-6 md:text-lg md:leading-5",
@@ -161,7 +212,7 @@ export const RankingPage: React.FC = () => {
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
-                    {row.surname} {row.lastname	}
+                    {row.surname} {row.lastname}
                   </td>
                   <td
                     className={cn(
@@ -180,10 +231,10 @@ export const RankingPage: React.FC = () => {
                     {row.age_tab}
                   </td>
                   <td
-                      className={cn(
-                          "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
-                          "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
-                      )}
+                    className={cn(
+                      "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
+                    )}
                   >
                     {row.good_answear}
                   </td>
