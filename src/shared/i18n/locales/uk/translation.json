@@ -71,12 +71,20 @@
   "olympiadTraining": {
     "title": "Тренування",
     "category": "Категорія:",
-    "startTraining": "Тренуватися ({{count}})"
+    "startTraining": "Тренуватися ({{count}})",
+    "memorizeIn": "Запам’ятати за: ",
+    "recallIn": "Згадати за: ",
+    "quantity": "Кількість: ",
+    "decks": "Колоди: "
   },
   "olympiadStart": {
     "title": "Олімпіада",
     "category": "Категорія:",
-    "start": "Почати"
+    "start": "Почати",
+    "memorizeIn": "Запам’ятати за:",
+    "recallIn": "Згадати за:",
+    "quantity": "Кількість:",
+    "decks": "Колоди: "
   },
   "registerForm": {
     "title": "Заповніть форму",

@@ -65,7 +65,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
             hideLabel={!!small && !isHovered}
           />
         ))}
-        <NavLink to="/my-space" className="mt-16 w-full flex justify-center">
+        <NavLink to="https://memory.firm.kiev.ua/games/platform" className="mt-16 w-full flex justify-center">
           <Button
             className={cn(
               "h-[64px] w-full",
@@ -82,10 +82,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           </Button>
         </NavLink>
       </nav>
-      <div className="mt-6 flex items-center">
+      <NavLink to="https://memory.firm.kiev.ua/logout" className="mt-6 flex items-center" >
         <img className="p-4" src={logoutIcon} alt="Logout" />
         {(!small || isHovered) && <span>{t("sidebar.logout")}</span>}
-      </div>
+      </NavLink>
     </aside>
   );
 };

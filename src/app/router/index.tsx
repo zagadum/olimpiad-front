@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import AuthPage from "@/pages/auth/auth-token";
-import { HomePage } from "@/pages/home";
+// import { HomePage } from "@/pages/home";
 import { HomeWorkPage } from "@/pages/homework";
 import { AllOlympiadsPage } from "@/pages/olympiads/all-olympiads";
 import { MyOlympiadsPage } from "@/pages/olympiads/my-olympiads";
@@ -19,7 +19,8 @@ export function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<HomePage />} />
+        {/*<Route index element={<HomePage />} />*/}
+        <Route index element={<Navigate to="/olympiads/all" />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/homework" element={<HomeWorkPage />} />
         <Route path="/training" element={<Outlet />} />

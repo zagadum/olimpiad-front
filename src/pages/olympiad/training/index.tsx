@@ -25,7 +25,7 @@ const capacity = [
 ] as SelectOption[];
 
 const groupCards = [
-  { value: 1, label: "без поділу" },
+  { value: 1, label: "без групування" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
 ] as SelectOption[];
@@ -50,7 +50,7 @@ export const TrainingPage: React.FC = () => {
   const [selectedShowGroups, setSelectedShowGroups] = useState<StateOption[]>(
     [],
   );
-  const [selectedCategoryBinary, setSelectedCategoryBinary] = useState<
+  const [selectedCategoryId, setSelectedCategoryId] = useState<
     StateOption[]
   >([]);
 
@@ -114,9 +114,9 @@ export const TrainingPage: React.FC = () => {
         ...prev,
         { id: item.id, value: item?.params_json.show_groups },
       ]);
-      setSelectedCategoryBinary((prev) => [
+      setSelectedCategoryId((prev) => [
         ...prev,
-        { id: item.id, value: item?.params_json.categoryBinaryFlag },
+        { id: item.id, value: item?.params_json.category_id },
       ]);
     });
   }, [taskList]);
@@ -163,7 +163,11 @@ export const TrainingPage: React.FC = () => {
                     </td>
                     <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
                       <p className="text-sm lg:text-xl">
-                        Кількість:{" "}
+                        {t(
+                          item?.table_name === "olympiad_cards"
+                            ? "olympiadTraining.decks"
+                            : "olympiadTraining.quantity",
+                        )}
                         <span className="text-[#E79600]">
                           {item.params_json.digit_number}
                         </span>
@@ -171,13 +175,13 @@ export const TrainingPage: React.FC = () => {
                     </td>
                     <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
                       <p className="text-sm lg:text-xl">
-                        Запам’ятати за:{" "}
+                        {t("olympiadTraining.memorizeIn")}
                         <span className="text-nowrap text-[#E79600]">
                           {item?.params_json.interval_memory_list.label}
                         </span>
                       </p>
                       <p className="text-sm lg:text-xl">
-                        Згадати за:{" "}
+                        {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
                           {item?.params_json.interval_list.label}
                         </span>
@@ -211,12 +215,12 @@ export const TrainingPage: React.FC = () => {
                         <Select
                           variant="secondary"
                           value={
-                            selectedCategoryBinary.find(
+                            selectedCategoryId.find(
                               ({ id }) => id === item.id,
                             )?.value
                           }
                           onChange={(value) =>
-                            setSelectedCategoryBinary((prev) =>
+                            setSelectedCategoryId((prev) =>
                               prev.map((elem) =>
                                 elem.id === item.id
                                   ? { ...elem, value: value }
@@ -293,7 +297,7 @@ export const TrainingPage: React.FC = () => {
                             group_cards: selectedGroupCards.find(
                               ({ id }) => id === item.id,
                             )?.value,
-                            category_binary: selectedCategoryBinary.find(
+                            category_id: selectedCategoryId.find(
                               ({ id }) => id === item.id,
                             )?.value,
                           }),

@@ -13,12 +13,14 @@ export const navItems = [
   {
     icon: homeworkIcon,
     label: i18n.t("sidebar.homework"),
-    link: "/homework",
+    // link: "/homework",
+    link: "https://memory.firm.kiev.ua/student/hometask",
   },
   {
     icon: trainingIcon,
     label: i18n.t("sidebar.training"),
-    link: "/training",
+    // link: "/training",
+    link: "https://memory.firm.kiev.ua/student/traning/create",
   },
   {
     icon: olympiadIcon,

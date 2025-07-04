@@ -165,6 +165,7 @@ export interface TaskList {
     show_groups: string;
     categoryBinaryFlag: string;
     category_binary: number;
+    category_id: number;
   };
   table_name: string;
 }

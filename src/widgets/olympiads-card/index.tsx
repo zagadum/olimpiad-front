@@ -214,7 +214,10 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
                     <Button variant="secondary" onClick={goToTraining}>
                       {t("olympiadCard.startTraining")}
                     </Button>
-                    <Button onClick={goToStart} disabled={isDateBefore(formattedStartDate)}>
+                    <Button
+                      onClick={goToStart}
+                      disabled={isDateBefore(formattedStartDate)}
+                    >
                       {t("olympiadCard.start")}
                     </Button>
                   </>
@@ -302,7 +305,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             <div className={cn("mb-2 flex flex-col justify-between gap-2")}>
               <h3
                 className={cn(
-                  "line-clamp-2 text-base font-bold leading-5 text-[--color-3]",
+                  "line-clamp-1 text-base font-bold leading-5 text-[--color-3]",
                 )}
               >
                 {olympiad.title[lang]}
@@ -310,7 +313,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
               {/* Короткий опис */}
               <p
                 className={cn(
-                  "mb-2 line-clamp-3 text-sm leading-3 text-[--color-3]",
+                  "mb-2 line-clamp-3 text-sm leading-[18px] text-[--color-3]",
                 )}
               >
                 {olympiad.short_description[lang]}
@@ -353,15 +356,20 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
             <>
               {olympiad.is_done === 1 ? (
                 <span className="text-[--color-error]">
-                    {t("olympiadCard.finished")}
-                  </span>
+                  {t("olympiadCard.finished")}
+                </span>
               ) : olympiad.is_done === -1 ? (
                 <span className="text-[--color-error]">
-                    {t("olympiadCard.finished")}
-                  </span>
+                  {t("olympiadCard.finished")}
+                </span>
               ) : (
                 <>
-                  <Button onClick={goToStart}>{t("olympiadCard.start")}</Button>
+                  <Button
+                    onClick={goToStart}
+                    disabled={isDateBefore(formattedStartDate)}
+                  >
+                    {t("olympiadCard.start")}
+                  </Button>
                   <Button variant="secondary" onClick={goToTraining}>
                     {t("olympiadCard.startTraining")}
                   </Button>
