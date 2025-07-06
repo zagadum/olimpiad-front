@@ -1,9 +1,9 @@
-name: Deploy to Server
+name: Deploy to Server MAIN
 
 on:
   push:
     branches:
-      - main
+      - release
 
 jobs:
   deploy:
@@ -35,8 +35,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/olympiad.firm.kiev.ua
-            git pull origin main
+            cd /var/www/olymp-space
+            git pull origin release
             export NVM_DIR=~/.nvm
             source $NVM_DIR/nvm.sh
             nvm install 20
