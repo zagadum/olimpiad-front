@@ -8,19 +8,19 @@ export const navItems = [
   {
     icon: homeIcon,
     label: i18n.t("sidebar.home"),
-    link: "https://memory.firm.kiev.ua/student",
+    link: "https://https://space-memory.com/student",
   },
   {
     icon: homeworkIcon,
     label: i18n.t("sidebar.homework"),
     // link: "/homework",
-    link: "https://memory.firm.kiev.ua/student/hometask",
+    link: "https://https://space-memory.com/student/hometask",
   },
   {
     icon: trainingIcon,
     label: i18n.t("sidebar.training"),
     // link: "/training",
-    link: "https://memory.firm.kiev.ua/student/traning/create",
+    link: "https://https://space-memory.com/student/traning/create",
   },
   {
     icon: olympiadIcon,
