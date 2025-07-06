@@ -11,8 +11,8 @@ import { isDateBefore } from "@/shared/lib/dateRange";
 import { formatDate } from "@/shared/lib/formatDate";
 
 export const OverviewPage: React.FC = () => {
-  const lang = getLang();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = getLang(i18n.language);
   const navigate = useNavigate();
   const { olympiadId } = useParams<{ olympiadId: string }>();
   const { data, isLoading, error } = useQuery({

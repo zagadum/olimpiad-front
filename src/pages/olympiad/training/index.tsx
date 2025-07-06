@@ -42,7 +42,9 @@ const categoryBinary = [
 ] as SelectOption[];
 
 export const TrainingPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = getLang(i18n.language);
+
   const [selectedCapacity, setSelectedCapacity] = useState<StateOption[]>([]);
   const [selectedGroupCards, setSelectedGroupCards] = useState<StateOption[]>(
     [],
@@ -55,7 +57,6 @@ export const TrainingPage: React.FC = () => {
   >([]);
 
   const { olympiadId } = useParams<{ olympiadId: string }>();
-  const lang = getLang();
 
   const { data: olympiad } = useQuery({
     queryKey: ["olympiad", olympiadId],

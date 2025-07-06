@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getRanking } from "@/entities/ranking";
 import { Select, SelectOption } from "@/shared/ui/select";
@@ -8,17 +8,15 @@ import superIcon from "@/shared/assets/images/super-place.png";
 import firstIcon from "@/shared/assets/images/first-place.png";
 import secondIcon from "@/shared/assets/images/second-place.png";
 import thirdIcon from "@/shared/assets/images/third-place.png";
-import "./style.css";
 import { useTranslation } from "react-i18next";
 import { useCurrentUserQuery } from "@/entities/auth";
 import rankingBg from "@/shared/assets/images/ranking-bg.png";
 import { useDimensions } from "@/shared/hooks";
+import { useOlympiadsQuery } from "@/entities/olympiads/query.ts";
+import { getLang } from "@/shared/lib/getLang.ts";
+import "./style.css";
 
 const levels: SelectOption[] = [
-  {
-    id: "0",
-    label: "Все",
-  },
   {
     id: "1",
     label: "Basic",
@@ -37,10 +35,6 @@ const levels: SelectOption[] = [
 ];
 
 const ages: SelectOption[] = [
-  {
-    id: "0",
-    label: "Все",
-  },
   {
     id: "1",
     label: "9-12",
@@ -64,7 +58,9 @@ const ages: SelectOption[] = [
 ];
 
 export const RankingPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = getLang(i18n.language);
+
   const { isMobile, isTablet } = useDimensions();
 
   const { data: user } = useCurrentUserQuery();
@@ -74,13 +70,51 @@ export const RankingPage: React.FC = () => {
   const [selectedAge, setSelectedAge] = useState<string | number>();
   const [myselfId, setMyselfId] = useState<number>();
 
+  const { data: olympiadsData } = useOlympiadsQuery();
+
+  const olympiads = useMemo(
+    () =>
+      olympiadsData?.map(({ id, title }) => ({
+        id,
+        label: title[lang],
+        value: id,
+      })),
+    [olympiadsData],
+  );
+
+  const olympiadIds = useMemo(
+    () => olympiadsData?.map((item) => item.id),
+    [olympiadsData],
+  );
+
+  const [selectedOlympiadId, setSelectedOlympiadId] = useState<string | number | undefined>(
+    olympiadIds?.[0],
+  );
+
+  useEffect(() => {
+    const paidOlympiad = olympiadsData?.find(item => item.is_pay === 1)
+    if (paidOlympiad) {
+      setSelectedOlympiadId(paidOlympiad.id)
+      setSelectedAge(paidOlympiad?.subscribe?.age_tab)
+      setSelectedLevel(paidOlympiad.subscribe.stages_level)
+    }
+  }, [olympiadsData]);
+
   const { data, error } = useQuery({
     queryKey: [
       "ranking",
-      { stages_level: selectedLevel, age_tab: selectedAge },
+      {
+        olympiad_id: selectedOlympiadId,
+        stages_level: selectedLevel,
+        age_tab: selectedAge,
+      },
     ],
     queryFn: () =>
-      getRanking({ stages_level: selectedLevel, age_tab: selectedAge }),
+      getRanking({
+        olympiad_id: selectedOlympiadId,
+        stages_level: selectedLevel,
+        age_tab: selectedAge,
+      }),
   });
 
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -117,17 +151,27 @@ export const RankingPage: React.FC = () => {
         {/* Найти себя */}
         <Button onClick={findMyself}>{t("ranking.findMyself")}</Button>
 
+        {/* Вибір олімпіади */}
+        {olympiads && (
+          <Select
+            placeholder={t("ranking.olympiadPlaceholder")}
+            options={olympiads}
+            value={selectedOlympiadId}
+            onChange={(value) => setSelectedOlympiadId(value)}
+          />
+        )}
+
         {/* Вибір рівня */}
         <Select
-          placeholder="Сложность"
+          placeholder="Категорія"
           options={levels}
           value={selectedLevel}
           onChange={(value) => setSelectedLevel(value)}
         />
 
-        {/* Вибір часу */}
+        {/* Вибір віку */}
         <Select
-          placeholder="Возраст"
+          placeholder="Вік"
           options={ages}
           value={selectedAge}
           onChange={(value) => setSelectedAge(value)}

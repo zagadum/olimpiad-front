@@ -25,7 +25,10 @@
   },
   "ranking": {
     "title": "Рейтинг",
-    "findMyself": "Знайти себе"
+    "findMyself": "Знайти себе",
+    "olympiadPlaceholder": "Олімпіада",
+    "levelPlaceholder": "Категорія",
+    "agePlaceholder": "Вік"
   },
   "news": {
     "title": "Новини",

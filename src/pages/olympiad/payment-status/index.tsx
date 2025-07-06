@@ -111,8 +111,8 @@ type PaymentStatus = "success" | "error" | "pending";
 
 export const PaymentStatusPage: React.FC = () => {
   const navigate = useNavigate();
-  const lang = getLang();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = getLang(i18n.language);
 
   const queryClient = useQueryClient();
 

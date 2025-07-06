@@ -1,11 +1,10 @@
-import i18n from "@/shared/i18n";
-
 type Lang = "uk" | "pl";
 const languages: Lang[] = ["uk", "pl"];
 
-export const getLang = (): Lang => {
-  if (languages.includes(i18n.language as Lang)) {
-    return i18n.language as Lang;
+export const getLang = (language?: string): Lang => {
+  console.log('getLang', language);
+  if (languages.includes(language as Lang)) {
+    return language as Lang;
   }
   return "uk";
 };
