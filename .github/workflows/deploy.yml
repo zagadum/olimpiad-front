@@ -31,9 +31,9 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SSH_HOST_RELEASE }}
+          username: ${{ secrets.SSH_USERNAME_RELEASE }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_RELEASE }}
           script: |
             cd /var/www/olymp-space
             git pull origin release
