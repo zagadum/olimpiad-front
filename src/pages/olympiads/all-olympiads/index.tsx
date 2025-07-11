@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Select, SelectOption } from "@/shared/ui/select";
-import { getOlympiads } from "@/entities/olympiads";
 import { OlympiadsCard } from "@/widgets/olympiads-card";
 import international from "@/shared/assets/icons/international-mini.png";
 import ukrainian from "@/shared/assets/icons/ukrainian.svg";
@@ -12,10 +10,13 @@ import spacem from "@/shared/assets/icons/space-m.png";
 import { getLang } from "@/shared/lib/getLang";
 import cupsBg from "@/shared/assets/images/cups-bg.png";
 import { useDimensions } from "@/shared/hooks";
+import { useOlympiadsQuery } from "@/entities/olympiads/query";
+import { useTranslation } from "react-i18next";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
-  const lang = getLang();
+  const { i18n } = useTranslation();
+  const lang = getLang(i18n.language);
 
   const { isMobile, isTablet } = useDimensions();
 
@@ -25,19 +26,7 @@ export const AllOlympiadsPage: React.FC = () => {
   const [promotion, setPromotion] = useState<string>();
 
   // отримання списка олімпіад
-  const { data, error } = useQuery({
-    queryKey: [
-      "olympiads",
-      { language: lang, is_international: isInternational, promotion },
-    ],
-    queryFn: () =>
-      getOlympiads({
-        language: lang,
-        is_international: isInternational,
-        promotion,
-      }),
-    select: (value) => value.data_list,
-  });
+  const { data, error } = useOlympiadsQuery({lang, isInternational, promotion})
 
   const handleFilterChange = (value?: string | number) => {
     switch (value) {

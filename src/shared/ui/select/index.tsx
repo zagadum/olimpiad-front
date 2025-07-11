@@ -5,7 +5,7 @@ import chevronDown from "../../assets/icons/chevron-down.svg";
 export type Value = string | number;
 
 export interface SelectOption {
-  id: string;
+  id: string | number;
   label?: string;
   value?: Value;
   icon?: string;
@@ -33,7 +33,8 @@ const Option: FC<OptionProps> = ({ label, value, icon, onClick }) => {
         onClick={onClick}
         className={cn(
           "flex w-full items-center rounded-3xl px-3 py-2 text-sm leading-4 text-white transition duration-300",
-          "md:px-4 md:py-4 md:text-xl",
+          "md:px-3 md:py-2.5 md:text-base",
+          "xl:px-4 xl:py-4 xl:text-xl xl:leading-6",
           "hover:bg-[#071E2C] active:bg-[#071E2C]",
           "focus:outline-none",
         )}

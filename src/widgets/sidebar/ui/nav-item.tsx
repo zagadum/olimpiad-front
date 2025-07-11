@@ -25,7 +25,7 @@ export const NavItem: FC<NavItemProps> = ({
       onClick={onClick}
       className={({ isActive }) =>
         cn(
-          "flex items-center gap-4 rounded-2xl px-4 py-4 transition-all duration-300",
+          "flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-300 xl:px-4 xl:py-4",
           "hover:bg-gradient-to-t hover:from-[#1F4258] hover:to-[#24566F] hover:shadow-[-3px_0px_0px_0px_#26F9FF]",
           hideLabel && "w-[64px] gap-0",
           isActive &&

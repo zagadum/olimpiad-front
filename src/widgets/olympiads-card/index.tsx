@@ -35,8 +35,8 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
   olympiad,
   onCardClick,
 }) => {
-  const lang = getLang();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = getLang(i18n.language);
   const navigate = useNavigate();
 
   const goToRegister = (

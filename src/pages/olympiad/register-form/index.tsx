@@ -81,10 +81,10 @@ const stagesLevelOptions = [
 ];
 
 export const RegisterFormPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = getLang(i18n.language);
   const navigate = useNavigate();
   const { olympiadId } = useParams<{ olympiadId: string }>();
-  const lang = getLang();
 
   const { data: user } = useCurrentUserQuery();
 
