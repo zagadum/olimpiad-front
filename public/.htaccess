@@ -1,4 +1,8 @@
 RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/\.well-known/acme-challenge/
+RewriteRule ^ - [L]
+
 RewriteBase /
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
