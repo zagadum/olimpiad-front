@@ -101,7 +101,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
               "xl:w-[235px]",
               "2xl:w-[316px]",
             )}
-            src={olympiad.image_url || placeholderImg}
+            src={olympiad.cover[lang] || placeholderImg}
             alt={olympiad.title[lang]}
           />
         </div>

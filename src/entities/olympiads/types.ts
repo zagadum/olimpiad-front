@@ -35,6 +35,7 @@ export interface Olympiad {
   cover: {
     uk: string;
     pl: string;
+
   };
   full_description: {
     uk: string;
