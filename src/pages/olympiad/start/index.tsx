@@ -141,8 +141,10 @@ export const StartPage: React.FC = () => {
             {olympiad?.subscribe?.stages_num}
           </span>{" "}
           |{" "}
-          <span className="text-[#FF9A26]">{olympiad?.subscribe?.age_tab}</span>{" "}
-          |{" "}
+          <span className="text-[#FF9A26]">{olympiad?.subscribe?.age_tab}</span>
+        </p>
+        <p className="text-sm font-light md:text-base">
+          ID:{" "}
           <span className="text-[#FF9A26]">
             {olympiad?.subscribe?.practicant_id}
           </span>

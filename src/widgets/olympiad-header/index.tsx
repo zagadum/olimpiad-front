@@ -72,7 +72,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       >
         <img
           className={cn("h-[77px] w-[52px] object-cover", "md:h-28 md:w-48")}
-          src={olympiad?.cover[lang] ?? placeholderImg}
+          src={olympiad?.cover[lang] || placeholderImg}
           alt=""
         />
       </div>
