@@ -276,7 +276,7 @@ export const RankingPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {data ? data.map((row) => (
+              {data?.length ? data.map((row) => (
                 <tr
                   key={row.practicant_id}
                   className={cn(
@@ -335,8 +335,8 @@ export const RankingPage: React.FC = () => {
                   </td>
                 </tr>
               )) : (
-                <div>
-                  <p>По обраним </p>
+                <div className="w-full">
+                  <p>За обраними параметрами даних немає</p>
                 </div>
               )}
             </tbody>

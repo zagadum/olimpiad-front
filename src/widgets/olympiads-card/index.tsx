@@ -1,21 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { isValid, format } from "date-fns";
-// import { ru } from "date-fns/locale/ru";
 import { Button } from "@/shared/ui/button";
 import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
-import { OlympiadTag } from "@/widgets/olympiads-card/OlympiadTag.tsx";
+import { OlympiadTag } from "@/widgets/olympiads-card/OlympiadTag";
 import international from "@/shared/assets/icons/international-mini.png";
 import ukrainian from "@/shared/assets/icons/ukrainian.svg";
 import polish from "@/shared/assets/icons/polish.svg";
 import spacem from "@/shared/assets/icons/space-m.png";
 import announce from "@/shared/assets/icons/announce.png";
 import { getLang } from "@/shared/lib/getLang";
-import { cn } from "@/shared/lib/cn.ts";
+import { cn } from "@/shared/lib/cn";
 import { useTranslation } from "react-i18next";
 import { calcDays } from "@/shared/lib/calcDays";
-import { isDateBefore } from "@/shared/lib/dateRange.ts";
+import { isDateBefore } from "@/shared/lib/dateRange";
 
 type OlympiadsCardProps = {
   olympiad: Olympiad;
