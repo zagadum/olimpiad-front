@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getRanking } from "@/entities/ranking";
 import { Select, SelectOption } from "@/shared/ui/select";
 import { Button } from "@/shared/ui/button";
-import { cn } from "@/shared/lib/cn.ts";
+import { cn } from "@/shared/lib/cn";
 import superIcon from "@/shared/assets/images/super-place.png";
 import firstIcon from "@/shared/assets/images/first-place.png";
 import secondIcon from "@/shared/assets/images/second-place.png";
@@ -12,25 +12,45 @@ import { useTranslation } from "react-i18next";
 import { useCurrentUserQuery } from "@/entities/auth";
 import rankingBg from "@/shared/assets/images/ranking-bg.png";
 import { useDimensions } from "@/shared/hooks";
-import { useOlympiadsQuery } from "@/entities/olympiads/query.ts";
-import { getLang } from "@/shared/lib/getLang.ts";
+import { useMyOlympiadsQuery } from "@/entities/olympiads/query";
+import { getLang } from "@/shared/lib/getLang";
 import "./style.css";
 
 const levels: SelectOption[] = [
   {
-    id: "1",
-    label: "Basic",
-    value: "basic",
+    id: "basic-1",
+    label: "Basic 1",
+    value: "basic-1",
   },
   {
-    id: "2",
-    label: "Intermediate",
-    value: "intermediate",
+    id: "basic-2",
+    label: "Basic 2",
+    value: "basic-2",
   },
   {
-    id: "3",
+    id: "basic-3",
+    label: "Basic 3",
+    value: "basic-3",
+  },
+  {
+    id: "intermediate-1",
+    label: "Intermediate 1",
+    value: "intermediate-1",
+  },
+  {
+    id: "intermediate-2",
+    label: "Intermediate 2",
+    value: "intermediate-2",
+  },
+  {
+    id: "intermediate-3",
+    label: "Intermediate 3",
+    value: "intermediate-3",
+  },
+  {
+    id: "pro-1",
     label: "Pro",
-    value: "pro",
+    value: "pro-1",
   },
 ];
 
@@ -57,6 +77,49 @@ const ages: SelectOption[] = [
   },
 ];
 
+const getPlaceIcon = (place: number) => {
+  switch (place) {
+    case 1:
+      return (
+        <img
+          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          src={superIcon}
+          alt=""
+        />
+      );
+    case 2:
+      return (
+        <img
+          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          src={firstIcon}
+          alt=""
+        />
+      );
+    case 3:
+      return (
+        <img
+          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          src={secondIcon}
+          alt=""
+        />
+      );
+    case 4:
+      return (
+        <img
+          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          src={thirdIcon}
+          alt=""
+        />
+      );
+    default:
+      return (
+        <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[--color-1] md:h-11 md:w-11">
+          {place}
+        </div>
+      );
+  }
+};
+
 export const RankingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const lang = getLang(i18n.language);
@@ -67,10 +130,11 @@ export const RankingPage: React.FC = () => {
 
   // Стан для фільтрів
   const [selectedLevel, setSelectedLevel] = useState<string | number>();
+  const [selectedNum, setSelectedNum] = useState<string | number>();
   const [selectedAge, setSelectedAge] = useState<string | number>();
   const [myselfId, setMyselfId] = useState<number>();
 
-  const { data: olympiadsData } = useOlympiadsQuery();
+  const { data: olympiadsData } = useMyOlympiadsQuery();
 
   const olympiads = useMemo(
     () =>
@@ -87,16 +151,17 @@ export const RankingPage: React.FC = () => {
     [olympiadsData],
   );
 
-  const [selectedOlympiadId, setSelectedOlympiadId] = useState<string | number | undefined>(
-    olympiadIds?.[0],
-  );
+  const [selectedOlympiadId, setSelectedOlympiadId] = useState<
+    string | number | undefined
+  >(olympiadIds?.[0]);
 
   useEffect(() => {
-    const paidOlympiad = olympiadsData?.find(item => item.is_pay === 1)
+    const paidOlympiad = olympiadsData?.find((item) => item.status === 'completed');
     if (paidOlympiad) {
-      setSelectedOlympiadId(paidOlympiad.id)
-      setSelectedAge(paidOlympiad?.subscribe?.age_tab)
-      setSelectedLevel(paidOlympiad.subscribe.stages_level)
+      setSelectedOlympiadId(paidOlympiad.id);
+      setSelectedAge(paidOlympiad?.subscribe?.age_tab);
+      setSelectedLevel(paidOlympiad.subscribe.stages_level);
+      setSelectedNum(paidOlympiad.subscribe.stages_num);
     }
   }, [olympiadsData]);
 
@@ -106,6 +171,7 @@ export const RankingPage: React.FC = () => {
       {
         olympiad_id: selectedOlympiadId,
         stages_level: selectedLevel,
+        stages_num: selectedNum,
         age_tab: selectedAge,
       },
     ],
@@ -113,6 +179,7 @@ export const RankingPage: React.FC = () => {
       getRanking({
         olympiad_id: selectedOlympiadId,
         stages_level: selectedLevel,
+        stages_num: selectedNum,
         age_tab: selectedAge,
       }),
   });
@@ -165,8 +232,12 @@ export const RankingPage: React.FC = () => {
         <Select
           placeholder="Категорія"
           options={levels}
-          value={selectedLevel}
-          onChange={(value) => setSelectedLevel(value)}
+          value={`${selectedLevel}-${selectedNum}`}
+          onChange={(value) => {
+            const [level, num] = (value as string).split("-");
+            setSelectedLevel(level);
+            setSelectedNum(num);
+          }}
         />
 
         {/* Вибір віку */}
@@ -205,7 +276,7 @@ export const RankingPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((row) => (
+              {data ? data.map((row) => (
                 <tr
                   key={row.practicant_id}
                   className={cn(
@@ -220,35 +291,7 @@ export const RankingPage: React.FC = () => {
                       "rounded-s-xl border-l border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-s-3xl",
                     )}
                   >
-                    {row.place === 1 ? (
-                      <img
-                        className="h-5 w-5 object-cover md:h-11 md:w-11"
-                        src={superIcon}
-                        alt=""
-                      />
-                    ) : row.place === 2 ? (
-                      <img
-                        className="h-5 w-5 object-cover md:h-11 md:w-11"
-                        src={firstIcon}
-                        alt=""
-                      />
-                    ) : row.place === 3 ? (
-                      <img
-                        className="h-5 w-5 object-cover md:h-11 md:w-11"
-                        src={secondIcon}
-                        alt=""
-                      />
-                    ) : row.place === 4 ? (
-                      <img
-                        className="h-5 w-5 object-cover md:h-11 md:w-11"
-                        src={thirdIcon}
-                        alt=""
-                      />
-                    ) : (
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[--color-1] md:h-11 md:w-11">
-                        {row.place}
-                      </div>
-                    )}
+                    {getPlaceIcon(row.place)}
                   </td>
                   <td
                     className={cn(
@@ -261,10 +304,10 @@ export const RankingPage: React.FC = () => {
                   <td
                     className={cn(
                       "px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
-                      "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
+                      "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] capitalize",
                     )}
                   >
-                    {row.stages_level}
+                    {row.stages_level} {row.stages_num}
                   </td>
                   <td
                     className={cn(
@@ -291,7 +334,11 @@ export const RankingPage: React.FC = () => {
                     {row.points}
                   </td>
                 </tr>
-              ))}
+              )) : (
+                <div>
+                  <p>По обраним </p>
+                </div>
+              )}
             </tbody>
           </table>
         </div>

@@ -3,7 +3,6 @@ import {
   // Olympiad,
   OlympiadsResponse, OlympiadsTaskListResponse, OlympiadsTaskResponse, RunOlympiadResponse
 } from "./types";
-// import { getOlympiadsResponse } from "./mockData";
 
 // Отримання всіх олімпіад
 export const getOlympiads = async (params?: OlympiadsResponse["params"]): Promise<OlympiadsResponse> => {
@@ -34,7 +33,6 @@ export const registerForOlympiad = async (
 ): Promise<unknown> => {
   console.log('registerForOlympiad formData', formData);
   const response = await axiosInstance.post("/api/auth/register", formData);
-  // const response = {status: 200, data: formData}
   console.log('registerForOlympiad response', response);
   return response.data;
 };

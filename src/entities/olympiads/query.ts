@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getOlympiads } from "@/entities/olympiads/api.ts";
-
+import { getOlympiads, getMyOlympiads } from "@/entities/olympiads/api";
 
 interface Props {
   lang?: string;
@@ -8,7 +7,11 @@ interface Props {
   promotion?: string;
 }
 
-export const useOlympiadsQuery = ({lang, isInternational, promotion}: Props = {}) => {
+export const useOlympiadsQuery = ({
+  lang,
+  isInternational,
+  promotion,
+}: Props = {}) => {
   return useQuery({
     queryKey: [
       "olympiads",
@@ -22,4 +25,19 @@ export const useOlympiadsQuery = ({lang, isInternational, promotion}: Props = {}
       }),
     select: (value) => value.data_list,
   });
-}
+};
+
+export const useMyOlympiadsQuery = ({
+  lang,
+  isInternational,
+  promotion,
+}: Props = {}) => {
+  return useQuery({
+    queryKey: [
+      "olympiads",
+      { language: lang, is_international: isInternational, promotion },
+    ],
+    queryFn: getMyOlympiads,
+    select: (value) => value.data_list,
+  });
+};
