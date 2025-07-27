@@ -2,7 +2,6 @@ import { axiosInstance } from "@/shared/api/axiosInstance";
 import { Ranking } from "./types";
 import { Params } from "@/shared/types";
 
-// Отримання списку рейтингу
 export const getRanking = async (
   params?: Params,
 ): Promise<Ranking[]> => {
