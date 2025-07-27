@@ -1,4 +1,8 @@
 {
+  "global": {
+    "loading": "Завантаження...",
+    "fetchError": "Помилка завантаження даних"
+  },
   "home": {
     "welcome": "Ласкаво просимо до SpaceM!",
     "description": "Вітаємо в застосунку для участі в олімпіадах. Зареєструйтесь та відкрийте для себе нові можливості.",
@@ -28,7 +32,14 @@
     "findMyself": "Знайти себе",
     "olympiadPlaceholder": "Олімпіада",
     "levelPlaceholder": "Категорія",
-    "agePlaceholder": "Вік"
+    "agePlaceholder": "Вік",
+    "empty": "За обраними параметрами немає результатів",
+    "place": "Місце",
+    "name": "Ім'я",
+    "category": "Категорія",
+    "age": "Вік",
+    "rightAnswers": "Правильні відповіді",
+    "points": "Бали"
   },
   "news": {
     "title": "Новини",
@@ -70,6 +81,9 @@
     "startTraining": "Тренуватися",
     "start": "Почати",
     "participate": "Взяти участь"
+  },
+  "myOlympiads": {
+    "empty": "Поки що у вас немає олімпіад"
   },
   "olympiadTraining": {
     "title": "Тренування",

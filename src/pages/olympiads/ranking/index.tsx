@@ -202,7 +202,7 @@ export const RankingPage: React.FC = () => {
     scrollToItem(user?.id);
   };
 
-  if (error) return <div>Помилка завантаження даних</div>;
+  if (error) return <div>{t("global.fetchError")}</div>;
 
   return (
     <>
@@ -230,7 +230,7 @@ export const RankingPage: React.FC = () => {
 
         {/* Вибір рівня */}
         <Select
-          placeholder="Категорія"
+          placeholder={t("ranking.levelPlaceholder")}
           options={levels}
           value={`${selectedLevel}-${selectedNum}`}
           onChange={(value) => {
@@ -242,7 +242,7 @@ export const RankingPage: React.FC = () => {
 
         {/* Вибір віку */}
         <Select
-          placeholder="Вік"
+          placeholder={t("ranking.agePlaceholder")}
           options={ages}
           value={selectedAge}
           onChange={(value) => setSelectedAge(value)}
@@ -256,27 +256,27 @@ export const RankingPage: React.FC = () => {
             <thead className="border-b border-gray-700 text-sm text-gray-400">
               <tr>
                 <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
-                  Місце
+                  {t("ranking.place")}
                 </th>
                 <th className="px-2.5 py-2.5 text-left text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
-                  Ім'я
+                  {t("ranking.name")}
                 </th>
                 <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
-                  Категорія
+                  {t("ranking.category")}
                 </th>
                 <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
-                  Вік
+                  {t("ranking.age")}
                 </th>
                 <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
-                  Правильні відповіді
+                  {t("ranking.rightAnswers")}
                 </th>
                 <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
-                  Бали
+                  {t("ranking.points")}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {data?.length ? data.map((row) => (
+              {data?.map((row) => (
                 <tr
                   key={row.practicant_id}
                   className={cn(
@@ -334,13 +334,14 @@ export const RankingPage: React.FC = () => {
                     {row.points}
                   </td>
                 </tr>
-              )) : (
-                <div className="w-full">
-                  <p>За обраними параметрами даних немає</p>
-                </div>
-              )}
+              ))}
             </tbody>
           </table>
+          {!data?.length && (
+            <div className="flex h-[50vh] w-full items-center justify-center">
+              <p>{t("ranking.empty")}</p>
+            </div>
+          )}
         </div>
       </div>
     </>

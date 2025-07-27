@@ -1,4 +1,5 @@
-// Інтерфейс, що описує структуру даних для олімпіади
+import { Params } from "@/shared/types";
+
 export interface Olympiad {
   id: number;
   title: {
@@ -6,6 +7,8 @@ export interface Olympiad {
     pl: string;
   };
   country_id: number;
+  country_name: string;
+  country_img: string;
   region_id: number;
   city_id: number;
   locality: string;
@@ -27,7 +30,6 @@ export interface Olympiad {
   updated_at: string;
   city_name: string;
   region_name: string;
-  country_name: string;
   short_description: {
     uk: string;
     pl: string;
@@ -35,7 +37,6 @@ export interface Olympiad {
   cover: {
     uk: string;
     pl: string;
-
   };
   full_description: {
     uk: string;
@@ -62,7 +63,7 @@ export interface Olympiad {
 
 export interface OlympiadsResponse {
   data_list: Olympiad[];
-  params: [] | { [key: string]: string | number | undefined };
+  params: Params;
 }
 
 interface TaskItem {
@@ -173,12 +174,12 @@ export interface TaskList {
 
 export interface OlympiadsTaskResponse {
   data_list: Task;
-  params: [] | { [key: string]: string | number | undefined };
+  params: Params;
 }
 
 export interface OlympiadsTaskListResponse {
   data_list: TaskList[];
-  params: [] | { [key: string]: string | number | undefined };
+  params: Params;
 }
 
 export interface RunOlympiadResponse {
@@ -189,4 +190,18 @@ export interface RunOlympiadResponse {
   message: string;
   warning: string;
   error: number;
+}
+
+export interface Agreement {
+  id: number;
+  olympiad_id: number;
+  language: string;
+  agreement: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OlympiadsAgreementResponse {
+  data_list: Agreement[];
+  params: Params;
 }

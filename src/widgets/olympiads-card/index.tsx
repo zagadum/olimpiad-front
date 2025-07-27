@@ -133,10 +133,12 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
                 />
               ) : (
                 <OlympiadTag
-                  label={t(
-                    `olympiadCard.country.${lang === "pl" ? "pl" : "uk"}`,
-                  )}
-                  icon={lang === "pl" ? polish : ukrainian}
+                  // label={t(
+                  //   `olympiadCard.country.${lang === "pl" ? "pl" : "uk"}`,
+                  // )}
+                  // icon={lang === "pl" ? polish : ukrainian}
+                  label={olympiad.country_name}
+                  icon={`/images/country/${olympiad.country_img}`}
                 />
               )}
               {olympiad.promotion === "olympiad" && (

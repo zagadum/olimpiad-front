@@ -1,13 +1,20 @@
 import { axiosInstance } from "@/shared/api/axiosInstance";
 import {
+  OlympiadsAgreementResponse,
   // Olympiad,
-  OlympiadsResponse, OlympiadsTaskListResponse, OlympiadsTaskResponse, RunOlympiadResponse
+  OlympiadsResponse,
+  OlympiadsTaskListResponse,
+  OlympiadsTaskResponse,
+  RunOlympiadResponse
 } from "./types";
+import { Params } from "@/shared/types";
 
 // Отримання всіх олімпіад
-export const getOlympiads = async (params?: OlympiadsResponse["params"]): Promise<OlympiadsResponse> => {
-  const response = await axiosInstance.get('/api/olympiads', {
-    params
+export const getOlympiads = async (
+  params?: Params,
+): Promise<OlympiadsResponse> => {
+  const response = await axiosInstance.get("/api/olympiads", {
+    params,
   });
 
   // Мокові дані
@@ -22,7 +29,9 @@ export const getMyOlympiads = async (): Promise<OlympiadsResponse> => {
 };
 
 // Отримання деталей окремої олімпіади за ID
-export const getOlympiadDetail = async (id: string): Promise<OlympiadsResponse> => {
+export const getOlympiadDetail = async (
+  id: string,
+): Promise<OlympiadsResponse> => {
   const response = await axiosInstance.get(`/api/olympiads/${id}`);
   return response.data;
 };
@@ -31,9 +40,9 @@ export const getOlympiadDetail = async (id: string): Promise<OlympiadsResponse> 
 export const registerForOlympiad = async (
   formData: unknown,
 ): Promise<unknown> => {
-  console.log('registerForOlympiad formData', formData);
+  console.log("registerForOlympiad formData", formData);
   const response = await axiosInstance.post("/api/auth/register", formData);
-  console.log('registerForOlympiad response', response);
+  console.log("registerForOlympiad response", response);
   return response.data;
 };
 
@@ -41,33 +50,50 @@ export const registerForOlympiad = async (
 export const initiatePayment = async (
   paymentData: unknown,
 ): Promise<unknown> => {
-  const response = await axiosInstance.post("/api/olympiads/payment", paymentData);
+  const response = await axiosInstance.post(
+    "/api/olympiads/payment",
+    paymentData,
+  );
   return response.data;
 };
 
 export const getOlympiadsTask = async (
   data: unknown,
 ): Promise<OlympiadsTaskResponse> => {
-  console.log('getOlympiadsTask data', data);
+  console.log("getOlympiadsTask data", data);
   const response = await axiosInstance.post("/api/olympiads/get-task", data);
-  console.log('getOlympiadsTask response', response);
+  console.log("getOlympiadsTask response", response);
   return response.data;
 };
 
 export const getOlympiadsTaskList = async (
   data: unknown,
 ): Promise<OlympiadsTaskListResponse> => {
-  console.log('getOlympiadsTaskList data', data);
-  const response = await axiosInstance.post("/api/olympiads/get-task-list", data);
-  console.log('getOlympiadsTaskList response', response);
+  console.log("getOlympiadsTaskList data", data);
+  const response = await axiosInstance.post(
+    "/api/olympiads/get-task-list",
+    data,
+  );
+  console.log("getOlympiadsTaskList response", response);
   return response.data;
 };
 
 export const runOlympiad = async (
   data: unknown,
 ): Promise<RunOlympiadResponse> => {
-  console.log('runOlympiad data', data);
-  const response = await axiosInstance.post("/api/olympiads/run-olmypiad", data);
-  console.log('runOlympiad response', response);
+  console.log("runOlympiad data", data);
+  const response = await axiosInstance.post(
+    "/api/olympiads/run-olmypiad",
+    data,
+  );
+  console.log("runOlympiad response", response);
+  return response.data;
+};
+
+export const getOlympiadAgreement = async (
+  id: string,
+  params?: Params,
+): Promise<OlympiadsAgreementResponse> => {
+  const response = await axiosInstance.get(`/api/olympiads/agreement/${id}`, { params });
   return response.data;
 };
