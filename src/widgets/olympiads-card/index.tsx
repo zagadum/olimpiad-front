@@ -6,8 +6,8 @@ import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import { OlympiadTag } from "@/widgets/olympiads-card/OlympiadTag";
 import international from "@/shared/assets/icons/international-mini.png";
-import ukrainian from "@/shared/assets/icons/ukrainian.svg";
-import polish from "@/shared/assets/icons/polish.svg";
+// import ukrainian from "@/shared/assets/icons/ukrainian.svg";
+// import polish from "@/shared/assets/icons/polish.svg";
 import spacem from "@/shared/assets/icons/space-m.png";
 import announce from "@/shared/assets/icons/announce.png";
 import { getLang } from "@/shared/lib/getLang";
@@ -328,10 +328,12 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
                   />
                 ) : (
                   <OlympiadTag
-                    label={t(
-                      `olympiadCard.country.${lang === "pl" ? "pl" : "uk"}`,
-                    )}
-                    icon={lang === "pl" ? polish : ukrainian}
+                    // label={t(
+                    //   `olympiadCard.country.${lang === "pl" ? "pl" : "uk"}`,
+                    // )}
+                    // icon={lang === "pl" ? polish : ukrainian}
+                    label={olympiad.country_name}
+                    icon={`/images/country/${olympiad.country_img}`}
                   />
                 )}
                 {olympiad.promotion === "olympiad" && (

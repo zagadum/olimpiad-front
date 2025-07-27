@@ -1,4 +1,8 @@
 {
+  "global": {
+    "loading": "Завантаження...",
+    "fetchError": "Помилка завантаження даних"
+  },
   "home": {
     "welcome": "Witamy w SpaceM!",
     "description": "Witamy w aplikacji do udziału w olimpiadach. Zarejestruj się i odkryj nowe możliwości.",
@@ -23,8 +27,19 @@
     "homework": "Praca domowa",
     "joinIdea": "Dołącz do idei"
   },
-  "rating": {
-    "title": "Ranking"
+  "ranking": {
+    "title": "Ranking",
+    "findMyself": "Знайти себе",
+    "olympiadPlaceholder": "Олімпіада",
+    "levelPlaceholder": "Категорія",
+    "agePlaceholder": "Вік",
+    "empty": "За обраними параметрами немає результатів",
+    "place": "Місце",
+    "name": "Ім'я",
+    "category": "Категорія",
+    "age": "Вік",
+    "rightAnswers": "Правильні відповіді",
+    "points": "Бали"
   },
   "news": {
     "title": "Aktualności",
@@ -62,6 +77,9 @@
     "startTraining": "Тренуватися",
     "start": "Почати",
     "participate": "Взяти участь"
+  },
+  "myOlympiads": {
+    "empty": "Поки що у вас немає олімпіад"
   },
   "olympiadTraining": {
     "title": "Тренування",
