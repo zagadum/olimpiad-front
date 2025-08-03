@@ -6,8 +6,6 @@ import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import { OlympiadTag } from "@/widgets/olympiads-card/OlympiadTag";
 import international from "@/shared/assets/icons/international-mini.png";
-// import ukrainian from "@/shared/assets/icons/ukrainian.svg";
-// import polish from "@/shared/assets/icons/polish.svg";
 import spacem from "@/shared/assets/icons/space-m.png";
 import announce from "@/shared/assets/icons/announce.png";
 import { getLang } from "@/shared/lib/getLang";
@@ -70,8 +68,8 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = ({
     onCardClick?.(olympiad.id);
   };
 
-  const startDateDistance = calcDays(olympiad.start_date ?? "");
-  const endDateDistance = calcDays(olympiad.end_date ?? "");
+  const startDateDistance = calcDays(olympiad.start_date ?? "", lang);
+  const endDateDistance = calcDays(olympiad.end_date ?? "", lang);
 
   return (
     <>

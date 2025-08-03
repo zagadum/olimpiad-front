@@ -12,11 +12,16 @@ import cupsBg from "@/shared/assets/images/cups-bg.png";
 import { useDimensions } from "@/shared/hooks";
 import { useOlympiadsQuery } from "@/entities/olympiads/query";
 import { useTranslation } from "react-i18next";
+import { useCurrentUserQuery } from "@/entities/auth";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const lang = getLang(i18n.language);
+
+  const { data: user } = useCurrentUserQuery();
+
+  console.log('user', user);
 
   const { isMobile, isTablet } = useDimensions();
 
@@ -26,7 +31,7 @@ export const AllOlympiadsPage: React.FC = () => {
   const [promotion, setPromotion] = useState<string>();
 
   // отримання списка олімпіад
-  const { data, error } = useOlympiadsQuery({lang, isInternational, promotion})
+  const { data, error } = useOlympiadsQuery({lang: user?.language ?? lang, isInternational, promotion})
 
   const handleFilterChange = (value?: string | number) => {
     switch (value) {

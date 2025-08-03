@@ -96,7 +96,7 @@ export const Select: FC<SelectProps> = ({
         onClick={toggleOpen}
         className={cn(
           "flex w-max items-center justify-between rounded-full border px-2 py-1 outline-none",
-          "text-sm leading-4 text-white transition-colors",
+          "text-sm leading-4 text-white transition-colors text-nowrap",
           "md:px-3 md:py-2 md:text-sm",
           "lg:px-4 lg:py-3 lg:text-base",
           variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
@@ -105,7 +105,7 @@ export const Select: FC<SelectProps> = ({
           targetClassName,
         )}
       >
-        <div className="flex items-center">
+        <div className="flex items-center line-clamp-1">
           {selectedOption?.icon && (
             <img
               src={selectedOption?.icon}

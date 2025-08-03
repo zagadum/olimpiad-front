@@ -156,7 +156,9 @@ export const RankingPage: React.FC = () => {
   >(olympiadIds?.[0]);
 
   useEffect(() => {
-    const paidOlympiad = olympiadsData?.find((item) => item.status === 'completed');
+    const paidOlympiad = olympiadsData?.find(
+      (item) => item.status === "completed",
+    );
     if (paidOlympiad) {
       setSelectedOlympiadId(paidOlympiad.id);
       setSelectedAge(paidOlympiad?.subscribe?.age_tab);
@@ -225,6 +227,7 @@ export const RankingPage: React.FC = () => {
             options={olympiads}
             value={selectedOlympiadId}
             onChange={(value) => setSelectedOlympiadId(value)}
+            targetClassName="md:max-w-[300px]"
           />
         )}
 
