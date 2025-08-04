@@ -187,7 +187,7 @@ export const StartPage: React.FC = () => {
                       <p className="text-sm lg:text-xl">
                         {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
-                          {item?.params_json.interval_list.label}
+                          {item?.params_json.interval_olimpiad_list.label}
                         </span>
                       </p>
                     </td>
