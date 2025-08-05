@@ -22,7 +22,7 @@ export const OverviewPage: React.FC = () => {
     enabled: !!olympiadId,
   });
 
-  const formattedStartDate = formatDate(data?.start_date ?? "");
+  const formattedEndDate = formatDate(data?.end_date ?? "");
 
   const olympiadIsPaid = data?.payment_status === "ok" || data?.is_pay === 1;
 
@@ -66,7 +66,7 @@ export const OverviewPage: React.FC = () => {
               <Button variant="secondary" onClick={goToTraining}>
                 {t("olympiadOverview.startTraining")}
               </Button>
-              <Button onClick={goToStart} disabled={isDateBefore(formattedStartDate)}>{t("olympiadOverview.start")}</Button>
+              <Button onClick={goToStart} disabled={isDateBefore(formattedEndDate)}>{t("olympiadOverview.start")}</Button>
             </>
           )}
         </div>

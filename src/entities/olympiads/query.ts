@@ -24,6 +24,7 @@ export const useOlympiadsQuery = ({
         promotion,
       }),
     select: (value) => value.data_list,
+    enabled: !!lang
   });
 };
 

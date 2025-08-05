@@ -25,7 +25,7 @@ export const TermsPage: React.FC = () => {
 
   const handleAccept = () => {
     // Після прийняття умов переходимо до сторінки оплати
-    navigate("../payment-status");
+    navigate("../payment-status", { replace: true });
   };
 
   return (

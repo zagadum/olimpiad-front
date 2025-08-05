@@ -47,6 +47,14 @@
     "item2": "Zaktualizowano zasady korzystania z portalu — koniecznie się zapoznaj!",
     "item3": "Nowe treningi dostępne w sekcji „Trenuj siebie”."
   },
+  "olympiadTypes": {
+    "all": "Wszystkie",
+    "international": "Międzynarodowa",
+    "ukrainian": "Ukraińska",
+    "polish": "Polska",
+    "olympiad": "Olimpiada SpaceM",
+    "ads": "Ogłoszenia"
+  },
   "olympiadsNavbar": {
     "item1": "Wszystkie olimpiady",
     "item2": "Moje olimpiady",

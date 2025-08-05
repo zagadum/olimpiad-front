@@ -35,9 +35,7 @@ const OlympiadImage: React.FC<{
   lang: string;
   isMobile?: boolean;
 }> = React.memo(({ olympiad, lang, isMobile = false }) => {
-  const imageSrc = isMobile
-    ? (olympiad.image_url as string) || placeholderImg
-    : olympiad.cover[lang as keyof typeof olympiad.cover] || placeholderImg;
+  const imageSrc = olympiad.cover[lang as keyof typeof olympiad.cover] || placeholderImg;
 
   const imageClasses = isMobile
     ? "h-[156px] w-[94px] object-cover"
@@ -49,9 +47,9 @@ const OlympiadImage: React.FC<{
       );
 
   const containerClasses = isMobile
-    ? "h-[156px] w-[94px] overflow-hidden rounded-2xl"
+    ? "h-[156px] w-[94px] overflow-hidden rounded-2xl flex-shrink-0"
     : cn(
-        "h-[184px] w-[175px] overflow-hidden rounded-2xl",
+        "h-[184px] w-[175px] overflow-hidden rounded-2xl flex-shrink-0",
         "lg:w-[200px] lg:min-w-[200px] lg:max-w-[200px]",
         "xl:w-[235px] xl:min-w-[235px] xl:max-w-[235px]",
         "2xl:w-[316px] 2xl:min-w-[316px] 2xl:max-w-[316px]",
@@ -193,7 +191,7 @@ const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
 const OlympiadActions: React.FC<{
   olympiad: Olympiad;
   olympiadIsPaid: boolean;
-  formattedStartDate: string;
+  formattedDate: string;
   onRegister: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onTraining: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onStart: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -202,7 +200,7 @@ const OlympiadActions: React.FC<{
   ({
     olympiad,
     olympiadIsPaid,
-    formattedStartDate,
+    formattedDate,
     onRegister,
     onTraining,
     onStart,
@@ -224,12 +222,22 @@ const OlympiadActions: React.FC<{
         );
       }
 
+      if (olympiad.status === 'completed') {
+        return (
+          <div className={containerClasses}>
+            <span className="text-[--color-error]">
+              {t("olympiadCard.finished")}
+            </span>
+          </div>
+        );
+      }
+
       return (
         <div className={containerClasses}>
           <Button variant="secondary" onClick={onTraining}>
             {t("olympiadCard.startTraining")}
           </Button>
-          <Button onClick={onStart} disabled={isDateBefore(formattedStartDate)}>
+          <Button onClick={onStart} disabled={isDateBefore(formattedDate)}>
             {t("olympiadCard.start")}
           </Button>
         </div>
@@ -281,7 +289,9 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
     const handleCardClick = useCallback(
       (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-        onCardClick?.(olympiad.id);
+        if (olympiad.status !== 'completed') {
+          onCardClick?.(olympiad.id);
+        }
       },
       [onCardClick, olympiad.id],
     );
@@ -319,6 +329,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
             "bg-gradient-to-t from-[#082536] to-[#193C4D] shadow-[-1px_-1px_1px_-0px_#657E8A]",
             "md:flex md:gap-4 md:px-4 md:py-4",
             "2xl:gap-6 2xl:px-6 2xl:py-6",
+            olympiad.status === 'completed' && 'pointer-events-none'
           )}
           onClick={handleCardClick}
         >
@@ -352,7 +363,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
           </div>
 
           {/* Правий блок */}
-          <div className="flex h-[184px] flex-col items-end justify-between space-y-2">
+          <div className="flex flex-shrink-0 h-[184px] flex-col items-end justify-between space-y-2">
             <OlympiadDates
               olympiad={olympiad}
               formattedStartDate={formattedStartDate}
@@ -364,7 +375,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
             <OlympiadActions
               olympiad={olympiad}
               olympiadIsPaid={olympiadIsPaid}
-              formattedStartDate={formattedStartDate}
+              formattedDate={formattedEndDate}
               onRegister={handleRegister}
               onTraining={handleTraining}
               onStart={handleStart}
@@ -422,7 +433,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
           <OlympiadActions
             olympiad={olympiad}
             olympiadIsPaid={olympiadIsPaid}
-            formattedStartDate={formattedStartDate}
+            formattedDate={formattedEndDate}
             onRegister={handleRegister}
             onTraining={handleTraining}
             onStart={handleStart}
