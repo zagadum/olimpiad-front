@@ -12,12 +12,10 @@ import { useDimensions } from "@/shared/hooks";
 import { useOlympiadsQuery } from "@/entities/olympiads/query";
 import { useTranslation } from "react-i18next";
 import { useCurrentUserQuery } from "@/entities/auth";
-import { useLanguage } from "@/widgets/olympiads-card/hooks";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const lang = useLanguage();
 
   const { data: user } = useCurrentUserQuery();
 
@@ -69,8 +67,8 @@ export const AllOlympiadsPage: React.FC = () => {
     },
     {
       id: "2",
-      label: lang === "pl" ? t('olympiadTypes.polish') : t('olympiadTypes.ukrainian'),
-      icon: lang === "pl" ? polish : ukrainian,
+      label: user?.language === "pl" ? t('olympiadTypes.polish') : t('olympiadTypes.ukrainian'),
+      icon: user?.language === "pl" ? polish : ukrainian,
       value: 0,
     },
     {
