@@ -7,16 +7,17 @@ import ukrainian from "@/shared/assets/icons/ukrainian.svg";
 import polish from "@/shared/assets/icons/polish.svg";
 import announce from "@/shared/assets/icons/announce.png";
 import spacem from "@/shared/assets/icons/space-m.png";
-import { getLang } from "@/shared/lib/getLang";
 import cupsBg from "@/shared/assets/images/cups-bg.png";
 import { useDimensions } from "@/shared/hooks";
 import { useOlympiadsQuery } from "@/entities/olympiads/query";
 import { useTranslation } from "react-i18next";
+import { useCurrentUserQuery } from "@/entities/auth";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
-  const lang = getLang(i18n.language);
+  const { t } = useTranslation();
+
+  const { data: user } = useCurrentUserQuery();
 
   const { isMobile, isTablet } = useDimensions();
 
@@ -26,7 +27,7 @@ export const AllOlympiadsPage: React.FC = () => {
   const [promotion, setPromotion] = useState<string>();
 
   // отримання списка олімпіад
-  const { data, error } = useOlympiadsQuery({lang, isInternational, promotion})
+  const { data, error } = useOlympiadsQuery({lang: user?.language, isInternational, promotion})
 
   const handleFilterChange = (value?: string | number) => {
     switch (value) {
@@ -56,35 +57,35 @@ export const AllOlympiadsPage: React.FC = () => {
   const olympiadTypes: SelectOption[] = [
     {
       id: "0",
-      label: "Всі",
+      label: t('olympiadTypes.all'),
     },
     {
       id: "1",
-      label: "Міжнародні",
+      label: t('olympiadTypes.international'),
       icon: international,
       value: 1,
     },
     {
       id: "2",
-      label: lang === "pl" ? "Польські" : "Українські",
-      icon: lang === "pl" ? polish : ukrainian,
+      label: user?.language === "pl" ? t('olympiadTypes.polish') : t('olympiadTypes.ukrainian'),
+      icon: user?.language === "pl" ? polish : ukrainian,
       value: 0,
     },
     {
       id: "3",
-      label: "Оголошення",
+      label: t('olympiadTypes.ads'),
       icon: announce,
       value: "ads",
     },
     {
       id: "4",
-      label: "Олімпіада SpaceM",
+      label: t('olympiadTypes.olympiad'),
       icon: spacem,
       value: "olympiad",
     },
   ];
 
-  if (error) return <div>Помилка завантаження даних</div>;
+  if (error) return <div>{t('global.fetchError')}</div>;
 
   return (
     <>

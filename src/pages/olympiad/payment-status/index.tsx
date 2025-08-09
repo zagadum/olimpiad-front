@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/cn";
 import { useTranslation } from "react-i18next";
-import { getLang } from "@/shared/lib/getLang.ts";
 import i18n from "@/shared/i18n";
 import { useQueryClient } from "@tanstack/react-query";
+import { useLanguage } from "@/widgets/olympiads-card/hooks.ts";
 
 const ukSuccessDescription = `
 <p>Ваш платіж успішно оброблено.</p>
@@ -111,8 +111,8 @@ type PaymentStatus = "success" | "error" | "pending";
 
 export const PaymentStatusPage: React.FC = () => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-  const lang = getLang(i18n.language);
+  const { t } = useTranslation();
+  const lang = useLanguage();
 
   const queryClient = useQueryClient();
 

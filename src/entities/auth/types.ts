@@ -5,6 +5,7 @@ export interface User {
   name: string;
   surname: string;
   lastname: string;
+  language: string;
   patronymic: string;
   email: string;
   email_verified_at: string;

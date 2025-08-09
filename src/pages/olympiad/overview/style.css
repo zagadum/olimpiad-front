@@ -3,7 +3,7 @@
     p, ul, ol, li {
       font-weight: 300;
       font-size: 20px;
-      line-height: 24px;
+      line-height: 28px;
       color: #A5A5A5;
     }
     ul {
@@ -18,7 +18,7 @@
     h3, h4, h5, h6 {
       font-weight: 500;
       font-size: 20px;
-      line-height: 24px;
+      line-height: 28px;
       color: #FFFFFF;
     }
     h5 {

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import { cn } from "@/shared/lib/cn.ts";
 
 interface OlympiadTagProps {
@@ -6,7 +6,7 @@ interface OlympiadTagProps {
   icon?: string;
 }
 
-export const OlympiadTag: FC<OlympiadTagProps> = ({ label, icon }) => {
+export const OlympiadTag: React.FC<OlympiadTagProps> = React.memo(({ label, icon }) => {
   return (
     <div
       className={cn(
@@ -27,9 +27,12 @@ export const OlympiadTag: FC<OlympiadTagProps> = ({ label, icon }) => {
             "xl:h-6 xl:w-6",
             "2xl:h-8 2xl:w-8",
           )}
+          loading="lazy"
         />
       )}
       <span className="text-nowrap text-[--color-3]">{label}</span>
     </div>
   );
-};
+});
+
+OlympiadTag.displayName = 'OlympiadTag';

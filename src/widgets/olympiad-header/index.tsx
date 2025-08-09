@@ -1,49 +1,28 @@
 import React from "react";
-import { formatDistanceToNowStrict, isAfter, isValid } from "date-fns";
-import { uk } from "date-fns/locale/uk";
 import { Olympiad } from "@/entities/olympiads";
 import placeholderImg from "@/shared/assets/images/olympiad-placeholder.jpeg";
 import arrowBackIcon from "@/shared/assets/icons/ion_arrow-back.svg";
-import i18n from "@/shared/i18n";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/shared/lib/cn";
-import { formatDate } from "@/shared/lib/formatDate.ts";
+import { formatDate } from "@/shared/lib/formatDate";
+import { calcDays } from "@/shared/lib/calcDays";
+import { useLanguage } from "@/widgets/olympiads-card/hooks";
 
 type OlympiadsCardProps = {
   olympiad?: Olympiad;
 };
 
-const calcDays = (date: string) => {
-  const dateNow = Date.now();
-  const parsedDate = Date.parse(date);
-  const isDateValid = isValid(parsedDate);
-  if (isDateValid && isAfter(parsedDate, dateNow)) {
-    return formatDistanceToNowStrict(parsedDate, { locale: uk });
-  }
-  return 0;
-};
-
-type Lang = "uk" | "pl";
-const languages: Lang[] = ["uk", "pl"];
-
-const getLang = (): Lang => {
-  if (languages.includes(i18n.language as Lang)) {
-    return i18n.language as Lang;
-  }
-  return "uk";
-};
-
 export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
   const { t } = useTranslation();
-  const lang = getLang();
+  const lang = useLanguage();
 
   const olympiadIsPaid = olympiad?.payment_status === "ok" || olympiad?.is_pay === 1
 
   const formattedStartDate = formatDate(olympiad?.start_date ?? "");
   const formattedEndDate = formatDate(olympiad?.end_date ?? "");
 
-  const startDateDistance = calcDays(olympiad?.start_date ?? "");
-  const endDateDistance = calcDays(olympiad?.end_date ?? "");
+  const startDateDistance = calcDays(olympiad?.start_date ?? "", lang);
+  const endDateDistance = calcDays(olympiad?.end_date ?? "", lang);
 
   const onGoBack = () => {
     window.history.back();
@@ -72,7 +51,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       >
         <img
           className={cn("h-[77px] w-[52px] object-cover", "md:h-28 md:w-48")}
-          src={olympiad?.image_url || placeholderImg}
+          src={olympiad?.cover[lang] || placeholderImg}
           alt=""
         />
       </div>
@@ -82,7 +61,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
           <h3
             className={cn(
               "line-clamp-2 text-sm font-bold leading-4 text-[--color-3]",
-              "md:text-2xl md:leading-6",
+              "md:text-2xl md:leading-7",
             )}
           >
             {olympiad?.title[lang]}

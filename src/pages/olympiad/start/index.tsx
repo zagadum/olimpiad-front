@@ -141,8 +141,10 @@ export const StartPage: React.FC = () => {
             {olympiad?.subscribe?.stages_num}
           </span>{" "}
           |{" "}
-          <span className="text-[#FF9A26]">{olympiad?.subscribe?.age_tab}</span>{" "}
-          |{" "}
+          <span className="text-[#FF9A26]">{olympiad?.subscribe?.age_tab}</span>
+        </p>
+        <p className="text-sm font-light md:text-base">
+          ID:{" "}
           <span className="text-[#FF9A26]">
             {olympiad?.subscribe?.practicant_id}
           </span>
@@ -185,7 +187,7 @@ export const StartPage: React.FC = () => {
                       <p className="text-sm lg:text-xl">
                         {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
-                          {item?.params_json.interval_list.label}
+                          {item?.params_json.interval_olimpiad_list.label}
                         </span>
                       </p>
                     </td>

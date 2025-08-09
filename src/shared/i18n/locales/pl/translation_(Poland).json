@@ -1,0 +1,136 @@
+{
+  "global": {
+    "loading": "Ładowanie...",
+    "fetchError": "Błąd ładowania danych"
+  },
+  "home": {
+    "welcome": "Witamy w Space Memory!",
+    "description": "Witamy na platformie do udziału w olimpiadach. Zarejestruj się i odkryj nowe możliwości.",
+    "goToOlympiads": "Przejdź do olimpiad"
+  },
+  "sidebar": {
+    "home": "Strona główna",
+    "homework": "Zadania",
+    "training": "Trening",
+    "olympiads": "Olimpiady",
+    "mySpace": "My space",
+    "logout": "Wyloguj się"
+  },
+  "userInfo": {
+    "role": "Trener Space",
+    "phone": "Trener Space"
+  },
+  "stats": {
+    "avgTime": "Średni czas rozwiązania",
+    "minutes": "minut",
+    "statistics": "Statystyka",
+    "homework": "Praca domowa",
+    "joinIdea": "Dołącz do pomysłu"
+  },
+  "ranking": {
+    "title": "Ranking",
+    "findMyself": "Znajdź siebie",
+    "olympiadPlaceholder": "Olimpiada",
+    "levelPlaceholder": "Kategoria",
+    "agePlaceholder": "Wiek",
+    "empty": "Brak wyników dla wybranych parametrów",
+    "place": "Miejsce",
+    "name": "Imię",
+    "category": "Kategoria",
+    "age": "Wiek",
+    "rightAnswers": "Poprawne odpowiedzi",
+    "points": "Punkty"
+  },
+  "news": {
+    "title": "Aktualności",
+    "item1": "Dziś rozpoczął się nowy maraton dla uczestników SpaceM!",
+    "item2": "Zaktualizowano zasady korzystania z portalu — koniecznie się zapoznaj!",
+    "item3": "Nowe treningi dostępne w sekcji „Trenuj siebie”."
+  },
+  "olympiadsNavbar": {
+    "item1": "Wszystkie olimpiady",
+    "item2": "Moje olimpiady",
+    "item3": "Ranking"
+  },
+  "olympiadCard": {
+    "international": "Międzynarodowa",
+    "country": {
+      "pl": "Polska",
+      "uk": "Ukraińska"
+    },
+    "promotion": {
+      "olympiad": "Olimpiada SpaceM",
+      "ads": "Ogłoszenia"
+    },
+    "startIn": "Start za ",
+    "endIn": "Koniec za ",
+    "startTraining": "Trenuj",
+    "start": "Rozpocznij",
+    "participate": "Weź udział",
+    "finished": "Olimpiada zakończona",
+    "inactive": "Olimpiada nieaktywna"
+  },
+  "olympiadHeader": {
+    "startIn": "Start za ",
+    "endIn": "Koniec za "
+  },
+  "olympiadOverview": {
+    "title": "Opis olimpiady",
+    "startIn": "Start za ",
+    "endIn": "Koniec za ",
+    "startTraining": "Trenuj",
+    "start": "Rozpocznij",
+    "participate": "Weź udział"
+  },
+  "myOlympiads": {
+    "empty": "Na razie nie masz olimpiad"
+  },
+  "olympiadTraining": {
+    "title": "Trening",
+    "category": "Kategoria:",
+    "startTraining": "Trenuj ({{count}})",
+    "memorizeIn": "Zapamiętaj w: ",
+    "recallIn": "Przypomnij w: ",
+    "quantity": "Ilość: ",
+    "decks": "Talia: "
+  },
+  "olympiadStart": {
+    "title": "Olimpiada",
+    "category": "Kategoria:",
+    "start": "Rozpocznij",
+    "memorizeIn": "Zapamiętaj w:",
+    "recallIn": "Przypomnij w:",
+    "quantity": "Ilość:",
+    "decks": "Talia: "
+  },
+  "registerForm": {
+    "title": "Wypełnij formularz",
+    "lastname": "Imię",
+    "surname": "Nazwisko",
+    "country": "Kraj",
+    "city": "Miasto",
+    "schoolName": "Nazwa szkoły",
+    "email": "Email",
+    "phone": "Numer telefonu",
+    "age": "Wiek",
+    "olympiadLanguage": "Język olimpiady",
+    "region": "Województwo",
+    "stagesLevel": "Poziom trudności",
+    "warning": "Sprawdź zgłoszenie przed wysłaniem – dane będą wykorzystane do przygotowania dyplomu",
+    "errors": {
+      "fieldRequired": "*To pole jest wymagane"
+    }
+  },
+  "paymentStatus": {
+    "success": {
+      "title": "✅ Płatność zakończona pomyślnie!"
+    },
+    "error": {
+      "title": "❌ Płatność nie powiodła się"
+    },
+    "pending": {
+      "title": "⏳ Przetwarzanie płatności…"
+    },
+    "goToOlympiad": "Przejdź do olimpiady"
+  }
+}

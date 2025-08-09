@@ -455,7 +455,7 @@ export const RegisterFormPage: React.FC = () => {
           </div>
         </div>
         {stagesLevelField && (
-          <div className="mt-6 flex flex-wrap justify-center gap-3 md:mt-8 md:gap-4">
+          <div className="mt-6 flex flex-wrap justify-start gap-3 md:mt-8 md:gap-4">
             {Object.values(taskList).map((item, i) => {
               const id = i + 1;
               return (
