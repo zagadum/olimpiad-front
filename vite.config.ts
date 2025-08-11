@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     host: false,
     proxy: {
-      '/api': 'https://olymp-space.com',
+      '/api': 'https://api-memory.firm.kiev.ua',
     }
   },
   build: {
