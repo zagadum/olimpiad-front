@@ -75,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           />
         ))}
         <NavLink
-          to="https://memory.firm.kiev.ua/games/platform"
+          to="https://space-memory.com/games/platform"
           className="mt-4 flex w-full justify-center xl:mt-6"
         >
           <Button
@@ -111,7 +111,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           }}
         />
         <NavLink
-          to="https://memory.firm.kiev.ua/logout"
+          to="https://space-memory.com/logout"
           className="flex items-center"
         >
           <img className="p-4" src={logoutIcon} alt="Logout" />
