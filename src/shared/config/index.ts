@@ -1,6 +1,6 @@
 export const API_URL = import.meta.env.DEV
   ? undefined
-  : "https://api-memory.firm.kiev.ua";
+  : "https://olymp-space.com/";
 
 //PROD
 // export const UK_URL = import.meta.env.DEV ? 'https://memory.firm.kiev.ua' : 'https://space-memory.com'
