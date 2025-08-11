@@ -12,6 +12,7 @@ import { langOptions } from "@/shared/lib/constants";
 import { Select } from "@/shared/ui/select";
 import { getLang } from "@/shared/lib/getLang.ts";
 import { getNavItems } from "@/shared/lib/getNavItems.ts";
+import { useCurrentUserQuery } from "@/entities/auth";
 
 interface SidebarProps {
   small?: boolean;
@@ -20,6 +21,8 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
   const { t, i18n } = useTranslation();
   const lang = getLang(i18n.language);
+
+  const { data: user } = useCurrentUserQuery();
 
   const navItems = getNavItems(t);
 
@@ -64,8 +67,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       >
         {navItems.map(({ link, label, icon }) => (
           <NavItem
-            key={link}
-            link={link}
+            key={link[(user?.domain as keyof typeof link) || 'uk']}
+            link={link[(user?.domain as keyof typeof link) || 'uk']}
             icon={icon}
             label={label}
             hideLabel={!!small && !isHovered}

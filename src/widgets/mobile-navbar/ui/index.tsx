@@ -12,11 +12,14 @@ import { langOptions } from "@/shared/lib/constants";
 import { Select } from "@/shared/ui/select";
 import { getLang } from "@/shared/lib/getLang";
 import { getNavItems } from "@/shared/lib/getNavItems";
+import { useCurrentUserQuery } from "@/entities/auth";
 
 export const MobileNavbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const lang = getLang(i18n.language);
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data: user } = useCurrentUserQuery();
 
   const navItems = getNavItems(t);
 
@@ -41,8 +44,8 @@ export const MobileNavbar: React.FC = () => {
           <nav className="flex flex-col gap-4 text-sm">
             {navItems.map(({ link, label, icon }) => (
               <NavItem
-                key={link}
-                link={link}
+                key={link[(user?.domain as keyof typeof link) || 'uk']}
+                link={link[(user?.domain as keyof typeof link) || 'uk']}
                 icon={icon}
                 label={label}
                 onClick={toggleOpen}
