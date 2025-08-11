@@ -1,9 +1,9 @@
-name: Deploy to Server MAIN
+name: Deploy to Server
 
 on:
   push:
     branches:
-      - release
+      - main
 
 jobs:
   deploy:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Echo secrets (debug)
         run: |
-        
+
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -31,12 +31,12 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.SSH_HOST_RELEASE }}
-          username: ${{ secrets.SSH_USERNAME_RELEASE }}
-          key: ${{ secrets.SSH_PRIVATE_KEY_RELEASE }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/olymp-space
-            git pull origin release
+            cd /var/www/olympiad.firm.kiev.ua
+            git pull origin main
             export NVM_DIR=~/.nvm
             source $NVM_DIR/nvm.sh
             nvm install 20
