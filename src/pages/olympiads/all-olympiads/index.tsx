@@ -67,8 +67,8 @@ export const AllOlympiadsPage: React.FC = () => {
     },
     {
       id: "2",
-      label: user?.language === "pl" ? t('olympiadTypes.polish') : t('olympiadTypes.ukrainian'),
-      icon: user?.language === "pl" ? polish : ukrainian,
+      label: user?.domain === "pl" ? t('olympiadTypes.polish') : t('olympiadTypes.ukrainian'),
+      icon: user?.domain === "pl" ? polish : ukrainian,
       value: 0,
     },
     {
@@ -118,7 +118,7 @@ export const AllOlympiadsPage: React.FC = () => {
             />
           ))
         ) : (
-          <div>У вас немає активних олімпіад</div>
+          <div>{t('allOlympiads.emptyData')}</div>
         )}
       </div>
     </>

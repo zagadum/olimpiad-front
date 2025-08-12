@@ -60,6 +60,9 @@
     "item2": "Moje olimpiady",
     "item3": "Ranking"
   },
+  "allOlympiads": {
+    "emptyData": "Nie masz aktywnych olimpiad"
+  },
   "olympiadCard": {
     "international": "Międzynarodowa",
     "country": {
@@ -75,7 +78,8 @@
     "startTraining": "Trenuj",
     "start": "Rozpocznij",
     "participate": "Weź udział",
-    "finished": "Olimpiada zakończona",
+    "finished": "Zakończona",
+    "waitResults": "Oczekiwanie na wyniki",
     "inactive": "Olimpiada nieaktywna"
   },
   "olympiadHeader": {
@@ -128,6 +132,12 @@
     "errors": {
       "fieldRequired": "*To pole jest wymagane"
     }
+  },
+  "termsPage": {
+    "title": "Warunki olimpiady przed dokonaniem płatności",
+    "agree": "Przeczytałem i akceptuję warunki olimpiady",
+    "required": "*Akceptacja warunków olimpiady jest obowiązkowa",
+    "accept": "Akceptuj"
   },
   "paymentStatus": {
     "success": {

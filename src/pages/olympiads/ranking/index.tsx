@@ -281,7 +281,7 @@ export const RankingPage: React.FC = () => {
             <tbody>
               {data?.map((row) => (
                 <tr
-                  key={row.practicant_id}
+                  key={`${row.practicant_id}-${row.olympiad_id}`}
                   className={cn(
                     "cursor-pointer",
                     row.practicant_id === myselfId && "active",
