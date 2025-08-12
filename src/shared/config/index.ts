@@ -1,5 +1,7 @@
 const debugMode = import.meta.env.VITE_DEBUG_MODE === "true";
 
+console.log('debugMode:', debugMode);
+
 export const API_URL = debugMode
   ? "https://api-memory.firm.kiev.ua"
   : "https://olymp-space.com/";
