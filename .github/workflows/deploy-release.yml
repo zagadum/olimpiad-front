@@ -1,0 +1,45 @@
+name: Deploy to Server MAIN
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo secrets (debug)
+        run: |
+
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Версия должна быть либо '20', либо '18'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn build
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST_RELEASE }}
+          username: ${{ secrets.SSH_USERNAME_RELEASE }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_RELEASE }}
+          script: |
+            cd /var/www/olymp-space
+            git pull origin release
+            export NVM_DIR=~/.nvm
+            source $NVM_DIR/nvm.sh
+            nvm install 20
+            nvm use 20
+            yarn install
+            yarn build
