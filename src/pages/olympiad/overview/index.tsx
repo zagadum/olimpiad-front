@@ -38,8 +38,51 @@ export const OverviewPage: React.FC = () => {
     navigate(`/olympiads/${olympiadId}/start`);
   };
 
-  if (isLoading) return <div>Завантаження...</div>;
-  if (error) return <div>Помилка завантаження даних</div>;
+  const renderButtons = () => {
+    if (olympiadIsPaid) {
+      if (data?.is_done === 1) {
+        return (
+          <span className="text-[--color-2]">
+            {t("olympiadCard.waitResults")}
+          </span>
+        );
+      }
+      if (data?.is_done === -1) {
+        return (
+          <span className="text-[--color-error]">
+            {t("olympiadCard.finished")}
+          </span>
+        );
+      }
+
+      if (data?.status === "completed") {
+        return (
+          <span className="text-[--color-error]">
+            {t("olympiadCard.finished")}
+          </span>
+        );
+      }
+
+      return (
+        <>
+          <Button variant="secondary" onClick={goToTraining}>
+            {t("olympiadOverview.startTraining")}
+          </Button>
+          {data?.status !== "announced" && (
+            <Button
+              onClick={goToStart}
+              disabled={isDateBefore(formattedEndDate)}
+            >
+              {t("olympiadOverview.start")}
+            </Button>
+          )}
+        </>
+      );
+    }
+  };
+
+  if (isLoading) return <div>{t("global.loading")}</div>;
+  if (error) return <div>{t("global.fetchError")}</div>;
 
   return (
     <div
@@ -61,14 +104,7 @@ export const OverviewPage: React.FC = () => {
               {t("olympiadOverview.participate")}
             </Button>
           )}
-          {olympiadIsPaid && (
-            <>
-              <Button variant="secondary" onClick={goToTraining}>
-                {t("olympiadOverview.startTraining")}
-              </Button>
-              <Button onClick={goToStart} disabled={isDateBefore(formattedEndDate)}>{t("olympiadOverview.start")}</Button>
-            </>
-          )}
+          {renderButtons()}
         </div>
       </div>
       <div

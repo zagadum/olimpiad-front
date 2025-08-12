@@ -212,7 +212,16 @@ const OlympiadActions: React.FC<{
       : cn("flex flex-wrap items-center justify-end gap-3", "2xl:gap-4");
 
     if (olympiadIsPaid) {
-      if (olympiad.is_done === 1 || olympiad.is_done === -1) {
+      if (olympiad.is_done === 1) {
+        return (
+          <div className={containerClasses}>
+            <span className="text-[--color-2]">
+              {t("olympiadCard.waitResults")}
+            </span>
+          </div>
+        );
+      }
+      if (olympiad.is_done === -1) {
         return (
           <div className={containerClasses}>
             <span className="text-[--color-error]">
@@ -237,9 +246,11 @@ const OlympiadActions: React.FC<{
           <Button variant="secondary" onClick={onTraining}>
             {t("olympiadCard.startTraining")}
           </Button>
-          <Button onClick={onStart} disabled={isDateBefore(formattedDate)}>
-            {t("olympiadCard.start")}
-          </Button>
+          {olympiad.status !== 'announced' && (
+            <Button onClick={onStart} disabled={isDateBefore(formattedDate)}>
+              {t("olympiadCard.start")}
+            </Button>
+          )}
         </div>
       );
     }

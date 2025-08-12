@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logoImage from "@/shared/assets/images/sidebar-logo.svg";
-// import mySpaceIcon from "@/shared/assets/icons/rocket.png";
 import mySpaceIcon from "@/shared/assets/icons/rocket-mini.png";
 import logoutIcon from "@/shared/assets/icons/logout.svg";
 import { cn } from "@/shared/lib/cn.ts";

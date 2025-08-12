@@ -60,6 +60,9 @@
     "item2": "Мої олімпіади",
     "item3": "Рейтинг"
   },
+  "allOlympiads": {
+    "emptyData": "У вас немає активних олімпіад"
+  },
   "olympiadCard": {
     "international": "Міжнародна",
     "country": {
@@ -76,6 +79,7 @@
     "start": "Почати",
     "participate": "Взяти участь",
     "finished": "Олімпіада завершена",
+    "waitResults": "Чекаємо результатів",
     "inactive": "Олімпіада неактивна"
   },
   "olympiadHeader": {
@@ -128,6 +132,12 @@
     "errors": {
       "fieldRequired": "*Це поле обов'язкове"
     }
+  },
+  "termsPage": {
+    "title": "Умови олімпіади перед оплатою",
+    "agree": "Я прочитав і приймаю умови олімпіади",
+    "required": "*Прийняття умов Олімпіади обов'язкове",
+    "accept": "Прийняти"
   },
   "paymentStatus": {
     "success": {

@@ -14,7 +14,6 @@ export const Providers = () => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
-  console.log('env.DEV', import.meta.env.DEV);
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -23,5 +22,5 @@ export const Providers = () => {
       </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>
-  )
-}
+  );
+};
