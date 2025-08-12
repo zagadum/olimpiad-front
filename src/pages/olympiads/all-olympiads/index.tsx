@@ -12,6 +12,7 @@ import { useDimensions } from "@/shared/hooks";
 import { useOlympiadsQuery } from "@/entities/olympiads/query";
 import { useTranslation } from "react-i18next";
 import { useCurrentUserQuery } from "@/entities/auth";
+import { debugMode } from "@/shared/config";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -21,13 +22,17 @@ export const AllOlympiadsPage: React.FC = () => {
 
   const { isMobile, isTablet } = useDimensions();
 
-  // Стан для фільтра
   const [selectedFilter, setSelectedFilter] = useState<string | number>();
   const [isInternational, setIsInternational] = useState<number>();
   const [promotion, setPromotion] = useState<string>();
 
-  // отримання списка олімпіад
-  const { data, error } = useOlympiadsQuery({lang: user?.language, isInternational, promotion})
+  const { data, error } = useOlympiadsQuery({
+    lang: user?.language,
+    isInternational,
+    promotion,
+  });
+
+  console.log('debugMode:', debugMode);
 
   const handleFilterChange = (value?: string | number) => {
     switch (value) {
@@ -57,35 +62,38 @@ export const AllOlympiadsPage: React.FC = () => {
   const olympiadTypes: SelectOption[] = [
     {
       id: "0",
-      label: t('olympiadTypes.all'),
+      label: t("olympiadTypes.all"),
     },
     {
       id: "1",
-      label: t('olympiadTypes.international'),
+      label: t("olympiadTypes.international"),
       icon: international,
       value: 1,
     },
     {
       id: "2",
-      label: user?.domain === "pl" ? t('olympiadTypes.polish') : t('olympiadTypes.ukrainian'),
+      label:
+        user?.domain === "pl"
+          ? t("olympiadTypes.polish")
+          : t("olympiadTypes.ukrainian"),
       icon: user?.domain === "pl" ? polish : ukrainian,
       value: 0,
     },
     {
       id: "3",
-      label: t('olympiadTypes.ads'),
+      label: t("olympiadTypes.ads"),
       icon: announce,
       value: "ads",
     },
     {
       id: "4",
-      label: t('olympiadTypes.olympiad'),
+      label: t("olympiadTypes.olympiad"),
       icon: spacem,
       value: "olympiad",
     },
   ];
 
-  if (error) return <div>{t('global.fetchError')}</div>;
+  if (error) return <div>{t("global.fetchError")}</div>;
 
   return (
     <>
@@ -96,18 +104,14 @@ export const AllOlympiadsPage: React.FC = () => {
           className="pointer-events-none fixed -top-10 right-16 z-[-1] w-[388px] rotate-[-15deg] opacity-30"
         />
       )}
-      {/* Верхній блок з вкладками та фільтром */}
       <div className="mb-8 flex items-center justify-between space-y-0">
-        {/* Селект для фільтрації (Международные, Украинские, Польские) */}
         <Select
           options={olympiadTypes}
           value={selectedFilter}
           onChange={handleFilterChange}
-          placeholder="Выберите тип"
+          placeholder="Оберіть тип"
         />
       </div>
-
-      {/* Список карток олімпіад */}
       <div className="space-y-6 pb-20 md:space-y-8 lg:pb-10">
         {data?.length ? (
           data.map((o) => (
@@ -118,7 +122,7 @@ export const AllOlympiadsPage: React.FC = () => {
             />
           ))
         ) : (
-          <div>{t('allOlympiads.emptyData')}</div>
+          <div>{t("allOlympiads.emptyData")}</div>
         )}
       </div>
     </>
