@@ -35,7 +35,8 @@ const OlympiadImage: React.FC<{
   lang: string;
   isMobile?: boolean;
 }> = React.memo(({ olympiad, lang, isMobile = false }) => {
-  const imageSrc = olympiad.cover[lang as keyof typeof olympiad.cover] || placeholderImg;
+  const imageSrc =
+    olympiad.cover[lang as keyof typeof olympiad.cover] || placeholderImg;
 
   const imageClasses = isMobile
     ? "h-[156px] w-[94px] object-cover"
@@ -231,7 +232,7 @@ const OlympiadActions: React.FC<{
         );
       }
 
-      if (olympiad.status === 'completed') {
+      if (olympiad.status === "completed") {
         return (
           <div className={containerClasses}>
             <span className="text-[--color-error]">
@@ -246,7 +247,7 @@ const OlympiadActions: React.FC<{
           <Button variant="secondary" onClick={onTraining}>
             {t("olympiadCard.startTraining")}
           </Button>
-          {olympiad.status !== 'announced' && (
+          {olympiad.status !== "announced" && (
             <Button onClick={onStart} disabled={isDateBefore(formattedDate)}>
               {t("olympiadCard.start")}
             </Button>
@@ -300,7 +301,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
     const handleCardClick = useCallback(
       (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-        if (olympiad.status !== 'completed') {
+        if (olympiad.status !== "completed") {
           onCardClick?.(olympiad.id);
         }
       },
@@ -340,7 +341,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
             "bg-gradient-to-t from-[#082536] to-[#193C4D] shadow-[-1px_-1px_1px_-0px_#657E8A]",
             "md:flex md:gap-4 md:px-4 md:py-4",
             "2xl:gap-6 2xl:px-6 2xl:py-6",
-            olympiad.status === 'completed' && 'pointer-events-none'
+            olympiad.status === "completed" && "pointer-events-none",
           )}
           onClick={handleCardClick}
         >
@@ -374,7 +375,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
           </div>
 
           {/* Правий блок */}
-          <div className="flex flex-shrink-0 h-[184px] flex-col items-end justify-between space-y-2">
+          <div className="flex h-[184px] flex-shrink-0 flex-col items-end justify-between space-y-2">
             <OlympiadDates
               olympiad={olympiad}
               formattedStartDate={formattedStartDate}
