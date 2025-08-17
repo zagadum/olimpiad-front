@@ -11,6 +11,11 @@ export const Providers = () => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang");
+    if (lang) {
+      i18n.changeLanguage(lang);
+    }
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
