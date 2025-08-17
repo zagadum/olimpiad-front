@@ -53,7 +53,8 @@
     "ukrainian": "Українські",
     "polish": "Польські",
     "olympiad": "Олімпіада SpaceM",
-    "ads": "Оголошення"
+    "ads": "Оголошення",
+
   },
   "olympiadsNavbar": {
     "item1": "Всі олімпіади",
@@ -104,7 +105,8 @@
     "memorizeIn": "Запам’ятати за: ",
     "recallIn": "Згадати за: ",
     "quantity": "Кількість: ",
-    "decks": "Колоди: "
+    "decks": "Колоди: ",
+    "min": "xв."
   },
   "olympiadStart": {
     "title": "Олімпіада",

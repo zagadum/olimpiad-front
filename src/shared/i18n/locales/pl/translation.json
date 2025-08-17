@@ -104,7 +104,8 @@
     "memorizeIn": "Zapamiętaj w: ",
     "recallIn": "Przypomnij w: ",
     "quantity": "Ilość: ",
-    "decks": "Talia: "
+    "decks": "Talia: ",
+    "min": "min"
   },
   "olympiadStart": {
     "title": "Olimpiada",
@@ -113,7 +114,8 @@
     "memorizeIn": "Zapamiętaj w:",
     "recallIn": "Przypomnij w:",
     "quantity": "Ilość:",
-    "decks": "Talia: "
+    "decks": "Talia: ",
+    "min": "min"
   },
   "registerForm": {
     "title": "Wypełnij formularz",

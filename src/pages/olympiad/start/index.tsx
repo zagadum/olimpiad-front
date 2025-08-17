@@ -181,13 +181,13 @@ export const StartPage: React.FC = () => {
                       <p className="text-sm lg:text-xl">
                         {t("olympiadTraining.memorizeIn")}
                         <span className="text-nowrap text-[#E79600]">
-                           {item?.params_json.interval_olimpiad_list.label}
+                          {Math.round(item?.params_json.interval / 60)}  {t("olympiadTraining.min")}
                         </span>
                       </p>
                       <p className="text-sm lg:text-xl">
                         {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
-                         {item?.params_json.interval_memory_list.label}
+                          {Math.round(item?.params_json.interval_memory / 60)}  {t("olympiadTraining.min")}
                         </span>
                       </p>
                     </td>
