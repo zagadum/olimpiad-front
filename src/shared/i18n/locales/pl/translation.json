@@ -97,6 +97,13 @@
   "myOlympiads": {
     "empty": "Na razie nie masz olimpiad"
   },
+  "olympiadParams": {
+    "capacity": "Pojemność",
+    "categoryBinary": "Wyświetlanie",
+    "showGroups": "Grupowanie",
+    "groupCards": "Talia",
+    "no_split": "bez podziału"
+  },
   "olympiadTraining": {
     "title": "Trening",
     "category": "Kategoria:",

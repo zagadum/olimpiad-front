@@ -180,13 +180,13 @@ export const TrainingPage: React.FC = () => {
                       <p className="text-sm lg:text-xl">
                         {t("olympiadTraining.memorizeIn")}
                         <span className="text-nowrap text-[#E79600]">
-                          {item?.params_json.interval_memory_list.label}
+                           {Math.round(item?.params_json.interval / 60)}  {t("olympiadTraining.min")}
                         </span>
                       </p>
                       <p className="text-sm lg:text-xl">
                         {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
-                          {item?.params_json.interval_olimpiad_list.label}
+                          {Math.round(item?.params_json.interval_memory / 60)}  {t("olympiadTraining.min")}
                         </span>
                       </p>
                     </td>
@@ -209,7 +209,7 @@ export const TrainingPage: React.FC = () => {
                             )
                           }
                           options={capacity}
-                          placeholder="Розрядність"
+                          placeholder={t("olympiadParams.capacity")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
@@ -231,7 +231,7 @@ export const TrainingPage: React.FC = () => {
                             )
                           }
                           options={categoryBinary}
-                          placeholder="Відображення"
+                          placeholder={t("olympiadParams.categoryBinary")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
@@ -253,7 +253,7 @@ export const TrainingPage: React.FC = () => {
                             )
                           }
                           options={showGroups}
-                          placeholder="Групування"
+                          placeholder={t("olympiadParams.showGroups")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
@@ -275,7 +275,7 @@ export const TrainingPage: React.FC = () => {
                             )
                           }
                           options={groupCards}
-                          placeholder="Групування"
+                          placeholder={t("olympiadParams.showGroups")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />

@@ -210,7 +210,7 @@ export const StartPage: React.FC = () => {
                             )
                           }
                           options={capacity}
-                          placeholder="Розрядність"
+                          placeholder={t("olympiadParams.capacity")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
@@ -232,7 +232,7 @@ export const StartPage: React.FC = () => {
                             )
                           }
                           options={categoryBinary}
-                          placeholder="Відображення"
+                          placeholder={t("olympiadParams.categoryBinary")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
@@ -254,7 +254,7 @@ export const StartPage: React.FC = () => {
                             )
                           }
                           options={showGroups}
-                          placeholder="Групування"
+                          placeholder={t("olympiadParams.showGroups")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />
@@ -276,7 +276,8 @@ export const StartPage: React.FC = () => {
                             )
                           }
                           options={groupCards}
-                          placeholder="Групування"
+
+                          placeholder={t("olympiadParams.groupCards")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
                         />

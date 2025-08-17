@@ -98,6 +98,13 @@
   "myOlympiads": {
     "empty": "Поки що у вас немає олімпіад"
   },
+  "olympiadParams": {
+    "capacity": "Розрядність",
+    "categoryBinary":"Відображення",
+    "showGroups":"Групування",
+    "groupCards":"Колод",
+    "no_split": "без поділу"
+  },
   "olympiadTraining": {
     "title": "Тренування",
     "category": "Категорія:",
