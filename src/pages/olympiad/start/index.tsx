@@ -192,8 +192,7 @@ export const StartPage: React.FC = () => {
                       </p>
                     </td>
                     <td className="max-w-full space-x-5 whitespace-nowrap bg-[--color-5] px-2.5 py-4 text-right lg:py-6">
-                      {(item?.table_name === "olympiad_memory" ||
-                        item?.table_name === "olympiad_number_letter") && (
+                      {(item?.table_name === "olympiad_number_letter") && (
                         <Select
                           variant="secondary"
                           value={
