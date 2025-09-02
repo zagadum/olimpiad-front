@@ -92,8 +92,8 @@ export const TrainingPage: React.FC = () => {
       console.log("runOlympiad onSuccess", data);
       window.open(data.data_list.ret_url, "_self");
     },
-    onError: (error) => {
-      console.error("Помилка реєстрації:", error);
+    onError: (errorRegO) => {
+      console.error("Помилка реєстрації:", errorRegO);
     },
   });
 
