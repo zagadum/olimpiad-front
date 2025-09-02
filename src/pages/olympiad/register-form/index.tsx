@@ -196,23 +196,30 @@ export const RegisterFormPage: React.FC = () => {
       // Після успішної реєстрації переходимо до сторінки з умовами
       navigate("../terms");
     },
-    onError: (error) => {
-      console.error("Помилка реєстрації:", error);
-      const errorText =
-        error instanceof AxiosError
-          ? error?.response?.data?.message
-          : error.message;
-      toast.error(errorText, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+    onError: (errorReg) => {
+
+        try {
+            console.error("Помилка реєстрації:", errorReg);
+            const errorText =
+                errorReg instanceof AxiosError
+                    ? errorReg?.response?.data?.message
+                    : errorReg.message;
+            toast.error(errorText, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+        } catch (e) {
+            console.error("Ошибка при обработке ошибки регистрации:", errorReg);
+        }
+
+
     },
   });
 
