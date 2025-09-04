@@ -237,13 +237,13 @@ export const RegisterFormPage: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-8 space-y-10 pb-20 md:px-4 md:py-20 lg:py-4 lg:pb-12 xl:py-6 xl:pb-10"
+      className="mt-6 space-y-8 pb-20 md:px-4 md:py-20 lg:py-4 lg:pb-12 xl:py-6 xl:pb-10"
     >
       <div
         className={cn(
           "radial-gradient-bg rounded-xl px-4 py-10 shadow-[-1px_-1px_1px_-0px_#657E8A]",
-          "md:rounded-3xl md:px-8 md:py-16",
-          "lg:px-8 lg:py-10",
+          "md:rounded-3xl md:px-8 md:py-8",
+          "lg:px-8 lg:py-8",
           "xl:px-20 xl:py-12",
         )}
       >

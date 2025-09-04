@@ -15,7 +15,7 @@ export const OlympiadLayout: FC = () => {
 
   if (error) return <div>Помилка завантаження даних</div>;
   return (
-    <main className="flex-1 overflow-auto px-4 py-6 md:px-6 md:py-8 lg:px-10 lg:py-10 xl:px-24 xl:py-12">
+    <main className="flex-1 overflow-auto px-4 py-6 md:px-6 md:py-6 lg:px-10 lg:py-6 xl:px-24 xl:py-12">
       <OlympiadHeader olympiad={data} />
       <Outlet />
     </main>
