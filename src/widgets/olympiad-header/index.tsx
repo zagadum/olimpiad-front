@@ -33,11 +33,12 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       className={cn(
         "flex items-center justify-between gap-2 rounded-xl px-2 py-1.5",
         "bg-gradient-to-t from-[#082536] to-[#193C4D] shadow-[-1px_-1px_1px_-0px_#657E8A]",
-        "md:gap-8 md:rounded-3xl md:px-6 md:py-3",
+        "md:gap-6 md:rounded-3xl md:px-4 md:py-2.5",
+        "xl:gap-8 xl:rounded-3xl xl:px-6 xl:py-3",
       )}
     >
       <img
-        className="w-[40px] cursor-pointer rounded-full border border-transparent transition hover:border-[--color-1] md:w-[64px]"
+        className="w-[40px] cursor-pointer rounded-full border border-transparent transition hover:border-[--color-1] md:w-[52px] xl:w-[64px]"
         src={arrowBackIcon}
         alt=""
         onClick={onGoBack}
@@ -45,8 +46,9 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       {/* Зображення */}
       <div
         className={cn(
-          "h-[77px] w-[52px] min-w-[52px] overflow-hidden rounded-md",
-          "md:h-28 md:w-48 md:rounded-2xl",
+          "h-[77px] w-[52px] shrink-0 overflow-hidden rounded-md",
+          "md:h-22 md:w-40 md:rounded-2xl",
+          "xl:h-28 xl:w-48 xl:rounded-2xl",
         )}
       >
         <img
@@ -61,7 +63,8 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
           <h3
             className={cn(
               "line-clamp-2 text-sm font-bold leading-4 text-[--color-3]",
-              "md:text-2xl md:leading-7",
+              "md:text-xl md:leading-6",
+              "xl:text-2xl xl:leading-7",
             )}
           >
             {olympiad?.title[lang]}
@@ -98,7 +101,8 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
           <span
             className={cn(
               "text-[10px] leading-3 text-[--color-3]",
-              "md:text-xl md:leading-4",
+              "md:text-lg md:leading-5",
+              "xl:text-xl xl:leading-5",
             )}
           >
             {olympiad?.end_date
@@ -106,11 +110,11 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
               : formattedStartDate}
           </span>
           {olympiadIsPaid && (
-            <div className="mt-3 hidden text-nowrap text-xl leading-6 text-[--color-3] md:block">
+            <div className="mt-3 hidden text-nowrap text-lg leading-5 xl:text-xl xl:leading-6 text-[--color-3] md:block">
               {!!startDateDistance && (
                 <div>
                   <span>{t("olympiadHeader.startIn")}</span>
-                  <span className="text-xl leading-6 text-[#E79600]">
+                  <span className="text-lg leading-5 text-[#E79600] xl:text-xl xl:leading-6">
                     {startDateDistance}
                   </span>
                 </div>

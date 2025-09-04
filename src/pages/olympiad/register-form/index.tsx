@@ -197,29 +197,26 @@ export const RegisterFormPage: React.FC = () => {
       navigate("../terms");
     },
     onError: (errorReg) => {
-
-        try {
-            console.error("Помилка реєстрації:", errorReg);
-            const errorText =
-                errorReg instanceof AxiosError
-                    ? errorReg?.response?.data?.message
-                    : errorReg.message;
-            toast.error(errorText, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-            });
-        } catch (e) {
-            console.error("Ошибка при обработке ошибки регистрации:", errorReg);
-        }
-
-
+      try {
+        console.error("Помилка реєстрації:", errorReg);
+        const errorText =
+          errorReg instanceof AxiosError
+            ? errorReg?.response?.data?.message
+            : errorReg.message;
+        toast.error(errorText, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
+      } catch (e) {
+        console.error("Ошибка при обработке ошибки регистрации:", errorReg);
+      }
     },
   });
 
@@ -240,20 +237,20 @@ export const RegisterFormPage: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-8 space-y-10 pb-20 md:px-4 md:py-20 lg:py-10 lg:pb-10"
+      className="mt-8 space-y-10 pb-20 md:px-4 md:py-20 lg:py-4 lg:pb-12 xl:py-6 xl:pb-10"
     >
       <div
         className={cn(
           "radial-gradient-bg rounded-xl px-4 py-10 shadow-[-1px_-1px_1px_-0px_#657E8A]",
           "md:rounded-3xl md:px-8 md:py-16",
-          "lg:px-8 lg:py-12",
-          "xl:px-20 xl:py-16",
+          "lg:px-8 lg:py-10",
+          "xl:px-20 xl:py-12",
         )}
       >
-        <h2 className="mb-10 text-2xl md:mb-16 md:text-3xl">
+        <h2 className="mb-10 text-2xl md:mb-8 xl:mb-12 xl:text-3xl">
           {t("registerForm.title")}
         </h2>
-        <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 lg:gap-x-8 xl:gap-x-16">
+        <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-6 lg:gap-x-8 xl:gap-x-10 xl:gap-y-7">
           <div className="order-1 md:order-1">
             <input
               {...register("lastname", { required: true })}
@@ -261,7 +258,8 @@ export const RegisterFormPage: React.FC = () => {
               placeholder={t("registerForm.lastname")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
-                "md:px-6 md:py-5 md:text-xl md:leading-6",
+                "md:px-5 md:py-3.5 md:text-lg md:leading-5",
+                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.lastname &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -280,7 +278,8 @@ export const RegisterFormPage: React.FC = () => {
               placeholder={t("registerForm.surname")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
-                "md:px-6 md:py-5 md:text-xl md:leading-6",
+                "md:px-5 md:py-3.5 md:text-lg md:leading-5",
+                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.surname &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -332,7 +331,8 @@ export const RegisterFormPage: React.FC = () => {
               placeholder={t("registerForm.schoolName")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
-                "md:px-6 md:py-5 md:text-xl md:leading-6",
+                "md:px-5 md:py-3.5 md:text-lg md:leading-5",
+                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.school &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -352,7 +352,8 @@ export const RegisterFormPage: React.FC = () => {
               placeholder={t("registerForm.email")}
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
-                "md:px-6 md:py-5 md:text-xl md:leading-6",
+                "md:px-5 md:py-3.5 md:text-lg md:leading-5",
+                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.email &&
                   "border-[--color-error] focus-within:border-[--color-error]",
@@ -379,11 +380,11 @@ export const RegisterFormPage: React.FC = () => {
               )}
               countrySelectProps={{
                 className:
-                  "rounded-full border border-transparent outline-none bg-[--color-5] text-base md:text-xl leading-4 md:leading-6 text-[#F2F2F2] focus:border-[--color-1]",
+                  "rounded-full border border-transparent outline-none bg-[--color-5] text-base leading-4 md:text-lg xl:text-xl md:leading-5 xl:leading-6 text-[#F2F2F2] focus:border-[--color-1]",
               }}
               numberInputProps={{
                 className:
-                  "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 md:px-6 md:py-5 md:text-xl md:leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
+                  "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 md:px-5 md:py-3.5 md:text-lg md:leading-5 xl:px-6 xl:py-5 xl:text-xl xl:leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
               }}
             />
             {errors.phone && (

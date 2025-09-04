@@ -140,7 +140,8 @@
     "warning": "Sprawdź zgłoszenie przed wysłaniem – dane będą wykorzystane do przygotowania dyplomu",
     "errors": {
       "fieldRequired": "*To pole jest wymagane"
-    }
+    },
+    "submit": "Potwierdzać"
   },
   "termsPage": {
     "title": "Warunki olimpiady przed dokonaniem płatności",

@@ -78,8 +78,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           className="mt-4 flex w-full justify-center xl:mt-6"
         >
           <Button
+            translate="no"
             className={cn(
-              "h-[64px] w-full",
+              "h-[64px] w-full notranslate",
               small &&
                 !isHovered &&
                 "flex h-[64px] w-[64px] items-center justify-center px-0 py-0 lg:px-0 lg:py-0 xl:px-0 xl:py-0 2xl:px-0 2xl:py-0",

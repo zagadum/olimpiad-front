@@ -68,7 +68,8 @@ export function CustomSelect<
         className={cn(
           "flex w-max items-center justify-between rounded-full border border-transparent bg-[--color-5] outline-none",
           "px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
-          "md:px-6 md:py-5 md:text-xl md:leading-6",
+          "md:px-5 md:py-3.5 md:text-lg md:leading-5",
+          "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
           "transition-colors hover:border-[#26F9FF]",
           !selectedOption && "font-light text-[#A5A5A5]",
           fullWidth && "w-full",
@@ -77,13 +78,6 @@ export function CustomSelect<
           className,
         )}
       >
-        {/*{selectedOption?.icon && (*/}
-        {/*  <img*/}
-        {/*    src={selectedOption?.icon}*/}
-        {/*    alt={selectedOption?.label || placeholder}*/}
-        {/*    className="mr-2 h-5 w-5"*/}
-        {/*  />*/}
-        {/*)}*/}
         <span className="mr-2">
           {selectedOption ? selectedOption.label : placeholder}
         </span>
@@ -91,7 +85,7 @@ export function CustomSelect<
           // className="pointer-events-none absolute right-4 top-5"
           className={cn(
             "w-[20px] h-[20px] pointer-events-none transform transition-transform",
-            "md:w-[24px] md:h-[24px]",
+            "xl:w-[24px] xl:h-[24px]",
             isOpen ? "rotate-180" : "rotate-0",
           )}
           src={chevronDown}
