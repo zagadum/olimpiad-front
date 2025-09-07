@@ -40,7 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={cn(
-        "flex w-[--sidebar-expanded-xs] flex-col justify-between rounded-r-[24px] bg-gradient-to-t from-[#04151D] to-[#193C4D] px-6 py-6 shadow-[1px_-1px_1px_-0px_#657E8A] xl:w-[--sidebar-expanded] xl:px-12 xl:py-14",
+        "flex w-[--sidebar-expanded-xs] flex-col justify-between rounded-r-[24px] bg-gradient-to-t from-[#04151D] to-[#193C4D] px-4 py-4 shadow-[1px_-1px_1px_-0px_#657E8A] xl:w-[--sidebar-expanded] xl:px-10 xl:py-12",
         small &&
           "ease-[cubic-bezier(0.7, -0.4, 0.4, 1.4)] absolute bottom-0 left-0 top-0 z-40 w-[--sidebar-collapsed-xs] transition-all duration-300 hover:w-[--sidebar-expanded-xs] xl:w-[--sidebar-collapsed] xl:hover:w-[--sidebar-expanded]",
       )}
@@ -66,8 +66,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       >
         {navItems.map(({ link, label, icon }) => (
           <NavItem
-            key={link[(user?.domain as keyof typeof link) || 'uk']}
-            link={link[(user?.domain as keyof typeof link) || 'uk']}
+            key={link[(user?.domain as keyof typeof link) || "uk"]}
+            link={link[(user?.domain as keyof typeof link) || "uk"]}
             icon={icon}
             label={label}
             hideLabel={!!small && !isHovered}
@@ -80,14 +80,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           <Button
             translate="no"
             className={cn(
-              "h-[64px] w-full notranslate",
+              "notranslate h-[52px] w-full",
               small &&
                 !isHovered &&
-                "flex h-[64px] w-[64px] items-center justify-center px-0 py-0 lg:px-0 lg:py-0 xl:px-0 xl:py-0 2xl:px-0 2xl:py-0",
+                "flex h-[52px] w-[52px] items-center justify-center px-0 py-0 lg:px-0 lg:py-0 xl:px-0 xl:py-0 2xl:px-0 2xl:py-0",
             )}
           >
             {small && !isHovered ? (
-              <img src={mySpaceIcon} alt="" className="h-[52px] w-[52px]" />
+              <img src={mySpaceIcon} alt="" className="h-[40px] w-[40px]" />
             ) : (
               t("sidebar.mySpace")
             )}
@@ -106,13 +106,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           value={lang}
           onChange={(value) => {
             if (value) {
-              i18n.changeLanguage(value as string).then().catch();
+              i18n
+                .changeLanguage(value as string)
+                .then()
+                .catch();
             }
           }}
         />
         <NavLink
           to="https://space-memory.com/logout"
-          className="flex items-center"
+          className={cn('flex items-center', !isHovered && 'justify-center')}
         >
           <img className="p-4" src={logoutIcon} alt="Logout" />
           {(!small || isHovered) && <span>{t("sidebar.logout")}</span>}

@@ -107,7 +107,7 @@
   "olympiadTraining": {
     "title": "Trening",
     "category": "Kategoria:",
-    "startTraining": "Trenuj ({{count}})",
+    "startTraining": "Trenuj",
     "memorizeIn": "Zapamiętaj w: ",
     "recallIn": "Przypomnij w: ",
     "quantity": "Ilość: ",

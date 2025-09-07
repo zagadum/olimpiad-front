@@ -92,7 +92,8 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
             <span
               className={cn(
                 "mr-6 text-nowrap rounded-full border border-[--color-2] px-3 py-2 text-[10px] leading-3 text-[--color-3]",
-                "md:mr-8 md:px-7 md:py-4 md:text-xl md:leading-4",
+                "md:mr-6 md:px-4 md:py-2.5 md:text-base md:leading-4",
+                "xl:mr-8 xl:px-5 xl:py-3 xl:text-lg xl:leading-4",
               )}
             >
               {olympiad?.local_price} {olympiad?.local_currency}

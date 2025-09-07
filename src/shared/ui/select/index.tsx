@@ -98,7 +98,7 @@ export const Select: FC<SelectProps> = ({
           "flex w-max items-center justify-between rounded-full border px-2 py-1 outline-none",
           "text-sm leading-4 text-white transition-colors text-nowrap",
           "md:px-3 md:py-2 md:text-sm",
-          "lg:px-4 lg:py-3 lg:text-base",
+          "xl:px-4 xl:py-3 xl:text-base",
           variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
           variant === "secondary" &&
             "border-[#C2721D] hover:border-[--color-2]",

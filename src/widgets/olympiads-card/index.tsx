@@ -11,7 +11,6 @@ import announce from "@/shared/assets/icons/announce.png";
 import { cn } from "@/shared/lib/cn";
 import { useTranslation } from "react-i18next";
 import { calcDays } from "@/shared/lib/calcDays";
-import { isDateBefore } from "@/shared/lib/dateRange";
 import { useLanguage } from "./hooks";
 
 type OlympiadsCardProps = {
@@ -40,21 +39,11 @@ const OlympiadImage: React.FC<{
 
   const imageClasses = isMobile
     ? "h-[156px] w-[94px] object-cover"
-    : cn(
-        "h-[184px] w-[175px] object-cover",
-        "lg:w-[200px]",
-        "xl:w-[235px]",
-        "2xl:w-[316px]",
-      );
+    : cn("h-[140px] w-[190px] lg:w-[240px] xl:h-[184px] xl:w-[316px] object-cover");
 
   const containerClasses = isMobile
     ? "h-[156px] w-[94px] overflow-hidden rounded-2xl flex-shrink-0"
-    : cn(
-        "h-[184px] w-[175px] overflow-hidden rounded-2xl flex-shrink-0",
-        "lg:w-[200px] lg:min-w-[200px] lg:max-w-[200px]",
-        "xl:w-[235px] xl:min-w-[235px] xl:max-w-[235px]",
-        "2xl:w-[316px] 2xl:min-w-[316px] 2xl:max-w-[316px]",
-      );
+    : cn("h-[140px] w-[190px] lg:w-[240px] xl:h-[184px] xl:w-[316px] overflow-hidden rounded-2xl shrink-0");
 
   return (
     <div className={containerClasses}>
@@ -192,7 +181,7 @@ const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
 const OlympiadActions: React.FC<{
   olympiad: Olympiad;
   olympiadIsPaid: boolean;
-  formattedDate: string;
+  formattedDate?: string;
   onRegister: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onTraining: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onStart: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -201,7 +190,6 @@ const OlympiadActions: React.FC<{
   ({
     olympiad,
     olympiadIsPaid,
-    formattedDate,
     onRegister,
     onTraining,
     onStart,
@@ -248,9 +236,7 @@ const OlympiadActions: React.FC<{
             {t("olympiadCard.startTraining")}
           </Button>
           {olympiad.status !== "announced" && (
-            <Button onClick={onStart} disabled={isDateBefore(formattedDate)}>
-              {t("olympiadCard.start")}
-            </Button>
+            <Button onClick={onStart}>{t("olympiadCard.start")}</Button>
           )}
         </div>
       );
@@ -348,7 +334,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
           <OlympiadImage olympiad={olympiad} lang={lang} />
 
           {/* Основна інформація */}
-          <div className="h-[184px] flex-1">
+          <div className="h-[140px] xl:h-[184px] flex-1">
             <div className={cn("mb-2 flex h-full flex-col justify-between")}>
               <h3
                 className={cn(
@@ -356,7 +342,8 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
                   "2xl:text-2xl 2xl:leading-6",
                 )}
               >
-                {olympiad.title[lang as keyof typeof olympiad.title]}
+                {/*{olympiad.title[lang as keyof typeof olympiad.title]}*/}
+                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempor volutpat purus quis iaculis. Sed pellentesque justo vitae laoreet faucibus. Vestibulum ipsum nunc, egestas sit amet nisi at, fermentum tincidunt velit. Ut ultricies neque id aliquam blandit. Curabitur finibus placerat consequat. Donec commodo accumsan viverra. Cras suscipit massa posuere enim sagittis, eu porta metus dapibus.'}
               </h3>
               <p
                 className={cn(
@@ -364,18 +351,19 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
                   "2xl:text-xl 2xl:leading-5",
                 )}
               >
-                {
-                  olympiad.short_description[
-                    lang as keyof typeof olympiad.short_description
-                  ]
-                }
+                {/*{*/}
+                {/*  olympiad.short_description[*/}
+                {/*    lang as keyof typeof olympiad.short_description*/}
+                {/*  ]*/}
+                {/*}*/}
+                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempor volutpat purus quis iaculis. Sed pellentesque justo vitae laoreet faucibus. Vestibulum ipsum nunc, egestas sit amet nisi at, fermentum tincidunt velit. Ut ultricies neque id aliquam blandit. Curabitur finibus placerat consequat. Donec commodo accumsan viverra. Cras suscipit massa posuere enim sagittis, eu porta metus dapibus.'}
               </p>
               <OlympiadTags olympiad={olympiad} />
             </div>
           </div>
 
           {/* Правий блок */}
-          <div className="flex h-[184px] flex-shrink-0 flex-col items-end justify-between space-y-2">
+          <div className="flex h-[140px] xl:h-[184px] flex-shrink-0 flex-col items-end justify-between space-y-2">
             <OlympiadDates
               olympiad={olympiad}
               formattedStartDate={formattedStartDate}

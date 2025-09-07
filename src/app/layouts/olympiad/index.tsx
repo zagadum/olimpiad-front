@@ -3,8 +3,10 @@ import { Outlet, useParams } from "react-router-dom";
 import { OlympiadHeader } from "@/widgets/olympiad-header";
 import { useQuery } from "@tanstack/react-query";
 import { getOlympiadDetail } from "@/entities/olympiads";
+import { useTranslation } from "react-i18next";
 
 export const OlympiadLayout: FC = () => {
+  const { t } = useTranslation();
   const { olympiadId } = useParams<{ olympiadId: string }>();
   const { data, error } = useQuery({
     queryKey: ["olympiad", olympiadId],
@@ -13,7 +15,7 @@ export const OlympiadLayout: FC = () => {
     enabled: !!olympiadId,
   });
 
-  if (error) return <div>Помилка завантаження даних</div>;
+  if (error) return <div>{t('global.fetchError')}</div>;
   return (
     <main className="flex-1 overflow-auto px-4 py-6 md:px-6 md:py-6 lg:px-10 lg:py-6 xl:px-24 xl:py-12">
       <OlympiadHeader olympiad={data} />

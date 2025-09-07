@@ -35,7 +35,8 @@ export const OlympiadsNavbar: React.FC<Props> = ({ changeTitle }) => {
           className={({ isActive }) =>
             cn(
               "text-base font-medium leading-5 text-[--color-3] hover:text-[--color-1] transition",
-              "md:text-xl",
+              "lg:text-lg",
+              "xl:text-xl",
               isActive && "text-[--color-1] underline",
             )
           }

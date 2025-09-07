@@ -108,7 +108,7 @@
   "olympiadTraining": {
     "title": "Тренування",
     "category": "Категорія:",
-    "startTraining": "Тренуватися ({{count}})",
+    "startTraining": "Тренуватися",
     "memorizeIn": "Запам’ятати за: ",
     "recallIn": "Згадати за: ",
     "quantity": "Кількість: ",

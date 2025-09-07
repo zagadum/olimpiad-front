@@ -126,14 +126,15 @@ export const TrainingPage: React.FC = () => {
     <div
       className={cn(
         "mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 py-8 shadow-[-1px_-1px_1px_-0px_#657E8A]",
+        "md:rounded-2xl md:px-6 md:py-6 md:mt-6",
         "lg:rounded-3xl lg:px-9 lg:py-9",
       )}
     >
-      <div className="mb-6 md:mb-10">
-        <h2 className="mb-4 text-xl font-bold md:text-3xl">
+      <div className="mb-6 xl:mb-8">
+        <h2 className="mb-4 text-xl font-bold md:text-2xl xl:text-3xl">
           {t("olympiadTraining.title")}
         </h2>
-        <p className="text-base font-light md:text-xl">
+        <p className="text-base font-light md:text-lg xl:text-xl">
           {t("olympiadTraining.category")}{" "}
           <span className="capitalize text-[#FF9A26]">
             {olympiad?.subscribe?.stages_level}{" "}
@@ -151,21 +152,21 @@ export const TrainingPage: React.FC = () => {
       </div>
       <div className="overflow-x-auto">
         <div className="relative min-w-fit">
-          <table className="table-auto border-separate border-spacing-y-6 md:min-w-full">
+          <table className="table-auto border-separate border-spacing-y-4 md:min-w-full">
             <tbody>
               {taskList.map((item) => {
                 return (
                   <tr key={item.id}>
-                    <td className="rounded-l-xl bg-[--color-5] py-4 pl-4 pr-2.5 lg:py-6 lg:pl-6">
-                      <h3 className="text-sm font-medium lg:text-xl">
+                    <td className="rounded-l-xl bg-[--color-5] py-4 pl-4 pr-2.5 lg:py-5 lg:pl-6">
+                      <h3 className="text-sm font-medium lg:text-lg">
                         {item.name}
                       </h3>
-                      <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-xl">
+                      <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base">
                         {item.descr}
                       </p>
                     </td>
                     <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
-                      <p className="text-sm lg:text-xl">
+                      <p className="text-nowrap text-sm lg:text-base">
                         {t(
                           item?.table_name === "olympiad_cards"
                             ? "olympiadTraining.decks"
@@ -177,13 +178,13 @@ export const TrainingPage: React.FC = () => {
                       </p>
                     </td>
                     <td className="bg-[--color-5] px-2.5 py-4 lg:py-6">
-                      <p className="text-sm lg:text-xl">
+                      <p className="text-nowrap text-sm lg:text-base">
                         {t("olympiadTraining.memorizeIn")}
                         <span className="text-nowrap text-[#E79600]">
                            {Math.round(item?.params_json.interval / 60)}  {t("olympiadTraining.min")}
                         </span>
                       </p>
-                      <p className="text-sm lg:text-xl">
+                      <p className="text-nowrap text-sm lg:text-base">
                         {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
                           {Math.round(item?.params_json.interval_memory / 60)}  {t("olympiadTraining.min")}
@@ -305,9 +306,7 @@ export const TrainingPage: React.FC = () => {
                           language: lang,
                         })}
                       >
-                        {t("olympiadTraining.startTraining", {
-                          count: item?.cnt_repeat,
-                        })}
+                        {t("olympiadTraining.startTraining")}
                       </Button>
                     </td>
                   </tr>

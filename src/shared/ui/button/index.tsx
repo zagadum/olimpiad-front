@@ -10,8 +10,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClasses = `
-    px-4
-    py-3
+    px-3
+    py-2
     cursor-pointer
     rounded-full
     text-sm
