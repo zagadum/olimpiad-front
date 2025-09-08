@@ -342,8 +342,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
                   "2xl:text-2xl 2xl:leading-6",
                 )}
               >
-                {/*{olympiad.title[lang as keyof typeof olympiad.title]}*/}
-                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempor volutpat purus quis iaculis. Sed pellentesque justo vitae laoreet faucibus. Vestibulum ipsum nunc, egestas sit amet nisi at, fermentum tincidunt velit. Ut ultricies neque id aliquam blandit. Curabitur finibus placerat consequat. Donec commodo accumsan viverra. Cras suscipit massa posuere enim sagittis, eu porta metus dapibus.'}
+                {olympiad.title[lang as keyof typeof olympiad.title]}
               </h3>
               <p
                 className={cn(
@@ -351,12 +350,11 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
                   "2xl:text-xl 2xl:leading-5",
                 )}
               >
-                {/*{*/}
-                {/*  olympiad.short_description[*/}
-                {/*    lang as keyof typeof olympiad.short_description*/}
-                {/*  ]*/}
-                {/*}*/}
-                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempor volutpat purus quis iaculis. Sed pellentesque justo vitae laoreet faucibus. Vestibulum ipsum nunc, egestas sit amet nisi at, fermentum tincidunt velit. Ut ultricies neque id aliquam blandit. Curabitur finibus placerat consequat. Donec commodo accumsan viverra. Cras suscipit massa posuere enim sagittis, eu porta metus dapibus.'}
+                {
+                  olympiad.short_description[
+                    lang as keyof typeof olympiad.short_description
+                  ]
+                }
               </p>
               <OlympiadTags olympiad={olympiad} />
             </div>
