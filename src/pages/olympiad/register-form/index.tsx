@@ -244,10 +244,10 @@ export const RegisterFormPage: React.FC = () => {
           "radial-gradient-bg rounded-xl px-4 py-10 shadow-[-1px_-1px_1px_-0px_#657E8A]",
           "md:rounded-3xl md:px-8 md:py-8",
           "lg:px-8 lg:py-8",
-          "xl:px-20 xl:py-12",
+          "xl:px-16 xl:py-10",
         )}
       >
-        <h2 className="mb-10 text-2xl md:mb-8 xl:mb-12 xl:text-3xl">
+        <h2 className="mb-10 text-xl md:mb-8 xl:mb-10 xl:text-2xl">
           {t("registerForm.title")}
         </h2>
         <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-6 lg:gap-x-8 xl:gap-x-10 xl:gap-y-7">
@@ -259,14 +259,14 @@ export const RegisterFormPage: React.FC = () => {
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
                 "md:px-5 md:py-3.5 md:text-lg md:leading-5",
-                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
+                "xl:px-6 xl:py-4 xl:text-lg xl:leading-5",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.lastname &&
                   "border-[--color-error] focus-within:border-[--color-error]",
               )}
             />
             {errors.lastname && (
-              <span className="pl-4 text-[10px] font-light leading-3 text-[--color-error] md:text-base md:leading-6">
+              <span className="pl-4 text-[10px] font-light leading-3 text-[--color-error] md:text-base md:leading-5">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
@@ -279,14 +279,14 @@ export const RegisterFormPage: React.FC = () => {
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
                 "md:px-5 md:py-3.5 md:text-lg md:leading-5",
-                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
+                "xl:px-6 xl:py-4 xl:text-lg xl:leading-5",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.surname &&
                   "border-[--color-error] focus-within:border-[--color-error]",
               )}
             />
             {errors.surname && (
-              <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
+              <span className="pl-4 text-[10px] font-light leading36 text-[--color-error] md:text-base md:leading-5">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
@@ -332,14 +332,14 @@ export const RegisterFormPage: React.FC = () => {
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
                 "md:px-5 md:py-3.5 md:text-lg md:leading-5",
-                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
+                "xl:px-6 xl:py-4 xl:text-lg xl:leading-5",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.school &&
                   "border-[--color-error] focus-within:border-[--color-error]",
               )}
             />
             {errors.school && (
-              <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
+              <span className="pl-4 text-[10px] font-light leading-6 text-[--color-error] md:text-base md:leading-5">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
@@ -353,14 +353,14 @@ export const RegisterFormPage: React.FC = () => {
               className={cn(
                 "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
                 "md:px-5 md:py-3.5 md:text-lg md:leading-5",
-                "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
+                "xl:px-6 xl:py-4 xl:text-lg xl:leading-5",
                 "placeholder:font-light placeholder:text-[#A5A5A5] focus-within:border-[--color-1]",
                 errors.email &&
                   "border-[--color-error] focus-within:border-[--color-error]",
               )}
             />
             {errors.email && (
-              <span className="pl-4 text-base font-light leading-6 text-[--color-error]">
+              <span className="pl-4 text-[10px] font-light leading-6 text-[--color-error] md:text-base md:leading-5">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
@@ -380,11 +380,11 @@ export const RegisterFormPage: React.FC = () => {
               )}
               countrySelectProps={{
                 className:
-                  "rounded-full border border-transparent outline-none bg-[--color-5] text-base leading-4 md:text-lg xl:text-xl md:leading-5 xl:leading-6 text-[#F2F2F2] focus:border-[--color-1]",
+                  "rounded-full border border-transparent outline-none bg-[--color-5] text-base leading-4 md:text-lg xl:text-lg md:leading-5 xl:leading-5 text-[#F2F2F2] focus:border-[--color-1]",
               }}
               numberInputProps={{
                 className:
-                  "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 md:px-5 md:py-3.5 md:text-lg md:leading-5 xl:px-6 xl:py-5 xl:text-xl xl:leading-6 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
+                  "w-full rounded-full border border-transparent bg-[--color-5] px-4 py-2.5 text-base leading-4 md:px-5 md:py-3.5 md:text-lg md:leading-5 xl:px-6 xl:py-4 xl:text-lg xl:leading-5 text-[#F2F2F2] placeholder:font-light placeholder:text-[#A5A5A5] focus:border-[--color-1]",
               }}
             />
             {errors.phone && (

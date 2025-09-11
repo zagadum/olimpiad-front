@@ -127,14 +127,13 @@ export const TrainingPage: React.FC = () => {
       className={cn(
         "mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 py-8 shadow-[-1px_-1px_1px_-0px_#657E8A]",
         "md:rounded-2xl md:px-6 md:py-6 md:mt-6",
-        "lg:rounded-3xl lg:px-9 lg:py-9",
       )}
     >
-      <div className="mb-6 xl:mb-8">
-        <h2 className="mb-4 text-xl font-bold md:text-2xl xl:text-3xl">
+      <div className="mb-6 md:mb-8">
+        <h2 className="mb-4 text-xl font-bold md:text-2xl">
           {t("olympiadTraining.title")}
         </h2>
-        <p className="text-base font-light md:text-lg xl:text-xl">
+        <p className="text-base font-light md:text-lg">
           {t("olympiadTraining.category")}{" "}
           <span className="capitalize text-[#FF9A26]">
             {olympiad?.subscribe?.stages_level}{" "}

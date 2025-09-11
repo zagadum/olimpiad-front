@@ -69,7 +69,7 @@ export function CustomSelect<
           "flex w-max items-center justify-between rounded-full border border-transparent bg-[--color-5] outline-none",
           "px-4 py-2.5 text-base leading-4 text-[#F2F2F2]",
           "md:px-5 md:py-3.5 md:text-lg md:leading-5",
-          "xl:px-6 xl:py-5 xl:text-xl xl:leading-6",
+          "xl:px-6 xl:py-4 xl:text-lg xl:leading-5",
           "transition-colors hover:border-[#26F9FF]",
           !selectedOption && "font-light text-[#A5A5A5]",
           fullWidth && "w-full",
@@ -84,8 +84,8 @@ export function CustomSelect<
         <img
           // className="pointer-events-none absolute right-4 top-5"
           className={cn(
-            "w-[20px] h-[20px] pointer-events-none transform transition-transform",
-            "xl:w-[24px] xl:h-[24px]",
+            "w-[18px] h-[18px] pointer-events-none transform transition-transform",
+            "xl:w-[20px] xl:h-[20px]",
             isOpen ? "rotate-180" : "rotate-0",
           )}
           src={chevronDown}

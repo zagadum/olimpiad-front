@@ -13,8 +13,8 @@ export const OlympiadTag: React.FC<OlympiadTagProps> = React.memo(({ label, icon
         "flex w-max items-center gap-1 rounded-full bg-[#0C464F] px-1.5 py-1 text-[10px] text-white",
         "md:gap-1.5",
         "lg:px-2 lg:py-1.5 lg:text-sm",
-        "xl:px-3 xl:py-2 xl:text-base",
-        "2xl:gap-2 2xl:px-4 2xl:py-2 2xl:text-xl",
+        "xl:px-2.5 xl:py-2 xl:text-base",
+        "2xl:gap-2 2xl:px-3 2xl:py-2 2xl:text-lg",
       )}
     >
       {icon && (
@@ -25,7 +25,7 @@ export const OlympiadTag: React.FC<OlympiadTagProps> = React.memo(({ label, icon
             "h-4 w-4 rounded-full object-cover",
             "lg:h-5 lg:w-5",
             "xl:h-6 xl:w-6",
-            "2xl:h-8 2xl:w-8",
+            "2xl:h-7 2xl:w-7",
           )}
           loading="lazy"
         />

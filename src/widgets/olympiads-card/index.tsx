@@ -39,11 +39,11 @@ const OlympiadImage: React.FC<{
 
   const imageClasses = isMobile
     ? "h-[156px] w-[94px] object-cover"
-    : cn("h-[140px] w-[190px] lg:w-[240px] xl:h-[184px] xl:w-[316px] object-cover");
+    : cn("h-[140px] w-[190px] lg:w-[240px] xl:h-[160px] xl:w-[275px] object-cover");
 
   const containerClasses = isMobile
     ? "h-[156px] w-[94px] overflow-hidden rounded-2xl flex-shrink-0"
-    : cn("h-[140px] w-[190px] lg:w-[240px] xl:h-[184px] xl:w-[316px] overflow-hidden rounded-2xl shrink-0");
+    : cn("h-[140px] w-[190px] lg:w-[240px] xl:h-[160px] xl:w-[275px] overflow-hidden rounded-2xl shrink-0");
 
   return (
     <div className={containerClasses}>
@@ -118,13 +118,13 @@ const OlympiadDates: React.FC<{
 
     const textClasses = isMobile
       ? "text-[10px] leading-3 text-[--color-3]"
-      : cn("text-base leading-4 text-[--color-3]", "2xl:text-xl 2xl:leading-4");
+      : cn("text-base leading-4 text-[--color-3]", "2xl:text-lg 2xl:leading-4");
 
     const distanceClasses = isMobile
       ? "mt-1 text-nowrap text-[10px] leading-3 text-[--color-3]"
       : cn(
           "mt-2 text-nowrap text-sm leading-4 text-[--color-3]",
-          "2xl:mt-3 2xl:text-nowrap 2xl:text-xl 2xl:leading-4",
+          "2xl:text-lg 2xl:leading-5",
         );
 
     return (
@@ -167,7 +167,7 @@ const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
       ? "text-nowrap rounded-full border border-[--color-2] px-3 py-2.5 text-xs leading-4 text-[--color-3]"
       : cn(
           "text-nowrap rounded-full border border-[--color-2] px-3 py-2.5 text-xs leading-4 text-[--color-3]",
-          "2xl:px-5 2xl:py-3.5 2xl:text-xl 2xl:leading-5",
+          "2xl:px-4 2xl:py-3 2xl:text-lg 2xl:leading-5",
         );
 
     return (
@@ -198,7 +198,7 @@ const OlympiadActions: React.FC<{
     const { t } = useTranslation();
     const containerClasses = isMobile
       ? "flex items-center gap-3"
-      : cn("flex flex-wrap items-center justify-end gap-3", "2xl:gap-4");
+      : cn("flex flex-wrap items-center justify-end gap-3");
 
     if (olympiadIsPaid) {
       if (olympiad.is_done === 1) {
@@ -326,7 +326,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
             "hidden cursor-pointer items-center justify-between gap-2 rounded-3xl px-2 py-4",
             "bg-gradient-to-t from-[#082536] to-[#193C4D] shadow-[-1px_-1px_1px_-0px_#657E8A]",
             "md:flex md:gap-4 md:px-4 md:py-4",
-            "2xl:gap-6 2xl:px-6 2xl:py-6",
+            "2xl:gap-5 2xl:px-5 2xl:py-5",
             olympiad.status === "completed" && "pointer-events-none",
           )}
           onClick={handleCardClick}
@@ -334,12 +334,12 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
           <OlympiadImage olympiad={olympiad} lang={lang} />
 
           {/* Основна інформація */}
-          <div className="h-[140px] xl:h-[184px] flex-1">
+          <div className="h-[140px] xl:h-[160px] flex-1">
             <div className={cn("mb-2 flex h-full flex-col justify-between")}>
               <h3
                 className={cn(
-                  "line-clamp-1 text-xl font-bold leading-5 text-[--color-3]",
-                  "2xl:text-2xl 2xl:leading-6",
+                  "line-clamp-1 text-lg font-bold leading-5 text-[--color-3]",
+                  "2xl:text-xl 2xl:leading-6",
                 )}
               >
                 {olympiad.title[lang as keyof typeof olympiad.title]}
@@ -347,7 +347,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
               <p
                 className={cn(
                   "mb-2 line-clamp-3 text-sm leading-4 text-[--color-3]",
-                  "2xl:text-xl 2xl:leading-5",
+                  "2xl:text-lg 2xl:leading-5",
                 )}
               >
                 {
@@ -361,7 +361,7 @@ export const OlympiadsCard: React.FC<OlympiadsCardProps> = React.memo(
           </div>
 
           {/* Правий блок */}
-          <div className="flex h-[140px] xl:h-[184px] flex-shrink-0 flex-col items-end justify-between space-y-2">
+          <div className="flex h-[140px] xl:h-[160px] flex-shrink-0 flex-col items-end justify-between space-y-2">
             <OlympiadDates
               olympiad={olympiad}
               formattedStartDate={formattedStartDate}
