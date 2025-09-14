@@ -12,11 +12,13 @@ import { useDimensions } from "@/shared/hooks";
 import { useOlympiadsQuery } from "@/entities/olympiads/query";
 import { useTranslation } from "react-i18next";
 import { useCurrentUserQuery } from "@/entities/auth";
-import { debugMode } from "@/shared/config";
+import { useLanguage } from "@/widgets/olympiads-card/hooks";
 
 export const AllOlympiadsPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const lang = useLanguage();
 
   const { data: user } = useCurrentUserQuery();
 
@@ -27,12 +29,10 @@ export const AllOlympiadsPage: React.FC = () => {
   const [promotion, setPromotion] = useState<string>();
 
   const { data, error } = useOlympiadsQuery({
-    lang: user?.language,
+    lang,
     isInternational,
     promotion,
   });
-
-  console.log('debugMode:', debugMode);
 
   const handleFilterChange = (value?: string | number) => {
     switch (value) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getRanking } from "@/entities/ranking";
 import { Select, SelectOption } from "@/shared/ui/select";
@@ -12,8 +12,8 @@ import { useTranslation } from "react-i18next";
 import { useCurrentUserQuery } from "@/entities/auth";
 import rankingBg from "@/shared/assets/images/ranking-bg.png";
 import { useDimensions } from "@/shared/hooks";
-import { useMyOlympiadsQuery } from "@/entities/olympiads/query";
-import { getLang } from "@/shared/lib/getLang";
+import { useOlympiadsRankingListQuery } from "@/entities/olympiads/query";
+import { useLanguage } from "@/widgets/olympiads-card/hooks";
 import "./style.css";
 
 const levels: SelectOption[] = [
@@ -82,7 +82,7 @@ const getPlaceIcon = (place: number) => {
     case 1:
       return (
         <img
-          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          className="h-5 w-5 object-cover md:h-9 md:w-9"
           src={superIcon}
           alt=""
         />
@@ -90,7 +90,7 @@ const getPlaceIcon = (place: number) => {
     case 2:
       return (
         <img
-          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          className="h-5 w-5 object-cover md:h-9 md:w-9"
           src={firstIcon}
           alt=""
         />
@@ -98,7 +98,7 @@ const getPlaceIcon = (place: number) => {
     case 3:
       return (
         <img
-          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          className="h-5 w-5 object-cover md:h-9 md:w-9"
           src={secondIcon}
           alt=""
         />
@@ -106,14 +106,14 @@ const getPlaceIcon = (place: number) => {
     case 4:
       return (
         <img
-          className="h-5 w-5 object-cover md:h-11 md:w-11"
+          className="h-5 w-5 object-cover md:h-9 md:w-9"
           src={thirdIcon}
           alt=""
         />
       );
     default:
       return (
-        <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[--color-1] md:h-11 md:w-11">
+        <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[--color-1] md:h-9 md:w-9">
           {place}
         </div>
       );
@@ -121,8 +121,8 @@ const getPlaceIcon = (place: number) => {
 };
 
 export const RankingPage: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const lang = getLang(i18n.language);
+  const { t } = useTranslation();
+  const lang = useLanguage();
 
   const { isMobile, isTablet } = useDimensions();
 
@@ -134,7 +134,7 @@ export const RankingPage: React.FC = () => {
   const [selectedAge, setSelectedAge] = useState<string | number>();
   const [myselfId, setMyselfId] = useState<number>();
 
-  const { data: olympiadsData } = useMyOlympiadsQuery();
+  const { data: olympiadsData } = useOlympiadsRankingListQuery()
 
   const olympiads = useMemo(
     () =>
@@ -146,26 +146,9 @@ export const RankingPage: React.FC = () => {
     [olympiadsData],
   );
 
-  const olympiadIds = useMemo(
-    () => olympiadsData?.map((item) => item.id),
-    [olympiadsData],
-  );
-
   const [selectedOlympiadId, setSelectedOlympiadId] = useState<
     string | number | undefined
-  >(olympiadIds?.[0]);
-
-  useEffect(() => {
-    const paidOlympiad = olympiadsData?.find(
-      (item) => item.status === "completed",
-    );
-    if (paidOlympiad) {
-      setSelectedOlympiadId(paidOlympiad.id);
-      setSelectedAge(paidOlympiad?.subscribe?.age_tab);
-      setSelectedLevel(paidOlympiad.subscribe.stages_level);
-      setSelectedNum(paidOlympiad.subscribe.stages_num);
-    }
-  }, [olympiadsData]);
+  >();
 
   const { data, error } = useQuery({
     queryKey: [
@@ -216,7 +199,7 @@ export const RankingPage: React.FC = () => {
         />
       )}
       {/* Блок фільтрів */}
-      <div className="mb-6 flex flex-wrap items-center gap-4">
+      <div className="mb-4 flex flex-wrap items-center gap-4">
         {/* Найти себя */}
         <Button onClick={findMyself}>{t("ranking.findMyself")}</Button>
 
@@ -228,6 +211,7 @@ export const RankingPage: React.FC = () => {
             value={selectedOlympiadId}
             onChange={(value) => setSelectedOlympiadId(value)}
             targetClassName="md:max-w-[300px]"
+            dropdownClassName="md:max-w-prose"
           />
         )}
 
@@ -255,25 +239,25 @@ export const RankingPage: React.FC = () => {
       {/* Таблиця рейтингу */}
       <div className="overflow-x-auto">
         <div className="relative">
-          <table className="ranking-table w-full table-auto border-separate border-spacing-y-3 md:border-spacing-y-6">
+          <table className="ranking-table w-full table-auto border-separate border-spacing-y-3 md:border-spacing-y-4">
             <thead className="border-b border-gray-700 text-sm text-gray-400">
               <tr>
-                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.place")}
                 </th>
-                <th className="px-2.5 py-2.5 text-left text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                <th className="px-2.5 py-2.5 text-left text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.name")}
                 </th>
-                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.category")}
                 </th>
-                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.age")}
                 </th>
-                <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.rightAnswers")}
                 </th>
-                <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-6 md:py-6 md:text-base md:leading-4">
+                <th className="px-2.5 py-2.5 text-right text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.points")}
                 </th>
               </tr>
@@ -290,7 +274,7 @@ export const RankingPage: React.FC = () => {
                 >
                   <td
                     className={cn(
-                      "w-5 px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:w-12 md:px-6 md:py-6 md:text-lg md:leading-5",
+                      "w-5 px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:w-10 md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
                       "rounded-s-xl border-l border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-s-3xl",
                     )}
                   >
@@ -298,7 +282,7 @@ export const RankingPage: React.FC = () => {
                   </td>
                   <td
                     className={cn(
-                      "text-nowrap px-2.5 py-2.5 text-xs font-semibold leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "text-nowrap px-2.5 py-2.5 text-xs font-semibold leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
@@ -306,7 +290,7 @@ export const RankingPage: React.FC = () => {
                   </td>
                   <td
                     className={cn(
-                      "px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] capitalize",
                     )}
                   >
@@ -314,7 +298,7 @@ export const RankingPage: React.FC = () => {
                   </td>
                   <td
                     className={cn(
-                      "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
@@ -322,7 +306,7 @@ export const RankingPage: React.FC = () => {
                   </td>
                   <td
                     className={cn(
-                      "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
                       "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
                     )}
                   >
@@ -330,7 +314,7 @@ export const RankingPage: React.FC = () => {
                   </td>
                   <td
                     className={cn(
-                      "px-2.5 py-2.5 text-right text-xs font-normal leading-3 text-[--color-white] md:px-6 md:py-6 md:text-xl md:leading-5",
+                      "px-2.5 py-2.5 text-right text-xs font-normal leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
                       "rounded-e-xl border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D] md:rounded-e-3xl",
                     )}
                   >

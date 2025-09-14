@@ -33,13 +33,13 @@ const baseClasses = `
     lg:py-2.5
     xl:text-base
     xl:leading-4
-    xl:px-6
-    xl:py-3
+    xl:px-5
+    xl:py-2.5
     2xl:border-4
     2xl:text-xl
     2xl:leading-5
-    2xl:px-8
-    2xl:py-3
+    2xl:px-6
+    2xl:py-2.5
   `;
 
 const primaryVariant = `

@@ -39,8 +39,14 @@ const Option: FC<OptionProps> = ({ label, value, icon, onClick }) => {
           "focus:outline-none",
         )}
       >
-        {icon && <img src={icon} alt="" className="mr-2 h-5 w-5 rounded-full object-cover" />}
-        <span>{label ?? value}</span>
+        {icon && (
+          <img
+            src={icon}
+            alt=""
+            className="mr-2 h-5 w-5 rounded-full object-cover"
+          />
+        )}
+        <span className="text-left">{label ?? value}</span>
       </button>
     </li>
   );
@@ -88,6 +94,54 @@ export const Select: FC<SelectProps> = ({
     setIsOpen(false);
   };
 
+  const [pos, setPos] = useState({
+    x: 0,
+    y: 0,
+    height: 0,
+    width: 0,
+  });
+
+  const updatePosition = () => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setPos({
+        x: rect.x,
+        y: rect.y,
+        height: rect.height,
+        width: rect.width,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    updatePosition();
+
+    const element = containerRef.current;
+    let resizeObserver: ResizeObserver | null = null;
+
+    if (window.ResizeObserver) {
+      resizeObserver = new ResizeObserver(updatePosition);
+      resizeObserver.observe(element);
+    }
+
+    const handleWindowChange = () => {
+      updatePosition();
+    };
+
+    window.addEventListener("scroll", handleWindowChange, true);
+    window.addEventListener("resize", handleWindowChange);
+
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+      window.removeEventListener("scroll", handleWindowChange, true);
+      window.removeEventListener("resize", handleWindowChange);
+    };
+  }, []);
+
   return (
     <div className="relative inline-block text-left" ref={containerRef}>
       {/* Кнопка для відкриття списку */}
@@ -96,7 +150,7 @@ export const Select: FC<SelectProps> = ({
         onClick={toggleOpen}
         className={cn(
           "flex w-max items-center justify-between rounded-full border px-2 py-1 outline-none",
-          "text-sm leading-4 text-white transition-colors text-nowrap",
+          "text-nowrap text-sm leading-4 text-white transition-colors",
           "md:px-3 md:py-2 md:text-sm",
           "xl:px-4 xl:py-3 xl:text-base",
           variant === "primary" && "border-[#0C464F] hover:border-[#26F9FF]",
@@ -105,7 +159,7 @@ export const Select: FC<SelectProps> = ({
           targetClassName,
         )}
       >
-        <div className="flex items-center line-clamp-1">
+        <div className="line-clamp-1 flex items-center">
           {selectedOption?.icon && (
             <img
               src={selectedOption?.icon}
@@ -133,9 +187,14 @@ export const Select: FC<SelectProps> = ({
       {isOpen && (
         <div
           className={cn(
-            "absolute z-10 w-max rounded-3xl bg-[#0A2432] py-1 shadow-lg",
+            "fixed z-10 max-h-48 max-w-fit overflow-auto rounded-3xl bg-[#0A2432] py-1 shadow-lg",
             dropdownClassName,
           )}
+          style={{
+            top: pos.y + pos.height,
+            left: pos.x,
+            minWidth: pos.width,
+          }}
         >
           <ul>
             {options.map((option, index) => (

@@ -194,7 +194,7 @@ export const RegisterFormPage: React.FC = () => {
     mutationFn: registerForOlympiad,
     onSuccess: () => {
       // Після успішної реєстрації переходимо до сторінки з умовами
-      navigate("../terms");
+      navigate("../terms", { replace: true });
     },
     onError: (errorReg) => {
       try {
@@ -509,7 +509,7 @@ export const RegisterFormPage: React.FC = () => {
           </p>
         </div>
         <Button className="w-full text-base leading-4 md:w-auto" type="submit">
-          Підтвердити
+          {t("registerForm.submit")}
         </Button>
       </div>
     </form>
