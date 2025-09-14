@@ -40,7 +40,7 @@ export function CustomSelect<
   disabled = false,
   fullWidth = false,
   className,
-}: CustomSelectProps<TFormValues, TFieldName, TValue>) {
+}: Readonly<CustomSelectProps<TFormValues, TFieldName, TValue>>) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -84,8 +84,8 @@ export function CustomSelect<
         <img
           // className="pointer-events-none absolute right-4 top-5"
           className={cn(
-            "w-[18px] h-[18px] pointer-events-none transform transition-transform",
-            "xl:w-[20px] xl:h-[20px]",
+            "pointer-events-none h-[18px] w-[18px] transform transition-transform",
+            "xl:h-[20px] xl:w-[20px]",
             isOpen ? "rotate-180" : "rotate-0",
           )}
           src={chevronDown}
@@ -96,7 +96,7 @@ export function CustomSelect<
       {isOpen && !disabled && (
         <div
           className={cn(
-            "absolute z-10 w-max overflow-hidden rounded-xl md:rounded-3xl bg-[#0A2432] shadow-lg",
+            "absolute z-10 w-max overflow-hidden rounded-xl bg-[#0A2432] shadow-lg md:rounded-3xl",
             fullWidth && "w-full",
           )}
         >

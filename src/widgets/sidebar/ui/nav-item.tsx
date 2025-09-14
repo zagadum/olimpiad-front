@@ -25,19 +25,19 @@ export const NavItem: FC<NavItemProps> = ({
       onClick={onClick}
       className={({ isActive }) =>
         cn(
-          "flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-300 xl:px-4 xl:py-4",
+          "flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-300",
           "hover:bg-gradient-to-t hover:from-[#1F4258] hover:to-[#24566F] hover:shadow-[-3px_0px_0px_0px_#26F9FF]",
-          hideLabel && "w-[56px] xl:w-[64px] gap-0",
+          hideLabel && "w-[56px] gap-0",
           isActive &&
             "rounded-2xl bg-gradient-to-t from-[#1F4258] to-[#24566F] shadow-[-3px_0px_0px_0px_#26F9FF]",
           (isMobile || isTablet) && "px-3 py-3.5",
         )
       }
     >
-      <img src={icon} className="w-[24px] xl:w-[32px]" alt="" />
+      <img src={icon} className="w-[24px]" alt="" />
       <span
         className={cn(
-          "inline-block w-full overflow-hidden text-lg xl:text-xl transition-all duration-300",
+          "inline-block w-full overflow-hidden text-lg transition-all duration-300",
           hideLabel && "w-0",
         )}
       >

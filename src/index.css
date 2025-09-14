@@ -15,8 +15,8 @@
 
   --gradient-1: linear-gradient(180deg, #26f9ff 0%, #179599 100%);
 
-  --sidebar-expanded: 364px;
-  --sidebar-collapsed: 168px;
+  --sidebar-expanded: 304px;
+  --sidebar-collapsed: 118px;
 
   --sidebar-expanded-xs: 264px;
   --sidebar-collapsed-xs: 108px;

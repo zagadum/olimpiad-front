@@ -4,7 +4,7 @@ import {
   OlympiadsResponse,
   OlympiadsTaskListResponse,
   OlympiadsTaskResponse,
-  RunOlympiadResponse
+  RunOlympiadResponse,
 } from "./types";
 import { Params } from "@/shared/types";
 
@@ -77,6 +77,13 @@ export const getOlympiadAgreement = async (
   id: string,
   params?: Params,
 ): Promise<OlympiadsAgreementResponse> => {
-  const response = await axiosInstance.get(`/api/olympiads/agreement/${id}`, { params });
+  const response = await axiosInstance.get(`/api/olympiads/agreement/${id}`, {
+    params,
+  });
+  return response.data;
+};
+
+export const getOlympiadsRankingList = async (): Promise<OlympiadsResponse> => {
+  const response = await axiosInstance.get("/api/olympiads/ratting-list");
   return response.data;
 };

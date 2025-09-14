@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getOlympiads, getMyOlympiads } from "@/entities/olympiads/api";
+import {
+  getOlympiads,
+  getMyOlympiads,
+  getOlympiadsRankingList,
+} from "@/entities/olympiads/api";
 
 interface Props {
   lang?: string;
@@ -24,7 +28,7 @@ export const useOlympiadsQuery = ({
         promotion,
       }),
     select: (value) => value.data_list,
-    enabled: !!lang
+    enabled: !!lang,
   });
 };
 
@@ -36,9 +40,18 @@ export const useMyOlympiadsQuery = ({
   return useQuery({
     queryKey: [
       "olympiads",
+      "my",
       { language: lang, is_international: isInternational, promotion },
     ],
     queryFn: getMyOlympiads,
+    select: (value) => value.data_list,
+  });
+};
+
+export const useOlympiadsRankingListQuery = () => {
+  return useQuery({
+    queryKey: ["olympiads", "ratting-list"],
+    queryFn: getOlympiadsRankingList,
     select: (value) => value.data_list,
   });
 };

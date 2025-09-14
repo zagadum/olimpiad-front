@@ -40,18 +40,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={cn(
-        "flex w-[--sidebar-expanded-xs] flex-col justify-between rounded-r-[24px] bg-gradient-to-t from-[#04151D] to-[#193C4D] px-4 py-4 shadow-[1px_-1px_1px_-0px_#657E8A] xl:w-[--sidebar-expanded] xl:px-10 xl:py-12",
+        "flex w-[--sidebar-expanded-xs] flex-col justify-between rounded-r-[24px] bg-gradient-to-t from-[#04151D] to-[#193C4D] px-4 py-4 shadow-[1px_-1px_1px_-0px_#657E8A] xl:w-[--sidebar-expanded] xl:px-5 xl:py-8",
         small &&
           "ease-[cubic-bezier(0.7, -0.4, 0.4, 1.4)] absolute bottom-0 left-0 top-0 z-40 w-[--sidebar-collapsed-xs] transition-all duration-300 hover:w-[--sidebar-expanded-xs] xl:w-[--sidebar-collapsed] xl:hover:w-[--sidebar-expanded]",
       )}
     >
       {/* Логотип та назва */}
-      <div className="h-[80px] xl:h-[100px] 2xl:h-[110px]">
+      <div className="h-[80px] xl:h-[100px]">
         <img
           src={logoImage}
           alt="SpaceM Logo"
           className={cn(
-            "mx-auto h-[80px] transition-all duration-300 xl:h-[100px] 2xl:h-[110px]",
+            "mx-auto h-[80px] transition-all duration-300 xl:h-[100px]",
             small && !isHovered && "h-[64px]",
           )}
         />
@@ -60,7 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       {/* Меню */}
       <nav
         className={cn(
-          "flex flex-col gap-2 text-sm xl:gap-4",
+          "flex flex-col gap-2 text-sm xl:gap-3",
           small && !isHovered && "items-center",
         )}
       >
@@ -97,7 +97,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       <div className="flex flex-col gap-2">
         <Select
           targetClassName={cn(
-            "mt-4 lg:px-3 lg:py-2 lg:text-sm xl:px-4 xl:py-3 xl:text-base",
+            "mt-4 lg:px-3 lg:py-2 lg:text-sm xl:px-3 xl:py-2.5 xl:text-base",
             isHovered && "w-full",
           )}
           dropdownClassName="w-full"
@@ -115,7 +115,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
         />
         <NavLink
           to="https://space-memory.com/logout"
-          className={cn('flex items-center', !isHovered && 'justify-center')}
+          className={cn("flex items-center", !isHovered && "justify-center")}
         >
           <img className="p-4" src={logoutIcon} alt="Logout" />
           {(!small || isHovered) && <span>{t("sidebar.logout")}</span>}
