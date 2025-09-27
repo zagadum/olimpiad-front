@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -186,6 +186,8 @@ export const RegisterFormPage: React.FC = () => {
     }
   }, [user]);
 
+  const taskListEntries = useMemo(() => Object.entries(taskList), [taskList]);
+
   const onChangeStagesNum = (id: number) => () => {
     setValue("stages_num", id);
   };
@@ -286,7 +288,7 @@ export const RegisterFormPage: React.FC = () => {
               )}
             />
             {errors.surname && (
-              <span className="pl-4 text-[10px] font-light leading36 text-[--color-error] md:text-base md:leading-5">
+              <span className="leading36 pl-4 text-[10px] font-light text-[--color-error] md:text-base md:leading-5">
                 {t("registerForm.errors.fieldRequired")}
               </span>
             )}
@@ -464,8 +466,8 @@ export const RegisterFormPage: React.FC = () => {
         </div>
         {stagesLevelField && (
           <div className="mt-6 flex flex-wrap justify-start gap-3 md:mt-8 md:gap-4">
-            {Object.values(taskList).map((item, i) => {
-              const id = i + 1;
+            {taskListEntries.map(([key, item], i) => {
+              const id = Number(key);
               return (
                 <div
                   key={id}
