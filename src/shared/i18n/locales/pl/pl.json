@@ -137,11 +137,11 @@
     "olympiadLanguage": "Język olimpiady",
     "region": "Województwo",
     "stagesLevel": "Poziom trudności",
-    "warning": "Prosimy sprawdzić poprawność imienia i nazwiska — te dane zostaną użyte do wystawienia dyplomu.",
+    "warning": "Sprawdź zgłoszenie przed wysłaniem – dane będą wykorzystane do przygotowania dyplomu",
     "errors": {
       "fieldRequired": "*To pole jest wymagane"
     },
-    "submit": "Potwierdzam"
+    "submit": "Potwierdzać"
   },
   "termsPage": {
     "title": "Warunki olimpiady przed dokonaniem płatności",
