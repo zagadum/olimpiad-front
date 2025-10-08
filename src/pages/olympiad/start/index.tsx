@@ -53,9 +53,9 @@ export const StartPage: React.FC = () => {
   const [selectedShowGroups, setSelectedShowGroups] = useState<StateOption[]>(
     [],
   );
-  const [selectedCategoryId, setSelectedCategoryId] = useState<
-    StateOption[]
-  >([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<StateOption[]>(
+    [],
+  );
 
   const { olympiadId } = useParams<{ olympiadId: string }>();
 
@@ -127,7 +127,7 @@ export const StartPage: React.FC = () => {
     <div
       className={cn(
         "mt-8 rounded-xl bg-gradient-to-t from-[#082536] to-[#193C4D] px-4 py-8 shadow-[-1px_-1px_1px_-0px_#657E8A]",
-        "md:rounded-2xl md:px-6 md:py-6 md:mt-6",
+        "md:mt-6 md:rounded-2xl md:px-6 md:py-6",
       )}
     >
       <div className="mb-6 md:mb-8">
@@ -181,18 +181,20 @@ export const StartPage: React.FC = () => {
                       <p className="text-nowrap text-sm lg:text-base">
                         {t("olympiadTraining.memorizeIn")}
                         <span className="text-nowrap text-[#E79600]">
-                          {Math.round(item?.params_json.interval / 60)}  {t("olympiadTraining.min")}
+                          {Math.round(item?.params_json.interval / 60)}{" "}
+                          {t("olympiadTraining.min")}
                         </span>
                       </p>
                       <p className="text-nowrap text-sm lg:text-base">
                         {t("olympiadTraining.recallIn")}
                         <span className="text-nowrap text-[#E79600]">
-                          {Math.round(item?.params_json.interval_memory / 60)}  {t("olympiadTraining.min")}
+                          {Math.round(item?.params_json.interval_memory / 60)}{" "}
+                          {t("olympiadTraining.min")}
                         </span>
                       </p>
                     </td>
                     <td className="max-w-full space-x-5 whitespace-nowrap bg-[--color-5] px-2.5 py-4 text-right lg:py-6">
-                      {(item?.table_name === "olympiad_number_letter") && (
+                      {item?.table_name === "olympiad_number_letter" && (
                         <Select
                           variant="secondary"
                           value={
@@ -305,7 +307,9 @@ export const StartPage: React.FC = () => {
                           language: lang,
                         })}
                       >
-                        {t("olympiadStart.start")}
+                        {olympiad?.is_done === 1
+                          ? t("olympiadStart.done")
+                          : t("olympiadStart.start")}
                       </Button>
                     </td>
                   </tr>
