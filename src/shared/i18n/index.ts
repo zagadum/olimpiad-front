@@ -4,7 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 // Імпортуємо файли перекладів
 // import enTranslation from './locales/en/translation.json';
-import ukTranslation from "@/shared/i18n/locales/uk/translation.json";
+import ukTranslation from "./locales/uk/translation.json";
 import plTranslation from "./locales/pl/translation.json";
 
 i18n
