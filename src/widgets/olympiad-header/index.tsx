@@ -7,6 +7,7 @@ import { cn } from "@/shared/lib/cn";
 import { formatDate } from "@/shared/lib/formatDate";
 import { calcDays } from "@/shared/lib/calcDays";
 import { useLanguage } from "@/widgets/olympiads-card/hooks";
+import { useNavigate } from "react-router-dom";
 
 type OlympiadsCardProps = {
   olympiad?: Olympiad;
@@ -15,6 +16,7 @@ type OlympiadsCardProps = {
 export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
   const { t } = useTranslation();
   const lang = useLanguage();
+  const navigate = useNavigate();
 
   const olympiadIsPaid = olympiad?.payment_status === "ok" || olympiad?.is_pay === 1
 
@@ -25,7 +27,8 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
   const endDateDistance = calcDays(olympiad?.end_date ?? "", lang);
 
   const onGoBack = () => {
-    window.history.back();
+    // window.history.back();
+    navigate('..');
   };
 
   return (
