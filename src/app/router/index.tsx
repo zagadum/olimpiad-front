@@ -18,6 +18,7 @@ import { OlympiadsLayout } from "@/app/layouts/olympiads";
 import { MainLayout } from "@/app/layouts/main";
 import { OlympiadLayout } from "@/app/layouts/olympiad";
 import { StartPage } from "@/pages/olympiad/start";
+import { PaymentCreatePage } from "@/pages/olympiad/payment-status/create.tsx";
 
 export function AppRouter() {
   return (
@@ -39,6 +40,7 @@ export function AppRouter() {
           <Route index element={<OverviewPage />} />
           <Route path="register" element={<RegisterFormPage />} />
           <Route path="terms" element={<TermsPage />} />
+          <Route path="payment" element={<PaymentCreatePage />} />
           <Route path="payment-status" element={<PaymentStatusPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="payment-fail" element={<PaymentFailPage />} />

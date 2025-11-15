@@ -1,4 +1,7 @@
+import i18n from "@/shared/i18n";
 import { axiosInstance } from "@/shared/api/axiosInstance";
+import { PaymentCreateRequest, PaymentCreateResponse } from "@/entities/payments/types";
+
 import {
   OlympiadsAgreementResponse,
   OlympiadsResponse,
@@ -85,5 +88,17 @@ export const getOlympiadAgreement = async (
 
 export const getOlympiadsRankingList = async (): Promise<OlympiadsResponse> => {
   const response = await axiosInstance.get("/api/olympiads/ratting-list");
+  return response.data;
+};
+
+
+export const createPayment = async (
+  data: PaymentCreateRequest,
+): Promise<PaymentCreateResponse> => {
+  const response = await axiosInstance.post("/api/payment/create", data, {
+    headers: {
+      "Accept-Language": data.lang || i18n.language,
+    },
+  });
   return response.data;
 };
