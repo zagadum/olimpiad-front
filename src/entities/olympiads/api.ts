@@ -95,7 +95,7 @@ export const getOlympiadsRankingList = async (): Promise<OlympiadsResponse> => {
 export const createPayment = async (
   data: PaymentCreateRequest,
 ): Promise<PaymentCreateResponse> => {
-  const response = await axiosInstance.post("/api/payment/create", data, {
+    const response = await axiosInstance.post(`/api/olympiads/${data.id}/payment`, data, {
     headers: {
       "Accept-Language": data.lang || i18n.language,
     },

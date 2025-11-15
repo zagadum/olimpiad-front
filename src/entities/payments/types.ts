@@ -11,8 +11,7 @@ export interface PaymentFormInfo {
 }
 
 export interface PaymentCreateRequest {
-  olympiadId: string;
-  studentId: string;
+  id: string;
   lang?: string;
 }
 
