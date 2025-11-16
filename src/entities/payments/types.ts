@@ -18,6 +18,7 @@ export interface PaymentCreateRequest {
 export type PaymentStatus = "created" | "error" | "pending" | "paid";
 
 export interface PaymentCreateResponse {
+  data_list: any;
   id: string;
   amount: number;
   currency: string;

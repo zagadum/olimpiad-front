@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/cn";
 import { useTranslation } from "react-i18next";
@@ -8,40 +8,44 @@ import i18n from "@/shared/i18n";
 import { createPayment } from "@/entities/payments/api";
 import { PaymentCreateResponse, PaymentFormField } from "@/entities/payments/types";
 
-function useStudentId(): string {
-  return "current-student-id";
-}
+
+
 
 export const PaymentCreatePage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { id: olympiadId } = useParams<{ id: string }>();
-  const studentId = useStudentId();
+  const { olympiadId } = useParams<{ olympiadId: string }>();
+    //const lang = getLang(i18n.language);
+    const { data } = useQuery({
+        queryKey: ["olympiad", olympiadId,'payment'],
+
+        queryFn: () => createPayment({ id: olympiadId!, lang: i18n.language }),
+        select: (response) => response.data_list,
+        enabled: !!olympiadId,
+    });
+
   const formRef = React.useRef<HTMLFormElement | null>(null);
 
-  const {
+  // @ts-ignore
+    const {
     mutate,
-    data,
+
     isPending,
     isSuccess,
     isError,
     error,
     reset,
   } = useMutation<PaymentCreateResponse, Error>({
-    mutationKey: ["payment", olympiadId, studentId],
+    mutationKey: ["payment", olympiadId],
     mutationFn: () =>
-      createPayment({
-        olympiadId: olympiadId!,
-        studentId,
-        lang: i18n.language,
-      }),
+      createPayment({ id: olympiadId!, lang: i18n.language }),
   });
 
   React.useEffect(() => {
-    if (olympiadId && studentId) {
+    if (olympiadId ) {
       mutate();
     }
-  }, [olympiadId, studentId, mutate]);
+  }, [olympiadId,  mutate]);
 
   const handlePay = () => {
     if (data?.form_info && formRef.current) {
