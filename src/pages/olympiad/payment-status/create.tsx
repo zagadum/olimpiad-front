@@ -78,9 +78,9 @@ export const PaymentCreatePage: React.FC = () => {
         {isError && (
           <div className="space-y-4">
             <p className="text-red-400 text-sm">
-              {t("paymentStatus.error.loading", "Ошибка создания платежа.")}
+              {t("data.message", "Ошибка создания платежа.")}
             </p>
-            <p className="text-xs opacity-70">{paymentStatus.message}</p>
+            <p className="text-xs opacity-70">{error.message}</p>
             <div className="flex gap-4">
               <Button onClick={() => mutate()} className="flex-1">
                 {t("paymentStatus.retry", "Повторить")}
