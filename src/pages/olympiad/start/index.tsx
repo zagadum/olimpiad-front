@@ -307,7 +307,7 @@ export const StartPage: React.FC = () => {
                           language: lang,
                         })}
                       >
-                        {olympiad?.is_done === 1
+                        {olympiad?.is_done === 1 || item.btn_allow !== 1
                           ? t("olympiadStart.done")
                           : t("olympiadStart.start")}
                       </Button>
