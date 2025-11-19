@@ -9,11 +9,16 @@ import { OverviewPage } from "@/pages/olympiad/overview";
 import { RegisterFormPage } from "@/pages/olympiad/register-form";
 import { TermsPage } from "@/pages/olympiad/terms-page";
 import { PaymentStatusPage } from "@/pages/olympiad/payment-status";
+import { PaymentSuccessPage } from "@/pages/olympiad/payment-status/success";
+
+import { PaymentFailPage } from "@/pages/olympiad/payment-status/fail";
+
 import { TrainingPage } from "@/pages/olympiad/training";
 import { OlympiadsLayout } from "@/app/layouts/olympiads";
 import { MainLayout } from "@/app/layouts/main";
 import { OlympiadLayout } from "@/app/layouts/olympiad";
 import { StartPage } from "@/pages/olympiad/start";
+import { PaymentCreatePage } from "@/pages/olympiad/payment-status/create.tsx";
 
 export function AppRouter() {
   return (
@@ -35,7 +40,10 @@ export function AppRouter() {
           <Route index element={<OverviewPage />} />
           <Route path="register" element={<RegisterFormPage />} />
           <Route path="terms" element={<TermsPage />} />
+          <Route path="payment" element={<PaymentCreatePage />} />
           <Route path="payment-status" element={<PaymentStatusPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
+          <Route path="payment-fail" element={<PaymentFailPage />} />
           <Route path="training" element={<TrainingPage />} />
           <Route path="start" element={<StartPage />} />
         </Route>

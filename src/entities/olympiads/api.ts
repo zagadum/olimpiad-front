@@ -1,4 +1,7 @@
+
 import { axiosInstance } from "@/shared/api/axiosInstance";
+
+
 import {
   OlympiadsAgreementResponse,
   OlympiadsResponse,
@@ -86,4 +89,16 @@ export const getOlympiadAgreement = async (
 export const getOlympiadsRankingList = async (): Promise<OlympiadsResponse> => {
   const response = await axiosInstance.get("/api/olympiads/ratting-list");
   return response.data;
+};
+
+
+
+export const createPayment = async (
+    id: string,
+    params?: Params,
+): Promise<OlympiadsAgreementResponse> => {
+    const response = await axiosInstance.get(`/api/olympiads/${id}/payment`, {
+        params,
+    });
+    return response.data;
 };
