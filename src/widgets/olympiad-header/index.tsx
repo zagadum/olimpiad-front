@@ -30,6 +30,13 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
     // window.history.back();
     navigate('..');
   };
+    const price = olympiad?.is_international
+      ? olympiad?.international_price
+      : olympiad?.local_price;
+
+    const currency = olympiad?.is_international
+      ? olympiad.international_currency
+      : olympiad?.local_currency;
 
   return (
     <div
@@ -99,7 +106,9 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
                 "xl:mr-8 xl:px-5 xl:py-3 xl:text-lg xl:leading-4",
               )}
             >
-              {olympiad?.local_price} {olympiad?.local_currency}
+ 
+          {price} {currency}
+  
             </span>
           )}
           <span
