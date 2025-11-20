@@ -155,13 +155,30 @@ const OlympiadDates: React.FC<{
 // Компонент для відображення ціни
 const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
   React.memo(({ olympiad, isMobile = false }) => {
-    const price = olympiad.is_international
-      ? olympiad.international_price
-      : olympiad.local_price;
+    let price = "";
+    if (olympiad.country_id === 3) {
+      price = olympiad.international_price;
+    } else if (olympiad.is_international) {
+      price = olympiad.international_price;
+    } else {
+      price = olympiad.local_price;
+    }
 
-    const currency = olympiad.is_international
-      ? olympiad.international_currency
-      : olympiad.local_currency;
+    let currency = "";
+    if (olympiad.country_id === 3) {
+      currency = olympiad.international_currency;
+    } else if (olympiad.is_international) {
+      currency = olympiad.international_currency;
+    } else {
+      currency= olympiad.local_currency;
+    }
+
+ 
+
+      
+
+      
+    console.log(olympiad);
 
     const priceClasses = isMobile
       ? "text-nowrap rounded-full border border-[--color-2] px-3 py-2.5 text-xs leading-4 text-[--color-3]"
@@ -172,7 +189,7 @@ const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
 
     return (
       <span className={priceClasses}>
-        {price} {currency}
+       {price} {currency}
       </span>
     );
   });

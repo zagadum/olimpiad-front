@@ -30,13 +30,27 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
     // window.history.back();
     navigate('..');
   };
-    const price = olympiad?.is_international
-      ? olympiad?.international_price
-      : olympiad?.local_price;
+ 
 
-    const currency = olympiad?.is_international
-      ? olympiad.international_currency
-      : olympiad?.local_currency;
+
+    let price = "";
+    if (olympiad?.country_id === 3) {
+      price = olympiad.international_price;
+    } else if (olympiad?.is_international) {
+      price = olympiad.international_price;
+    } else {
+      price = olympiad?.local_price;
+    }
+
+    let currency = "";
+    if (olympiad?.country_id === 3) {
+      currency = olympiad.international_currency;
+    } else if (olympiad?.is_international) {
+      currency = olympiad?.international_currency;
+    } else {
+      currency= olympiad?.local_currency;
+    }
+
 
   return (
     <div
