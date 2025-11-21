@@ -33,7 +33,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
  
 
 
-    let price = "";
+    let price;
     if (olympiad?.country_id === 3) {
       price = olympiad.international_price;
     } else if (olympiad?.is_international) {
@@ -42,7 +42,7 @@ export const OlympiadHeader: React.FC<OlympiadsCardProps> = ({ olympiad }) => {
       price = olympiad?.local_price;
     }
 
-    let currency = "";
+    let currency;
     if (olympiad?.country_id === 3) {
       currency = olympiad.international_currency;
     } else if (olympiad?.is_international) {

@@ -155,7 +155,7 @@ const OlympiadDates: React.FC<{
 // Компонент для відображення ціни
 const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
   React.memo(({ olympiad, isMobile = false }) => {
-    let price = "";
+    let price;
     if (olympiad.country_id === 3) {
       price = olympiad.international_price;
     } else if (olympiad.is_international) {
@@ -164,7 +164,7 @@ const OlympiadPrice: React.FC<{ olympiad: Olympiad; isMobile?: boolean }> =
       price = olympiad.local_price;
     }
 
-    let currency = "";
+    let currency;
     if (olympiad.country_id === 3) {
       currency = olympiad.international_currency;
     } else if (olympiad.is_international) {
