@@ -23,7 +23,7 @@ export const PaymentFailPage: React.FC = () => {
           {t("paymentStatus.error.title")}
         </h2>
         <div
-          className="rounded-xl bg-[--color-5] pt-8 pb-8 p-4 text-sm text-[--color-placeholder] md:rounded-3xl md:text-base  min-h-[50vh]"
+          className="rounded-xl bg-[--color-5] pt-6 pb-6 p-4 text-sm text-[--color-placeholder] md:rounded-3xl md:text-base  min-h-[40vh]"
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </div>
@@ -38,7 +38,7 @@ export const PaymentFailPage: React.FC = () => {
           className="w-[30%] text-base lg:px-8 lg:py-3"
           onClick={() => window.location.reload()}
         >
-          {t("paymentStatus.retry")}
+          {t("common.retry")}
         </Button>
       </div>
     </div>

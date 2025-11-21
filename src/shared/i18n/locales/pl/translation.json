@@ -162,5 +162,9 @@
       "title": "⏳ Przetwarzanie płatności…"
     },
     "goToOlympiad": "Przejdź do olimpiady"
+  },
+  "common": {
+    "back": "z powrotem",
+    "retry": "spróbuj ponownie"
   }
 }
