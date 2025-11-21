@@ -146,6 +146,7 @@ export const Select: FC<SelectProps> = ({
     <div className="relative inline-block text-left" ref={containerRef}>
       {/* Кнопка для відкриття списку */}
       <button
+      style={{ display:'none' }}
         type="button"
         onClick={toggleOpen}
         className={cn(
@@ -159,7 +160,7 @@ export const Select: FC<SelectProps> = ({
           targetClassName,
         )}
       >
-        <div className="line-clamp-1 flex items-center">
+        <div className="line-clamp-1 flex items-center" >
           {selectedOption?.icon && (
             <img
               src={selectedOption?.icon}
