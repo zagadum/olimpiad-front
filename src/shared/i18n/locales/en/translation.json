@@ -52,5 +52,9 @@
     "startTraining": "Training",
     "start": "Start",
     "participate": "Participate"
-  }
+  },
+  "common": {
+    "back": "back",
+    "retry": "retry"
+  }  
 }
