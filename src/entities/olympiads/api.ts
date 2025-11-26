@@ -8,6 +8,7 @@ import {
   OlympiadsTaskListResponse,
   OlympiadsTaskResponse,
   RunOlympiadResponse,
+  OlympiadParamsAllResponse,
 } from "./types";
 import { Params } from "@/shared/types";
 
@@ -62,6 +63,15 @@ export const getOlympiadsTaskList = async (
   const response = await axiosInstance.post(
     "/api/olympiads/get-task-list",
     data,
+  );
+  return response.data;
+};
+
+export const getOlympiadParamsAll = async (
+  id: string,
+): Promise<OlympiadParamsAllResponse> => {
+  const response = await axiosInstance.post(
+    `/api/olympiads/${id}/get-params-all`,
   );
   return response.data;
 };

@@ -7,7 +7,7 @@ import logoutIcon from "@/shared/assets/icons/logout.svg";
 import { cn } from "@/shared/lib/cn.ts";
 import { Button } from "@/shared/ui/button";
 import { NavItem } from "./nav-item";
-import { langOptions } from "@/shared/lib/constants";
+import { langOptions, platformUrl } from "@/shared/lib/constants";
 import { Select } from "@/shared/ui/select";
 import { getLang } from "@/shared/lib/getLang.ts";
 import { getNavItems } from "@/shared/lib/getNavItems.ts";
@@ -74,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           />
         ))}
         <NavLink
-          to="https://space-memory.com/games/platform"
+          to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/games/platform`}
           className="mt-4 flex w-full justify-center xl:mt-6"
         >
           <Button
@@ -114,7 +114,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
           }}
         />
         <NavLink
-          to="https://space-memory.com/logout"
+          to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/logout`}
           className={cn("flex items-center", !isHovered && "justify-center")}
         >
           <img className="p-4" src={logoutIcon} alt="Logout" />
