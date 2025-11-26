@@ -182,6 +182,22 @@ export interface OlympiadsTaskListResponse {
   params: Params;
 }
 
+export interface OlympiadParamsAll {
+  age_tab: string[];
+  stages_level: string[];
+  stages_num: number[];
+  all: {
+    age_tab: string;
+    stages_level: string;
+    stages_num: number;
+  }[];
+}
+
+export interface OlympiadParamsAllResponse {
+  data_list: OlympiadParamsAll;
+  params: Params;
+}
+
 export interface RunOlympiadResponse {
   data_list: {
     success: boolean;

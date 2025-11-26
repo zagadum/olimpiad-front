@@ -3,7 +3,11 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { getOlympiadsTask, registerForOlympiad } from "@/entities/olympiads";
+import {
+  // getOlympiadParamsAll,
+  getOlympiadsTask,
+  registerForOlympiad,
+} from "@/entities/olympiads";
 import { Button } from "@/shared/ui/button";
 import warningIcon from "@/shared/assets/icons/error-rounded.svg";
 import { cn } from "@/shared/lib/cn";
@@ -163,6 +167,21 @@ export const RegisterFormPage: React.FC = () => {
     enabled: !!(olympiadId && stagesLevelField),
     select: (response) => response.data_list,
   });
+
+  // const { data: olympiadParamsAll = [] } = useQuery({
+  //   queryKey: [
+  //     "olympiads",
+  //     olympiadId,
+  //     "get-task",
+  //     "get-params-all",
+  //     {
+  //       language: lang,
+  //     },
+  //   ],
+  //   queryFn: () => getOlympiadParamsAll(olympiadId!),
+  //   enabled: !!olympiadId,
+  //   select: (response) => response.data_list,
+  // });
 
   useEffect(() => {
     setValue("region_id", 0);

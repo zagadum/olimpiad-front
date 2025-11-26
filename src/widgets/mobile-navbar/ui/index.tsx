@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/shared/ui/button";
 import logoutIcon from "@/shared/assets/icons/logout.svg";
 import { useTranslation } from "react-i18next";
-import { langOptions } from "@/shared/lib/constants";
+import { langOptions, platformUrl } from "@/shared/lib/constants";
 import { Select } from "@/shared/ui/select";
 import { getLang } from "@/shared/lib/getLang";
 import { getNavItems } from "@/shared/lib/getNavItems";
@@ -51,7 +51,7 @@ export const MobileNavbar: React.FC = () => {
                 onClick={toggleOpen}
               />
             ))}
-            <NavLink to="/my-space" className="mt-6 w-full">
+            <NavLink to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/games/platform`} className="mt-6 w-full">
               <Button className="h-[52px] w-full text-base">
                 {t("sidebar.mySpace")}
               </Button>
@@ -69,10 +69,13 @@ export const MobileNavbar: React.FC = () => {
               }}
             />
           </nav>
-          <div className="flex items-center gap-4">
+          <NavLink
+            to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/logout`}
+            className="flex items-center gap-4"
+          >
             <img className="p-4" src={logoutIcon} alt="Logout" />
             <span>{t("sidebar.logout")}</span>
-          </div>
+          </NavLink>
         </div>
       </div>
     </div>
