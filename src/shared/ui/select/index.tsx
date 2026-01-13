@@ -86,6 +86,9 @@ export const Select: FC<SelectProps> = ({
   }, []);
 
   const toggleOpen = () => {
+    if (!isOpen) {
+      updatePosition();
+    }
     setIsOpen((prev) => !prev);
   };
 
@@ -146,7 +149,6 @@ export const Select: FC<SelectProps> = ({
     <div className="relative inline-block text-left" ref={containerRef}>
       {/* Кнопка для відкриття списку */}
       <button
-      style={{ display:'none' }}
         type="button"
         onClick={toggleOpen}
         className={cn(
