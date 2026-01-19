@@ -163,6 +163,9 @@
     "pay": "Pay"
   },
   "paymentStatus": {
+    "created": {
+      "title": "🔄 Payment created"
+    },
     "success": {
       "title": "✅ Płatność zakończona pomyślnie!"
     },

@@ -162,6 +162,9 @@
     "pay": "Zapłać"
   },
   "paymentStatus": {
+    "created": {
+      "title": "🔄 Płatność utworzona"
+    },
     "success": {
       "title": "✅ Płatność zakończona pomyślnie!"
     },
