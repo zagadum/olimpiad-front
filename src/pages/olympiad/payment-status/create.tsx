@@ -66,7 +66,7 @@ export const PaymentCreatePage: React.FC = () => {
         )}
       >
         <h2 className="mb-6 text-xl font-bold md:text-3xl">
-          {t("paymentStatus.create.title", "Оплата")}
+          {t("paymentStatus.created.title", "Оплата")}
         </h2>
 
         {isPending && (
