@@ -68,7 +68,7 @@
     "country": {
       "pl": "Polska",
       "uk": "Українська",
-   "en": "English",
+      "en": "English"
     },
     "promotion": {
       "olympiad": "Olimpiada SpaceM",
@@ -83,7 +83,6 @@
     "waitResults": "Waiting for results",
     "inactive": "Olympics inactive"
   },
-,
   "olympiadHeader": {
     "startIn": "Start za ",
     "endIn": "Koniec za "
