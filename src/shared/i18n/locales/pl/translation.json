@@ -67,7 +67,8 @@
     "international": "Międzynarodowa",
     "country": {
       "pl": "Polska",
-      "uk": "Ukraińska"
+      "uk": "Ukraińska",
+   "en": "English",
     },
     "promotion": {
       "olympiad": "Olimpiada SpaceM",
@@ -150,6 +151,15 @@
     "agree": "Przeczytałem i akceptuję warunki olimpiady",
     "required": "*Akceptacja warunków olimpiady jest obowiązkowa",
     "accept": "Akceptuj"
+  },
+  "payment": {
+    "amount": "Kwota",
+    "currency": "Waluta",
+    "form": {
+      "notice": "Dokonując płatności akceptuję warunki umowy o świadczenie usług"
+    },
+    "notice": "Kliknij \"Zapłać\", aby przejść do płatności.",
+    "pay": "Zapłać"
   },
   "paymentStatus": {
     "success": {

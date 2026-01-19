@@ -1,4 +1,8 @@
 {
+  "global": {
+    "loading": "Landing...",
+    "fetchError": "Data loading error"
+  },
   "home": {
     "welcome": "Welcome to SpaceM!",
     "description": "Welcome to the Olympiads participation app. Register and discover new opportunities.",
@@ -24,7 +28,18 @@
     "joinIdea": "Join the idea"
   },
   "rating": {
-    "title": "Rating"
+    "title": "Rating",
+ "findMyself": "Find yourself",
+    "olympiadPlaceholder": "Olympiad",
+    "levelPlaceholder": "Category",
+    "agePlaceholder": "Age",
+    "empty": "No results for the selected parameters",
+    "place": "Place",
+    "name": "Name",
+    "category": "Category",
+    "age": "Age",
+    "rightAnswers": "PCorrect answers",
+    "points": "Points"
   },
   "news": {
     "title": "News",
@@ -32,26 +47,133 @@
     "item2": "Portal usage rules have been updated — please review!",
     "item3": "New trainings are available in the 'Train Yourself' section."
   },
+  "olympiadTypes": {
+    "all": "All",
+    "international": "International",
+    "ukrainian": "Ukrainian",
+    "polish": "Polska",
+    "olympiad": "Olimpiada SpaceM",
+    "ads": "Announcements"
+  },
   "olympiadsNavbar": {
     "item1": "All olympiads",
     "item2": "My olympiads",
     "item3": "Rating"
   },
+  "allOlympiads": {
+    "emptyData": "You don`t have any active olympiads"
+  },
   "olympiadCard": {
     "international": "International",
     "country": {
       "pl": "Polska",
-      "uk": "Українська"
+      "uk": "Українська",
+   "en": "English",
     },
     "promotion": {
-      "olympiad": "",
-      "ads": ""
+      "olympiad": "Olimpiada SpaceM",
+      "ads": "Ogłoszenia"
     },
     "startIn": "Start in ",
     "endIn": "End in ",
     "startTraining": "Training",
     "start": "Start",
-    "participate": "Participate"
+    "participate": "Participate",
+    "finished": "Completed",
+    "waitResults": "Waiting for results",
+    "inactive": "Olympics inactive"
+  },
+,
+  "olympiadHeader": {
+    "startIn": "Start za ",
+    "endIn": "Koniec za "
+  },
+  "olympiadOverview": {
+    "title": "Opis olimpiady",
+    "startIn": "Start za ",
+    "endIn": "Koniec za ",
+    "startTraining": "Trenuj",
+    "start": "Rozpocznij",
+    "participate": "Weź udział"
+  },
+  "myOlympiads": {
+    "empty": "Na razie nie masz olimpiad"
+  },
+
+  "olympiadParams": {
+    "capacity": "Capacity",
+    "categoryBinary": "Display",
+    "showGroups": "Grouping",
+    "groupCards": "Decks",
+    "no_split": "no split"
+  },
+  "olympiadTraining": {
+    "title": "Training",
+    "category": "Category:",
+    "startTraining": "Start training",
+    "done": "Completed",
+    "memorizeIn": "Memorize in: ",
+    "recallIn": "Recall in: ",
+    "quantity": "Quantity: ",
+    "decks": "Decks: ",
+    "min": "min"
+  },
+  "olympiadStart": {
+    "title": "Olympiad",
+    "category": "Category:",
+    "start": "Start",
+    "done": "Completed",
+    "memorizeIn": "Memorize in:",
+    "recallIn": "Recall in:",
+    "quantity": "Quantity:",
+    "decks": "Decks: ",
+    "min": "min"
+  },
+  "registerForm": {
+    "title": "Fill out the form",
+    "lastname": "First name",
+    "surname": "Last name",
+    "country": "Country",
+    "city": "City",
+    "schoolName": "School name",
+    "email": "Email",
+    "phone": "Phone number",
+    "age": "Age",
+    "olympiadLanguage": "Olympiad language",
+    "region": "Region",
+    "stagesLevel": "Difficulty level",
+    "warning": "Please check the correctness of the first and last name — this data will be used to issue the diploma.",
+    "errors": {
+      "fieldRequired": "*This field is required"
+    },
+    "submit": "I confirm"
+  },
+  "termsPage": {
+    "title": "Olympiad terms before making payment",
+    "agree": "I have read and accept the terms of the Olympiad",
+    "required": "*Acceptance of the Olympiad terms is required",
+    "accept": "Accept"
+  },
+  "payment": {
+    "amount": "Amount",
+    "currency": "Currency",
+    "form": {
+      "notice": "By making the payment, I agree to the terms of the service agreement"
+    },
+    "notice": "Click \"Pay\" to proceed to payment.",
+    "pay": "Pay"
+  },
+  "paymentStatus": {
+    "success": {
+      "title": "✅ Płatność zakończona pomyślnie!"
+    },
+    "error": {
+      "title": "❌ Płatność nie powiodła się"
+    },
+    "pending": {
+      "title": "⏳ Przetwarzanie płatności…"
+    },
+    "goToOlympiad": "Przejdź do olimpiady"
   },
   "common": {
     "back": "back",
