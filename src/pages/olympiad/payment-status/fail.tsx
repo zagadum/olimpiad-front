@@ -3,14 +3,14 @@ import React from "react";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/cn";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { failDescription, useLocalizedDescription } from "../payment-status/descriptions";
 
 export const PaymentFailPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const description = useLocalizedDescription(failDescription);
-
+    const { olympiadId } = useParams<{ olympiadId: string }>();
   return (
     <div className="flex w-full flex-col items-center gap-2">
       <div
@@ -36,7 +36,13 @@ export const PaymentFailPage: React.FC = () => {
         </Button>
         <Button
           className="w-[30%] text-base lg:px-8 lg:py-3"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+              if (olympiadId) {
+                  navigate(`/olympiads/${olympiadId}/payment`);
+              } else {
+                  window.location.reload();
+              }
+          }}
         >
           {t("common.retry")}
         </Button>
