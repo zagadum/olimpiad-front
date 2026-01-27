@@ -10,8 +10,10 @@ import { PaymentCreateResponse, PaymentFormField } from "@/entities/payments/typ
 
 
 // Иконки оплаты из папки images/pay
-import visa from "@/images/pay/visa.svg";
-import imoje from "@/images/pay/imoje.svg";
+import visa from "@/shared/assets/images/pay/visa.svg";
+import imoje from "@/shared/assets/images/pay/imoje.svg";
+
+
 //import mastercard from "@/images/pay/mastercard.svg";
 //import applepay from "@/images/pay/apple-pay.svg";
 //import googlepay from "@/images/pay/google-pay.svg";
