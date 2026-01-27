@@ -156,7 +156,8 @@
     "amount": "Kwota",
     "currency": "Waluta",
     "form": {
-      "notice": "Dokonując płatności akceptuję warunki umowy o świadczenie usług"
+      "notice": "Dokonując płatności akceptuję warunki umowy o świadczenie usług.<br>Uwaga: podczas płatności może zostać zastosowana podwójna konwersja walut, ponieważ akceptujemy płatności w PLN/EUR.  Double currency conversion may apply during payment, as we accept payments in PLN/EUR.",
+      "bank": "Płatności przez ING Bank są realizowane szybko i bezpiecznie za pomocą systemu Imoje.  Payments through ING Bank are processed quickly and securely using the Imoje system."
     },
     "notice": "Kliknij \"Zapłać\", aby przejść do płatności.",
     "pay": "Zapłać"

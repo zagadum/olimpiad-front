@@ -157,7 +157,8 @@
     "amount": "Amount",
     "currency": "Currency",
     "form": {
-      "notice": "By making the payment, I agree to the terms of the service agreement"
+      "notice": "By making a payment, I agree to the terms of the service agreement. <br/>Please note: double currency conversion may apply during payment, as we accept payments in PLN/EUR.",
+      "bank": "Payments via ING Bank are made quickly and securely using the Imoje system."
     },
     "notice": "Click \"Pay\" to proceed to payment.",
     "pay": "Pay"

@@ -9,7 +9,12 @@ import { createPayment } from "@/entities/payments/api";
 import { PaymentCreateResponse, PaymentFormField } from "@/entities/payments/types";
 
 
-
+// Иконки оплаты из папки images/pay
+import visa from "@/images/pay/visa.svg";
+import imoje from "@/images/pay/imoje.svg";
+//import mastercard from "@/images/pay/mastercard.svg";
+//import applepay from "@/images/pay/apple-pay.svg";
+//import googlepay from "@/images/pay/google-pay.svg";
 
 export const PaymentCreatePage: React.FC = () => {
   const { t } = useTranslation();
@@ -152,6 +157,19 @@ export const PaymentCreatePage: React.FC = () => {
             >
               {t("payment.pay", "Оплатить")}
             </Button>
+              <div className="mt-4 text-xs opacity-70">
+                  {t(
+                      "payment.form.bank",
+                      "Оплата осуществляется через безопасный платежный шлюз imiоje."
+                  )}
+              </div>
+              <div className="flex items-center gap-3">
+                  <img src={visa} alt={t("payment.icons.visa", "Visa")} className="h-6" />
+                  <img src={imoje} alt={t("payment.icons.imoje", "imoje")} className="h-6" />
+                  {/*<img src={mastercard} alt={t("payment.icons.mastercard", "Mastercard")} className="h-6" />*/}
+                  {/*<img src={applepay} alt={t("payment.icons.applepay", "Apple Pay")} className="h-6" />*/}
+                  {/*<img src={googlepay} alt={t("payment.icons.googlepay", "Google Pay")} className="h-6" />*/}
+              </div>
           </div>
         )}
       </div>
