@@ -124,6 +124,12 @@ export const PaymentCreatePage: React.FC = () => {
                   )}
                 </div>
               )}
+                <div className="mt-4 text-xs opacity-70">
+                    {t(
+                        "payment.form.notice_warning",
+                        "payment.form.notice_warning"
+                    )}
+                </div>
               {!data.form_info && data.payUrl && (
                 <div className="mt-4 text-xs opacity-70">
                   {t(
