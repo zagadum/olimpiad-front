@@ -11,7 +11,7 @@ import { PaymentCreateResponse, PaymentFormField } from "@/entities/payments/typ
 
 // Иконки оплаты из папки images/pay
 import visa from "@/shared/assets/images/pay/visa.svg";
-import imoje from "@/shared/assets/images/pay/imoje.svg";
+import imoje from "@/shared/assets/images/pay/imoje.webp";
 
 
 //import mastercard from "@/images/pay/mastercard.svg";
