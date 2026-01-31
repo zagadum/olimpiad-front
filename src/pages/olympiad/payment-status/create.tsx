@@ -172,8 +172,8 @@ export const PaymentCreatePage: React.FC = () => {
                   )}
               </div>
               <div className="flex items-center gap-3">
-                  <img src={visa} alt={t("payment.icons.visa", "Visa")} className="h-3" />
-                  <img src={imoje} alt={t("payment.icons.imoje", "imoje")} className="h-3" />
+                  <img src={visa} alt={t("payment.icons.visa", "Visa")} className="h-12" />
+                  <img src={imoje} alt={t("payment.icons.imoje", "imoje")} className="h-12" />
                   {/*<img src={mastercard} alt={t("payment.icons.mastercard", "Mastercard")} className="h-6" />*/}
                   {/*<img src={applepay} alt={t("payment.icons.applepay", "Apple Pay")} className="h-6" />*/}
                   {/*<img src={googlepay} alt={t("payment.icons.googlepay", "Google Pay")} className="h-6" />*/}
