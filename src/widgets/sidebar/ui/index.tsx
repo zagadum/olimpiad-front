@@ -7,9 +7,10 @@ import logoutIcon from "@/shared/assets/icons/logout.svg";
 import { cn } from "@/shared/lib/cn.ts";
 import { Button } from "@/shared/ui/button";
 import { NavItem } from "./nav-item";
-import { langOptions, platformUrl } from "@/shared/lib/constants";
-import { Select } from "@/shared/ui/select";
-import { getLang } from "@/shared/lib/getLang.ts";
+//import { langOptions } from "@/shared/lib/constants";
+import {  platformUrl } from "@/shared/lib/constants";
+//import { Select } from "@/shared/ui/select";
+//import { getLang } from "@/shared/lib/getLang.ts";
 import { getNavItems } from "@/shared/lib/getNavItems.ts";
 import { useCurrentUserQuery } from "@/entities/auth";
 
@@ -18,8 +19,9 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
-  const { t, i18n } = useTranslation();
-  const lang = getLang(i18n.language);
+  const { t } = useTranslation();
+ // const {  i18n } = useTranslation();
+  //???const lang = getLang(i18n.language);
 
   const { data: user } = useCurrentUserQuery();
 
@@ -95,24 +97,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
         </NavLink>
       </nav>
       <div className="flex flex-col gap-2">
-        <Select
-          targetClassName={cn(
-            "mt-4 lg:px-3 lg:py-2 lg:text-sm xl:px-3 xl:py-2.5 xl:text-base",
-            isHovered && "w-full",
-          )}
-          dropdownClassName="w-full"
-          placeholder="UA"
-          options={langOptions}
-          value={lang}
-          onChange={(value) => {
-            if (value) {
-              i18n
-                .changeLanguage(value as string)
-                .then()
-                .catch();
-            }
-          }}
-        />
+        {/*<Select*/}
+        {/*  targetClassName={cn(*/}
+        {/*    "mt-4 lg:px-3 lg:py-2 lg:text-sm xl:px-3 xl:py-2.5 xl:text-base",*/}
+        {/*    isHovered && "w-full",*/}
+        {/*  )}*/}
+        {/*  dropdownClassName="w-full"*/}
+        {/*  placeholder="UA"*/}
+        {/*  options={langOptions}*/}
+        {/*  value={lang}*/}
+        {/*  onChange={(value) => {*/}
+        {/*    if (value) {*/}
+        {/*      i18n*/}
+        {/*        .changeLanguage(value as string)*/}
+        {/*        .then()*/}
+        {/*        .catch();*/}
+        {/*    }*/}
+        {/*  }}*/}
+        {/*/>*/}
         <NavLink
           to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/logout`}
           className={cn("flex items-center", !isHovered && "justify-center")}
