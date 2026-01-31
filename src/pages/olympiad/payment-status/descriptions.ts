@@ -15,6 +15,7 @@ const plSuccess = `
 <p>Hurra! Twoja płatność została pomyślnie zrealizowana!</p>
 <br />
 <p>Wysłaliśmy potwierdzenie na Twój adres e-mail.</p>
+<br />
 <p>Teraz możesz zacząć treningi i wyruszyć w ekscytującą przygodę tej olimpiady! 🚀</p>
 <p>Trzymamy za Ciebie kciuki — przed Tobą nowe odkrycia i sukcesy!</p>
 <br />
@@ -25,6 +26,7 @@ const enSuccess = `
 <p>Hooray! Your payment has been successfully processed!</p>
 <br />
 <p>We’ve sent a confirmation to your email.</p>
+<br />
 <p>Now you can start training and embark on an exciting adventure in this olympiad! 🚀</p>
 <p>We’re cheering for you — new discoveries and victories await!</p>
 <br />
