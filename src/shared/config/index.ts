@@ -10,3 +10,8 @@ export const UK_URL = debugMode
 export const PL_URL = debugMode
   ? "https://memory-pl.firm.kiev.ua"
   : "https://pl.space-memory.com";
+
+export const EN_URL = debugMode
+    ? "https://memory-en.firm.kiev.ua"
+    : "https://en.space-memory.com";
+

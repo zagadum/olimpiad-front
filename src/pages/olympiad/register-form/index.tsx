@@ -42,6 +42,7 @@ type FormInputs = {
 const languages = [
   { value: "uk", label: "Українська" },
   { value: "pl", label: "Polski" },
+  { value: "en", label: "English" },
 ];
 
 const yearIntervals = [
