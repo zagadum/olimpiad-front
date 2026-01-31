@@ -83,26 +83,64 @@ Nie zamykaj ani nie odświeżaj strony, dopóki transakcja się nie zakończy.</
 <p>📧 office@space-memory.com</p>
 `;
 
+const enPendingDescription = `
+<p>Prosimy o chwilę cierpliwości. Operacja jest w toku i może potrwać kilka sekund.
+Nie zamykaj ani nie odświeżaj strony, dopóki transakcja się nie zakończy.</p>
+<br />
+<p>Dziękujemy za cierpliwość! 💙</p>
+<br />
+<p>❓ Masz pytania dotyczące płatności? Skontaktuj się z nami:</p>
+<p>📧 office@space-memory.com</p>
+`;
+const enSuccessDescription = `
+<p>Twoja płatność została pomyślnie przetworzona.</p>
+<br />
+<p>📩 Co dalej?</p>
+<ul>
+  <li>
+    Wysłaliśmy Twój unikalny kod uczestnika olimpiady na podany adres e-mail.
+  </li>
+  <li>
+    Masz pytania? Skontaktuj się z nami: [office@space-memory.com].
+  </li>
+</ul>
+<br />
+<p>🎯 Gotowy do rywalizacji?</p>
+<p>Przejdź na stronę olimpiady, aby rozpocząć przygotowania.</p>
+`;
+
+const enErrorDescription = `
+<p>Niestety, Twoja płatność nie została przetworzona. Prosimy, spróbuj ponownie.
+Jeśli problem się powtórzy, skontaktuj się z naszym zespołem wsparcia:</p>
+<br />
+<p>📞 (+48) 733 805 610</p>
+<p>📧 office@space-memory.com</p>
+<br />
+<p>Dziękujemy za cierpliwość!</p>
+`;
 const statusData = {
   success: {
     title: i18n.t("paymentStatus.success.title"),
     description: {
       uk: ukSuccessDescription,
-      pl: plSuccessDescription
+      pl: plSuccessDescription,
+      en: enSuccessDescription,
     },
   },
   error: {
     title: i18n.t("paymentStatus.error.title"),
     description: {
       uk: ukErrorDescription,
-      pl: plErrorDescription
+      pl: plErrorDescription,
+      en: enErrorDescription,
     },
   },
   pending: {
     title: i18n.t("paymentStatus.pending.title"),
     description: {
       uk: ukPendingDescription,
-      pl: plPendingDescription
+      pl: plPendingDescription,
+      en: enPendingDescription,
     },
   },
 };

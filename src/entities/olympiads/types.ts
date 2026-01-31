@@ -5,6 +5,7 @@ export interface Olympiad {
   title: {
     uk: string;
     pl: string;
+    en: string;
   };
   country_id: number;
   country_name: string;
@@ -33,14 +34,17 @@ export interface Olympiad {
   short_description: {
     uk: string;
     pl: string;
+    en: string;
   };
   cover: {
     uk: string;
     pl: string;
+    en: string;
   };
   full_description: {
     uk: string;
     pl: string;
+    en: string;
   };
   image_url?: string;
   training_count?: number;
