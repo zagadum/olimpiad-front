@@ -1,10 +1,12 @@
 import { formatDistanceToNowStrict, isAfter, isValid } from "date-fns";
 import { uk } from "date-fns/locale/uk";
 import { pl } from "date-fns/locale/pl";
+import { enUS} from "date-fns/locale/en-US";
 
 const locales = {
   uk: uk,
-  pl: pl
+  pl: pl,
+  en: enUS
 }
 
 export const calcDays = (date: string, lang: keyof typeof locales = 'uk') => {
