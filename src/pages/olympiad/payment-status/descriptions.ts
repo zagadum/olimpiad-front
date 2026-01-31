@@ -9,7 +9,7 @@ const ukSuccess = `
 <p>Тепер ви готові до тренувань і захоплюючих пригод цієї олімпіади! 🚀</p>
 <p>Віримо в вас — вперед до нових відкриттів і перемог!</p>
 <br />
-<p>Якщо виникнуть питання, пишіть нам на space.memory.com@gmail.com — ми завжди раді допомогти</p>
+<p>Якщо виникнуть питання, пишіть нам на <span style="color:white">space.memory.com@gmail.com</span> — ми завжди раді допомогти</p>
 `;
 const plSuccess = `
 <p>Hurra! Twoja płatność została pomyślnie zrealizowana!</p>
@@ -18,7 +18,7 @@ const plSuccess = `
 <p>Teraz możesz zacząć treningi i wyruszyć w ekscytującą przygodę tej olimpiady! 🚀</p>
 <p>Trzymamy za Ciebie kciuki — przed Tobą nowe odkrycia i sukcesy!</p>
 <br />
-<p>Jeśli masz pytania, napisz do nas na akademiaspacememory@gmail.com — zawsze chętnie pomożemy.</p>
+<p>Jeśli masz pytania, napisz do nas na akademia <span style="color:white">spacememory@gmail.com</span> — zawsze chętnie pomożemy.</p>
 `;
 
 const enSuccess = `
@@ -28,7 +28,7 @@ const enSuccess = `
 <p>Now you can start training and embark on an exciting adventure in this olympiad! 🚀</p>
 <p>We’re cheering for you — new discoveries and victories await!</p>
 <br />
-<p>If you have any questions, write to us at akademia spacememory@gmail.com — we’re always happy to help.</p>
+<p>If you have any questions, write to us at akademia <span style="color:white">spacememory@gmail.com/span> — we’re always happy to help.</p>
 `;
 
 const ukFail = `
