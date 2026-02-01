@@ -51,7 +51,7 @@ export const MobileNavbar: React.FC = () => {
                 onClick={toggleOpen}
               />
             ))}
-            <NavLink to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/games/platform`} className="mt-6 w-full">
+            <NavLink to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "en"]}/games/platform`} className="mt-6 w-full">
               <Button className="h-[52px] w-full text-base">
                 {t("sidebar.mySpace")}
               </Button>
@@ -70,7 +70,7 @@ export const MobileNavbar: React.FC = () => {
             />
           </nav>
           <NavLink
-            to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/logout`}
+            to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "en"]}/logout`}
             className="flex items-center gap-4"
           >
             <img className="p-4" src={logoutIcon} alt="Logout" />

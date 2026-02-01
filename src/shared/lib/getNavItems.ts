@@ -3,7 +3,7 @@ import homeworkIcon from "@/shared/assets/icons/homework.svg";
 import trainingIcon from "@/shared/assets/icons/training.svg";
 import olympiadIcon from "@/shared/assets/icons/olympiad.svg";
 import { TFunction } from "i18next";
-import { PL_URL, UK_URL } from "@/shared/config";
+import { PL_URL, UK_URL, EN_URL } from "@/shared/config";
 
 export const getNavItems = (t: TFunction<"translation", undefined>) => [
   {
@@ -12,6 +12,7 @@ export const getNavItems = (t: TFunction<"translation", undefined>) => [
     link: {
       uk: `${UK_URL}/student`,
       pl: `${PL_URL}/student`,
+      en: `${EN_URL}/student`,
     },
   },
   {
@@ -21,6 +22,7 @@ export const getNavItems = (t: TFunction<"translation", undefined>) => [
     link: {
       uk: `${UK_URL}/student/hometask`,
       pl: `${PL_URL}/student/hometask`,
+      en: `${EN_URL}/student/hometask`,
     },
   },
   {
@@ -30,6 +32,7 @@ export const getNavItems = (t: TFunction<"translation", undefined>) => [
     link: {
       uk: `${UK_URL}/student/traning/create`,
       pl: `${PL_URL}/student/traning/create`,
+      en: `${EN_URL}/student/traning/create`,
     },
   },
   {
@@ -38,6 +41,7 @@ export const getNavItems = (t: TFunction<"translation", undefined>) => [
     link: {
       uk: "/olympiads",
       pl: "/olympiads",
+      en: "/olympiads",
     },
   },
 ];

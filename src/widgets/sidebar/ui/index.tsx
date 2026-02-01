@@ -11,7 +11,7 @@ import { NavItem } from "./nav-item";
 import {  platformUrl } from "@/shared/lib/constants";
 //import { Select } from "@/shared/ui/select";
 //import { getLang } from "@/shared/lib/getLang.ts";
-import { getNavItems } from "@/shared/lib/getNavItems.ts";
+import { getNavItems } from "@/shared/lib/getNavItems";
 import { useCurrentUserQuery } from "@/entities/auth";
 
 interface SidebarProps {
@@ -68,15 +68,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
       >
         {navItems.map(({ link, label, icon }) => (
           <NavItem
-            key={link[(user?.domain as keyof typeof link) || "uk"]}
-            link={link[(user?.domain as keyof typeof link) || "uk"]}
+            key={link[(user?.domain as keyof typeof link) || "en"]}
+            link={link[(user?.domain as keyof typeof link) || "en"]}
             icon={icon}
             label={label}
             hideLabel={!!small && !isHovered}
           />
         ))}
         <NavLink
-          to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/games/platform`}
+          to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "en"]}/games/platform`}
           className="mt-4 flex w-full justify-center xl:mt-6"
         >
           <Button
@@ -116,7 +116,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ small }) => {
         {/*  }}*/}
         {/*/>*/}
         <NavLink
-          to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "uk"]}/logout`}
+          to={`${platformUrl[(user?.domain as keyof typeof platformUrl) || "en"]}/logout`}
           className={cn("flex items-center", !isHovered && "justify-center")}
         >
           <img className="p-4" src={logoutIcon} alt="Logout" />

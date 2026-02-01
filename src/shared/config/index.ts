@@ -6,7 +6,7 @@ export const API_URL = debugMode
 
 export const UK_URL = debugMode
   ? "https://memory.firm.kiev.ua"
-  : "https://space-memory.com";
+  : "https://ua.space-memory.com";
 export const PL_URL = debugMode
   ? "https://memory-pl.firm.kiev.ua"
   : "https://pl.space-memory.com";
