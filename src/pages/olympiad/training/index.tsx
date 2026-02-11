@@ -309,7 +309,10 @@ export const TrainingPage: React.FC = () => {
                           ? t("olympiadStart.done")
                           : t("olympiadTraining.startTraining")}
                       </Button>
-                        {item.points != null ? `${item.points} ${t("olympiadStart.points")}` : ''}
+                        <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base">
+                            {item.points != null ? `${item.points} ${t("olympiadStart.points")}` : ''}
+                        </p>
+
                     </td>
                   </tr>
                 );
