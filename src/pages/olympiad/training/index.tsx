@@ -309,7 +309,7 @@ export const TrainingPage: React.FC = () => {
                           ? t("olympiadStart.done")
                           : t("olympiadTraining.startTraining")}
                       </Button>
-                        <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base">
+                        <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base" style={{ paddingRight: '3em' }}>
                             {item.points != null ? `${item.points} ${t("olympiadStart.points")}` : ''}
                         </p>
 
