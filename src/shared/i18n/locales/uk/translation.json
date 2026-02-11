@@ -124,7 +124,8 @@
     "memorizeIn": "Запам’ятати за:",
     "recallIn": "Згадати за:",
     "quantity": "Кількість:",
-    "decks": "Колоди: "
+    "decks": "Колоди: ",
+    "points": "балів"
   },
   "registerForm": {
     "title": "Заповніть форму",

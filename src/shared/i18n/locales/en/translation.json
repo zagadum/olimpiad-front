@@ -126,7 +126,8 @@
     "recallIn": "Recall in:",
     "quantity": "Quantity:",
     "decks": "Decks: ",
-    "min": "min"
+    "min": "min",
+    "points": "points"
   },
   "registerForm": {
     "title": "Fill out the form",

@@ -125,7 +125,8 @@
     "recallIn": "Przypomnij w:",
     "quantity": "Ilość:",
     "decks": "Talia: ",
-    "min": "min"
+    "min": "min",
+    "points": "zwrotnica"
   },
   "registerForm": {
     "title": "Wypełnij formularz",
