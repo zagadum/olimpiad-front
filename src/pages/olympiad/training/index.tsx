@@ -305,7 +305,9 @@ export const TrainingPage: React.FC = () => {
                           language: lang,
                         })}
                       >
-                        {olympiad?.is_done === 1 || item.btn_allow !== 1
+                        {item.points != null
+                          ? `${item.points} балов`
+                          : olympiad?.is_done === 1 || item.btn_allow !== 1
                           ? t("olympiadStart.done")
                           : t("olympiadTraining.startTraining")}
                       </Button>

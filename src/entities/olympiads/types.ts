@@ -78,6 +78,8 @@ interface TaskItem {
 export type Task = Record<string, TaskItem[]>;
 
 export interface TaskList {
+  points: null;
+  points: null;
   id: number;
   name: string;
   btn_allow: number;

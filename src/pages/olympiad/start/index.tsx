@@ -307,9 +307,12 @@ export const StartPage: React.FC = () => {
                           language: lang,
                         })}
                       >
-                        {olympiad?.is_done === 1 || item.btn_allow !== 1
-                          ? t("olympiadStart.done")
-                          : t("olympiadStart.start")}
+                          {item.points != null
+                              ? `${item.points} балов`
+                              : olympiad?.is_done === 1 || item.btn_allow !== 1
+                                  ? t("olympiadStart.done")
+                                  : t("olympiadTraining.startTraining")}
+
                       </Button>
                     </td>
                   </tr>
