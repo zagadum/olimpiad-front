@@ -6,5 +6,8 @@ export const getRanking = async (
   params?: Params,
 ): Promise<Ranking[]> => {
   const response = await axiosInstance.get("/api/ranking", { params });
-  return response.data;
+  // New API format: { result: Ranking[], table_links: any[] }
+  // Return `result` when present, otherwise fall back to old response shape.
+  const data = response.data as any;
+  return data?.result ?? data;
 };
