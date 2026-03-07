@@ -150,7 +150,7 @@ export const RankingPage: React.FC = () => {
     string | number | undefined
   >();
 
-  const { data, error } = useQuery({
+  const { data: rankingResponse, error } = useQuery({
     queryKey: [
       "ranking",
       {
@@ -168,6 +168,9 @@ export const RankingPage: React.FC = () => {
         age_tab: selectedAge,
       }),
   });
+
+  const tableLinks = rankingResponse?.table_links ?? [];
+  const data = rankingResponse?.result ?? [];
 
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -254,6 +257,15 @@ export const RankingPage: React.FC = () => {
                 <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.age")}
                 </th>
+                {/* Dynamic columns from table_links */}
+                {tableLinks.map((link) => (
+                  <th
+                    key={link}
+                    className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4"
+                  >
+                    {link}
+                  </th>
+                ))}
                 <th className="px-2.5 py-2.5 text-center text-xs font-light leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base md:leading-4">
                   {t("ranking.rightAnswers")}
                 </th>
@@ -304,6 +316,22 @@ export const RankingPage: React.FC = () => {
                   >
                     {row.age_tab}
                   </td>
+                  {/* Dynamic columns values from row.details */}
+                  {tableLinks.map((link) => {
+                    const detail = row.details?.find((d) => d.category === link);
+                    return (
+                      <td
+                        key={`${row.practicant_id}-${link}`}
+                        className={cn(
+                          "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
+                          "border-t border-[#657E8A] bg-gradient-to-t from-[#082536] to-[#193C4D]",
+                        )}
+                      >
+                        {detail?.total ?? "-"}
+                      </td>
+                    );
+                  })}
+
                   <td
                     className={cn(
                       "text-nowrap px-2.5 py-2.5 text-center text-xs font-normal leading-3 text-[--color-white] md:px-5 md:py-5 md:text-base xl:text-lg md:leading-5",
