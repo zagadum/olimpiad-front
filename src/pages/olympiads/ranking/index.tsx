@@ -53,7 +53,7 @@ const getPlaceIcon = (place: number) => {
 };
 
 const getDisciplineScore = (row: Ranking, discipline: Discipline): number => {
-  if (discipline === "all") return row.points;
+  if (discipline === "all") return Number(row.points);
   const key = discipline as keyof NonNullable<Ranking["discipline_scores"]>;
   return row.discipline_scores?.[key] ?? 0;
 };
