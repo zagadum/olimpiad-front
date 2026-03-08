@@ -29,7 +29,7 @@
   },
   "rating": {
     "title": "Rating",
- "findMyself": "Find yourself",
+    "findMyself": "Find yourself",
     "olympiadPlaceholder": "Olympiad",
     "levelPlaceholder": "Category",
     "agePlaceholder": "Age",
@@ -38,8 +38,31 @@
     "name": "Name",
     "category": "Category",
     "age": "Age",
-    "rightAnswers": "PCorrect answers",
+    "rightAnswers": "Correct answers",
     "points": "Points"
+  },
+  "ranking": {
+    "title": "Rating",
+    "findMyself": "Find yourself",
+    "olympiadPlaceholder": "Olympiad",
+    "levelPlaceholder": "Category",
+    "agePlaceholder": "Age",
+    "disciplinePlaceholder": "All",
+    "selectOlympiad": "Select your olympiad",
+    "empty": "No results for the selected parameters",
+    "place": "Place",
+    "name": "Name",
+    "cityCountry": "City, Country",
+    "points": "Points",
+    "discipline": {
+      "all": "All",
+      "clk": "CLK",
+      "pictures": "Pictures",
+      "words": "Words",
+      "cards": "Cards",
+      "binary": "Binary",
+      "dates": "Dates"
+    }
   },
   "news": {
     "title": "News",

@@ -1,6 +1,10 @@
-export interface RankingDetail {
-  category: string;
-  total: number | string;
+export interface RankingDisciplineScores {
+  clk?: number;       // ЧЛК
+  pictures?: number;  // Картинки
+  words?: number;     // Слова
+  cards?: number;     // Карти
+  binary?: number;    // Бінар
+  dates?: number;     // Дати
 }
 
 export interface Ranking {
@@ -14,10 +18,17 @@ export interface Ranking {
   stages_level: string;
   stages_num: number;
   surname: string;
-  details?: RankingDetail[];
+  // Fields to be provided by backend
+  city?: string;
+  country?: string;
+  discipline_scores?: RankingDisciplineScores;
 }
 
 export interface ApiRankingResponse {
   result: Ranking[];
   table_links: string[];
 }
+
+export type Discipline = 'all' | 'clk' | 'pictures' | 'words' | 'cards' | 'binary' | 'dates';
+
+export const DISCIPLINES: Discipline[] = ['all', 'clk', 'pictures', 'words', 'cards', 'binary', 'dates'];

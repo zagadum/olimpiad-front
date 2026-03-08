@@ -33,13 +33,22 @@
     "olympiadPlaceholder": "Олімпіада",
     "levelPlaceholder": "Категорія",
     "agePlaceholder": "Вік",
+    "disciplinePlaceholder": "Всі",
+    "selectOlympiad": "Вибери свою олімпіаду",
     "empty": "За обраними параметрами немає результатів",
     "place": "Місце",
     "name": "Ім'я",
-    "category": "Категорія",
-    "age": "Вік",
-    "rightAnswers": "Правильні відповіді",
-    "points": "Бали"
+    "cityCountry": "Місто, Країна",
+    "points": "Баллы",
+    "discipline": {
+      "all": "Всі",
+      "clk": "ЧЛК",
+      "pictures": "Картинки",
+      "words": "Слова",
+      "cards": "Карти",
+      "binary": "Бінар",
+      "dates": "Дати"
+    }
   },
   "news": {
     "title": "Новини",

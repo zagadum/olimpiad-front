@@ -1,8 +1,12 @@
 .ranking-table {
-  tr:hover, tr.active {
-    td {
-      background: linear-gradient(180deg, #26F9FF -29.69%, #193C4D 126.31%);
-      transition: all .5s;
-    }
+  .ranking-row:hover .ranking-main,
+  .ranking-row.active .ranking-main {
+    background: linear-gradient(180deg, #26F9FF -29.69%, #193C4D 126.31%);
+    transition: all .5s;
+  }
+  .ranking-row:hover .score-cell,
+  .ranking-row.active .score-cell {
+    background: linear-gradient(180deg, #26F9FF -29.69%, #193C4D 126.31%) !important;
+    transition: all .5s;
   }
 }

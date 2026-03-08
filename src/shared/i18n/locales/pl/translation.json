@@ -33,13 +33,22 @@
     "olympiadPlaceholder": "Olimpiada",
     "levelPlaceholder": "Kategoria",
     "agePlaceholder": "Wiek",
+    "disciplinePlaceholder": "Wszystkie",
+    "selectOlympiad": "Wybierz swoją olimpiadę",
     "empty": "Brak wyników dla wybranych parametrów",
     "place": "Miejsce",
     "name": "Imię",
-    "category": "Kategoria",
-    "age": "Wiek",
-    "rightAnswers": "Poprawne odpowiedzi",
-    "points": "Punkty"
+    "cityCountry": "Miasto, Kraj",
+    "points": "Punkty",
+    "discipline": {
+      "all": "Wszystkie",
+      "clk": "CLK",
+      "pictures": "Obrazki",
+      "words": "Słowa",
+      "cards": "Karty",
+      "binary": "Binarny",
+      "dates": "Daty"
+    }
   },
   "news": {
     "title": "Aktualności",
