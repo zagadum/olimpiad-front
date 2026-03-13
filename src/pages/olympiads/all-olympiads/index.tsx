@@ -132,6 +132,8 @@ export const AllOlympiadsPage: React.FC = () => {
         <a href="/docs/Polityka_Prywatności.html" className="footer-link" target="_blank" rel="noopener noreferrer">Polityka prywatności</a>
         <a href="/docs/Ochrona_Małoletnich.html" className="footer-link" target="_blank" rel="noopener noreferrer">Ochrona Małoletnich</a>
         <a href="/docs/ODSTĄPIENIA-OD-UMOWY.html" className="footer-link" target="_blank" rel="noopener noreferrer">Oświadczenie o odstąpieniu</a>
+        <a href="/docs/Regulamin_Serwisu.html" className="footer-link" target="_blank" rel="noopener noreferrer">Regulamin Serwisu</a>
+
       </footer>
       <style>{`
         .footer-link {
