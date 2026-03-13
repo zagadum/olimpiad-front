@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzór Formularza Odstąpienia od Umowy - GLS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        @media print {
+            .no-print { display: none; }
+            body { background: white; padding: 0; }
+            .form-container { 
+                box-shadow: none !important; 
+                border: none !important; 
+                margin: 0 !important;
+                max-width: 100% !important;
+            }
+            input, textarea {
+                border: none !important;
+                border-bottom: 1px solid #000 !important;
+                padding: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="py-10 px-4">
+
+    <div class="max-w-3xl mx-auto form-container bg-white shadow-xl rounded-2xl p-8 md:p-12 border border-slate-200">
+        
+        <!-- Header Section -->
+        <div class="border-b border-slate-100 pb-6 mb-8">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Załącznik nr 1 do Regulaminu</p>
+            <h1 class="text-2xl md:text-3xl font-bold text-slate-900">WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY</h1>
+            <p class="text-sm text-slate-500 mt-2 italic">(formularz ten należy wypełnić i odesłać tylko w przypadku chęci odstąpienia od umowy)</p>
+        </div>
+
+        <!-- Recipient Information -->
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 mb-8">
+            <h2 class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">Adresat:</h2>
+            <p class="font-semibold text-slate-800">GLOBAL LEADERS SKILLS Sp. z o.o.</p>
+            <p class="text-slate-600">ul. Kabacki Dukt 1, lok. U1 i U2</p>
+            <p class="text-slate-600">02-798 Warszawa</p>
+        </div>
+
+        <!-- Form Fields -->
+        <form class="space-y-6">
+            <div class="text-slate-700 leading-relaxed">
+                Ja/My<sup>(*)</sup> niniejszym informuję/informujemy<sup>(*)</sup> o moim/naszym odstąpieniu od umowy o świadczenie następującej usługi:
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Opis usługi (*)</label>
+                <textarea class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" rows="2" placeholder="Np. Udział w Olimpiadzie Space Memory 2026"></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Data zawarcia umowy</label>
+                    <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" placeholder="DD-MM-RRRR">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Data dzisiejsza</label>
+                    <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" value="12.03.2026">
+                </div>
+            </div>
+
+            <div class="space-y-4 pt-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Imię i nazwisko konsumenta(-ów)</label>
+                    <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Adres konsumenta(-ów)</label>
+                    <textarea class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" rows="2"></textarea>
+                </div>
+            </div>
+
+            <!-- Signature Area -->
+            <div class="pt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+                <div class="text-xs text-slate-400 italic">
+                    <sup>(*)</sup> Niepotrzebne skreślić.
+                </div>
+                <div class="border-t-2 border-slate-200 pt-2 text-center">
+                    <p class="text-xs font-bold text-slate-400 uppercase">Podpis konsumenta(-ów)</p>
+                    <p class="text-[10px] text-slate-300 mt-1">(tylko jeżeli formularz jest przesyłany w wersji papierowej)</p>
+                </div>
+            </div>
+        </form>
+
+        <!-- Action Buttons -->
+        <div class="mt-12 flex flex-col sm:flex-row gap-4 no-print justify-center border-t border-slate-100 pt-8">
+            <button onclick="window.print()" class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg shadow-blue-200">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                Drukuj lub zapisz PDF
+            </button>
+            <button onclick="window.location.reload()" class="flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-8 rounded-xl transition-all">
+                Wyczyść formularz
+            </button>
+        </div>
+    </div>
+
+    <footer class="max-w-3xl mx-auto mt-8 text-center no-print">
+        <p class="text-slate-400 text-xs tracking-wide">Dokument wygenerowany dla Global Leaders Skills</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin Olimpiady Space Memory 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 1);
+        }
+        .section-nav:hover {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+        .important-glow {
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+        }
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+            .glass-card { border: none; box-shadow: none; }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header / Hero -->
+    <header class="bg-slate-900 text-white py-12 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block bg-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
+                Global Leaders Skills
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">Space Memory 2026</h1>
+            <p class="text-slate-400 text-lg">Regulamin Olimpiady Online</p>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="lg:w-1/4 no-print">
+            <nav class="sticky top-8 space-y-1">
+                <p class="text-xs font-bold text-slate-400 px-4 mb-2 uppercase tracking-wider">Навигация</p>
+                <a href="#wazne" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors text-red-600 bg-red-50">
+                    <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    WAŻNE!
+                </a>
+                <a href="#sec-1" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">1. Postanowienia ogólne</a>
+                <a href="#sec-2" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">2. Rejestracja</a>
+                <a href="#sec-3" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">3. Procedura i Punktacja</a>
+                <a href="#sec-4" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">4. Płatność</a>
+                <a href="#sec-5" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">5. Prawa Uczestnika</a>
+                <a href="#sec-6" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">6. Prawa Organizatora</a>
+                <a href="#sec-7" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">7. Nagrody</a>
+                <a href="#sec-10" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">10. Dane osobowe</a>
+                
+                <div class="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                    <p class="text-sm text-blue-800 font-semibold mb-2">Kontakt</p>
+                    <p class="text-xs text-blue-600 mb-1 italic">Wideo przesyłamy na:</p>
+                    <a href="mailto:jakosc.space@gmail.com" class="text-sm font-bold text-blue-700 hover:underline">jakosc.space@gmail.com</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:w-3/4 space-y-12">
+            
+            <!-- Section: Important -->
+            <section id="wazne" class="scroll-mt-8">
+                <div class="glass-card important-glow border-red-200 rounded-2xl p-6 md:p-8 bg-red-50">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-red-500 rounded-lg text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-red-800 uppercase tracking-tight">Kluczowe Zasady</h2>
+                    </div>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
+                            <span class="font-bold text-red-500">1.</span>
+                            <span class="text-sm">Tylko jedna kategoria wiekowa i jeden poziom (Basic/Intermediate).</span>
+                        </li>
+                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
+                            <span class="font-bold text-red-500">2.</span>
+                            <span class="text-sm italic font-semibold">OBOWIĄZKOWO NAGRAJ WIDEO!</span> <br>Musi widać dziecko i ekran, z dźwiękiem, bez montażu.
+                        </li>
+                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm border-2 border-red-100">
+                            <span class="font-bold text-red-500">3.</span>
+                            <span class="text-sm">Samodzielne wpisywanie bez pomocy osób trzecich i urządzeń.</span>
+                        </li>
+                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
+                            <span class="font-bold text-red-500">4.</span>
+                            <span class="text-sm">Absolutny zakaz używania słuchawek.</span>
+                        </li>
+                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
+                            <span class="font-bold text-red-500">5.</span>
+                            <span class="text-sm">Tylko laptop i przeglądarka Google Chrome.</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 1 -->
+            <section id="sec-1" class="scroll-mt-8">
+                <h3 class="text-xl font-bold mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-slate-200 text-slate-700 flex items-center justify-center rounded-lg mr-3">1</span>
+                    Postanowienia Ogólne
+                </h3>
+                <div class="glass-card rounded-2xl p-6 shadow-sm leading-relaxed text-slate-600 space-y-4">
+                    <p><strong>1.1.</strong> Olimpiada Online GLOBAL LEADERS SKILLS - SPACE MEMORY 2026 organizowana jest przez firmę <strong>GLOBAL LEADERS SKILLS sp. z o.o.</strong> z siedzibą w Warszawie.</p>
+                    <p><strong>1.4.</strong> Uprawnieni są wyłącznie aktualni uczniowie szkoły <strong>Global Leaders Skills - Space Memory</strong>.</p>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <p class="text-sm font-semibold mb-2">Cele Olimpiady:</p>
+                        <ul class="text-sm list-disc pl-5 space-y-1">
+                            <li>Rywalizacja poza granicami szkoły i kraju.</li>
+                            <li>Rozwijanie umiejętności sportowego zapamiętywania.</li>
+                            <li>Praca pod presją czasu i dążenie do doskonałości.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Scoring -->
+            <section id="sec-3" class="scroll-mt-8">
+                <h3 class="text-xl font-bold mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg mr-3 text-sm">3</span>
+                    Procedura i System Punktowania
+                </h3>
+                
+                <div class="space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <h4 class="font-bold text-blue-600 mb-4 uppercase text-sm tracking-widest">Poziomy Basic & Intermediate</h4>
+                        <p class="text-sm text-slate-600">Zasada jest prosta: <strong>1 punkt</strong> za każdą prawidłową odpowiedź w odpowiedniej komórce.</p>
+                    </div>
+
+                    <div class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xl">
+                        <h4 class="font-bold text-yellow-400 mb-6 uppercase text-sm tracking-widest">Poziom PRO (Zasady Eksperckie)</h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border-l-2 border-yellow-500 pl-4 py-2">
+                                <p class="font-bold text-white mb-2">Liczby</p>
+                                <p class="text-xs text-slate-400">Ocenianie wierszami:</p>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• Bezbłędny wiersz: <span class="text-green-400">60 pkt</span></li>
+                                    <li>• 1 błąd: <span class="text-yellow-400">30 pkt</span></li>
+                                    <li>• 2+ błędy: <span class="text-red-400">0 pkt</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="border-l-2 border-yellow-500 pl-4 py-2">
+                                <p class="font-bold text-white mb-2">Obrazki</p>
+                                <p class="text-xs text-slate-400">Rzędy po 5 sztuk:</p>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• Prawidłowy rząd: <span class="text-green-400">+5 pkt</span></li>
+                                    <li>• Błąd w rzędzie: <span class="text-red-400">-1 pkt</span> (kara)</li>
+                                    <li>• Mnożnik końcowy: x 1,5</li>
+                                </ul>
+                            </div>
+
+                            <div class="border-l-2 border-yellow-500 pl-4 py-2">
+                                <p class="font-bold text-white mb-2">Karty</p>
+                                <p class="text-xs text-slate-400 text-blue-300 font-mono">Wynik = [100 / (t / 300)] × [c / 52]</p>
+                                <p class="text-xs mt-2 italic text-slate-500">Zaliczane do pierwszego błędu.</p>
+                            </div>
+
+                            <div class="border-l-2 border-yellow-500 pl-4 py-2">
+                                <p class="font-bold text-white mb-2">Kod Binarny</p>
+                                <p class="text-xs text-slate-400">Wiersze po 30 cyfr:</p>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• Bezbłędny: <span class="text-green-400">45 pkt</span></li>
+                                    <li>• 1 błąd: <span class="text-yellow-400">22,5 pkt</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4 & 5 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <section id="sec-4" class="scroll-mt-8">
+                    <h3 class="text-lg font-bold mb-4">4. Harmonogram</h3>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center text-blue-600 mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="font-bold">Termin Olimpiady:</span>
+                        </div>
+                        <p class="text-xl font-bold mb-4">17 - 23 kwietnia</p>
+                        <p class="text-sm text-slate-500">Oficjalne podejście do godziny 17:00 ostatniego dnia.</p>
+                    </div>
+                </section>
+
+                <section id="sec-5" class="scroll-mt-8">
+                    <h3 class="text-lg font-bold mb-4">5. Obowiązki</h3>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <ul class="text-sm space-y-3">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Prawdziwe dane przy rejestracji.
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Przesłanie wideo w ciągu 24h.
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Brak słuchawek i osób trzecich.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Section 10 -->
+            <section id="sec-10" class="scroll-mt-8">
+                <div class="bg-slate-100 rounded-2xl p-8 border border-slate-200">
+                    <h3 class="text-xl font-bold mb-4">10. Dane Osobowe i Wizerunek</h3>
+                    <div class="text-sm text-slate-600 space-y-4">
+                        <p><strong>10.4.</strong> Rejestracja oznacza zgodę na nieodpłatne wykorzystanie wizerunku dziecka do celów marketingowych (media społecznościowe, strony internetowe).</p>
+                        <p><strong>10.1.</strong> Wyrażasz zgodę na przetwarzanie danych w celu organizacji i ogłoszenia wyników Olimpiady.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-500 py-12 px-6 mt-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <p class="font-bold text-white mb-4">GLOBAL LEADERS SKILLS sp. z o.o.</p>
+                <p class="text-sm">ul. Kabacki Dukt 1, lok. U1 i U2</p>
+                <p class="text-sm">02-798 Warszawa</p>
+                <p class="text-xs mt-4">KRS: 0001055763 | NIP: 5252970924</p>
+            </div>
+            <div class="md:text-right">
+                <p class="text-sm">Ogłoszenie wyników: <strong>26 kwietnia, 17:00</strong></p>
+                <p class="text-sm mb-4">Platforma: <strong>ZOOM</strong></p>
+                <div class="flex md:justify-end gap-4 no-print">
+                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                        Drukuj Regulamin
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs">
+            © 2026 Global Leaders Skills - Space Memory. Wszelkie prawa zastrzeżone.
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
