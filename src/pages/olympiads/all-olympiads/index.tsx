@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Select, SelectOption } from "@/shared/ui/select";
 import { OlympiadsCard } from "@/widgets/olympiads-card";
@@ -28,11 +28,23 @@ export const AllOlympiadsPage: React.FC = () => {
   const [isInternational, setIsInternational] = useState<number>();
   const [promotion, setPromotion] = useState<string>();
 
-  const { data, error } = useOlympiadsQuery({
+  const { data: rawData, error } = useOlympiadsQuery({
     lang,
     isInternational,
     promotion,
   });
+
+  const data = useMemo(() => {
+    if (!rawData) return rawData;
+    const now = Date.now();
+    const sevenDays = 7 * 24 * 60 * 60 * 1000;
+    return rawData.filter((o) => {
+      if (!o.end_date) return true;
+      if (o.status !== "completed") return true;
+      const endTime = new Date(o.end_date).getTime();
+      return now - endTime <= sevenDays;
+    });
+  }, [rawData]);
 
   const handleFilterChange = (value?: string | number) => {
     switch (value) {
@@ -119,6 +131,7 @@ export const AllOlympiadsPage: React.FC = () => {
               key={o.id}
               olympiad={o}
               onCardClick={onOlympiadsCardClick}
+              variant="all"
             />
           ))
         ) : (

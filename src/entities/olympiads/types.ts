@@ -63,6 +63,12 @@ export interface Olympiad {
   };
   is_pay: number;
   is_done: number;
+  is_show_result: number;
+  is_public_result: number;
+  // Rating data (enriched on client from ratting-top)
+  user_rank?: number;
+  user_score?: number;
+  user_medal?: string;
 }
 
 export interface OlympiadsResponse {
@@ -225,4 +231,38 @@ export interface Agreement {
 export interface OlympiadsAgreementResponse {
   data_list: Agreement[];
   params: Params;
+}
+
+export interface RatingParticipant {
+  rank: number;
+  participantId: number;
+  fullName: string;
+  firstName: string;
+  lastName: string;
+  city: string;
+  country: string;
+  countryCode: string;
+  score: number;
+  medal: string;
+}
+
+export interface RatingTopData {
+  olympiad: {
+    id: number;
+    title: {
+      en: string;
+      uk: string;
+      pl: string;
+    };
+    is_international: number;
+    ageGroup: string;
+    end_date: string;
+    subscription: unknown[];
+  };
+  rating: RatingParticipant[];
+}
+
+export interface RatingTopResponse {
+  success: boolean;
+  data: RatingTopData;
 }

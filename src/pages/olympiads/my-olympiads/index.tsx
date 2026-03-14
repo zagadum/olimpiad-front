@@ -1,6 +1,6 @@
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getMyOlympiads } from "@/entities/olympiads";
+import React, { useMemo } from "react";
+import { useQuery, useQueries } from "@tanstack/react-query";
+import { getMyOlympiads, getOlympiadRatingTop } from "@/entities/olympiads";
 import { OlympiadsCard } from "@/widgets/olympiads-card";
 import { useNavigate } from "react-router-dom";
 import certificateBg from "@/shared/assets/images/certificate-bg.png";
@@ -17,6 +17,64 @@ export const MyOlympiadsPage: React.FC = () => {
     queryFn: getMyOlympiads,
     select: (value) => value.data_list,
   });
+
+  const doneOlympiads = useMemo(
+    () =>
+      (data ?? []).filter(
+        (o) =>
+          o.is_done === 1 &&
+          (o.is_public_result === 1 || o.is_show_result === 1),
+      ),
+    [data],
+  );
+
+  const ratingQueries = useQueries({
+    queries: doneOlympiads.map((o) => ({
+      queryKey: ["olympiad-rating", o.id],
+      queryFn: () => getOlympiadRatingTop(String(o.id)),
+      enabled: true,
+      staleTime: 5 * 60 * 1000,
+    })),
+  });
+
+  const enrichedData = useMemo(() => {
+    if (!data) return undefined;
+
+    const ratingMap = new Map<
+      number,
+      { rank: number; score: number; medal: string }
+    >();
+
+    doneOlympiads.forEach((o, idx) => {
+      const result = ratingQueries[idx];
+      if (result?.data?.data?.rating) {
+        const practicantId = o.subscribe?.practicant_id;
+        const myEntry = result.data.data.rating.find(
+          (r) => r.participantId === practicantId,
+        );
+        if (myEntry) {
+          ratingMap.set(o.id, {
+            rank: myEntry.rank,
+            score: myEntry.score,
+            medal: myEntry.medal,
+          });
+        }
+      }
+    });
+
+    return data.map((o) => {
+      const rating = ratingMap.get(o.id);
+      if (rating) {
+        return {
+          ...o,
+          user_rank: rating.rank,
+          user_score: rating.score,
+          user_medal: rating.medal,
+        };
+      }
+      return o;
+    });
+  }, [data, doneOlympiads, ratingQueries]);
 
   const onOlympiadsCardClick = (id: number) => {
     navigate(`/olympiads/${id}`);
@@ -35,8 +93,8 @@ export const MyOlympiadsPage: React.FC = () => {
           <p>{t("global.fetchError")}</p>
         </div>
       );
-    } else if (data?.length) {
-      return data.map((olympiad) => (
+    } else if (enrichedData?.length) {
+      return enrichedData.map((olympiad) => (
         <OlympiadsCard
           key={olympiad.id}
           olympiad={olympiad}

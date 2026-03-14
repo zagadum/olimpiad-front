@@ -17,29 +17,29 @@ type StateOption = {
   value?: Value;
 };
 
-const capacity = [
-  { value: 1, label: "без поділу" },
-  { value: 2, label: "2" },
-  { value: 4, label: "4" },
-  { value: 6, label: "6" },
-] as SelectOption[];
+const getCapacity = (t: (key: string) => string): SelectOption[] => [
+  { id: "cap-1", value: 1, label: t("olympiadParams.no_split") },
+  { id: "cap-2", value: 2, label: "2" },
+  { id: "cap-4", value: 4, label: "4" },
+  { id: "cap-6", value: 6, label: "6" },
+];
 
-const groupCards = [
-  { value: 1, label: "без групування" },
-  { value: 2, label: "2" },
-  { value: 3, label: "3" },
-] as SelectOption[];
+const getGroupCards = (t: (key: string) => string): SelectOption[] => [
+  { id: "gc-1", value: 1, label: t("olympiadParams.no_grouping") },
+  { id: "gc-2", value: 2, label: "2" },
+  { id: "gc-3", value: 3, label: "3" },
+];
 
-const showGroups = [
-  { value: "1", label: "без групування" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-] as SelectOption[];
+const getShowGroups = (t: (key: string) => string): SelectOption[] => [
+  { id: "sg-1", value: "1", label: t("olympiadParams.no_grouping") },
+  { id: "sg-2", value: "2", label: "2" },
+  { id: "sg-3", value: "3", label: "3" },
+];
 
-const categoryBinary = [
-  { value: "1", label: "Рядок" },
-  { value: "2", label: "Стовпчик" },
-] as SelectOption[];
+const getCategoryBinary = (t: (key: string) => string): SelectOption[] => [
+  { id: "cb-1", value: "1", label: t("olympiadParams.row") },
+  { id: "cb-2", value: "2", label: t("olympiadParams.column") },
+];
 
 export const TrainingPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -207,7 +207,7 @@ export const TrainingPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={capacity}
+                          options={getCapacity(t)}
                           placeholder={t("olympiadParams.capacity")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -229,7 +229,7 @@ export const TrainingPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={categoryBinary}
+                          options={getCategoryBinary(t)}
                           placeholder={t("olympiadParams.categoryBinary")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -251,7 +251,7 @@ export const TrainingPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={showGroups}
+                          options={getShowGroups(t)}
                           placeholder={t("olympiadParams.showGroups")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -273,7 +273,7 @@ export const TrainingPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={groupCards}
+                          options={getGroupCards(t)}
                           placeholder={t("olympiadParams.showGroups")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -310,7 +310,7 @@ export const TrainingPage: React.FC = () => {
                           : t("olympiadTraining.startTraining")}
                       </Button>
                         <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base" style={{ paddingRight: '2em' }}>
-                            {item.points != null ? `${item.points} ${t("olympiadStart.points")}` : ''}
+                            {item.points != null ? `${item.points} ${t("olympiadTraining.points")}` : ''}
                         </p>
 
                     </td>

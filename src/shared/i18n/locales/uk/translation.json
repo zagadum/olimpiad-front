@@ -35,11 +35,12 @@
     "agePlaceholder": "Вік",
     "disciplinePlaceholder": "Всі",
     "selectOlympiad": "Вибери свою олімпіаду",
+    "loading": "Завантаження...",
     "empty": "За обраними параметрами немає результатів",
     "place": "Місце",
     "name": "Ім'я",
     "cityCountry": "Місто, Країна",
-    "points": "Баллы",
+    "points": "Бали",
     "discipline": {
       "all": "Всі",
       "clk": "ЧЛК",
@@ -90,7 +91,9 @@
     "participate": "Взяти участь",
     "finished": "Олімпіада завершена",
     "waitResults": "Чекаємо результатів",
-    "inactive": "Олімпіада неактивна"
+    "inactive": "Олімпіада неактивна",
+    "viewResults": "Результати олімпіади",
+    "pointsLabel": "Балів"
   },
   "olympiadHeader": {
     "startIn": "Початок через ",
@@ -109,10 +112,13 @@
   },
   "olympiadParams": {
     "capacity": "Розрядність",
-    "categoryBinary":"Відображення",
-    "showGroups":"Групування",
-    "groupCards":"Колод",
-    "no_split": "без поділу"
+    "categoryBinary": "Відображення",
+    "showGroups": "Групування",
+    "groupCards": "Колод",
+    "no_split": "без поділу",
+    "no_grouping": "без групування",
+    "row": "Рядок",
+    "column": "Стовпчик"
   },
   "olympiadTraining": {
     "title": "Тренування",
@@ -123,7 +129,8 @@
     "recallIn": "Згадати за: ",
     "quantity": "Кількість: ",
     "decks": "Колоди: ",
-    "min": "xв."
+    "min": "xв.",
+    "points": "балів"
   },
   "olympiadStart": {
     "title": "Олімпіада",
@@ -134,7 +141,8 @@
     "recallIn": "Згадати за:",
     "quantity": "Кількість:",
     "decks": "Колоди: ",
-    "points": "балів"
+    "points": "балів",
+    "checkScore": "Дiзнайся свiй загальни бал"
   },
   "registerForm": {
     "title": "Заповніть форму",
@@ -191,5 +199,17 @@
   "common": {
     "back": "назад",
     "retry": "повторити спробу"
+  },
+  "resultsPage": {
+    "congratulations": "Вітаємо!",
+    "successMessage": "Ти успішно пройшов Олімпіаду!",
+    "yourResult": "Твій результат",
+    "greatJob": "✨ ВІДМІННА РОБОТА!",
+    "share": "Поділитися результатом",
+    "mainMenu": "Головне меню",
+    "linkCopied": "Посилання скопійовано!"
+  },
+  "top10Page": {
+    "title": "ТОП 10"
   }
 }

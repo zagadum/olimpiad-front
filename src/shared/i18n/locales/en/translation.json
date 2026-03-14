@@ -49,6 +49,7 @@
     "agePlaceholder": "Age",
     "disciplinePlaceholder": "All",
     "selectOlympiad": "Select your olympiad",
+    "loading": "Loading...",
     "empty": "No results for the selected parameters",
     "place": "Place",
     "name": "Name",
@@ -104,7 +105,9 @@
     "participate": "Participate",
     "finished": "Completed",
     "waitResults": "Waiting for results",
-    "inactive": "Olympics inactive"
+    "inactive": "Olympics inactive",
+    "viewResults": "Olympiad results",
+    "pointsLabel": "Points"
   },
   "olympiadHeader": {
     "startIn": "Start za ",
@@ -127,7 +130,10 @@
     "categoryBinary": "Display",
     "showGroups": "Grouping",
     "groupCards": "Decks",
-    "no_split": "no split"
+    "no_split": "no split",
+    "no_grouping": "no grouping",
+    "row": "Row",
+    "column": "Column"
   },
   "olympiadTraining": {
     "title": "Training",
@@ -138,7 +144,8 @@
     "recallIn": "Recall in: ",
     "quantity": "Quantity: ",
     "decks": "Decks: ",
-    "min": "min"
+    "min": "min",
+    "points": "points"
   },
   "olympiadStart": {
     "title": "Olympiad",

@@ -1,6 +1,7 @@
 
+import axios from "axios";
 import { axiosInstance } from "@/shared/api/axiosInstance";
-
+import { API_URL } from "@/shared/config";
 
 import {
   OlympiadsAgreementResponse,
@@ -9,6 +10,7 @@ import {
   OlympiadsTaskResponse,
   RunOlympiadResponse,
   OlympiadParamsAllResponse,
+  RatingTopResponse,
 } from "./types";
 import { Params } from "@/shared/types";
 
@@ -111,4 +113,16 @@ export const createPayment = async (
         params,
     });
     return response.data;
+};
+
+// TEMP FIX: використовуємо axios без Authorization header,
+// бо бекенд падає з SQL помилкою (Unknown column 'table_link')
+// коли передається Bearer токен. Прибрати після фіксу на бекенді.
+export const getOlympiadRatingTop = async (
+  olympiadId: string,
+): Promise<RatingTopResponse> => {
+  const response = await axios.get(`${API_URL}/api/olympiads/ratting-top`, {
+    params: { id: olympiadId },
+  });
+  return response.data;
 };

@@ -35,6 +35,7 @@
     "agePlaceholder": "Wiek",
     "disciplinePlaceholder": "Wszystkie",
     "selectOlympiad": "Wybierz swoją olimpiadę",
+    "loading": "Ładowanie...",
     "empty": "Brak wyników dla wybranych parametrów",
     "place": "Miejsce",
     "name": "Imię",
@@ -90,7 +91,9 @@
     "participate": "Weź udział",
     "finished": "Zakończona",
     "waitResults": "Oczekiwanie na wyniki",
-    "inactive": "Olimpiada nieaktywna"
+    "inactive": "Olimpiada nieaktywna",
+    "viewResults": "Wyniki olimpiady",
+    "pointsLabel": "Punktów"
   },
   "olympiadHeader": {
     "startIn": "Start za ",
@@ -112,7 +115,10 @@
     "categoryBinary": "Wyświetlanie",
     "showGroups": "Grupowanie",
     "groupCards": "Talia",
-    "no_split": "bez podziału"
+    "no_split": "bez podziału",
+    "no_grouping": "bez grupowania",
+    "row": "Wiersz",
+    "column": "Kolumna"
   },
   "olympiadTraining": {
     "title": "Trening",
@@ -123,7 +129,8 @@
     "recallIn": "Przypomnij w: ",
     "quantity": "Ilość: ",
     "decks": "Talia: ",
-    "min": "min"
+    "min": "min",
+    "points": "punktów"
   },
   "olympiadStart": {
     "title": "Olimpiada",
@@ -135,7 +142,7 @@
     "quantity": "Ilość:",
     "decks": "Talia: ",
     "min": "min",
-    "points": "zwrotnica"
+    "points": "punktów"
   },
   "registerForm": {
     "title": "Wypełnij formularz",

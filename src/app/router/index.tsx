@@ -19,6 +19,8 @@ import { MainLayout } from "@/app/layouts/main";
 import { OlympiadLayout } from "@/app/layouts/olympiad";
 import { StartPage } from "@/pages/olympiad/start";
 import { PaymentCreatePage } from "@/pages/olympiad/payment-status/create.tsx";
+import { ResultsPage } from "@/pages/olympiad/results";
+import { Top10Page } from "@/pages/olympiad/top10";
 
 export function AppRouter() {
   return (
@@ -46,6 +48,8 @@ export function AppRouter() {
           <Route path="payment-fail" element={<PaymentFailPage />} />
           <Route path="training" element={<TrainingPage />} />
           <Route path="start" element={<StartPage />} />
+          <Route path="results" element={<ResultsPage />} />
+          <Route path="top10" element={<Top10Page />} />
         </Route>
       </Route>
     </Routes>

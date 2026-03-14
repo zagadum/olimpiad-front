@@ -9,7 +9,7 @@ import {
   getOlympiadsTaskList,
   runOlympiad,
 } from "@/entities/olympiads";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getLang } from "@/shared/lib/getLang.ts";
 
 type StateOption = {
@@ -45,6 +45,7 @@ const categoryBinary = [
 export const StartPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const lang = getLang(i18n.language);
+  const navigate = useNavigate();
 
   const [selectedCapacity, setSelectedCapacity] = useState<StateOption[]>([]);
   const [selectedGroupCards, setSelectedGroupCards] = useState<StateOption[]>(
@@ -310,7 +311,7 @@ export const StartPage: React.FC = () => {
                           {item.points != null ? `${item.points} ${t("olympiadStart.points")}`
                               : olympiad?.is_done === 1 || item.btn_allow !== 1
                                   ? t("olympiadStart.done")
-                                  : t("olympiadTraining.startTraining")}
+                                  : t("olympiadStart.start")}
 
                       </Button>
                     </td>
@@ -321,6 +322,18 @@ export const StartPage: React.FC = () => {
           </table>
         </div>
       </div>
+
+      {/* Кнопка "Дiзнайся свiй загальни бал" */}
+      {olympiad?.is_done === 1 && (
+        <div className="mt-4 flex justify-center">
+          <Button
+            className="w-full max-w-[500px] py-3 text-base"
+            onClick={() => navigate(`/olympiads/${olympiadId}/results`)}
+          >
+            {t("olympiadStart.checkScore")}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
