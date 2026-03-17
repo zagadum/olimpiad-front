@@ -52,10 +52,13 @@ const yearIntervals = [
   { min: 18, max: 100 },
 ];
 
-const ageOptions = yearIntervals.map(({ min, max }, index) => ({
-  value: index,
-  label: min < 18 ? `${min} - ${max}` : "18+",
-}));
+const ageOptions = [
+  { value: -1, label: "--" },
+  ...yearIntervals.map(({ min, max }, index) => ({
+    value: index,
+    label: min < 18 ? `${min} - ${max}` : "18+",
+  })),
+];
 
 const calcAge = (date: string) => {
   const dateNow = Date.now();
@@ -68,13 +71,13 @@ const calcAge = (date: string) => {
 };
 
 function getAgeIntervalIndex(age: number): number {
-  if (age < yearIntervals[0].min) return 0;
-  if (age > yearIntervals[yearIntervals.length - 1].max)
-    return yearIntervals.length - 1;
+  if (!age || age < yearIntervals[0].min) return -1;
+  if (age > yearIntervals[yearIntervals.length - 1].max) return yearIntervals.length - 1;
 
-  return yearIntervals.findIndex(
+  const idx = yearIntervals.findIndex(
     (interval) => age >= interval.min && age <= interval.max,
   );
+  return idx !== -1 ? idx : -1;
 }
 
 const getAgeTab = (min: number, max: number) => `${min}-${max}`;
@@ -107,7 +110,7 @@ export const RegisterFormPage: React.FC = () => {
       school: user?.school,
       email: user?.email,
       phone: user?.phone,
-      age_id: getAgeIntervalIndex(calcAge(user?.dob ?? "")) ?? user?.age_id,
+      age_id: -1,
       language: lang === "pl" ? "pl" : "uk",
     },
   });
@@ -149,23 +152,22 @@ export const RegisterFormPage: React.FC = () => {
         language: lang,
         olympiad_id: olympiadId,
         stages_level: stagesLevelField,
-        age_tab: getAgeTab(
-          yearIntervals[ageField].min,
-          yearIntervals[ageField].max,
-        ),
+        age_tab:
+          ageField >= 0
+            ? getAgeTab(yearIntervals[ageField].min, yearIntervals[ageField].max)
+            : undefined,
       },
     ],
     queryFn: () =>
-      getOlympiadsTask({
-        language: lang,
-        olympiad_id: olympiadId,
-        stages_level: stagesLevelField,
-        age_tab: getAgeTab(
-          yearIntervals[ageField].min,
-          yearIntervals[ageField].max,
-        ),
-      }),
-    enabled: !!(olympiadId && stagesLevelField),
+      ageField >= 0 && stagesLevelField
+        ? getOlympiadsTask({
+            language: lang,
+            olympiad_id: olympiadId,
+            stages_level: stagesLevelField,
+            age_tab: getAgeTab(yearIntervals[ageField].min, yearIntervals[ageField].max),
+          })
+        : Promise.resolve({ data_list: [] }),
+    enabled: !!(olympiadId && stagesLevelField && ageField >= 0),
     select: (response) => response.data_list,
   });
 
@@ -244,7 +246,7 @@ export const RegisterFormPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     const { age_id, ...formData } = data;
-    const ageTab = yearIntervals[age_id];
+    const ageTab = age_id >= 0 ? yearIntervals[age_id] : { min: 0, max: 0 };
     mutation.mutate({
       ...formData,
       olympiad_id: olympiadId,
@@ -420,7 +422,10 @@ export const RegisterFormPage: React.FC = () => {
               <Controller
                 control={control}
                 name="age_id"
-                rules={{ required: t("registerForm.errors.fieldRequired") }}
+                rules={{
+                  required: t("registerForm.errors.fieldRequired"),
+                  validate: (value) => value !== -1 || t("registerForm.errors.fieldRequired"),
+                }}
                 render={({ field, fieldState }) => (
                   <CustomSelect<FormInputs, "age_id", number>
                     field={field}
