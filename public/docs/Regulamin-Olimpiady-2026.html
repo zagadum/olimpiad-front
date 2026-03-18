@@ -4,238 +4,388 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regulamin Olimpiady Space Memory 2026</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Базовые переменные для удобной смены цветовой темы */
+        :root {
+            --bg-color: #f3f4f6;
+            --surface-color: #ffffff;
+            --text-main: #374151;
+            --text-muted: #6b7280;
+            --primary-color: #2563eb;
+            --primary-light: #eff6ff;
+            --danger-color: #dc2626;
+            --danger-bg: #fef2f2;
+            --accent-color: #db2777;
+            --accent-bg: #fdf2f8;
+            --border-color: #e5e7eb;
+        }
+
+        /* Сброс базовых настроек */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #f8fafc;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 1);
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--surface-color);
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        .section-nav:hover {
-            color: #2563eb;
-            background: #eff6ff;
+
+        /* Типографика */
+        h1, h2, h3, h4 {
+            color: #111827;
+            line-height: 1.3;
+            margin-bottom: 1rem;
         }
-        .important-glow {
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+
+        h1 {
+            font-size: 1.75rem;
+            text-align: center;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
         }
-        @media print {
-            .no-print { display: none; }
-            body { background: white; }
-            .glass-card { border: none; box-shadow: none; }
+
+        h2 {
+            font-size: 1.35rem;
+            margin-top: 2.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            margin-top: 2rem;
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            color: #4b5563;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Списки */
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Блок ВАЖНО */
+        .alert-box {
+            background-color: var(--danger-bg);
+            border-left: 4px solid var(--danger-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2.5rem;
+        }
+
+        .alert-box h2 {
+            color: var(--danger-color);
+            margin-top: 0;
+            border: none;
+            padding-bottom: 0;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-box ol {
+            margin-bottom: 0;
+        }
+
+        /* Выделение расчетов и математики */
+        .math {
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            background-color: var(--accent-bg);
+            color: var(--accent-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+
+        /* Блок согласия в конце документа */
+        .agreement-box {
+            margin-top: 3rem;
+            background-color: var(--primary-light);
+            border: 1px solid #bfdbfe;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .agreement-box p:first-child {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .agreement-box p:last-child {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 25px 20px;
+                border-radius: 8px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .alert-box {
+                padding: 15px;
+            }
         }
     </style>
 </head>
-<body class="text-slate-800">
+<body>
 
-    <!-- Header / Hero -->
-    <header class="bg-slate-900 text-white py-12 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-block bg-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
-                Global Leaders Skills
-            </div>
-            <h1 class="text-3xl md:text-5xl font-bold mb-4">Space Memory 2026</h1>
-            <p class="text-slate-400 text-lg">Regulamin Olimpiady Online</p>
-        </div>
-    </header>
-
-    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
-        
-        <!-- Sticky Sidebar Navigation -->
-        <aside class="lg:w-1/4 no-print">
-            <nav class="sticky top-8 space-y-1">
-                <p class="text-xs font-bold text-slate-400 px-4 mb-2 uppercase tracking-wider">Nawigacja</p>
-                <a href="#wazne" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors text-red-600 bg-red-50">
-                    <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    WAŻNE!
-                </a>
-                <a href="#sec-1" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">1. Postanowienia ogólne</a>
-                <a href="#sec-2" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">2. Rejestracja</a>
-                <a href="#sec-3" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">3. Procedura i Punktacja</a>
-                <a href="#sec-4" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">4. Płatność i Terminy</a>
-                <a href="#sec-5" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">5. Prawa Uczestnika</a>
-                <a href="#sec-6" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">6. Prawa Organizatora</a>
-                <a href="#sec-10" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors">10. Dane osobowe</a>
-                <a href="#sec-11" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors font-semibold text-blue-700">11. Odstąpienie od umowy</a>
-                <a href="#sec-12" class="section-nav flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors font-semibold text-blue-700">12. Reklamacje</a>
-                
-                <div class="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-100">
-                    <p class="text-sm text-blue-800 font-semibold mb-2">Kontakt / Reklamacje</p>
-                    <a href="mailto:akademiaspacememory@gmail.com" class="text-xs font-bold text-blue-700 hover:underline">akademiaspacememory@gmail.com</a>
-                </div>
-            </nav>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="lg:w-3/4 space-y-12">
-            
-            <!-- Section: Important -->
-            <section id="wazne" class="scroll-mt-8">
-                <div class="glass-card important-glow border-red-200 rounded-2xl p-6 md:p-8 bg-red-50">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="p-3 bg-red-500 rounded-lg text-white">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h2 class="text-2xl font-bold text-red-800 uppercase tracking-tight">Kluczowe Zasady</h2>
-                    </div>
-                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
-                            <span class="font-bold text-red-500">1.</span>
-                            <span class="text-sm">Tylko jedna kategoria wiekowa i jeden poziom (Basic/Intermediate).</span>
-                        </li>
-                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
-                            <span class="font-bold text-red-500">2.</span>
-                            <span class="text-sm italic font-semibold">OBOWIĄZKOWO NAGRAJ WIDEO!</span> <br>Musi widać dziecko i ekran, z dźwiękiem, bez montażu.
-                        </li>
-                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm border-2 border-red-100">
-                            <span class="font-bold text-red-500">3.</span>
-                            <span class="text-sm">Samodzielne wpisywanie bez pomocy osób trzecich i urządzeń.</span>
-                        </li>
-                        <li class="flex gap-3 bg-white p-4 rounded-xl shadow-sm">
-                            <span class="font-bold text-red-500">4.</span>
-                            <span class="text-sm">Absolutny zakaz używania słuchawek.</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Section 1: Updated with full legal details -->
-            <section id="sec-1" class="scroll-mt-8">
-                <h3 class="text-xl font-bold mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-slate-200 text-slate-700 flex items-center justify-center rounded-lg mr-3">1</span>
-                    Postanowienia Ogólne
-                </h3>
-                <div class="glass-card rounded-2xl p-6 shadow-sm leading-relaxed text-slate-600 space-y-6">
-                    <p>
-                        <strong>1.1.</strong> Olimpiada Online GLOBAL LEADERS SKILLS - SPACE MEMORY 2026 organizowana jest przez firmę <strong>GLOBAL LEADERS SKILLS sp. z o.o.</strong> z siedzibą w Warszawie, ul. Kabacki Dukt 1, lok. U1 i U2, 02-798 Warszawa, wpisaną do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy dla m.st. Warszawy w Warszawie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego, pod numerem <strong>KRS: 0001055763</strong>, <strong>NIP: 5252970924</strong>. Kapitał zakładowy: <strong>5 000,00 zł</strong>.
-                    </p>
-                    <p>
-                        <strong>1.2.</strong> Klient może zapłacić za zamówione usługi poprzez zewnętrzny system płatności <strong>imoje</strong>, obsługiwany przez ING Bank Śląski S.A. z siedzibą w Katowicach. Transakcje będą realizowane za pośrednictwem linków do płatności wygenerowanych przez Organizatora.
-                    </p>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <p class="text-sm font-semibold mb-2 text-slate-900">1.3. Cele Olimpiady:</p>
-                        <ul class="text-sm list-disc pl-5 space-y-1">
-                            <li>Rywalizacja poza granicami szkoły i kraju.</li>
-                            <li>Rozwijanie umiejętności sportowego zapamiętywania.</li>
-                            <li>Praca pod presją czasu i dążenie do doskonałości.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 3: Scoring -->
-            <section id="sec-3" class="scroll-mt-8">
-                <h3 class="text-xl font-bold mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg mr-3 text-sm">3</span>
-                    Procedura i System Punktowania
-                </h3>
-                
-                <div class="space-y-6">
-                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <h4 class="font-bold text-blue-600 mb-4 uppercase text-sm tracking-widest">Poziomy Basic & Intermediate</h4>
-                        <p class="text-sm text-slate-600">Zasada: <strong>1 punkt</strong> za każdą prawidłową odpowiedź.</p>
-                    </div>
-
-                    <div class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xl">
-                        <h4 class="font-bold text-yellow-400 mb-6 uppercase text-sm tracking-widest">Poziom PRO</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                            <div class="border-l-2 border-yellow-500 pl-4">
-                                <p class="font-bold">Liczby:</p>
-                                <p class="text-slate-400">Bezbłędny wiersz: 60 pkt | 1 błąd: 30 pkt</p>
-                            </div>
-                            <div class="border-l-2 border-yellow-500 pl-4">
-                                <p class="font-bold">Karty:</p>
-                                <p class="text-slate-400 italic">Zaliczane do pierwszego błędu. Mnożnik czasu.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- New Section 11: Odstąpienie od umowy -->
-            <section id="sec-11" class="scroll-mt-8">
-                <h3 class="text-xl font-bold mb-6 flex items-center text-blue-700">
-                    <span class="w-8 h-8 bg-blue-700 text-white flex items-center justify-center rounded-lg mr-3 text-sm">11</span>
-                    Odstąpienie od umowy
-                </h3>
-                <div class="glass-card rounded-2xl p-6 shadow-sm border-l-4 border-blue-500">
-                    <p class="text-slate-700 leading-relaxed italic">
-                        Kupujący (Konsument oraz Przedsiębiorca na prawach Konsumenta) ma prawo do pisemnego odstąpienia od zawieranej umowy bez podania przyczyny w terminie 14 (słownie: czternastu) dni od daty zawarcia umowy na podstawie ustawy z dnia 30 maja 2014 r. (Dz.U. 2014 r. poz. 827 ze zm.) . Uprawnienie to dotyczy również osoby fizycznej - Przedsiębiorcy na prawach Konsumenta, zawierającego umowę bezpośrednio związaną z jej działalnością gospodarczą, gdy z treści tej umowy wynika, że nie posiada ona dla tej osoby charakteru zawodowego. W przypadku skorzystania z prawa do odstąpienia, koszt zwrotu ponosi kupujący.
-                    </p>
-                </div>
-            </section>
-
-            <!-- New Section 12: Reklamacje -->
-            <section id="sec-12" class="scroll-mt-8">
-                <h3 class="text-xl font-bold mb-6 flex items-center text-blue-700">
-                    <span class="w-8 h-8 bg-blue-700 text-white flex items-center justify-center rounded-lg mr-3 text-sm">12</span>
-                    Procedura reklamacyjna
-                </h3>
-                <div class="glass-card rounded-2xl p-6 shadow-sm border-l-4 border-blue-500">
-                    <div class="text-slate-700 space-y-4">
-                        <p>
-                            <strong>GLOBAL LEADERS SKILLS sp. z o.o.</strong> ponosi odpowiedzialność wobec Konsumenta i Przedsiębiorcy na prawach Konsumenta za brak zgodności świadczonych usług/towaru z umową. 
-                        </p>
-                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                            <p class="font-semibold text-blue-900 mb-2">Jak złożyć reklamację?</p>
-                            <p class="text-sm">Reklamacja może zostać złożona na piśmie lub mailowo i przesłana na adres: 
-                                <a href="mailto:akademiaspacememory@gmail.com" class="font-bold text-blue-700 hover:underline">akademiaspacememory@gmail.com</a>.
-                            </p>
-                            <p class="text-sm mt-2">Reklamacje będą rozpatrywane w terminie <strong>14 dni</strong> od daty ich otrzymania.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 10 -->
-            <section id="sec-10" class="scroll-mt-8">
-                <div class="bg-slate-100 rounded-2xl p-8 border border-slate-200">
-                    <h3 class="text-xl font-bold mb-4">10. Dane Osobowe</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Wyrażam zgodę na przetwarzanie danych osobowych mojego dziecka w celu organizacji Olimpiady oraz na nieodpłatne wykorzystanie wizerunku w celach marketingowych Organizatora (media społecznościowe, strona www).
-                    </p>
-                </div>
-            </section>
-
-        </main>
+<div class="container">
+    <div class="alert-box">
+        <h2>⚠️ WAŻNE!</h2>
+        <ol>
+            <li>Uczestnik ma prawo zarejestrować się tylko w jednej kategorii wiekowej i poziomie (Basic / Intermediate).</li>
+            <li>Podczas Olimpiady należy <strong>OBOWIĄZKOWO NAGRAĆ WIDEO!</strong> Nagranie musi wyraźnie przedstawiać dziecko oraz ekran z zadaniem. Wideo musi być z dźwiękiem, bez montażu, kręcone w sposób ciągły od początku do końca podejścia.</li>
+            <li>Uczestnik musi samodzielnie wpisywać odpowiedzi na platformie - bez pomocy osób trzecich i urządzeń wspomagających.</li>
+            <li>Podczas Olimpiady Uczestnik musi być bez słuchawek.</li>
+            <li>Olimpiadę można przechodzić wyłącznie na laptopie. Wymagana przeglądarka: Google Chrome.</li>
+        </ol>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-500 py-12 px-6 mt-16 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-                <p class="font-bold text-white mb-2">GLOBAL LEADERS SKILLS sp. z o.o.</p>
-                <p class="text-sm">KRS: 0001055763 | NIP: 5252970924</p>
-                <p class="text-sm">Kapitał zakładowy: 5 000,00 zł</p>
-            </div>
-            <div class="md:text-right">
-                <p class="text-sm">Lista laureatów: <strong>26 kwietnia, 17:00 (ZOOM)</strong></p>
-                <div class="mt-4 no-print">
-                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm transition-all">
-                        Pobierz Regulamin PDF
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs">
-            © 2026 Global Leaders Skills. Wszystkie dane są traktowane jako ostateczne.
-        </div>
-    </footer>
+    <h1>REGULAMIN OLIMPIADY ONLINE<br>GLOBAL LEADERS SKILLS - SPACE MEMORY 2026</h1>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <h2>1. POSTANOWIENIA OGÓLNE</h2>
+    <p>1.1. Niniejszy regulamin określa procedurę organizacji i przeprowadzenia OLIMPIADY ONLINE GLOBAL LEADERS SKILLS - SPACE MEMORY 2026 (zwanej dalej „Olimpiadą"), jej wsparcie organizacyjne i finansowe, tryb udziału oraz wyłonienia zwycięzców.</p>
+    <p>1.2. Główne cele i zadania Olimpiady:</p>
+    <ul>
+        <li>umożliwienie uczestnikom rywalizacji poza granicami szkoły, regionu i kraju;</li>
+        <li>zachęcanie dzieci wykazujących zdolności do sportowego zapamiętywania;</li>
+        <li>rozwijanie u dzieci umiejętności zastosowania zdobytej wiedzy w praktyce;</li>
+        <li>kształtowanie postawy dociekliwości i nieustannego dążenia do doskonałości w dziedzinie szybkiego zapamiętywania;</li>
+        <li>rozwijanie umiejętności pracy pod presją czasu poprzez rozwiązywanie zadań w ograniczonym czasie;</li>
+        <li>kreowanie atmosfery zdrowej rywalizacji zachęcającej uczestników do osiągania jak najlepszych wyników.</li>
+    </ul>
+    <p>1.3. Podmiotem odpowiedzialnym za organizację i przeprowadzenie Olimpiady jest GLOBAL LEADERS SKILLS sp. z o.o., ul. Kabacki Dukt 1, lok. U1 i U2, 02-798 Warszawa (zwana dalej "Organizatorem").</p>
+    <p>1.4. Do udziału w Olimpiadzie uprawnieni są wyłącznie aktualni uczniowie szkoły Global Leaders Skills - Space Memory.</p>
+    <p>1.5. Forma Olimpiady: online.</p>
+    <p>1.6. W Olimpiadzie mogą brać udział wyłącznie dzieci w wieku od 8 do 18 lat.</p>
+    <p>1.7. Językiem Olimpiady jest język polski.</p>
+    <p>1.8. Olimpiada odbywa się z wykorzystaniem zadań zaprogramowanych na platformie Global Leaders Skills: <a href="https://olymp-space.com/" target="_blank">https://olymp-space.com/</a></p>
+    <p>1.9. Zadania finalnego podejścia odpowiadają wersji testowej Olimpiady.</p>
+    <p>1.10. Kwestie związane z Olimpiadą, nieuregulowane niniejszym Regulaminem, rozstrzyga samodzielnie Organizator. Decyzje Organizatora w sprawach nieuregulowanych niniejszym Regulaminem są ostateczne i nie podlegają zaskarżeniu.</p>
+
+    <h2>2. PROCEDURA REJESTRACJI NA OLIMPIADĘ ONLINE</h2>
+    <p>2.1. Rejestracja na Olimpiadę odbywa się online na platformie: <a href="https://olymp-space.com/" target="_blank">https://olymp-space.com/</a></p>
+    <p>2.2. Po dokonaniu rejestracji i pomyślnym przetworzeniu płatności Uczestnik otrzymuje potwierdzenie jej realizacji wyświetlone na ekranie platformy. Dodatkowo na adres e-mail podany podczas rejestracji wysyłane jest automatyczne potwierdzenie płatności z bramki płatniczej ING Imoje.</p>
+    <p>2.3. Po dokonaniu rejestracji Uczestnik uzyskuje nieograniczony dostęp do platformy treningowej i może ćwiczyć dowolną liczbę razy każdego dnia aż do rozpoczęcia oficjalnego podejścia.</p>
+
+    <h2>3. PROCEDURA OLIMPIADY ONLINE</h2>
+    <p>3.1. Dostęp do Olimpiady otwierany jest pierwszego dnia zawodów. Każdy Uczestnik ma prawo do jednej próby podejścia.</p>
+    <p>3.2. Olimpiadę można przechodzić wyłącznie za pomocą laptopa. Udział z wykorzystaniem tabletu, telefonu komórkowego ani żadnego innego urządzenia jest niedozwolony.</p>
+    <p>3.3. Wymagana przeglądarka: Google Chrome.</p>
+    <p>3.4. Zadania mogą być wykonywane w dowolnej kolejności dyscyplin - Uczestnik samodzielnie wybiera, którą dyscyplinę chce przejść jako pierwszą. Możliwe jest przerwanie i wznowienie Olimpiady, pod warunkiem zakończenia bieżącej dyscypliny przed przerwą. Wszystkie dyscypliny muszą zostać ukończone nie później niż ostatniego dnia trwania Olimpiady.</p>
+    <p>3.5. Olimpiada składa się z różnych dyscyplin, przypisanych do odpowiedniej kategorii wiekowej oraz poziomu wybranego podczas rejestracji.</p>
+    <p>3.6. Na każdą dyscyplinę przeznaczono: 5 minut na zapamiętywanie oraz 15 minut na przypominanie.</p>
+    
+    <h3>3.7. System punktowania Olimpiady</h3>
+    <p>Olimpiada odbywa się na dwóch poziomach zaawansowania:</p>
+    
+    <h4>POZIOM "BASIC" i "INTERMEDIATE"</h4>
+    <p>Na poziomach Basic i Intermediate za każdą prawidłową odpowiedź umieszczoną w odpowiedniej komórce przyznawany jest 1 punkt. Zasada ta obowiązuje dla wszystkich dyscyplin: liczby, obrazki, słowa, wymyślone daty, kod binarny oraz karty.</p>
+
+    <h4>POZIOM „PRO”</h4>
+    <p><strong>Dyscyplina: LICZBY</strong></p>
+    <ul>
+        <li>Punkty naliczane są oddzielnie dla każdego wiersza:</li>
+        <li>brak błędów w wierszu: <span class="math">40 &times; 1.5 = 60 pkt</span></li>
+        <li>1 błąd w wierszu: <span class="math">(40 - 20) &times; 1,5 = 30 pkt</span></li>
+        <li>2 lub więcej błędów w wierszu: 0 pkt</li>
+        <li>ostatni wiersz niekompletny, wszystkie wpisane cyfry prawidłowe (np. 33 cyfry): <span class="math">33 &times; 1,5 = 49,5 pkt</span></li>
+        <li>ostatni wiersz niekompletny z 1 błędem: <span class="math">(33 &divide; 2) &times; 1,5 = 24,75 pkt</span></li>
+        <li>Wszystkie punkty z poszczególnych wierszy są sumowane.</li>
+    </ul>
+
+    <p><strong>Dyscyplina: OBRAZKI</strong></p>
+    <p>Zadanie składa się z rzędów obrazków (5 obrazków w rzędzie). Uczestnik musi odtworzyć każdy rząd w dokładnej, określonej kolejności. Ocenianie odbywa się rzędami - każdy rząd traktowany jest jako odrębna całość:</p>
+    <ul>
+        <li>rząd prawidłowo odtworzony w całości: +5 pkt</li>
+        <li>co najmniej 1 błąd w rzędzie (zły obrazek, zła kolejność lub pominięcie): rząd niezaliczony i kara -1 pkt</li>
+        <li>częściowo prawidłowe rzędy nie przynoszą punktów dodatnich</li>
+    </ul>
+    <p>Po zakończeniu wprowadzania odpowiedzi łączna liczba punktów mnożona jest przez 1,5. System oceniania promuje dokładność i niezawodność zapamiętywania zgodnie z zasadami międzynarodowych zawodów pamięciowych.</p>
+
+    <p><strong>Dyscyplina: SŁOWA</strong></p>
+    <p>Punkty naliczane są według kolumn (1-20, 21-40, 41-60, 61-80, 81-100):</p>
+    <ul>
+        <li>brak błędów w kolumnie: 20 pkt</li>
+        <li>1 błąd w kolumnie: <span class="math">20 - 10 = 10 pkt</span></li>
+        <li>2 lub więcej błędów w kolumnie: 0 pkt</li>
+    </ul>
+    <p>Łączna liczba punktów mnożona jest przez 1,5.</p>
+
+    <p><strong>Dyscyplina: KARTY</strong></p>
+    <p>Program porównuje każdą kartę przy pierwszym błędzie zaliczane są wyłącznie prawidłowe karty do tego momentu (np. przy 15 prawidłowych kartach, następnie błędzie i kolejnych prawidłowych - zaliczane jest 15 kart). Rejestrowany jest czas zapamiętywania. Jeżeli Uczestnik odtworzy mniej niż 52 karty, jego czas zapamiętywania przyjmowany jest jako 300 sekund.</p>
+    <p>Wynik obliczany jest według wzoru: <span class="math">Wynik = [100 / (t / 300)] &times; [c / 52]</span></p>
+    <p>gdzie: <span class="math">t</span> = czas zapamiętywania w sekundach; <span class="math">c</span> = liczba prawidłowych kart do pierwszego błędu.</p>
+    <ul>
+        <li>Przykład 1: <span class="math">t = 272.41 s, c = 52 &rarr; (100 / (272,41 / 300)) &times; (52 / 52) = 110,13 pkt</span></li>
+        <li>Przykład 2: <span class="math">t = 300 s, c = 8 &rarr; (100 / (300 / 300)) &times; (8 / 52) = 15,38 pkt</span></li>
+    </ul>
+
+    <p><strong>Dyscyplina: WYMYŚLONE DATY</strong></p>
+    <p>Każdy prawidłowo zapamiętany rok powiązany z właściwą nazwą zdarzenia = 1 pkt. Każdy błąd = kara -0,5 pkt. Puste komórki nie powodują odjęcia punktów.</p>
+    <p><em>Uwaga: zapisanie „99” lub „999” zamiast „1999” jest błędem - zawsze należy podawać cztery cyfry roku. Wpisanie roku w niewłaściwej komórce jest błędem.</em></p>
+
+    <p><strong>Dyscyplina: KOD BINARNY</strong></p>
+    <p>W każdym wierszu znajduje się 30 cyfr binarnych:</p>
+    <ul>
+        <li>pełny wiersz bez błędów: <span class="math">30 &times; 1,5 = 45 pkt</span></li>
+        <li>dokładnie 1 błąd w wierszu: <span class="math">15 &times; 1,5 = 22,5 pkt</span></li>
+        <li>2 lub więcej błędów (w tym pominięcia): 0 pkt</li>
+        <li>ostatni wiersz niekompletny i bezbłędny (np. 23 cyfry): <span class="math">23 &times; 1,5 = 34,5 pkt</span></li>
+        <li>ostatni wiersz niekompletny z 1 błędem: <span class="math">(23 &divide; 2) &times; 1,5 = 17,25 pkt</span></li>
+        <li>ostatni wiersz niekompletny z więcej niż 1 błędem: 0 pkt</li>
+    </ul>
+
+    <p>3.8. Po zakończeniu Olimpiady Uczestnik otrzymuje na ekranie informację o liczbie punktów uzyskanych w każdej dyscyplinie osobno oraz łącznie.</p>
+
+    <h2>4. FORMULARZ ZGŁOSZENIOWY I PŁATNOŚĆ</h2>
+    <p>4.1. Po wybraniu Olimpiady na platformie Uczestnik wypełnia formularz zgłoszeniowy z wymaganymi danymi.</p>
+    <p>4.2. Przed przystąpieniem do kolejnego etapu Uczestnik zobowiązany jest zapoznać się z Regulaminem Olimpiady i potwierdzić jego akceptację.</p>
+    <p>4.3. Po zaakceptowaniu Regulaminu Uczestnik dokonuje opłaty za udział w Olimpiadzie za pośrednictwem dostępnych metod płatności elektronicznych.</p>
+    <p>4.4. Po pomyślnym dokonaniu płatności Uczestnik otrzymuje potwierdzenie realizacji transakcji na ekranie platformy oraz na adres e-mail podany podczas rejestracji. Potwierdzenie wysyłane jest automatycznie przez bramkę płatniczą ING Imoje.</p>
+    <p>4.5. Termin przeprowadzenia treningów oraz oficjalnego podejścia do Olimpiady: od 17 kwietnia do 23 kwietnia do godziny 17:00.</p>
+    <p>4.6. Po potwierdzeniu płatności Uczestnik uzyskuje dostęp do profilu Olimpiady zawierającego informacje o wydarzeniu, harmonogramie i dostępnych funkcjach.</p>
+    <p>4.7. Przed oficjalnym podejściem Uczestnik może korzystać z trybu treningowego bez ograniczeń - dowolna liczba prób jest dostępna do momentu rozpoczęcia oficjalnego podejścia.</p>
+    <p>4.8. Po rozpoczęciu oficjalnego podejścia nie ma możliwości cofnięcia, zatrzymania ani ponownego uruchomienia testu. W przypadku zamknięcia przeglądarki, zakładki lub utraty połączenia z Internetem podejście zostaje zakończone, a wynik Uczestnika zapisywany jest automatycznie jako 0 punktów.</p>
+
+    <h2>5. PRAWA I OBOWIĄZKI UCZESTNIKA OLIMPIADY</h2>
+    <p>5.1. Uczestnik Olimpiady ma prawo do:</p>
+    <ul>
+        <li>5.1.1. udziału w Olimpiadzie online na poziomie nie niższym niż poziom ostatnio ukończony w ramach zajęć w szkole Space Memory; rejestracja na niższym poziomie niż wynikający z dotychczasowych postępów jest niedozwolona i może zostać anulowana przez Organizatora;</li>
+        <li>5.1.2. uzyskania informacji o procedurze, miejscu i terminie Olimpiady;</li>
+        <li>5.1.3. dostępu do platformy treningowej bez ograniczeń liczby prób, wyłącznie na poziomie odpowiadającym aktualnym postępom Uczestnika;</li>
+        <li>5.1.4. natychmiastowego wglądu w uzyskane wyniki - liczba punktów w każdej dyscyplinie oraz łącznie wyświetlana jest na ekranie bezpośrednio po zakończeniu podejścia.</li>
+    </ul>
+
+    <p>5.2. Uczestnik zobowiązany jest do:</p>
+    <ul>
+        <li>5.2.1. udziału w Olimpiadzie w wyznaczonym terminie;</li>
+        <li>5.2.2. rejestracji wyłącznie w jednej kategorii wiekowej i poziomie;</li>
+        <li>5.2.3. podania prawdziwych, kompletnych i dokładnych danych podczas rejestracji;</li>
+        <li>5.2.4. samodzielnego wpisywania odpowiedzi na platformie, bez pomocy osób trzecich i jakichkolwiek urządzeń wspomagających zapamiętywanie;</li>
+        <li>5.2.5. przystąpienia do Olimpiady bez słuchawek;</li>
+        <li>5.2.6. OBOWIĄZKOWEGO nagrania wideo obejmującego cały przebieg Olimpiady. Nagranie musi wyraźnie ukazywać Uczestnika oraz ekran urządzenia. Wideo musi być z dźwiękiem, bez montażu, nagrywane w sposób ciągły od początku do końca;</li>
+        <li>5.2.7. przesłania nagrania wideo potwierdzającego przebieg Olimpiady w ciągu 24 godzin od jej ukończenia na adres e-mail: <a href="mailto:jakosc.space@gmail.com">jakosc.space@gmail.com</a> z otwartym dostępem do podglądu i pobrania pliku;</li>
+        <li>5.2.8. dostarczenia kopii dokumentów potwierdzających wiek dziecka na żądanie Organizatora;</li>
+        <li>5.2.9. przystąpienia do wyższej kategorii w niniejszej Olimpiadzie w przypadku, gdy Uczestnik zajął miejsce nagrodzone w poprzedniej edycji Olimpiady;</li>
+        <li>5.2.10. przestrzegania wymogów niniejszego Regulaminu oraz procedur Olimpiady.</li>
+    </ul>
+
+    <h2>6. PRAWA I OBOWIĄZKI ORGANIZATORA OLIMPIADY</h2>
+    <p>6.1. Organizator ma prawo do:</p>
+    <ul>
+        <li>6.1.1. zmiany ceny za udział w Olimpiadzie (wyłącznie dla Uczestników, którzy jeszcze się nie zarejestrowali); wysokość opłaty uzależniona jest od daty rejestracji;</li>
+        <li>6.1.2. połączenia grup, jeżeli w jednej kategorii wiekowej i na jednym poziomie trudności zarejestrowano mniej niż dziesięciu Uczestników; wyniki Uczestników zrównywane są wówczas z wynikami tego samego poziomu najbliższej kategorii wiekowej;</li>
+        <li>6.1.3. zażądania nagrania wideo potwierdzającego przebieg Olimpiady;</li>
+        <li>6.1.4. anulowania wyniku Uczestnika w przypadku naruszenia Regulaminu; Uczestnik pozbawiony zostaje wówczas prawa do ponownego udziału w Olimpiadzie;</li>
+        <li>6.1.5. przeniesienia Uczestnika do innej kategorii wiekowej lub poziomu trudności, jeżeli w ocenie Organizatora przypisanie do innej kategorii zapewni bardziej adekwatne warunki rywalizacji – w szczególności gdy Uczestnik wyraźnie przewyższa poziomem pozostałych zawodników w danej kategorii lub gdy liczba zapisanych Uczestników nie tworzy wystarczająco konkurencyjnej grupy. Organizator poinformuje o takiej zmianie rodzica lub opiekuna przed rozpoczęciem Olimpiady;</li>
+        <li>6.1.6. przeprowadzenia Olimpiady w jednej turze; w przypadku zajęcia miejsca nagrodzonego przez dwóch lub więcej Uczestników z identyczną liczbą punktów, Organizator zastrzega sobie prawo do przeprowadzenia dodatkowego etapu (bezpłatnie) w celu wyłonienia zwycięzcy;</li>
+        <li>6.1.7. podejmowania ostatecznych rozstrzygnięć w sytuacjach wyjątkowych i spornych, których Regulamin nie przewiduje. Decyzje Organizatora podjęte w tym trybie są wiążące i nie podlegają zaskarżeniu ani odwołaniu.</li>
+    </ul>
+
+    <p>6.2. Organizator zobowiązany jest do:</p>
+    <ul>
+        <li>6.2.1. zapewnienia terminowego otwarcia platformy Olimpiady;</li>
+        <li>6.2.2. gwarantowania rzetelności przeprowadzenia Olimpiady oraz prawidłowego podsumowania wyników.</li>
+    </ul>
+
+    <h2>7. PODSUMOWANIE I NAGRODY</h2>
+    <p>7.1. Liczbę zwycięzców Olimpiady ustala Organizator na podstawie łącznych wyników punktowych Uczestników.</p>
+    <p>7.2. Uczestnik zajmujący miejsce nagrodzone, który nie prześle w terminie 24 godzin od ukończenia Olimpiady nagrania wideo potwierdzającego jej przebieg lub prześle nagranie niespełniające wymogów pkt 5.2.6, zostaje automatycznie skreślony z listy zwycięzców, a jego wynik anulowany.</p>
+    <p>7.3. Jeżeli Uczestnik zdobył miejsce nagrodzone w dwóch różnych categories Olimpiady, przyznawane jest mu wyłącznie miejsce odpowiadające kategorii jego uczestnictwa; pozostałe wyniki są anulowane, nagroda pieniężna nie jest wypłacana, a dyplom nie jest wysyłany.</p>
+    <p>7.4. W przypadku anulowania wyniku его miejsce zajmuje Uczestnik z kolejnym wynikiem na liście.</p>
+    <p>7.5. Lista laureatów Olimpiady zatwierdzona przez Organizatora jest ogłaszana w dniu 26 kwietnia o godzinie 17:00 za pośrednictwem platformy ZOOM.</p>
+    <p>7.6. Lista wszystkich Uczestników Olimpiady wraz z liczbą rozwiązanych zadań jest weryfikowana i przechowywana przez Organizatora przez 7 dni od daty ogłoszenia wyników.</p>
+
+    <h2>8. BEZPIECZEŃSTWO FINANSOWE OLIMPIADY</h2>
+    <p>8.1. Olimpiada finansowana jest z opłat wniesionych przez uczestników (rodziców lub opiekunów prawnych) oraz z innych dopuszczonych prawem źródeł finansowania.</p>
+    <p>8.2. Aktualna wysokość opłaty za udział w Olimpiadzie wskazana jest bezpośrednio przed niniejszym Regulaminem i uzależniona od daty rejestracji. Opłata pokrywa koszty organizacji Olimpiady, w tym tworzenia i utrzymania platformy olimpijskiej, obsługi technicznej oraz nagród.</p>
+    <p>8.3. Obsługę płatności realizuje zewnętrzny operator - bramka płatnicza ING Imoje, zapewniająca bezpieczne przetwarzanie transakcji.</p>
+    <p>8.4. Opłaty wniesione przez Uczestników służą pokryciu kosztów organizacji i przeprowadzenia Olimpiady.</p>
+    <p>8.5. Opłaty za Olimpiadę nie podlegają zwrotowi ani przeniesieniu na inny termin.</p>
+    <p>8.6. Organizatorem Olimpiady oraz podmiotem odpowiedzialnym za jej realizację jest:<br>
+    <strong>GLOBAL LEADERS SKILLS sp. z o.o.</strong><br>
+    ul. Kabacki Dukt 1, lok. U1 i U2, 02-798 Warszawa<br>
+    KRS: 0001055763 | NIP: 5252970924 | REGON: 526267569</p>
+
+    <h2>9. INNE WARUNKI I ODPOWIEDZIALNOŚĆ</h2>
+    <ul>
+        <li>9.1. Zabrania się zmiany kategorii wiekowej lub poziomu trudności po dokonaniu rejestracji.</li>
+        <li>9.2. Zabrania się korzystania z jakichkolwiek urządzeń lub aplikacji wspomagających zapamiętywanie.</li>
+        <li>9.3. Zabrania się udziału w Olimpiadzie z jakiegokolwiek urządzenia innego niż laptop. Wymagany jest laptop z przeglądarką Google Chrome.</li>
+        <li>9.4. Zabrania się jednoczesnego rozwiązywania jednego zadania olimpijskiego przez dwóch lub więcej Uczestników.</li>
+        <li>9.5. Zabrania się osobom trzecim wpisywania odpowiedzi podczas Olimpiady.</li>
+        <li>9.6. Podczas Olimpiady obowiązuje zakaz używania słuchawek.</li>
+        <li>9.7. Zabrania się umieszczania w tle nagrania symboli politycznych, religijnych lub innych mogących obrażać narody, kultury i kraje; zabrania się również reklamowania znaków towarowych i wypowiadania haseł komercyjnych w nagraniu.</li>
+        <li>9.8. W przypadku naruszenia punktów 9.1-9.7 Organizator ma prawo anulować wynik i zdyskwalifikować Uczestnika, niezależnie od zajętego miejsca.</li>
+        <li>9.9. Organizator nie ponosi odpowiedzialności za błędnie podane przez Uczestnika dane (w tym imię, nazwisko, adres), skutkujące m.in. nieprawidłowym imieniem na dyplomie lub wysłaniem nagrody na błędny adres.</li>
+        <li>9.10. Dane podane podczas rejestracji są traktowane jako ostateczne. Ich zmiana po zakończeniu procesu rejestracji może okazać się niemożliwa.</li>
+        <li>9.11. Wyboru kategorii wiekowej i poziomu należy dokonać starannie i zgodnie z ustaleniami z trenerem. Organizator nie ponosi odpowiedzialności za błędny wybór dokonany przez Uczestnika lub jego opiekuna.</li>
+    </ul>
+
+    <h2>10. DANE OSOBOWE</h2>
+    <p>10.1. Wyrażam zgodę na przetwarzanie danych osobowych mojego dziecka (podopiecznego) z wykorzystaniem narzędzi automatyzacji, jak również bez użycia takich narzędzi, w celu organizacji, przeprowadzenia i podsumowania wyników Olimpiady.</p>
+    <p>10.2. Wyrażam zgodę na wykorzystanie następujących danych osobowych: nazwisko, imię, data urodzenia, płeć, nazwa placówki edukacyjnej, wyniki udziału w Olimpiadzie, informacje zawarte w zadaniach olimpijskich.</p>
+    <p>10.3. Wyrażam zgodę na publikację wyżej wskazanych danych osobowych mojego dziecka (podopiecznego), w tym za pośrednictwem Internetu, w celach określonych w niniejszej zgodzie.</p>
+    <p>10.4. Wyrażam zgodę na nieodpłatne wykorzystanie przez Organizatora zdjęć, nagrań wideo oraz materiałów zawierających wizerunek mojego dziecka do celów marketingowych i promocyjnych, w tym do publikacji w mediach społecznościowych, materiałach reklamowych oraz na stronach internetowych Organizatora. Obejmuje to w szczególności prezentowanie wyników, osiągnięć i nagrań z przebiegu Olimpiady w celach informacyjnych i marketingowych.</p>
+    <p>10.5. Oświadczam, że wykorzystanie danych mojego dziecka/podopiecznego zgodnie z niniejszym oświadczeniem nie wymaga żadnego dodatkowego wynagrodzenia, odszkodowania ani innej formy zapłaty z tego tytułu - ani na jego/jej rzecz, ani na moją.</p>
+    <p>10.6. W przypadku chęci cofnięcia zgody zobowiązuję się do pokrycia wszelkich kosztów poniesionych przez Organizatora i/lub inne podmioty w związku z wykorzystaniem dotychczasowej zgody (w tym kosztów nagrania, produkcji, edycji i dystrybucji materiałów).</p>
+
+    <div class="agreement-box">
+        <p>Potwierdzam zapoznanie się z REGULAMINEM OLIMPIADY ONLINE GLOBAL LEADERS SKILLS - SPACE MEMORY 2026 i akceptuję jego warunki.</p>
+        <p>Uwaga: Podawaj wyłącznie prawdziwe dane. Zostaną one opublikowane w wynikach Olimpiady oraz wykorzystane przy tworzeniu dyplomów.</p>
+    </div>
+</div>
+
 </body>
 </html>
