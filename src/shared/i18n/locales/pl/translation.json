@@ -93,7 +93,8 @@
     "waitResults": "Oczekiwanie na wyniki",
     "inactive": "Olimpiada nieaktywna",
     "viewResults": "Wyniki olimpiady",
-    "pointsLabel": "Punktów"
+    "pointsLabel": "Punktów",
+    "myResults": "Moje wyniki"
   },
   "olympiadHeader": {
     "startIn": "Start za ",
@@ -142,7 +143,9 @@
     "quantity": "Ilość:",
     "decks": "Talia: ",
     "min": "min",
-    "points": "punktów"
+    "points": "punktów",
+    "checkScore": "Sprawdź swój wynik",
+    "downloadResults": "Pobierz wyniki"
   },
   "registerForm": {
     "title": "Wypełnij formularz",
@@ -194,6 +197,15 @@
       "title": "⏳ Przetwarzanie płatności…"
     },
     "goToOlympiad": "Przejdź do olimpiady"
+  },
+  "resultsPage": {
+    "congratulations": "Gratulacje!",
+    "successMessage": "Ukończyłeś Olimpiadę!",
+    "yourResult": "Twój wynik",
+    "greatJob": "✨ ŚWIETNA ROBOTA!",
+    "share": "Udostępnij wynik",
+    "mainMenu": "Menu główne",
+    "linkCopied": "Link został skopiowany!"
   },
   "common": {
     "back": "z powrotem",

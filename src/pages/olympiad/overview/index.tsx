@@ -38,9 +38,14 @@ export const OverviewPage: React.FC = () => {
     if (olympiadIsPaid) {
       if (data?.is_done === 1) {
         return (
-          <span className="text-[--color-2]">
-            {t("olympiadCard.waitResults")}
-          </span>
+          <>
+            <span className="text-[--color-2]">
+              {t("olympiadCard.waitResults")}
+            </span>
+            <Button variant="secondary" onClick={goToStart}>
+              {t("olympiadCard.myResults")}
+            </Button>
+          </>
         );
       }
       if (data?.is_done === -1) {
@@ -93,7 +98,7 @@ export const OverviewPage: React.FC = () => {
         >
           {t("olympiadOverview.title")}
         </h2>
-        <div className="mb-2 flex gap-3 md:mb-4 md:gap-8">
+        <div className="mb-2 flex items-center gap-3 md:mb-4 md:gap-8">
           {(!data?.payment_status ||
             data?.payment_status === "none" ||
             data?.payment_status === "no" ||

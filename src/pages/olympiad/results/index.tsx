@@ -180,13 +180,6 @@ export const ResultsPage: React.FC = () => {
         {/* Кнопки дій */}
         <div className="space-y-3">
           <button
-            onClick={handleShare}
-            className="w-full py-4 px-6 rounded-2xl font-bold transition-all transform hover:scale-[1.02] active:scale-95 shadow-xl shadow-cyan-500/20 results-btn-share"
-          >
-            {t("resultsPage.share")}
-          </button>
-
-          <button
             onClick={handleMainMenu}
             className="w-full py-4 px-6 rounded-2xl bg-white/5 border border-white/20 hover:bg-white/10 text-white font-medium transition-all active:scale-95"
           >

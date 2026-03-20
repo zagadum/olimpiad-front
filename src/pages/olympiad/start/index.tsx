@@ -11,36 +11,37 @@ import {
 } from "@/entities/olympiads";
 import { useParams, useNavigate } from "react-router-dom";
 import { getLang } from "@/shared/lib/getLang.ts";
+import "./print.css";
 
 type StateOption = {
   id: number;
   value?: Value;
 };
 
-const capacity = [
-  { value: 1, label: "без поділу" },
-  { value: 2, label: "2" },
-  { value: 4, label: "4" },
-  { value: 6, label: "6" },
-] as SelectOption[];
+const getCapacity = (t: (key: string) => string): SelectOption[] => [
+  { id: "cap-1", value: 1, label: t("olympiadParams.no_split") },
+  { id: "cap-2", value: 2, label: "2" },
+  { id: "cap-4", value: 4, label: "4" },
+  { id: "cap-6", value: 6, label: "6" },
+];
 
-const groupCards = [
-  { value: 1, label: "без групування" },
-  { value: 2, label: "2" },
-  { value: 3, label: "3" },
-] as SelectOption[];
+const getGroupCards = (t: (key: string) => string): SelectOption[] => [
+  { id: "gc-1", value: 1, label: t("olympiadParams.no_grouping") },
+  { id: "gc-2", value: 2, label: "2" },
+  { id: "gc-3", value: 3, label: "3" },
+];
 
-const showGroups = [
-  { value: "без поділу" },
-  { value: "2" },
-  { value: "3" },
-  { value: "4" },
-] as SelectOption[];
+const getShowGroups = (t: (key: string) => string): SelectOption[] => [
+  { id: "sg-1", value: "1", label: t("olympiadParams.no_grouping") },
+  { id: "sg-2", value: "2", label: "2" },
+  { id: "sg-3", value: "3", label: "3" },
+  { id: "sg-4", value: "4", label: "4" },
+];
 
-const categoryBinary = [
-  { value: "1", label: "Рядок" },
-  { value: "2", label: "Стовпчик" },
-] as SelectOption[];
+const getCategoryBinary = (t: (key: string) => string): SelectOption[] => [
+  { id: "cb-1", value: "1", label: t("olympiadParams.row") },
+  { id: "cb-2", value: "2", label: t("olympiadParams.column") },
+];
 
 export const StartPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -211,7 +212,7 @@ export const StartPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={capacity}
+                          options={getCapacity(t)}
                           placeholder={t("olympiadParams.capacity")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -233,7 +234,7 @@ export const StartPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={categoryBinary}
+                          options={getCategoryBinary(t)}
                           placeholder={t("olympiadParams.categoryBinary")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -255,7 +256,7 @@ export const StartPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={showGroups}
+                          options={getShowGroups(t)}
                           placeholder={t("olympiadParams.showGroups")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -277,7 +278,7 @@ export const StartPage: React.FC = () => {
                               ),
                             )
                           }
-                          options={groupCards}
+                          options={getGroupCards(t)}
                           placeholder={t("olympiadParams.groupCards")}
                           targetClassName="min-w-[165px]"
                           dropdownClassName="w-full"
@@ -286,7 +287,7 @@ export const StartPage: React.FC = () => {
                     </td>
                     <td className="rounded-r-xl bg-[--color-5] py-4 pl-2.5 pr-4 text-right lg:py-6 lg:pr-6">
                       <Button
-                        disabled={item.btn_allow !== 1}
+                        disabled={item.btn_allow !== 1 || item.points != null}
                         onClick={onSubmit({
                           olympiad_id: olympiadId,
                           params_id: item.id,
@@ -323,14 +324,20 @@ export const StartPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Кнопка "Дiзнайся свiй загальни бал" */}
       {olympiad?.is_done === 1 && (
-        <div className="mt-4 flex justify-center">
+        <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Button
-            className="w-full max-w-[500px] py-3 text-base"
+            className="max-w-[500px] py-3 text-base"
             onClick={() => navigate(`/olympiads/${olympiadId}/results`)}
           >
             {t("olympiadStart.checkScore")}
+          </Button>
+          <Button
+            variant="secondary"
+            className="max-w-[500px] py-3 text-base"
+            onClick={() => window.print()}
+          >
+            {t("olympiadStart.downloadResults")}
           </Button>
         </div>
       )}

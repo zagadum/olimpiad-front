@@ -1,0 +1,40 @@
+@media print {
+  /* Приховати навігацію та сайдбар */
+  nav,
+  aside,
+  header,
+  .sidebar,
+  .mobile-navbar {
+    display: none !important;
+  }
+
+  /* Приховати інтерактивні елементи */
+  button,
+  select {
+    display: none !important;
+  }
+
+  /* Чистий фон для друку */
+  body,
+  main,
+  div {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Стилі таблиці */
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  /* Помаранчевий текст зробити чорним */
+  span[class*="text-[#E79600]"],
+  span[class*="text-[#FF9A26]"] {
+    color: black !important;
+  }
+}

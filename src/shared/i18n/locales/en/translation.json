@@ -107,7 +107,8 @@
     "waitResults": "Waiting for results",
     "inactive": "Olympics inactive",
     "viewResults": "Olympiad results",
-    "pointsLabel": "Points"
+    "pointsLabel": "Points",
+    "myResults": "My Results"
   },
   "olympiadHeader": {
     "startIn": "Start za ",
@@ -157,7 +158,9 @@
     "quantity": "Quantity:",
     "decks": "Decks: ",
     "min": "min",
-    "points": "points"
+    "points": "points",
+    "checkScore": "Check your total score",
+    "downloadResults": "Download Results"
   },
   "registerForm": {
     "title": "Fill out the form",
@@ -210,8 +213,17 @@
     },
     "goToOlympiad": "Przejdź do olimpiady"
   },
+  "resultsPage": {
+    "congratulations": "Congratulations!",
+    "successMessage": "You have completed the Olympiad!",
+    "yourResult": "Your result",
+    "greatJob": "✨ GREAT JOB!",
+    "share": "Share result",
+    "mainMenu": "Main menu",
+    "linkCopied": "Link copied!"
+  },
   "common": {
     "back": "back",
     "retry": "retry"
-  }  
+  }
 }

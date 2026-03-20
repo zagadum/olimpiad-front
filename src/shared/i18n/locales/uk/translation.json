@@ -93,7 +93,8 @@
     "waitResults": "Чекаємо результатів",
     "inactive": "Олімпіада неактивна",
     "viewResults": "Результати олімпіади",
-    "pointsLabel": "Балів"
+    "pointsLabel": "Балів",
+    "myResults": "Мої результати"
   },
   "olympiadHeader": {
     "startIn": "Початок через ",
@@ -142,7 +143,8 @@
     "quantity": "Кількість:",
     "decks": "Колоди: ",
     "points": "балів",
-    "checkScore": "Дiзнайся свiй загальни бал"
+    "checkScore": "Дiзнайся свiй загальни бал",
+    "downloadResults": "Завантажити результати"
   },
   "registerForm": {
     "title": "Заповніть форму",

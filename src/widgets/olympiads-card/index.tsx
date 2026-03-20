@@ -294,6 +294,15 @@ const OlympiadActions: React.FC<{
             <span className="text-[--color-2]">
               {t("olympiadCard.waitResults")}
             </span>
+            <Button
+              variant="secondary"
+              onClick={(e) => {
+                e.stopPropagation();
+                onStart(e);
+              }}
+            >
+              {t("olympiadCard.myResults")}
+            </Button>
           </div>
         );
       }
