@@ -13,7 +13,6 @@ export const ResultsPage: React.FC = () => {
   const { olympiadId } = useParams<{ olympiadId: string }>();
 
   const [displayScore, setDisplayScore] = useState(0);
-  const [showToast, setShowToast] = useState(false);
 
   const { data: user } = useCurrentUserQuery();
 
@@ -102,26 +101,6 @@ export const ResultsPage: React.FC = () => {
     };
   }, [myScore]);
 
-  const handleShare = async () => {
-    const shareText = `Я набрав ${myScore} балів в Олімпіаді з пам'яті!`;
-    const shareUrl = window.location.href;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Моя Олімпіада",
-          text: shareText,
-          url: shareUrl,
-        });
-      } catch {
-        // cancelled by user
-      }
-    } else {
-      await navigator.clipboard.writeText(shareUrl).catch(() => {});
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
-    }
-  };
 
   const handleMainMenu = () => {
     navigate("/olympiads/my");
@@ -131,15 +110,6 @@ export const ResultsPage: React.FC = () => {
     <div className="flex min-h-[80vh] w-full items-center justify-center relative">
       {/* Фонове свічення */}
       <div className="absolute inset-0 pointer-events-none results-glow-bg" />
-
-      {/* Toast повідомлення */}
-      <div
-        className={`fixed top-10 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${showToast ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10 pointer-events-none"}`}
-      >
-        <div className="bg-emerald-500 text-white px-6 py-3 rounded-full shadow-lg shadow-emerald-500/20 font-medium text-sm">
-          {t("resultsPage.linkCopied")}
-        </div>
-      </div>
 
       {/* Основна картка */}
       <div className="relative z-10 w-full max-w-md mx-4 p-8 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl text-center results-fade-in-up">
