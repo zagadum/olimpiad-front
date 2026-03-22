@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Положення про участь у Олімпіаді Space Memory</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary-color: #1e293b;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --accent-ua: #fbbf24;
+            --accent-eu: #38bdf8;
+            --danger: #ef4444;
+            --success: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        /* Layout Structure */
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            flex: 0 0 300px;
+            position: sticky;
+            top: 20px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .sidebar nav ul li a:hover {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* TL;DR Summary Block */
+        .tldr-box {
+            background-color: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-left: 5px solid var(--danger);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .tldr-box h2 {
+            margin-top: 0;
+            color: var(--danger);
+            border: none;
+            padding-bottom: 0;
+            font-size: 1.3rem;
+        }
+
+        .tldr-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .tldr-box ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #881337;
+        }
+
+        .tldr-box ul li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .math-block {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        /* Payment info blocks */
+        .payment-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .payment-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .payment-card.ua {
+            border-top: 4px solid var(--accent-ua);
+        }
+
+        .payment-card.eu {
+            border-top: 4px solid var(--accent-eu);
+        }
+
+        .payment-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-box {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 992px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                flex: none;
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            .payment-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .content, .sidebar {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <aside class="sidebar">
+        <h3>Зміст регламенту</h3>
+        <nav>
+            <ul>
+                <li><a href="#tldr">Коротко про головне (ВАЖЛИВО)</a></li>
+                <li><a href="#general">1. Загальні положення</a></li>
+                <li><a href="#registration">2. Реєстрація на Олімпіаду</a></li>
+                <li><a href="#rules">3. Порядок проведення</a></li>
+                <li><a href="#rights-user">4. Права та обов'язки учасника</a></li>
+                <li><a href="#rights-org">5. Права та обов'язки організатора</a></li>
+                <li><a href="#awards">6. Підсумки та нагородження</a></li>
+                <li><a href="#other-rules">7. Інші умови та відповідальність</a></li>
+                <li><a href="#data">8. Персональні дані</a></li>
+                <li><a href="#finance">9. Оплата та реквізити</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>ПОЛОЖЕННЯ ПРО УЧАСТЬ У ОНЛАЙН-ОЛІМПІАДІ «Space Memory»</h1>
+            <p><em>Договір публічної оферти. Оплата послуг означає повну згоду з умовами.</em></p>
+        </header>
+
+        <section id="tldr" class="tldr-box">
+            <h2>Коротко про головне</h2>
+            <ul>
+                <li><strong>Пристрої:</strong> Олімпіаду можна проходити ТІЛЬКИ на ноутбуці або планшеті. Телефони суворо заборонені.</li>
+                <li><strong>Відеозапис:</strong> Є ОБОВ'ЯЗКОВИМ! Відео знімається безперервно від початку і до кінця. На ньому має бути видно учасника, екран та чутно звук. Без монтажу.</li>
+                <li><strong>Навушники:</strong> Використовувати навушники під час проходження суворо заборонено.</li>
+                <li><strong>Самостійність:</strong> Учасник повинен вводити відповіді самостійно, без допомоги третіх осіб чи додатків.</li>
+                <li><strong>Відеозвіт:</strong> Надається протягом 48 годин за запитом організатора.</li>
+            </ul>
+        </section>
+
+        <section id="general">
+            <h2>1. ЗАГАЛЬНІ ПОЛОЖЕННЯ</h2>
+            <p>1.1. Це положення визначає порядок організації та проведення ОНЛАЙН-ОЛІМПІАДИ Space Memory (далі Олімпіада), її організаційне та фінансове забезпечення, порядок участі та визначення переможців.</p>
+            <p>1.2. Основними цілями та завданнями олімпіади є:</p>
+            <ul>
+                <li>надання учасникам можливості змагатися за межами закладу, регіону, країни;</li>
+                <li>заохочення дітей, які виявляють здібності до спортивного запам'ятовування;</li>
+                <li>розвивати у дітей здатність застосовувати набуті знання на практиці;</li>
+            </ul>
+            <p>1.3. Організатором онлайн-олімпіади є міжнародна школа спортивного запам'ятовування «Space Memory» (далі Організатор).</p>
+            <p>1.4. До участі допускаються тільки клієнти школи Space Memory віком від 8 до 20 років.</p>
+            <p>1.5. Місце проведення: <a href="https://ua.space-memory.com/admin/olympiad" target="_blank">https://ua.space-memory.com/admin/olympiad</a></p>
+        </section>
+
+        <section id="registration">
+            <h2>2. ПОРЯДОК РЕЄСТРАЦІЇ НА ОНЛАЙН-ОЛІМПІАДУ</h2>
+            <p>2.1. Реєстрація на олімпіаду відбувається онлайн, на сайті платформи.</p>
+            <p>2.2. Оплата відбувається онлайн через відповідні платіжні системи (деталі у розділі 9). Після реєстрації і оплати учасник отримує можливість безлімітного доступу до тестового проходження олімпіади щодня.</p>
+            <p>2.3. Дати, в межах яких клієнт може виконати завдання, зазначені на головній сторінці сайту <a href="https://olymp-space.com" target="_blank">olymp-space.com</a>.</p>
+        </section>
+
+        <section id="rules">
+            <h2>3. ПОРЯДОК ПРОВЕДЕННЯ ОНЛАЙН-ОЛІМПІАДИ</h2>
+            <p>3.1. Доступ до олімпіади відкривається в перший день змагань. Кожному учаснику дається лише одна спроба пройти.</p>
+            <p>3.2. Завдання можна виконувати обираючи самостійно дисципліну, яку маєте бажання пройти першою і дається можливість проходження з перервою, за умови завершення проходження початої дисципліни, але не пізніше останнього дня проходження Олімпіади.</p>
+            <p>3.3. На кожну дисципліну відводиться 5 хвилин на запам'ятовування і 15 хвилин на пригадування.</p>
+            
+            <h3>Оцінювання (Рівень «Учень»)</h3>
+            <p>Зараховується кожна правильна відповідь, за умови якщо вона знаходиться в правильній комірці для усіх дисциплін.</p>
+            
+            <h3>Оцінювання (Рівень «Pro»)</h3>
+            
+            <p><strong>Дисципліна «Числа»</strong></p>
+            <ul>
+                <li>Без помилок в рядку: 40 * 1.5 = 60 балів</li>
+                <li>1 помилка в рядку: 20 * 1.5 = 30 балів</li>
+                <li>2 помилки в рядку: 0 балів</li>
+                <li>Останній неповний рядок (всі вірні, напр. 33 числа): 33 * 1.5 = 49.5 балів</li>
+                <li>Останній неповний рядок (1 помилка): 33 / 2 = 16.5 * 1.5 = 24.75 балів</li>
+            </ul>
+
+            <p><strong>Дисципліна «Картинки»</strong></p>
+            <p>Оцінювання здійснюється порядково (по 5 зображень). Ряд зараховується лише у випадку абсолютно точного відтворення всіх зображень та їх порядку. Хоча б одна помилка = штраф -1 бал за весь ряд. За кожен повністю правильний ряд: +5 балів, у кінці множиться на 1.5.</p>
+
+            <p><strong>Дисципліна «Слова»</strong></p>
+            <ul>
+                <li>Оцінюється по стовпцях (по 20 слів).</li>
+                <li>1 помилка в стовпці: 20 - 10 = 10 балів.</li>
+                <li>2 помилки: 0 балів.</li>
+                <li>Усі бали множаться на 1.5.</li>
+            </ul>
+
+            <p><strong>Дисципліна «Карти»</strong></p>
+            <p>Програма порівнює кожну картку, при першій помилці оцінюються лише правильні відповіді до цього моменту. Якщо згадано менше 52 карток, час запам'ятовування вважається 300 сек.</p>
+            <div class="math-block">
+                Формула: Бали = [100 / (t / 300)] * [c / 52]<br>
+                t = час (сек), c = кількість правильних карток до першої помилки.
+            </div>
+
+            <p><strong>Дисципліна «Вигадані дати»</strong></p>
+            <p>Правильний рік = 1 бал. Помилка = штраф -0.5 бала. Порожні комірки без штрафу. Потрібно писати всі 4 цифри року.</p>
+
+            <p><strong>Дисципліна «Бінарний код»</strong></p>
+            <ul>
+                <li>Повний рядок без помилок: 30 * 1.5 = 45 балів.</li>
+                <li>1 помилка: 15 * 1.5 = 22.5 балів.</li>
+                <li>2 та більше помилок: 0 балів.</li>
+            </ul>
+        </section>
+
+        <section id="rights-user">
+            <h2>4. ПРАВА ТА ОБОВ'ЯЗКИ УЧАСНИКА ОЛІМПІАДИ</h2>
+            <h3>4.1. Учасник має право:</h3>
+            <ul>
+                <li>Брати участь на обраному рівні та тренуватися на навчальних завданнях.</li>
+                <li>Виконувати завдання олімпіади без додаткових засобів.</li>
+            </ul>
+            
+            <h3>4.2. Обов'язки Учасника:</h3>
+            <ul>
+                <li>Вводити відповіді самостійно, без сторонніх осіб і засобів.</li>
+                <li>Бути без навушників під час проходження.</li>
+                <li>Забезпечити безперервний відеозапис процесу (з екраном, дитиною та звуком).</li>
+                <li>Надати відеозвіт протягом 48 годин за запитом організатора.</li>
+            </ul>
+        </section>
+
+        <section id="rights-org">
+            <h2>5. ПРАВА ТА ОБОВ'ЯЗКИ ОРГАНІЗАТОРА</h2>
+            <p>Організатор має право об'єднувати групи при недостатній кількості учасників, запитувати відеопідтвердження, а також анулювати результати та дискваліфікувати учасника у разі порушення правил (зокрема за наявність сторонньої допомоги, використання телефону або відмову надати відео).</p>
+        </section>
+
+        <section id="awards">
+            <h2>6. ПІДБУТТЯ ПІДСУМКІВ ТА НАГОРОДЖЕННЯ</h2>
+            <p>Список переможців публікується не пізніше ніж за 14 днів. Учасник, який зайняв призове місце і не надав коректне відеопідтвердження протягом 48 годин, автоматично виключається зі списку переможців. У разі скасування результату його місце займає наступний учасник.</p>
+        </section>
+
+        <section id="other-rules">
+            <h2>7. ІНШІ УМОВИ ТА ВІДПОВІДАЛЬНІСТЬ</h2>
+            <ul>
+                <li>Забороняється змінювати рівень складності після реєстрації.</li>
+                <li>Забороняється участь з мобільного телефону (лише ноутбук/планшет).</li>
+                <li>Забороняється розміщення політичної/релігійної символіки або реклами на фоні відеозапису.</li>
+            </ul>
+        </section>
+
+        <section id="data">
+            <h2>8. ПЕРСОНАЛЬНІ ДАНІ</h2>
+            <p>Оплачуючи участь, ви даєте згоду на обробку персональних даних дитини для підбиття підсумків, а також дозволяєте публікацію результатів та використання фото/відео дитини для соціальних мереж Організатора безкоштовно.</p>
+        </section>
+
+        <section id="finance">
+            <h2>9. ФІНАНСОВЕ ЗАБЕЗПЕЧЕННЯ ТА РЕКВІЗИТИ</h2>
+            <p>Плата використовується для відшкодування витрат на організацію Олімпіади і не повертається та не переноситься.</p>
+
+            <div class="payment-info-grid">
+                <div class="payment-card ua">
+                    <h3>🇺🇦 Оплата по Україні</h3>
+                    <p><strong>Система:</strong> LiqPay (тільки для тих, хто в Україні)</p>
+                    <p><strong>Юр. особа:</strong> ФОП Кравченко Л.О. (ІПН: 2320907925)</p>
+            
+                    <p><strong>Адреса:</strong> Київська обл., м. Вишгород, вул. Шолуденка, 24/1</p>
+                    
+                    <div style="margin-top: 15px; font-size: 0.9rem;">
+                        <strong>Служба підтримки:</strong><br>
+                        <a href="mailto:space.memory.com@gmail.com">space.memory.com@gmail.com</a><br>
+                        <a href="mailto:space.memory.work.ua@gmail.com">space.memory.work.ua@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="payment-card eu">
+                    <h3>🇪🇺 Оплата з-за кордону</h3>
+                    <p><strong>Система:</strong> Imoje (Bank ING) - для українців за кордоном</p>
+                    <p><strong>Юр. особа:</strong> Global Leaders Skills Sp. z o.o.</p>
+                    <p><strong>NIP:</strong> 5252970924</p>
+                    <p><strong>Адреса:</strong> Al. Jerozolimskie 123A, 02-017 Warszawa</p>
+                    
+                    <div style="margin-top: 15px; font-size: 0.9rem;">
+                        <strong>Європейський відділ:</strong><br>
+                        <a href="mailto:akademiaspacememory@gmail.com">akademiaspacememory@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <p>У разі виникнення будь-яких запитань, будь ласка, звертайтесь до відповідного відділу за вказаними контактами. Бажаємо успіхів!</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

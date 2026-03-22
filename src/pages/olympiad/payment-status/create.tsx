@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/shared/i18n";
 import { createPayment } from "@/entities/payments/api";
 import { PaymentCreateResponse, PaymentFormField } from "@/entities/payments/types";
+import { FooterLinks } from "@/shared/ui/FooterLinks";
 
 
 // Иконки оплаты из папки images/pay
@@ -181,23 +182,7 @@ export const PaymentCreatePage: React.FC = () => {
           </div>
         )}
       </div>
-      <footer className="w-full flex flex-wrap gap-4 justify-start items-center py-6 text-sm pl-[0px]" style={{color: '#FFFFFF'}}>
-        <a href="/docs/Regulamin-Olimpiady-2026.html" className="footer-link" target="_blank" rel="noopener noreferrer">Regulamin</a>
-        <a href="/docs/Klauzula_RODO.html" className="footer-link" target="_blank" rel="noopener noreferrer">Klauzula RODO</a>
-        <a href="/docs/Polityka_Prywatności.html" className="footer-link" target="_blank" rel="noopener noreferrer">Polityka prywatności</a>
-        <a href="/docs/Ochrona_Małoletnich.html" className="footer-link" target="_blank" rel="noopener noreferrer">Ochrona Małoletnich</a>
-        <a href="/docs/ODSTĄPIENIA-OD-UMOWY.html" className="footer-link" target="_blank" rel="noopener noreferrer">Oświadczenie o odstąpieniu</a>
-        <a href="/docs/Regulamin_Serwisu.html" className="footer-link" target="_blank" rel="noopener noreferrer">Regulamin Serwisu</a>
-      </footer>
-      <style>{`
-        .footer-link {
-          color: #FFFFFF;
-          transition: color 0.2s;
-        }
-        .footer-link:hover {
-          color: #26F9FF;
-        }
-      `}</style>
+      <FooterLinks />
     </div>
   );
 };
