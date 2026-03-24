@@ -131,7 +131,8 @@
     "quantity": "Кількість: ",
     "decks": "Колоди: ",
     "min": "xв.",
-    "points": "балів"
+    "points": "балів",
+    "pointsWithValue": "Балів: {{points}}"
   },
   "olympiadStart": {
     "title": "Олімпіада",

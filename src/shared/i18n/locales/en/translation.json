@@ -146,7 +146,8 @@
     "quantity": "Quantity: ",
     "decks": "Decks: ",
     "min": "min",
-    "points": "points"
+    "points": "points",
+    "pointsWithValue": "Points: {{points}}"
   },
   "olympiadStart": {
     "title": "Olympiad",

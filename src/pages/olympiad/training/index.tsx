@@ -309,8 +309,15 @@ export const TrainingPage: React.FC = () => {
                           ? t("olympiadStart.done")
                           : t("olympiadTraining.startTraining")}
                       </Button>
-                        <p className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base" style={{ paddingRight: '2em' }}>
-                            {item.points != null ? `${item.points} ${t("olympiadTraining.points")}` : ''}
+                        <p
+                          className="max-w-[395px] text-xs font-light text-[#A5A5A5] lg:text-base"
+                          style={{ paddingRight: "2em" }}
+                        >
+                          {item.points != null
+                            ? t("olympiadTraining.pointsWithValue", {
+                                points: item.points,
+                              })
+                            : ""}
                         </p>
 
                     </td>

@@ -131,7 +131,8 @@
     "quantity": "Ilość: ",
     "decks": "Talia: ",
     "min": "min",
-    "points": "punktów"
+    "points": "punktów",
+    "pointsWithValue": "Liczba punktów: {{points}}"
   },
   "olympiadStart": {
     "title": "Olimpiada",
